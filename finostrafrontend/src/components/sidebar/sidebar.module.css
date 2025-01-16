@@ -1,0 +1,70 @@
+.sidebar {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'adineue PRO', sans-serif;
+    width: 251px;
+    height: 1686px;
+    background-color: #0F110E;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    width: 251px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    display: flex;
+    margin-bottom: 15px;
+    width: 251px;
+    height: 24px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: none;
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 251px;
+    height: 59px;
+}
+.iconContainer:hover {
+    background-color: #28282C;
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
+    width: 251px;
+}
+.iconContainer img {
+    display: flex;
+    width: 24px;
+    height: 24px;
+}
+.iconContainer div {
+    display: flex;
+}
+.iconWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+
+
+

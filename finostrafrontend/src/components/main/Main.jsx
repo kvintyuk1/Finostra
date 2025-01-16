@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Header from "../header/Header";  
 import Footer from "../Footer/Footer";  
-import styles from "./Main.module.css";  
+import styles from "./Main.module.css";
+import Sidebar from "../sidebar/Sidebar";
+import DigitalBankCard from "../DigitalBankCard/DigitalBankCard";
+import CardAnotherBank from "../CardAnotherBank/CardAnotherBank";
 
 const Main = () => {
     const [isDarkMode, setIsDarkMode] = useState(true); 
@@ -17,14 +20,20 @@ const Main = () => {
 
     return (
         <div className={`${styles.App} ${isDarkMode ? styles.dark_mode : styles.light_mode}`}>
-            <Header 
-                isDarkMode={isDarkMode} 
-                toggleTheme={toggleTheme} 
+            <Header
+                isDarkMode={isDarkMode}
+                toggleTheme={toggleTheme}
                 selectedLanguage={selectedLanguage}
-                handleLanguageChange={handleLanguageChange} 
+                handleLanguageChange={handleLanguageChange}
             />
-            <main className={styles.main_v_3}> 
-            </main>
+            <div className={styles.wrapper_main}>
+                <Sidebar />
+                <main className={styles.main_v_3}>
+                    <DigitalBankCard />
+                    <CardAnotherBank />
+                </main>
+            </div>
+
             <Footer isDarkMode={isDarkMode} /> 
         </div>
     );
