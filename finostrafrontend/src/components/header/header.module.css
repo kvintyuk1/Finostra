@@ -4,17 +4,6 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Зміна з світлої на темну */
-.light_mode .main_v_3 {
-    background-color: #EAEAEA;
-
-}
-
-/* Зміна з темної на світлу */
-.dark_mode .main_v_3 {
-    background-color: #28282C;
-
-}
 
 .dark_mode .frame757 {
     background: #0F110E;
@@ -151,15 +140,7 @@
 }
 
 /* Стилі для головного контенту */
-.main_v_3 {
-    position: relative;
-    width: 100%;
-    /* Ширина на весь екран */
-    height: 100vh;
-    /* Висота на весь екран */
-    background: #28282C;
-    /* Фон */
-}
+
 
 .header {
     position: relative;

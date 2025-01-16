@@ -1,0 +1,19 @@
+.footer {
+    width: 100%;
+    height: 189px;
+    top: 1841px;
+    gap: 0px;
+    border: 1px 0px 0px 0px;
+    text-align: center;
+    background: #0E0E0E;
+    color: #ffffff;
+    /* Light mode text */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+.light_mode.footer {
+    background: #FFFFFF;
+    color: #333;
+}

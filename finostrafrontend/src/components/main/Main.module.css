@@ -1,0 +1,15 @@
+.main_v_3 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #28282C;
+}
+.light_mode .main_v_3 {
+    background-color: #EAEAEA;
+
+}
+
+.dark_mode .main_v_3 {
+    background-color: #28282C;
+
+}
