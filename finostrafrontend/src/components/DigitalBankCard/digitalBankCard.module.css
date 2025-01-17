@@ -5,30 +5,37 @@
     gap: 23px;
     width: 456px;
     height: 239px;
-    background-color: #FFF;
     border-radius: 30px;
+}
+.dark_mode .container {
+    background-color: #0F110E;
+}
+.light_mode .container {
+    background-color: #FFF;
 }
 .title {
     position: relative;
     top: 5px;
     left: 3vh;
-    color: #000;
     font-family: "Century Gothic";
     font-weight: 700;
     font-size: 20px;
 }
+.dark_mode .title {
+    color: white;
+}
+.light_mode .title {
+    color: #000;
+}
 .info {
     display: flex;
     justify-content: center;
-     align-items: center;
+    align-items: center;
 }
-.info img {
-    width: 145px;
-    height: 73px;
-    border-radius: 5px;
-    border: 1px solid white;
+.dark_mode .info ul {
+    color: white;
 }
-.info ul {
+.light_mode .info ul {
     color: #000;
 }
 .container button {
@@ -37,6 +44,7 @@
     align-items: center;
     justify-content: center;
     background-color: #A66CFE;
+    border: 1px solid #A66CFE;
     font-family: adineue PRO;
     font-size: 16px;
     font-weight: 400;
@@ -45,8 +53,9 @@
     height: 43px;
     color: white;
 }
+
 .button {
-   position: relative;
+    position: relative;
     left: 3vh;
     bottom: 5px;
 }

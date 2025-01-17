@@ -27,14 +27,21 @@ const Main = () => {
                 handleLanguageChange={handleLanguageChange}
             />
             <div className={styles.wrapper_main}>
-                <Sidebar />
+                <Sidebar/>
                 <main className={styles.main_v_3}>
-                    <DigitalBankCard />
-                    <CardAnotherBank />
+                    <DigitalBankCard isDarkMode={isDarkMode}/>
+                    <CardAnotherBank isDarkMode={isDarkMode}/>
+                    <div>
+                        <img src="./img/star 3.png" className={styles.star}/>
+                    </div>
+                    <div>
+                        <img className={styles.tab_message} src="./icons/tabler_message.svg"/>
+                    </div>
                 </main>
+
             </div>
 
-            <Footer isDarkMode={isDarkMode} /> 
+            <Footer isDarkMode={isDarkMode}/>
         </div>
     );
 };

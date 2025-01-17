@@ -5,11 +5,17 @@
     gap: 23px;
     width: 614px;
     height: 239px;
-    background-color: #0F110E;
     border-radius: 30px;
+}
+.dark_mode .container {
+    background-color: #0F110E;
+}
+.light_mode .container {
+    background-color: #FFF;
 }
 .title {
     position: relative;
+    top: 5px;
     left: 3vh;
     width: 350px;
     color: white;
@@ -17,26 +23,41 @@
     font-weight: 700;
     font-size: 20px;
 }
+.dark_mode .title {
+    color: white;
+}
+.light_mode .title {
+    color: #000;
+}
 .info {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    position: relative;
+    left: 3vh;
 }
 .info img {
     width: 145px;
     height: 73px;
     border-radius: 5px;
     border: 1px solid white;
+    margin-right: 20px;
 }
 .info div {
     display: flex;
     color: white;
     width: 200px;
 }
+.dark_mode .info div {
+    color: white;
+}
+.light_mode .info div {
+    color: #000;
+}
 .star {
     width: 177px;
     height: 193px;
-    background-color: #0F110E;
+
 }
 .container button {
     display: flex;
@@ -54,13 +75,7 @@
 }
 .button {
     position: relative;
+    top: 5px;
     left: 3vh;
 }
-.tab_message img {
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    position: relative;
-    top: 10px;
-    right: -590px;
-}
+
