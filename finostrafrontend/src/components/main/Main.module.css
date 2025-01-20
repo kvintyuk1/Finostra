@@ -1,6 +1,8 @@
 .main_v_3 {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: start;
+    gap: 20px;
     width: 100%;
     background: #28282C;
 }
@@ -19,19 +21,15 @@
     display: flex;
     flex: 1;
 }
-.star {
-    position: relative;
-    top: 20px;
-    right: 175px;
+.digital_another {
+    display: flex;
+    
 }
-.dark_mode .star {
-    background-color: #0F110E;
+.transfer_recharge {
+    display: flex;
 }
-.light_mode .star {
-    background-color: #FFF;
+.payment {
+    display: flex;
 }
-.tab_message {
-    position: relative;
-    top: 200px;
-    right: 207px;
-}
+
+

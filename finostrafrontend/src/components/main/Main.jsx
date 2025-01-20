@@ -5,6 +5,10 @@ import styles from "./Main.module.css";
 import Sidebar from "../sidebar/Sidebar";
 import DigitalBankCard from "../DigitalBankCard/DigitalBankCard";
 import CardAnotherBank from "../CardAnotherBank/CardAnotherBank";
+import TransferToCard from "../TransferToCard/TransferToCard";
+import MobileRecharge from "../MobileRecharge/MobileRecharge";
+import Payment from "../Payment/Payment";
+import CreditProducts from "../CreditProducts/CreditProducts";
 
 const Main = () => {
     const [isDarkMode, setIsDarkMode] = useState(true); 
@@ -29,18 +33,25 @@ const Main = () => {
             <div className={styles.wrapper_main}>
                 <Sidebar/>
                 <main className={styles.main_v_3}>
-                    <DigitalBankCard isDarkMode={isDarkMode}/>
-                    <CardAnotherBank isDarkMode={isDarkMode}/>
-                    <div>
-                        <img src="./img/star 3.png" className={styles.star}/>
+
+                    <div className={styles.digital_another}>
+                        <DigitalBankCard isDarkMode={isDarkMode}/>
+                        <CardAnotherBank isDarkMode={isDarkMode}/>
+                    </div>
+                    <div className={styles.transfer_recharge}>
+                        <TransferToCard isDarkMode={isDarkMode}/>
+                        <MobileRecharge isDarkMode={isDarkMode}/>
+                    </div>
+                    <div className={styles.payment}>
+                        <Payment isDarkMode={isDarkMode}/>
                     </div>
                     <div>
-                        <img className={styles.tab_message} src="./icons/tabler_message.svg"/>
+                        <CreditProducts isDarkMode={isDarkMode}/>
                     </div>
+
                 </main>
 
             </div>
-
             <Footer isDarkMode={isDarkMode}/>
         </div>
     );

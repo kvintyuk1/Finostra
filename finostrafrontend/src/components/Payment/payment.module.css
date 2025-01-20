@@ -6,12 +6,13 @@
     width: 456px;
     height: 153px;
     border-radius: 30px;
+
 }
 .dark_mode .container {
-    background-color: #E2D8FD;
+    background-color: #000;
 }
 .light_mode .container {
-    background-color: #D4B8FF;
+    background-color: #FFF;
 }
 
 .title {
@@ -22,6 +23,12 @@
     font-size: 20px;
     width: 400px;
     align-self: center;
+}
+.dark_mode .title {
+    color: #FFF;
+}
+.light_mode .title {
+    color: #000;
 }
 
 .wrapper_contentCard {
@@ -40,13 +47,22 @@
 }
 
 .numberCard {
-    color: rgba(0, 0, 0, 0.6);
+    color: black;
 }
+
+.dark_mode .numberCard {
+    color: #FFF;
+}
+.light_mode .numberCard {
+    color: #000;
+}
+
 
 .wrapper_img {
     display: flex;
     gap: 5px;
 }
+
 
 .text {
     display: flex;
@@ -55,6 +71,12 @@
     font-size: 14px;
     width: 400px;
 }
+.dark_mode .text {
+    color: #FFF;
+}
+.light_mode .text {
+    color: #000;
+}
 
 .hr {
     display: flex;
@@ -62,5 +84,10 @@
     width: 88%;
     border: none;
     margin: 0;
+}
+.dark_mode .hr {
+    border-bottom: 1px solid #FFF;
+}
+.light_mode .hr {
     border-bottom: 1px solid #000;
 }

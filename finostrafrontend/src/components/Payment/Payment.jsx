@@ -1,25 +1,24 @@
 import React from "react";
-import styles from "./transferToCard.module.css";
+import styles from "./payment.module.css";
 
-function TransferToCard({isDarkMode}) {
+function Payment({ isDarkMode }){
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
             <div className={styles.container}>
                 <div className={styles.title}>
-                    <img src="./icons/transfer_black.svg"/>
-                    <span>Переказ на картку</span>
+                    <img src={isDarkMode ? "./icons/payment.svg" : "./icons/payment_black.svg"}/>
+                    <span>Платіж</span>
                 </div>
                 <div className={styles.wrapper_contentCard}>
                     <div className={styles.contentCard}>
-                        <div className={styles.numberCard}>0000 0000 0000 0000</div>
+                        <div className={styles.numberCard}>UAXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
                         <div className={styles.wrapper_img}>
-                            <img src="./icons/cardLinear.svg"/>
-                            <img src="./icons/arrow-out.svg"/>
+                            <img src={isDarkMode ? "./icons/arrow-out-white.svg" : "./icons/arrow-out.svg"}/>
                         </div>
                     </div>
                     <hr className={styles.hr}/>
                     <div className={styles.text}>
-                        <span>VISA/MasterCard українських та закордонних банків</span>
+                        <span>IBAN, ЄДРПОУ, номер рахунку або назва одержувача</span>
                     </div>
                 </div>
             </div>
@@ -27,4 +26,4 @@ function TransferToCard({isDarkMode}) {
     )
 }
 
-export default TransferToCard;
+export default Payment;

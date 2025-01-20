@@ -1,8 +1,7 @@
 .container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    gap: 23px;
+    justify-content: center;
     width: 614px;
     height: 239px;
     border-radius: 30px;
@@ -13,13 +12,21 @@
 .light_mode .container {
     background-color: #FFF;
 }
-.title {
+.info_star {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.wrapper_info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     position: relative;
-    top: 5px;
     left: 3vh;
-    width: 350px;
+}
+.title {
     color: white;
-    font-family: "Century Gothic";
+    font-family: 'adineue PRO Cyr', sans-serif;
     font-weight: 700;
     font-size: 20px;
 }
@@ -33,8 +40,6 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    position: relative;
-    left: 3vh;
 }
 .info img {
     width: 145px;
@@ -54,18 +59,14 @@
 .light_mode .info div {
     color: #000;
 }
-.star {
-    width: 177px;
-    height: 193px;
 
-}
 .container button {
     display: flex;
     align-self: flex-start;
     align-items: center;
     justify-content: center;
     background-color: #A66CFE;
-    font-family: adineue PRO;
+    font-family: 'adeneue PRO Cyr', sans-serif;
     font-size: 16px;
     font-weight: 400;
     border-radius: 9px;
@@ -73,9 +74,11 @@
     height: 43px;
     color: white;
 }
-.button {
+.tab_message {
+    display: flex;
+    justify-self: end;
     position: relative;
-    top: 5px;
-    left: 3vh;
+    top: -31px;
+    left: 24px;
 }
 

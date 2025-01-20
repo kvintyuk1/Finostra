@@ -1,7 +1,7 @@
 .container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     gap: 23px;
     width: 456px;
     height: 239px;
@@ -16,8 +16,8 @@
 .title {
     position: relative;
     top: 5px;
-    left: 3vh;
-    font-family: "Century Gothic";
+    left: 4vh;
+    font-family: 'adineue PRO Cyr', sans-serif;
     font-weight: 700;
     font-size: 20px;
 }
@@ -31,7 +31,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    left: 1vh;
 }
+.info img {
+    display: flex;
+    border-radius: 5px;
+}
+
 .dark_mode .info ul {
     color: white;
 }
@@ -45,7 +52,7 @@
     justify-content: center;
     background-color: #A66CFE;
     border: 1px solid #A66CFE;
-    font-family: adineue PRO;
+    font-family: 'adineue PRO Cyr', sans-serif;
     font-size: 16px;
     font-weight: 400;
     border-radius: 9px;
@@ -56,6 +63,6 @@
 
 .button {
     position: relative;
-    left: 3vh;
     bottom: 5px;
+    left: 4vh;
 }
