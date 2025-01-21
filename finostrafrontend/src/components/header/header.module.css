@@ -179,7 +179,7 @@
 .Rectangle2 {
     width: 49px;
     height: 49px;
-    border: 1px solid #FFFFFF;
+    background-image: url('../../assets/Photo/Finostra_logo.png');
     border-radius: 7px;
 }
 
@@ -215,7 +215,7 @@
     outline: none;
     background: transparent;
     color: #000000;
-    font-family: 'adineue PRO', sans-serif;
+    font-family: 'adeneue PRO Cyr', sans-serif;
     font-size: 16px;
     line-height: 19px;
 }
@@ -287,7 +287,7 @@
 .Frame708 span:first-child {
     width: 9px;
     height: 19px;
-    font-family: 'adineue PRO';
+    font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -299,11 +299,12 @@
 .Frame708 span:last-child {
     width: 89px;
     height: 19px;
-    font-family: 'adineue PRO';
+    font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
+    letter-spacing: -1.5px;
 
 }
 
@@ -354,7 +355,7 @@
 .language {
     width: 20px;
     height: 19px;
-    font-family: 'adineue PRO';
+    font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -449,7 +450,7 @@
 .Frame636 span {
     width: 33px;
     height: 19px;
-    font-family: 'adineue PRO', sans-serif;
+    font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -480,9 +481,7 @@
     border: 1px solid #000000;
 }
 
-.light_mode .Rectangle2 {
-    border: 1px solid #000000;
-}
+
 
 .light_mode .Logo {
     color: #000000;

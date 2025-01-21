@@ -18,7 +18,7 @@ function Header({ isDarkMode, toggleTheme, selectedLanguage, handleLanguageChang
                 <div className={styles.frame757}>
                     <div className={styles.Frame614}>
                         <div className={styles.Rectangle2}></div>
-                        <div className={styles.Logo}>Logo</div>
+                        <div className={styles.Logo}>Finostra</div>
                     </div>
                     <div >
                         <div className={`${styles.searchBar} ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
