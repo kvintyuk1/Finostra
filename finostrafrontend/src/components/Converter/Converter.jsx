@@ -1,0 +1,84 @@
+import React from "react";
+import styles from "./converter.module.css";
+
+function Converter() {
+    return (
+        <div className={styles.container}>
+            <div className={styles.wrapper_title}>
+                <div className={styles.title}>Конвертор валют</div>
+                <div className={styles.wrapper_exchange}>
+                    <div className={styles.text}>41,46</div>
+                    <img src="./icons/grivna.svg"/>
+                    <div className={styles.text}>=</div>
+                    <div className={styles.text}>1</div>
+                    <img src="./icons/dollar.svg"/>
+                </div>
+            </div>
+            <div className={styles.info} >
+                <div className={styles.wrapper_content}>
+                    <div className={styles.container_exchange}>
+                        <div className={styles.exchange}>
+                            <div className={styles.wrapper_rate}>
+                                <div className={styles.country}>
+                                    <img src="./icons/flag-ukraine.svg"/>
+                                    <div className={styles.currency}>UAH</div>
+                                    <img src="./icons/grivna.svg"/>
+                                    <img src="./icons/arrow-down.svg"/>
+                                </div>
+                                <div>
+                                    <hr className={`${styles.hr} ${styles.size}`}/>
+                                </div>
+                                <div className={styles.balance}>
+                                    <span>Баланс :</span>
+                                    <span>23 000 </span>
+                                    <img src="./icons/grivna.svg"/>
+                                </div>
+                            </div>
+                            <div className={styles.total}>
+                                <span>360, 16</span>
+                                <div>
+                                    <hr className={`${styles.hr} ${styles.big_size}`}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.exchange}></div>
+                    </div>
+
+                    <div className={styles.container_exchange}>
+                        <div className={styles.exchange}>
+                            <div className={styles.wrapper_rate}>
+                                <div className={styles.country}>
+                                    <img src="./icons/flag-usa.svg"/>
+                                    <div className={styles.currency}>USD</div>
+                                    <img src="./icons/dollar.svg"/>
+                                    <img src="./icons/arrow-down.svg"/>
+                                </div>
+                                <div>
+                                    <hr className={`${styles.hr} ${styles.size}`}/>
+                                </div>
+                                <div className={styles.balance}>
+                                    <span>Баланс :</span>
+                                    <span>0 </span>
+                                    <img src="./icons/dollar.svg"/>
+                                </div>
+                            </div>
+                            <div className={styles.total}>
+                                <span>8,69</span>
+                                <div>
+                                    <hr className={`${styles.hr} ${styles.big_size}`}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.exchange}></div>
+                    </div>
+                </div>
+                <div>
+                    <img src="./icons/switch.svg"/>
+                </div>
+            </div>
+
+        </div>
+    )
+}
+
+export default Converter;

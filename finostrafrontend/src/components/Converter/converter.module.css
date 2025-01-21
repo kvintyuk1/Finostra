@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 614px;
+    height: 368px;
+    border-radius: 30px;
+    background-color: #FFF;
+}
+.wrapper_title {
+    display: flex;
+    justify-content: space-around;
+}
+.title {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.info {
+    display: flex;
+    justify-content: space-around;
+}
+.wrapper_exchange {
+    display: flex;
+    align-items: center;
+}
+.wrapper_exchange img {
+    width: 7px;
+    height: 10px;
+}
+.text {
+   font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+}
+
+.container_exchange {
+  display: flex;
+    flex-direction: column;
+
+}
+.exchange {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.wrapper_rate {
+    display: flex;
+    flex-direction: column;
+}
+.country {
+   display: flex;
+   gap: 5px;
+}
+.hr {
+    display: flex;
+    align-self: center;
+    width: 100%;
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+}
+.size {
+    width: 120px;
+}
+.big_size {
+    width: 223px;
+}
+.total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.balance {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+}

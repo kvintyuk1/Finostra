@@ -6,7 +6,7 @@ const Footer = ({ isDarkMode }) => {
     <div className={`${styles.footer} ${isDarkMode ? styles.dark_mode : styles.light_mode}`}>
       <div className={styles.Frame614}>
         <div className={styles.Rectangle2}></div>
-        <div className={styles.Logo}>Logo</div>
+        <div className={styles.Logo}>Finostra</div>
       </div>
 
       {/* Frame 718 Section */}
@@ -29,7 +29,7 @@ const Footer = ({ isDarkMode }) => {
           href="https://www.apple.com/app-store/"
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.appleLink} /* Optional for custom link styling */
+          className={styles.appleLink}
         >
           <div className={styles.appleIcon}>
             <div className={styles.vector}></div>

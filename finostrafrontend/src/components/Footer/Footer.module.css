@@ -37,7 +37,7 @@
 .Rectangle2 {
     width: 49px;
     height: 49px;
-    border: 1px solid #FFFFFF;
+    background-image: url('../../assets/Photo/Finostra_logo.png');
     border-radius: 7px;
 }
 
@@ -52,9 +52,7 @@
     color: #FFFFFF;
 }
 
-.light_mode .Rectangle2 {
-    border: 1px solid #000000;
-}
+
 
 .light_mode .Logo {
     color: #000000;

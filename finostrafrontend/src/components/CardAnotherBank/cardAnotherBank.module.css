@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 614px;
+    height: 239px;
+    border-radius: 30px;
+}
+.dark_mode .container {
+    background-color: #0F110E;
+}
+.light_mode .container {
+    background-color: #FFF;
+}
+.info_star {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.wrapper_info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    left: 3vh;
+}
+.title {
+    color: white;
+    font-family: 'adineue PRO Cyr', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.dark_mode .title {
+    color: white;
+}
+.light_mode .title {
+    color: #000;
+}
+.info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.info img {
+    width: 145px;
+    height: 73px;
+    border-radius: 5px;
+    border: 1px solid white;
+    margin-right: 20px;
+}
+.info div {
+    display: flex;
+    color: white;
+    width: 200px;
+}
+.dark_mode .info div {
+    color: white;
+}
+.light_mode .info div {
+    color: #000;
+}
+
+.container button {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+    background-color: #A66CFE;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 9px;
+    width: 188px;
+    height: 43px;
+    color: white;
+}
+.tab_message {
+    display: flex;
+    justify-self: end;
+    position: relative;
+    top: -31px;
+    left: 24px;
+}
+

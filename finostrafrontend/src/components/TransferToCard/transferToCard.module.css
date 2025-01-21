@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 456px;
+    height: 153px;
+    border-radius: 30px;
+}
+.dark_mode .container {
+    background-color: #E2D8FD;
+}
+.light_mode .container {
+    background-color: #D4B8FF;
+}
+
+.title {
+    display: flex;
+    align-self: center;
+    gap: 10px;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    width: 400px;
+    letter-spacing: 1px;
+}
+
+.wrapper_contentCard {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    gap: 8px;
+}
+
+.contentCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center;
+    width: 400px;
+}
+
+.numberCard {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.wrapper_img {
+    display: flex;
+    gap: 5px;
+}
+
+.text {
+    display: flex;
+    align-self: center;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 14px;
+    width: 400px;
+}
+
+.hr {
+    display: flex;
+    align-self: center;
+    width: 88%;
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid #000;
+}

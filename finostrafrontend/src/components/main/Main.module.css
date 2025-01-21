@@ -1,9 +1,12 @@
 .main_v_3 {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 20px;
     width: 100%;
-    height: 100vh;
     background: #28282C;
 }
+
 .light_mode .main_v_3 {
     background-color: #EAEAEA;
 
@@ -13,3 +16,14 @@
     background-color: #28282C;
 
 }
+
+.wrapper_main {
+    display: flex;
+    flex: 1;
+}
+.item {
+    display: flex;
+}
+
+
+

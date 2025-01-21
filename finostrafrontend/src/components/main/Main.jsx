@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import Header from "../header/Header";  
 import Footer from "../Footer/Footer";  
-import styles from "./Main.module.css";  
+import styles from "./Main.module.css";
+import Sidebar from "../sidebar/Sidebar";
+import DigitalBankCard from "../DigitalBankCard/DigitalBankCard";
+import CardAnotherBank from "../CardAnotherBank/CardAnotherBank";
+import TransferToCard from "../TransferToCard/TransferToCard";
+import MobileRecharge from "../MobileRecharge/MobileRecharge";
+import Payment from "../Payment/Payment";
+import CreditProducts from "../CreditProducts/CreditProducts";
+import Converter from "../Converter/Converter";
 
 const Main = () => {
     const [isDarkMode, setIsDarkMode] = useState(true); 
@@ -17,15 +25,37 @@ const Main = () => {
 
     return (
         <div className={`${styles.App} ${isDarkMode ? styles.dark_mode : styles.light_mode}`}>
-            <Header 
-                isDarkMode={isDarkMode} 
-                toggleTheme={toggleTheme} 
+            <Header
+                isDarkMode={isDarkMode}
+                toggleTheme={toggleTheme}
                 selectedLanguage={selectedLanguage}
-                handleLanguageChange={handleLanguageChange} 
+                handleLanguageChange={handleLanguageChange}
             />
-            <main className={styles.main_v_3}> 
-            </main>
-            <Footer isDarkMode={isDarkMode} /> 
+            <div className={styles.wrapper_main}>
+                <Sidebar/>
+                <main className={styles.main_v_3}>
+
+                    <div className={styles.item}>
+                        <DigitalBankCard isDarkMode={isDarkMode}/>
+                        <CardAnotherBank isDarkMode={isDarkMode}/>
+                    </div>
+                    <div className={styles.item}>
+                        <TransferToCard isDarkMode={isDarkMode}/>
+                        <MobileRecharge isDarkMode={isDarkMode}/>
+                    </div>
+                    <div className={styles.item}>
+                        <Payment isDarkMode={isDarkMode}/>
+                        <Converter isDarkMode={isDarkMode}/>
+                    </div>
+                    <div>
+                        <CreditProducts isDarkMode={isDarkMode}/>
+
+                    </div>
+
+                </main>
+
+            </div>
+            <Footer isDarkMode={isDarkMode}/>
         </div>
     );
 };
