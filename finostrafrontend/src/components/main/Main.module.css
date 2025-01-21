@@ -21,15 +21,9 @@
     display: flex;
     flex: 1;
 }
-.digital_another {
-    display: flex;
-    
-}
-.transfer_recharge {
+.item {
     display: flex;
 }
-.payment {
-    display: flex;
-}
+
 
 

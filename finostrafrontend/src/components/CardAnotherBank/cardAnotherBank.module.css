@@ -29,6 +29,7 @@
     font-family: 'adineue PRO Cyr', sans-serif;
     font-weight: 700;
     font-size: 20px;
+    letter-spacing: 1px;
 }
 .dark_mode .title {
     color: white;

@@ -23,6 +23,7 @@
     font-size: 20px;
     width: 400px;
     align-self: center;
+    letter-spacing: 1px;
 }
 .dark_mode .title {
     color: #FFF;
@@ -30,6 +31,7 @@
 .light_mode .title {
     color: #000;
 }
+
 
 .wrapper_contentCard {
     display: flex;
@@ -62,7 +64,6 @@
     display: flex;
     gap: 5px;
 }
-
 
 .text {
     display: flex;

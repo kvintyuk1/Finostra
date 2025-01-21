@@ -1,6 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 50px;
     width: 455px;
     height: 605px;
     border-radius: 30px;
@@ -14,6 +16,12 @@
 .wrapper_title {
     display: flex;
     justify-content: space-around;
+    gap: 90px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .title {
     display: flex;
@@ -21,10 +29,12 @@
     font-size: 20px;
     font-weight: 700;
     font-family: 'adeneue PRO Cyr', sans-serif;
+    letter-spacing: 1px;
 }
 .wrapper_img {
     display: flex;
 }
+
 .dark_mode .title {
     color: #FFF;
 }
@@ -33,28 +43,33 @@
 }
 .wrapper_content {
    display: flex;
+    justify-content: center;
     gap: 20px;
 }
-.pay_install {
+
+.item {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 30px;
     align-items: center;
+    gap: 30px;
     width: 190px;
     height: 200px;
     background-color: #CCAAFF;
     border-radius: 15px;
 }
-.pay_install img {
-    width: 44px;
-    height: 44px;
+.bg_color_violet {
+    background-color: #CCAAFF;
 }
+.bg_color_pink {
+    background-color: #F2B8FF;
+}
+
 .wrapper_text {
     display: flex;
     flex-direction: column;
-
-
+    width: 160px;
+    height: 59px;
     gap: 10px;
 }
 .wrapper_text div {
@@ -63,22 +78,9 @@
     font-size: 16px;
 }
 .wrapper_text .text {
-
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
 }
 
-.car_credit {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 30px;
-    align-items: center;
-    text-align: center;
-    width: 190px;
-    height: 200px;
-    background-color: #F2B8FF;
-    border-radius: 15px;
-}

@@ -16,12 +16,13 @@
 
 .title {
     display: flex;
+    align-self: center;
     gap: 10px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-weight: 700;
     font-size: 20px;
     width: 400px;
-    align-self: center;
+    letter-spacing: 1px;
 }
 
 .wrapper_contentCard {

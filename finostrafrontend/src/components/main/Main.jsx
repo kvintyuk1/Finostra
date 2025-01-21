@@ -9,6 +9,7 @@ import TransferToCard from "../TransferToCard/TransferToCard";
 import MobileRecharge from "../MobileRecharge/MobileRecharge";
 import Payment from "../Payment/Payment";
 import CreditProducts from "../CreditProducts/CreditProducts";
+import Converter from "../Converter/Converter";
 
 const Main = () => {
     const [isDarkMode, setIsDarkMode] = useState(true); 
@@ -34,19 +35,21 @@ const Main = () => {
                 <Sidebar/>
                 <main className={styles.main_v_3}>
 
-                    <div className={styles.digital_another}>
+                    <div className={styles.item}>
                         <DigitalBankCard isDarkMode={isDarkMode}/>
                         <CardAnotherBank isDarkMode={isDarkMode}/>
                     </div>
-                    <div className={styles.transfer_recharge}>
+                    <div className={styles.item}>
                         <TransferToCard isDarkMode={isDarkMode}/>
                         <MobileRecharge isDarkMode={isDarkMode}/>
                     </div>
-                    <div className={styles.payment}>
+                    <div className={styles.item}>
                         <Payment isDarkMode={isDarkMode}/>
+                        <Converter isDarkMode={isDarkMode}/>
                     </div>
                     <div>
                         <CreditProducts isDarkMode={isDarkMode}/>
+
                     </div>
 
                 </main>
