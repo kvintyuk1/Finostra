@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Header from "../header/Header";  
-import Footer from "../Footer/Footer";  
+import React, {useState} from "react";
+import Header from "../header/Header";
+import Footer from "../Footer/Footer";
 import styles from "./Main.module.css";
 import Sidebar from "../sidebar/Sidebar";
 import DigitalBankCard from "../DigitalBankCard/DigitalBankCard";
@@ -10,17 +10,19 @@ import MobileRecharge from "../MobileRecharge/MobileRecharge";
 import Payment from "../Payment/Payment";
 import CreditProducts from "../CreditProducts/CreditProducts";
 import Converter from "../Converter/Converter";
+import Banner from "../Banner/Banner";
+import News from "../News/News";
 
 const Main = () => {
-    const [isDarkMode, setIsDarkMode] = useState(true); 
-    const [selectedLanguage, setSelectedLanguage] = useState('UA'); 
+    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [selectedLanguage, setSelectedLanguage] = useState('UA');
 
     const toggleTheme = () => {
-        setIsDarkMode((prevMode) => !prevMode); 
+        setIsDarkMode((prevMode) => !prevMode);
     };
 
     const handleLanguageChange = (event) => {
-        setSelectedLanguage(event.target.value);  
+        setSelectedLanguage(event.target.value);
     };
 
     return (
@@ -34,23 +36,33 @@ const Main = () => {
             <div className={styles.wrapper_main}>
                 <Sidebar/>
                 <main className={styles.main_v_3}>
+                    <div className={styles.container}>
+                        <Banner isDarkMode={isDarkMode}/>
+                        <div className={styles.wrapper_item_column}>
+                            <div className={styles.item_column}>
+                                <DigitalBankCard isDarkMode={isDarkMode}/>
+                                <TransferToCard isDarkMode={isDarkMode}/>
+                            </div>
+                            <div className={styles.item_column}>
+                                <CardAnotherBank isDarkMode={isDarkMode}/>
+                                <MobileRecharge isDarkMode={isDarkMode}/>
+                            </div>
+                        </div>
 
-                    <div className={styles.item}>
-                        <DigitalBankCard isDarkMode={isDarkMode}/>
-                        <CardAnotherBank isDarkMode={isDarkMode}/>
-                    </div>
-                    <div className={styles.item}>
-                        <TransferToCard isDarkMode={isDarkMode}/>
-                        <MobileRecharge isDarkMode={isDarkMode}/>
-                    </div>
-                    <div className={styles.item}>
-                        <Payment isDarkMode={isDarkMode}/>
-                        <Converter isDarkMode={isDarkMode}/>
-                    </div>
-                    <div>
-                        <CreditProducts isDarkMode={isDarkMode}/>
+
+                        <div className={styles.wrapper_item_column}>
+                            <div className={styles.item_column}>
+                                <Payment isDarkMode={isDarkMode}/>
+                                <CreditProducts isDarkMode={isDarkMode}/>
+                            </div>
+                            <div className={styles.item_column}>
+                            <Converter isDarkMode={isDarkMode}/>
+                                <News isDarkMode={isDarkMode}/>
+                            </div>
+                        </div>
 
                     </div>
+
 
                 </main>
 

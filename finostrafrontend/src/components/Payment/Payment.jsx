@@ -6,14 +6,14 @@ function Payment({ isDarkMode }){
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
             <div className={styles.container}>
                 <div className={styles.title}>
-                    <img src={isDarkMode ? "./icons/payment.svg" : "./icons/payment_black.svg"}/>
+                    <img src={isDarkMode ? "./icons/payment.svg" : "./icons/payment_black.svg"} alt=""/>
                     <span>Платіж</span>
                 </div>
                 <div className={styles.wrapper_contentCard}>
                     <div className={styles.contentCard}>
                         <div className={styles.numberCard}>UAXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
                         <div className={styles.wrapper_img}>
-                            <img src={isDarkMode ? "./icons/arrow-out-white.svg" : "./icons/arrow-out.svg"}/>
+                            <img src={isDarkMode ? "./icons/arrow-out-white.svg" : "./icons/arrow-out.svg"} alt=""/>
                         </div>
                     </div>
                     <hr className={styles.hr}/>

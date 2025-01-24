@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 77.08vw;
+    height: 350px;
+    border-radius: 30px;
+    margin-top: 3vh;
+}
+.dark_mode .container {
+    background-color: #ECE5FF;
+}
+.light_mode .container {
+    background-color: #0E0E0E;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2.78vw;
+}
+
+.title {
+    display: flex;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 2em;
+    letter-spacing: 1px;
+    width: 37vw;
+}
+.dark_mode .title {
+    color: #000;
+}
+.light_mode .title {
+    color: #FFF;
+}
+.wrapper_img {
+    width: 16.88vw;
+    height: 134px;
+}
+.wrapper_laptop {
+    width: 27.71vw;
+    height: 350px;
+}

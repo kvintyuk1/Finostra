@@ -2,19 +2,20 @@
     display: flex;
     justify-content: flex-end;
     font-family: 'adeneue PRO Cyr', sans-serif;
-    width: 251px;
+    width: 17.36vw;
     height: 1686px;
     background-color: #0F110E;
     color: white;
     font-size: 16px;
     font-weight: 400;
+    border-bottom-right-radius: 32px;
 }
 
 .sidebar ul {
     display: flex;
     flex-direction: column;
-    gap: 55px;
-    width: 251px;
+    gap: 1.82vw;
+    width: 17.36vw;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -22,8 +23,8 @@
 
 .sidebar ul li {
     display: flex;
-    margin-bottom: 15px;
-    width: 251px;
+    margin-bottom: 1.04vw;
+    width: 17.36vw;
     height: 24px;
 }
 
@@ -43,18 +44,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 251px;
+    width: 17.36vw;
     height: 59px;
 }
 .iconContainer:hover {
     background-color: #28282C;
     border-top-left-radius: 32px;
     border-bottom-left-radius: 32px;
-    width: 251px;
+    width: 17.36vw;
 }
 .iconContainer img {
     display: flex;
-    width: 24px;
+    width: 1.67vw;
     height: 24px;
 }
 .iconContainer div {
@@ -64,7 +65,7 @@
     display: flex;
     justify-content: space-between;
     letter-spacing: 1px;
-    width: 150px;
+    width: 10.42vw;
 }
 
 

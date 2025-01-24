@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 23px;
-    width: 456px;
+    width: 31.67vw;
     height: 239px;
     border-radius: 30px;
 }
@@ -13,13 +14,18 @@
 .light_mode .container {
     background-color: #FFF;
 }
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 27.5vw;
+    height: 221px;
+}
 .title {
-    position: relative;
-    top: 5px;
-    left: 4vh;
+    display: flex;
     font-family: 'adineue PRO Cyr', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.25em;
     letter-spacing: 1px;
 }
 .dark_mode .title {
@@ -31,10 +37,7 @@
 
 .info {
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: relative;
-    left: 1vh;
 }
 .info img {
     display: flex;
@@ -55,16 +58,14 @@
     background-color: #A66CFE;
     border: 1px solid #A66CFE;
     font-family: 'adineue PRO Cyr', sans-serif;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 400;
     border-radius: 9px;
-    width: 188px;
+    width: 13.06vw;
     height: 43px;
     color: white;
 }
 
 .button {
-    position: relative;
-    bottom: 5px;
-    left: 4vh;
+
 }

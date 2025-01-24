@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./cardAnotherBank.module.css";
 
-function CardAnotherBank({ isDarkMode }) {
+function CardAnotherBank({isDarkMode}) {
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
             <div className={styles.container}>
@@ -11,7 +11,7 @@ function CardAnotherBank({ isDarkMode }) {
                             <span>Картка іншого банку України та світу</span>
                         </div>
                         <div className={styles.info}>
-                            <img src="./img/anotherCard.jpg"/>
+                            <img src="./img/anotherCard.jpg" alt=" "/>
                             <div>Швидко оплачуйте своїми банківськими картками.</div>
                         </div>
                         <div className={styles.button}>
@@ -19,16 +19,18 @@ function CardAnotherBank({ isDarkMode }) {
                         </div>
                     </div>
                     <div>
-                        <img src="./img/star 3.png"/>
+                        <img src="./img/star 3.png" alt="star"/>
                     </div>
                 </div>
 
             </div>
-            <div>
-                <img className={styles.tab_message} src="./icons/tabler_message.svg"/>
-            </div>
+
         </div>
     )
 }
 
 export default CardAnotherBank;
+
+<div>
+    <img className={styles.tab_message} src="./icons/tabler_message.svg" alt=" "/>
+</div>

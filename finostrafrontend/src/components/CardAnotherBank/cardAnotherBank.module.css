@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 614px;
+    width: 42.64vw;
     height: 239px;
     border-radius: 30px;
 }
@@ -16,11 +16,12 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 3.47vw;
 }
 .wrapper_info {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.39vw;
     position: relative;
     left: 3vh;
 }
@@ -28,7 +29,7 @@
     color: white;
     font-family: 'adineue PRO Cyr', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.25em;
     letter-spacing: 1px;
 }
 .dark_mode .title {
@@ -41,18 +42,18 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    gap: 1.39vw;
 }
 .info img {
-    width: 145px;
+    width: 10.07vw;
     height: 73px;
     border-radius: 5px;
     border: 1px solid white;
-    margin-right: 20px;
 }
 .info div {
     display: flex;
     color: white;
-    width: 200px;
+    width: 13.89vw;
 }
 .dark_mode .info div {
     color: white;
@@ -68,10 +69,10 @@
     justify-content: center;
     background-color: #A66CFE;
     font-family: 'adeneue PRO Cyr', sans-serif;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 400;
     border-radius: 9px;
-    width: 188px;
+    width: 13.06vw;
     height: 43px;
     color: white;
 }
@@ -79,7 +80,7 @@
     display: flex;
     justify-self: end;
     position: relative;
-    top: -31px;
+    top: 13px;
     left: 24px;
 }
 

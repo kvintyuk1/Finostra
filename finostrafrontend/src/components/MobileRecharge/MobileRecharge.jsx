@@ -6,23 +6,23 @@ function MobileRecharge({ isDarkMode }) {
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
             <div className={styles.container}>
                 <div className={styles.title}>
-                    <img src="./icons/mobileRecharge.svg"/>
+                    <img src="./icons/mobileRecharge.svg" alt=""/>
                     <span>Поповнення мобільного</span>
                 </div>
                 <div className={styles.wrapper_contentCard}>
                     <div className={styles.contentCard}>
                         <div className={styles.wrapper_countryNumber}>
-                            <img src="./icons/flag-ukraine.svg"/>
+                            <img src="./icons/flag-ukraine.svg" alt=""/>
                             <div className={styles.countryNumber}>
                                 <div className={styles.numberCard}>+380</div>
-                                <img src="./icons/arrow-down.svg"/>
+                                <img src="./icons/arrow-down.svg" alt=""/>
                             </div>
                             <div>
                                 <span>976 54 32 0 1</span>
                             </div>
                         </div>
 
-                        <img src="./icons/arrow-out.svg"/>
+                        <img src="./icons/arrow-out.svg" alt=""/>
 
                     </div>
                     <hr className={styles.hr}/>

@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
-    width: 456px;
+    gap: 1.39vw;
+    width: 31.67vw;
     height: 153px;
     border-radius: 30px;
 }
@@ -17,11 +17,11 @@
 .title {
     display: flex;
     align-self: center;
-    gap: 10px;
+    gap: 0.69vw;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-weight: 700;
-    font-size: 20px;
-    width: 400px;
+    font-size: 1.25em;
+    width: 27.78vw;
     letter-spacing: 1px;
 }
 
@@ -29,7 +29,7 @@
     display: flex;
     flex-direction: column;
     height: 50px;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .contentCard {
@@ -37,7 +37,7 @@
     justify-content: space-between;
     align-items: center;
     align-self: center;
-    width: 400px;
+    width: 27.78vw;
 }
 
 .numberCard {
@@ -46,15 +46,15 @@
 
 .wrapper_img {
     display: flex;
-    gap: 5px;
+    gap: 0.34vw;
 }
 
 .text {
     display: flex;
     align-self: center;
     font-family: 'adeneue PRO Cyr', sans-serif;
-    font-size: 14px;
-    width: 400px;
+    font-size: 0.88em;
+    width: 27.78vw;
 }
 
 .hr {

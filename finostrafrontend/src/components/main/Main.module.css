@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    gap: 20px;
-    width: 100%;
+    gap: 2.08vw;
+    width: 82.64vw;
+    height: 1741px;
     background: #28282C;
 }
 
@@ -16,13 +17,28 @@
     background-color: #28282C;
 
 }
-
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.08vw;
+}
 .wrapper_main {
     display: flex;
     flex: 1;
 }
 .item {
     display: flex;
+    gap: 2.08vw;
+}
+.wrapper_item_column {
+    display: flex;
+    gap: 2.08vw;
+}
+.item_column {
+    display: flex;
+    flex-direction: column;
+    gap: 2.08vw;
 }
 
 
