@@ -1,0 +1,12 @@
+.main_content {
+  display: flex;
+}
+.wrapper_content {
+    display: flex;
+}
+.dark_mode .wrapper_content {
+    background-color: #28282C;
+}
+.light_mode .wrapper_content {
+    background-color: #EAEAEA;
+}

@@ -6,7 +6,7 @@
     height: 1686px;
     background-color: #0F110E;
     color: white;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 400;
     border-bottom-right-radius: 32px;
 }
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.82vw;
-    width: 17.36vw;
+    width: 16.25vw;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -24,7 +24,7 @@
 .sidebar ul li {
     display: flex;
     margin-bottom: 1.04vw;
-    width: 17.36vw;
+    width: 16.25vw;
     height: 24px;
 }
 
@@ -33,7 +33,7 @@
     justify-content: space-around;
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .sidebar ul li a:hover {
@@ -44,14 +44,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 17.36vw;
+    width: 16.25vw;
     height: 59px;
 }
 .iconContainer:hover {
     background-color: #28282C;
     border-top-left-radius: 32px;
     border-bottom-left-radius: 32px;
-    width: 17.36vw;
+    width: 16.25vw;
+}
+.iconContainer.hovered {
+    background-color: #28282C; /* Изменение фона при наведении на ссылку */
 }
 .iconContainer img {
     display: flex;

@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    margin: 0 -30px -60px 0;
+}
+.square_green {
+    width: 15px;
+    height: 15px;
+    background-color: #0F110E;
+    transform: rotate(-90deg);
+
+}
+.square_red {
+    background-color: red;
+    width: 14px;
+    height: 14px;
+    border-radius: 0 0 20px 0;
+
+}
+.square_green:hover {
+    background-color: #28282C;
+}
+.square_red:hover {
+    background-color: #28282C;
+}

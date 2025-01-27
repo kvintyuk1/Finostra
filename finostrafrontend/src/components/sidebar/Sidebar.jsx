@@ -1,19 +1,21 @@
 import React from "react";
 import styles from './sidebar.module.css';
 import {Link} from "react-router-dom";
+import RoundingButton from "../RoundingButton/RoundingButton";
 
 function Sidebar(){
     return (
         <aside className={styles.sidebar}>
             <nav>
                 <ul>
-                    <li><Link to="home" className={styles.iconContainer}>
+                    <li><Link to="/" className={styles.iconContainer}>
+
                         <img src="./icons/home.svg" alt=""/>
                         <div className={styles.iconWrapper}>
                             <span>Головна</span>
                         </div>
                     </Link></li>
-                    <li><Link to="translations" className={styles.iconContainer}>
+                    <li><Link to="transactions" className={styles.iconContainer}>
                         <img src="./icons/transfer.svg" alt=""/>
                         <div className={styles.iconWrapper}>
                             <div>Перекази</div>
