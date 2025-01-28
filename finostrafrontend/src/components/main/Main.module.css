@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.7vw;
+    gap: 2vw;
 }
 .wrapper_main {
     display: flex;
@@ -32,12 +32,12 @@
 }
 .wrapper_item_column {
     display: flex;
-    gap: 2.7vw;
+    gap: 2vw;
 }
 .item_column {
     display: flex;
     flex-direction: column;
-    gap: 2.7vw;
+    gap: 2vw;
 }
 
 
