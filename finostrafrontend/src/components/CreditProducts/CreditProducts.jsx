@@ -1,6 +1,13 @@
 import React from "react";
 import styles from "./creditProducts.module.css";
 
+const creditItems = [
+    {icon:"pay_instal.svg",title:"Оплата частинами",text:"Купуйте зараз – платіть потім!",color:styles.bg_color_violet},
+    {icon:"car.svg",title:"Авто в кредит",text:"Не відмовляйте собі у комфорті!",color:styles.bg_color_pink},
+    {icon:"cash.svg",title:"Кредит готівкою",text:"Гроші на картку онлайн",color:styles.bg_color_pink},
+    {icon:"home-credit.svg",title:"Житло в кредит",text:"Іпотека за ціною оренди.",color:styles.bg_color_violet},
+]
+
 function CreditProducts({isDarkMode}) {
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
@@ -14,41 +21,29 @@ function CreditProducts({isDarkMode}) {
                         <img src={isDarkMode ? "./icons/arrow-out-white.svg" : "./icons/arrow-out.svg"} alt=""/>
                     </div>
                 </div>
-                <div className={styles.info}>
-                    <div className={styles.wrapper_content}>
-                        <div className={`${styles.item} ${styles.bg_color_violet}`}>
-                            <img src="./icons/pay_instal.svg" alt=""/>
-                            <div className={styles.wrapper_text}>
-                                <div>Оплата частинами</div>
-                                <span className={styles.text}>Купуйте зараз – платіть потім!</span>
-                            </div>
-                        </div>
-                        <div className={`${styles.item} ${styles.bg_color_pink}`}>
-                            <img src="./icons/car.svg" alt=""/>
-                            <div className={styles.wrapper_text}>
-                                <div>Авто в кредит</div>
-                                <span className={styles.text}>Не відмовляйте собі у комфорті!</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.wrapper_content}>
-                        <div className={`${styles.item} ${styles.bg_color_pink}`}>
-                            <img src="./icons/cash.svg" alt=""/>
-                            <div className={styles.wrapper_text}>
-                                <div>Кредит готівкою</div>
-                                <span className={styles.text}>Гроші на картку онлайн</span>
-                            </div>
-                        </div>
-                        <div className={`${styles.item} ${styles.bg_color_violet}`}>
-                            <img src="./icons/home-credit.svg" alt=""/>
-                            <div className={styles.wrapper_text}>
-                                <div>Житло в кредит</div>
-                                <span className={styles.text}>Іпотека за ціною оренди.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+                <div className={styles.info}>
+                    {creditItems.reduce((acc,item,index)=>{
+                       if(index % 2 === 0){
+                           acc.push([item]);
+                       }else {
+                           acc[acc.length - 1].push(item);
+                       }
+                       return acc;
+                    },[]).map((pair,index)=>(
+                        <div className={styles.wrapper_content} key={index}>
+                            {pair.map(({icon,title,text,color})=> (
+                                <div className={`${styles.item} ${color}`} key={title}>
+                                    <img src={`./icons/${icon}`} alt=""/>
+                                    <div className={styles.wrapper_text}>
+                                        <div>{title}</div>
+                                        <span className={styles.text}>{text}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

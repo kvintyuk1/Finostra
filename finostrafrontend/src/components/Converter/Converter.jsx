@@ -1,6 +1,31 @@
 import React from "react";
 import styles from "./converter.module.css";
 
+const converterItems = [
+    {
+        icon: "flag-ukraine.svg",
+        currency: "UAH",
+        iconDark: "grivna.svg",
+        iconLight: "grivna-white.svg",
+        hasArrowDark: "arrow-down.svg",
+        hasArrowLight: "arrow-down-white.svg",
+        text:"Баланс :",
+        number:"23 000",
+        total:"360, 16",
+    },
+    {
+        icon:"flag-usa.svg",
+        currency: "USD",
+        iconDark: "dollar.svg",
+        iconLight:"dollar-white.svg",
+        hasArrowDark: "arrow-down.svg",
+        hasArrowLight: "arrow-down-white.svg",
+        text:"Баланс :",
+        number: "0",
+        total:"8,69",
+    }
+]
+
 function Converter({isDarkMode}) {
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
@@ -15,63 +40,43 @@ function Converter({isDarkMode}) {
                         <img src={isDarkMode ? "./icons/dollar.svg" : "./icons/dollar-white.svg"} alt=""/>
                     </div>
                 </div>
+
                 <div className={styles.info}>
                     <div className={styles.wrapper_content}>
-                        <div className={styles.container_exchange}>
-                            <div className={styles.exchange}>
-                                <div className={styles.wrapper_rate}>
-                                    <div className={styles.country}>
-                                        <img src="./icons/flag-ukraine.svg" alt=""/>
-                                        <div className={styles.currency}>UAH</div>
-                                        <img src={isDarkMode ? "./icons/grivna.svg" : "./icons/grivna-white.svg"} alt=""/>
-                                        <img src={isDarkMode ? "./icons/arrow-down.svg" : "./icons/arrow-down-white.svg"} alt=""/>
+                        {converterItems.map(({icon,currency,iconDark,iconLight,hasArrowDark,hasArrowLight,text,number,total})=> (
+                            <div className={styles.container_exchange}>
+                                <div className={styles.exchange}>
+                                    <div className={styles.wrapper_rate}>
+                                        <div className={styles.country}>
+                                            <img src={`./icons/${icon}`} alt=""/>
+                                            <div className={styles.currency}>{currency}</div>
+                                            <img src={isDarkMode ? `./icons/${iconDark}` : `./icons/${iconLight}`}
+                                                 alt=""/>
+                                            <img
+                                                src={isDarkMode ? "./icons/arrow-down.svg" : "./icons/arrow-down-white.svg"}
+                                                alt=""/>
+                                        </div>
+                                        <div>
+                                            <hr className={`${styles.hr} ${styles.size}`}/>
+                                        </div>
+                                        <div className={styles.balance}>
+                                            <span>{text}</span>
+                                            <span>{number}</span>
+                                            <img src={isDarkMode ? `./icons/${iconDark}` : `./icons/${iconLight}`}
+                                                 alt=""/>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <hr className={`${styles.hr} ${styles.size}`}/>
-                                    </div>
-                                    <div className={styles.balance}>
-                                        <span>Баланс :</span>
-                                        <span>23 000 </span>
-                                        <img src="./icons/grivna.svg" alt=""/>
+                                    <div className={styles.total}>
+                                        <span>{total}</span>
+                                        <div>
+                                            <hr className={`${styles.hr} ${styles.big_size}`}/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className={styles.total}>
-                                    <span>360, 16</span>
-                                    <div>
-                                        <hr className={`${styles.hr} ${styles.big_size}`}/>
-                                    </div>
-                                </div>
+                                <div className={styles.exchange}></div>
                             </div>
-                            <div className={styles.exchange}></div>
-                        </div>
+                        ))}
 
-                        <div className={styles.container_exchange}>
-                            <div className={styles.exchange}>
-                                <div className={styles.wrapper_rate}>
-                                    <div className={styles.country}>
-                                        <img src="./icons/flag-usa.svg" alt=""/>
-                                        <div className={styles.currency}>USD</div>
-                                        <img src={isDarkMode ? "./icons/dollar.svg" : "./icons/dollar-white.svg"} alt=""/>
-                                        <img src={isDarkMode ? "./icons/arrow-down.svg" : "./icons/arrow-down-white.svg"} alt=""/>
-                                    </div>
-                                    <div>
-                                        <hr className={`${styles.hr} ${styles.size}`}/>
-                                    </div>
-                                    <div className={styles.balance}>
-                                        <span>Баланс :</span>
-                                        <span>0 </span>
-                                        <img src="./icons/dollar.svg" alt=""/>
-                                    </div>
-                                </div>
-                                <div className={styles.total}>
-                                    <span>8,69</span>
-                                    <div>
-                                        <hr className={`${styles.hr} ${styles.big_size}`}/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.exchange}></div>
-                        </div>
                     </div>
                     <div className={styles.img_switch}>
                         <img src={isDarkMode ? "./icons/switch.svg" : "./icons/switch-white.svg"} alt=""/>
@@ -85,7 +90,7 @@ function Converter({isDarkMode}) {
                 <img className={styles.star12} src="./icons/star 12.svg" alt="star"/>
             </div>
         </div>
-            )
-            }
+    )
+}
 
-            export default Converter;
+export default Converter;

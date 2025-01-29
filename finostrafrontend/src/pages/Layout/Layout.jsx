@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import styles from "./layout.module.css";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
-import Main from "../../components/main/Main";
 import Footer from "../../components/Footer/Footer";
 import {Outlet} from "react-router-dom";
 
