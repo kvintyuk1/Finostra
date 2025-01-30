@@ -1,43 +1,33 @@
-/* Загальні стилі */
 .App {
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
 }
 
-
 .dark_mode .frame757 {
     background: #0F110E;
-
 }
 
 .light_mode .frame757 {
     background: #FFFFFF;
-    /* Світлий фон */
 }
 
 .dark_mode .frame757 {
     background: #0F110E;
-
 }
 
 .light_mode .Frame756 {
     color: #000000;
-
 }
 
 
 .light_mode .searchBar {
     border: 1px solid #000000;
-
-    /* Світлий фон */
 }
 
 .light_mode .themeToggle {
     border: 1px solid #000000;
-    /* Світлий фон */
 }
 
-/* Кнопка перемикання теми */
 .themeToggle {
     display: flex;
     justify-content: space-between;
@@ -56,12 +46,12 @@
     overflow: hidden;
 }
 
-/*підсвічування кнопки перемикання теми*/
+
 .themeToggle:hover {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Стилі для іконки Сонця */
+
 .sunIcon {
     width: 24px;
     height: 24px;
@@ -73,7 +63,7 @@
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-/* Стилі для іконки Місяця */
+
 .moonIcon {
     width: 24px;
     height: 24px;
@@ -123,13 +113,12 @@
     will-change: transform, opacity;
 }
 
-/* Стилі для кнопки в світлій темі */
+
 .light_mode .themeToggle {
     background-color: #FFFFFF;
     color: #000000;
 }
 
-/* Стилі для кнопки в темній темі */
 .dark_mode .themeToggle {
     background-color: #0F110E;
     color: #FFFFFF;
@@ -139,16 +128,12 @@
     color: #ffffff;
 }
 
-/* Стилі для головного контенту */
-
-
 .header {
     position: relative;
     width: 100%;
     height: 100px;
 }
 
-/* Frame 757 */
 .frame757 {
     position: absolute;
     width: 100%;
@@ -161,7 +146,6 @@
     align-items: center;
 }
 
-/* Frame 614 */
 .Frame614 {
     display: flex;
     flex-direction: row;
@@ -175,7 +159,7 @@
     top: 26px;
 }
 
-/* Rectangle 2 */
+
 .Rectangle2 {
     width: 49px;
     height: 49px;
@@ -251,7 +235,7 @@
     color: #F7F7F7;
 }
 
-/* Frame 755 */
+
 .Frame755 {
     display: flex;
     flex-direction: row;
@@ -263,7 +247,7 @@
 
 }
 
-/* Frame 751 */
+
 .Frame751 {
     display: flex;
     flex-direction: row;
@@ -273,7 +257,6 @@
 
 }
 
-/* Frame 708 */
 .Frame708 {
     display: flex;
     flex-direction: row;
@@ -308,7 +291,6 @@
 
 }
 
-/* Frame 753 */
 .Frame753 {
     display: flex;
     flex-direction: row;
@@ -322,7 +304,7 @@
     flex-grow: 0;
 }
 
-/* Frame 744 */
+
 .Frame744 {
     display: flex;
     flex-direction: row;
@@ -336,7 +318,7 @@
     flex-grow: 0;
 }
 
-/* Frame 739 */
+
 .Frame739 {
     display: flex;
     flex-direction: row;
@@ -348,7 +330,7 @@
     flex: none;
     order: 0;
     flex-grow: 0;
-    cursor: pointer; /* Додано для натискання */
+    cursor: pointer; 
 }
 
 /* UA */
@@ -366,12 +348,12 @@
     flex-grow: 0;
 }
 
-/* weui:arrow-outlined */
+
 .weui-arrow-outlined {
     width: 8px;
     height: 16px;
-    transform: rotate(90deg); /* початкова стрілка вправо */
-    transition: transform 0.3s ease; /* Плавний перехід для перевертання */
+    transform: rotate(90deg); 
+    transition: transform 0.3s ease; 
 }
 .language_select {
     background-color: #fff;
@@ -393,7 +375,7 @@
     font-size: 14px;
 }
 
-/* Додатково для темної та світлої теми */
+
 .dark_mode .language_select {
     background-color: #0F110E;
     color: #fff;
@@ -405,7 +387,8 @@
     color: #333;
     border-color: #FFFFFF;
 }
-/* Frame 636 */
+
+
 .Frame636 {
     box-sizing: border-box;
     display: flex;
@@ -418,14 +401,14 @@
     height: 36px;
     border: 1px solid #FFFFFF;
     border-radius: 22px;
-    cursor: pointer; /* Додано для відображення, що це кнопка */
+    cursor: pointer; 
 }
 
 .Frame636:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Можна додати ефект при наведенні */
+    background-color: rgba(255, 255, 255, 0.1); 
 }
 
-/* Frame 612 */
+
 .Frame612 {
     display: flex;
     flex-direction: row;
@@ -437,11 +420,11 @@
     height: 24px;
 }
 
-/* icon_user */
+
 .icon_user {
     width: 24px;
     height: 24px;
-    background-image: url('../../assets/Photo/icon_user.png'); /* Додайте шлях до іконки користувача */
+    background-image: url('../../assets/Photo/icon_user.png'); 
     background-size: cover;
     background-position: center;
 }
@@ -458,12 +441,12 @@
     color: #FFFFFF;
 }
 
-/* Стили для активного стану (якщо кнопка активна) */
+
 .Frame636:active {
-    transform: scale(0.98); /* Легке зменшення кнопки при натисканні */
+    transform: scale(0.98); 
 }
 
-/* Стили для фокусу кнопки (наприклад, при натисканні на мобільному) */
+
 .Frame636:focus {
     outline: none;
     border: 2px solid #00A4E4;

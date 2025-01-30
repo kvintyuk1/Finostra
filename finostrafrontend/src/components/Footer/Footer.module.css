@@ -158,15 +158,11 @@
 
 .appleLink {
     text-decoration: none;
-    /* Removes the underline from the link */
     color: inherit;
-    /* Ensures the link inherits text color */
     display: flex;
-    /* Allows content inside to align properly */
     flex-direction: row;
     align-items: center;
     gap: 15px;
-    /* Matches the existing layout */
 }
 
 
@@ -238,11 +234,8 @@
 
 .googlePlayLink {
     text-decoration: none;
-    /* Removes underline from the link */
     color: inherit;
-    /* Ensures text inherits color */
     display: flex;
-    /* Aligns content horizontally */
     flex-direction: row;
     align-items: center;
     gap: 15px;
