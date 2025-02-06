@@ -20,7 +20,7 @@ function Header({ isDarkMode, toggleTheme, selectedLanguage, handleLanguageChang
                         <div className={styles.Rectangle2}></div>
                         <div className={styles.Logo}>Finostra</div>
                     </div>
-                    <div >
+                    <div>
                         <div className={`${styles.searchBar} ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
                             <input type="text" placeholder="Пошук" className={styles.search_input}/>
                             <div className={styles.search_icon}></div>

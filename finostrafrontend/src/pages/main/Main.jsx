@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./Main.module.css";
-import DigitalBankCard from "../DigitalBankCard/DigitalBankCard";
-import CardAnotherBank from "../CardAnotherBank/CardAnotherBank";
-import TransferToCard from "../TransferToCard/TransferToCard";
-import MobileRecharge from "../MobileRecharge/MobileRecharge";
-import Payment from "../Payment/Payment";
-import CreditProducts from "../CreditProducts/CreditProducts";
-import Converter from "../Converter/Converter";
-import Banner from "../Banner/Banner";
-import News from "../News/News";
+import DigitalBankCard from "../../components/DigitalBankCard/DigitalBankCard";
+import CardAnotherBank from "../../components/CardAnotherBank/CardAnotherBank";
+import TransferToCard from "../../components/TransferToCard/TransferToCard";
+import MobileRecharge from "../../components/MobileRecharge/MobileRecharge";
+import Payment from "../../components/Payment/Payment";
+import CreditProducts from "../../components/CreditProducts/CreditProducts";
+import Converter from "../../components/Converter/Converter";
+import Banner from "../../components/Banner/Banner";
+import News from "../../components/News/News";
 import {useOutletContext} from "react-router-dom";
 
 const Main = () => {

@@ -57,7 +57,19 @@
 .light_mode .numberCard {
     color: #000;
 }
-
+.account {
+    width: 19.44vw;
+}
+.dark_mode .account {
+    background-color: #0F110E;
+    border: 1px solid #0F110E;
+    color: #FFF;
+}
+.light_mode .account {
+    background-color: #FFF;
+    border: 1px solid #FFF;
+    color: #000;
+}
 
 .wrapper_img {
     display: flex;

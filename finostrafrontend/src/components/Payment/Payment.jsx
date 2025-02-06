@@ -11,7 +11,9 @@ function Payment({ isDarkMode }){
                 </div>
                 <div className={styles.wrapper_contentCard}>
                     <div className={styles.contentCard}>
-                        <div className={styles.numberCard}>UAXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                        <div className={styles.numberCard}>
+                            <input type="number" className={styles.account} placeholder="UAXXXXXXXXXXXXXXXXXXXXXXXXXX"/>
+                        </div>
                         <div className={styles.wrapper_img}>
                             <img src={isDarkMode ? "./icons/arrow-out-white.svg" : "./icons/arrow-out.svg"} alt=""/>
                         </div>

@@ -11,7 +11,10 @@ function TransferToCard({isDarkMode}) {
                 </div>
                 <div className={styles.wrapper_contentCard}>
                     <div className={styles.contentCard}>
-                        <div className={styles.numberCard}>0000 0000 0000 0000</div>
+                        <div className={styles.numberCard}>
+                            <input type="number" className={styles.style_input}
+                                   placeholder="0000 0000 0000 0000"/>
+                        </div>
                         <div className={styles.wrapper_img}>
                             <img src="./icons/cardLinear.svg" alt=""/>
                             <img src="./icons/arrow-out.svg" alt=""/>

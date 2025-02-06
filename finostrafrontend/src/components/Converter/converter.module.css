@@ -121,6 +121,16 @@
 .light_mode .total {
     color: #FFF;
 }
+
+.dark_mode .input_total {
+    border: 1px solid #FFF;
+    color: #000;
+}
+.light_mode .input_total {
+    background-color: #000;
+    border: 1px solid #000;
+    color: #FFF;
+}
 .balance {
     display: flex;
     gap: 0.35vw;

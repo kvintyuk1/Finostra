@@ -8,7 +8,7 @@
 }
 
 .light_mode .frame757 {
-    background: #FFFFFF;
+    background: #FFF;
 }
 
 .dark_mode .frame757 {
@@ -16,44 +16,41 @@
 }
 
 .light_mode .Frame756 {
-    color: #000000;
+    color: #000;
 }
 
-
 .light_mode .searchBar {
-    border: 1px solid #000000;
+    border: 1px solid #000;
 }
 
 .light_mode .themeToggle {
-    border: 1px solid #000000;
+    border: 1px solid #000;
 }
 
 .themeToggle {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 10px;
+    padding: 8px 0.69vw;
     position: absolute;
-    width: 79px;
+    width: 5.49vw;
     height: 36px;
-    left: 529px;
+    left: 36.76vw;
     top: 32px;
-    border: 1px solid #FFFFFF;
-    border-radius: 23px;
+    border: 1px solid #FFF;
+    border-radius: 1.6vw;
     cursor: pointer;
     background-color: #0F110E;
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
     overflow: hidden;
 }
 
-
 .themeToggle:hover {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0.69vw rgba(255, 255, 255, 0.5);
 }
 
-
 .sunIcon {
-    width: 24px;
+    width: 1.67vw;
     height: 24px;
     background-image: url('../../assets/Photo/sun.png');
     background-size: cover;
@@ -62,7 +59,6 @@
     opacity: 1;
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
-
 
 .moonIcon {
     width: 24px;
@@ -75,10 +71,9 @@
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-/* Світла тема */
 .light_mode .themeToggle {
     background-color: #F7F7F7;
-    border: 1px solid #000000;
+    border: 1px solid #000;
 }
 
 .light_mode .themeToggle .sunIcon {
@@ -91,10 +86,9 @@
     opacity: 0;
 }
 
-/* Темна тема */
 .dark_mode .themeToggle {
     background-color: #0F110E;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #FFF;
 }
 
 .dark_mode .themeToggle .sunIcon {
@@ -107,36 +101,34 @@
     opacity: 1;
 }
 
-/* Плавний рух між темами */
 .themeToggle .sunIcon,
 .themeToggle .moonIcon {
     will-change: transform, opacity;
 }
 
-
 .light_mode .themeToggle {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #FFF;
+    color: #000;
 }
 
 .dark_mode .themeToggle {
     background-color: #0F110E;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 .dark_mode .search_input {
-    color: #ffffff;
+    color: #FFF;
 }
 
 .header {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100px;
 }
 
 .frame757 {
     position: absolute;
-    width: 100%;
+    width: 100vw;
     height: 100px;
     left: 0;
     top: 0;
@@ -151,56 +143,54 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 10px;
+    gap: 0.69vw;
     position: absolute;
-    width: 92px;
+    width: 6.39vw;
     height: 49px;
-    left: 60px;
+    left: 4.17vw;
     top: 26px;
 }
 
-
 .Rectangle2 {
-    width: 49px;
+    width: 50px;
     height: 49px;
     background-image: url('../../assets/Photo/Finostra_logo.png');
-    border-radius: 7px;
+    border-radius: 0.49vw;
 }
 
 .Logo {
-    width: 33px;
+    width: 2.29vw;
     height: 16px;
     font-family: 'adineue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
 }
-
 
 .searchBar {
     position: absolute;
     top: 32px;
-    left: 290px;
-    width: 209px;
+    left: 20.14vw;
+    width: 14.5vw;
     height: 36px;
     display: flex;
     align-items: center;
-    border: 1px solid #FFFFFF;
-    border-radius: 30px;
+    border: 1px solid #FFF;
+    border-radius: 2.08vw;
     background-color: transparent;
 }
 
 .search_input {
     flex-grow: 1;
-    padding: 8px 16px 8px 40px;
+    padding: 0.56vw 1.11vw 0.56vw 2.28vw;
     border: none;
     outline: none;
     background: transparent;
-    color: #000000;
+    color: #000;
     font-family: 'adeneue PRO Cyr', sans-serif;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 19px;
 }
 
@@ -210,8 +200,8 @@
 
 .search_icon {
     position: absolute;
-    left: 12px;
-    width: 24px;
+    left: 0.83vw;
+    width: 1.67vw;
     height: 24px;
     display: flex;
     align-items: center;
@@ -226,35 +216,31 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 85px;
+    gap: 5.9vw;
     position: absolute;
-    width: 349px;
+    width: 24.24vw;
     height: 36px;
-    left: 1031px;
+    left: 71.6vw;
     top: 32.5px;
     color: #F7F7F7;
 }
-
 
 .Frame755 {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 30px;
-    width: 159px;
+    gap: 2.08vw;
+    width: 11.04vw;
     height: 19px;
-
 }
-
 
 .Frame751 {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 30px;
-
+    gap: 2.08vw;
 }
 
 .Frame708 {
@@ -262,33 +248,28 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 10px;
-
+    gap: 0.69vw;
 }
 
-/* $ */
 .Frame708 span:first-child {
-    width: 9px;
+    width: 0.63vw;
     height: 19px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 19px;
-
 }
 
-/* 41.2 / 41.841 */
 .Frame708 span:last-child {
-    width: 89px;
+    width: 6.19vw;
     height: 19px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 19px;
     letter-spacing: -1.5px;
-
 }
 
 .Frame753 {
@@ -296,70 +277,66 @@
     flex-direction: row;
     align-items: center;
     padding: 0;
-    gap: 15px;
-    width: 40px;
+    gap: 1.04vw;
+    width: 2.78vw;
     height: 19px;
     flex: none;
     order: 1;
     flex-grow: 0;
 }
 
-
 .Frame744 {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0;
-    gap: 4px;
-    width: 40px;
+    gap: 0.28vw;
+    width: 2.78vw;
     height: 19px;
     flex: none;
     order: 0;
     flex-grow: 0;
 }
-
 
 .Frame739 {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0;
-    gap: 10px;
-    width: 20px;
+    gap: 0.69vw;
+    width: 1.39vw;
     height: 19px;
     flex: none;
     order: 0;
     flex-grow: 0;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
-/* UA */
 .language {
-    width: 20px;
+    width: 1.39vw;
     height: 19px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #FFF;
     flex: none;
     order: 0;
     flex-grow: 0;
 }
 
-
 .weui-arrow-outlined {
-    width: 8px;
+    width: 0.56vw;
     height: 16px;
-    transform: rotate(90deg); 
-    transition: transform 0.3s ease; 
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
 }
 .language_select {
-    background-color: #fff;
+    background-color: #FFF;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 5px;
+    border-radius: 0.28vw;
+    padding: 0.35vw;
     font-size: 14px;
     color: #333;
     cursor: pointer;
@@ -371,23 +348,21 @@
 }
 
 .language_select option {
-    padding: 10px;
+    padding: 0.69vw;
     font-size: 14px;
 }
 
-
 .dark_mode .language_select {
     background-color: #0F110E;
-    color: #fff;
+    color: #FFF;
     border-color: #0F110E;
 }
 
 .light_mode .language_select {
-    background-color: #FFFFFF;
+    background-color: #FFF;
     color: #333;
-    border-color: #FFFFFF;
+    border-color: #FFF;
 }
-
 
 .Frame636 {
     box-sizing: border-box;
@@ -395,19 +370,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 6px 20px;
-    gap: 10px;
-    width: 105px;
+    padding: 6px 1.39vw;
+    gap: 0.69vw;
+    width: 7.29vw;
     height: 36px;
-    border: 1px solid #FFFFFF;
-    border-radius: 22px;
-    cursor: pointer; 
+    border: 1px solid #FFF;
+    border-radius: 1.53vw;
+    cursor: pointer;
 }
 
 .Frame636:hover {
-    background-color: rgba(255, 255, 255, 0.1); 
+    background-color: rgba(255, 255, 255, 0.1);
 }
-
 
 .Frame612 {
     display: flex;
@@ -415,41 +389,37 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
-    gap: 8px;
-    width: 65px;
+    gap: 0.56vw;
+    width: 4.51vw;
     height: 24px;
 }
 
-
 .icon_user {
-    width: 24px;
+    width: 1.67vw;
     height: 24px;
-    background-image: url('../../assets/Photo/icon_user.png'); 
+    background-image: url('../../assets/Photo/icon_user.png');
     background-size: cover;
     background-position: center;
 }
 
-/* Вхід */
 .Frame636 span {
-    width: 33px;
+    width: 2.29vw;
     height: 19px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #FFF;
 }
-
 
 .Frame636:active {
-    transform: scale(0.98); 
+    transform: scale(0.98);
 }
-
 
 .Frame636:focus {
     outline: none;
-    border: 2px solid #00A4E4;
+    border: 0.14vw solid #00A4E4;
 }
 
 .light_mode .icon_user {
@@ -457,15 +427,13 @@
 }
 
 .light_mode .Frame636 span {
-    color: #000000;
+    color: #000;
 }
 
 .light_mode .Frame636 {
-    border: 1px solid #000000;
+    border: 1px solid #000;
 }
 
-
-
 .light_mode .Logo {
-    color: #000000;
+    color: #000;
 }

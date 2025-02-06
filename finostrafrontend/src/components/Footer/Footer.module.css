@@ -1,23 +1,19 @@
 .footer {
-    width: 100%;
+    width: 100vw;
     height: 189px;
     position: relative;
     text-align: center;
     background: #0E0E0E;
-    color: #ffffff;
+    color: #fff;
     overflow: hidden;
     transition: background-color 0.3s, color 0.3s;
-    padding: 20px;
 }
 
 .footer>* {
     max-width: 100%;
-
 }
-
-
 .light_mode.footer {
-    background: #FFFFFF;
+    background: #FFF;
     color: #333;
 }
 
@@ -25,49 +21,45 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0px;
-    gap: 10px;
+    gap: 0.69vw;
     position: absolute;
-    width: 92px;
+    width: 6.39vw;
     height: 49px;
-    left: 60px;
+    left: 4.17vw;
     top: 25px;
 }
 
 .Rectangle2 {
-    width: 49px;
+    width: 50px;
     height: 49px;
     background-image: url('../../assets/Photo/Finostra_logo.png');
     border-radius: 7px;
 }
 
 .Logo {
-    width: 33px;
+    width: 2.29vw;
     height: 16px;
     font-family: 'adineue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.86em;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
-
-
 .light_mode .Logo {
-    color: #000000;
+    color: #000;
 }
 
 .footerLinks {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0;
-    gap: 40px;
+    gap: 2.78vw;
     position: absolute;
-    width: 653px;
+    width: 45.35vw;
     height: 19px;
-    left: 291px;
+    left: 20.21vw;
     top: 42px;
 }
 
@@ -75,14 +67,14 @@
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #FFF;
     text-decoration: none;
 }
 
 .light_mode .link {
-    color: #000000;
+    color: #000;
 }
 
 .link:hover {
@@ -90,56 +82,54 @@
 }
 
 .light_mode .phone {
-    color: #000000;
+    color: #000;
 }
 
 .phone {
-    width: 287px;
+    width: 19.93vw;
     height: 16px;
-    left: 60px;
+    left: 4.17vw;
     top: 93px;
     position: absolute;
     letter-spacing: -0.3px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 0.86em;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
     text-align: left;
 }
 
 .light_mode .license {
-    color: #000000;
+    color: #000;
 }
 
 .license {
-    width: 330px;
+    width: 22.92vw;
     height: 16px;
-    left: 60px;
+    left: 4.17vw;
     top: 127px;
     position: absolute;
     letter-spacing: -0.3px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 0.86em;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
     text-align: left;
-
 }
 
 .frame641 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0;
-    gap: 15px;
+    gap: 1.04vw;
     position: absolute;
-    width: 142px;
+    width: 9.86vw;
     height: 44px;
-    left: 1058px;
+    left: 73.47vw;
     top: 99px;
 }
 .light_mode .appleIcon {
@@ -147,7 +137,7 @@
 }
 
 .appleIcon {
-    width: 35px;
+    width: 2.43vw;
     height: 44px;
     display: flex;
     justify-content: center;
@@ -162,59 +152,56 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
+    gap: 1.04vw;
 }
-
-
 
 .frame640 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    gap: 2px;
-    width: 83px;
+    gap: 0.14vw;
+    width: 5.76vw;
     height: 38px;
 }
 
 .light_mode .available {
-    color: #000000;
+    color: #000;
 }
 .available {
-    width: 83px;
+    width: 5.76vw;
     height: 17px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.86em;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 .light_mode .appleStore {
-    color: #000000;
+    color: #000;
 }
 
 .appleStore {
-    width: 83px;
+    width: 5.76vw;
     height: 19px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.86em;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
 }
 .frame833 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0;
-    gap: 15px;
+    gap: 1.04vw;
     position: absolute;
-    width: 142px;
+    width: 9.86vw;
     height: 44px;
-    left: 1223px; 
+    left: 84.93vw;
     top: 99px; 
 }
 
@@ -223,7 +210,7 @@
 }
 
 .googlePlayIcon {
-    width: 35px;
+    width: 2.43vw;
     height: 44px;
     display: flex;
     justify-content: center;
@@ -238,7 +225,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
+    gap: 1.04vw;
 }
 
 .frame640 {
@@ -246,37 +233,37 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    gap: 2px;
-    width: 83px;
+    gap: 0.14vw;
+    width: 5.76vw;
     height: 38px;
 }
 
 .light_mode .available {
-    color: #000000;
+    color: #000;
 }
 
 .available {
-    width: 83px;
+    width: 5.76vw;
     height: 17px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.86em;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 .light_mode .googlePlay {
-    color: #000000;
+    color: #000;
 }
 
 .googlePlay {
-    width: 83px;
+    width: 5.76vw;
     height: 19px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.86em;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #FFF;
 }

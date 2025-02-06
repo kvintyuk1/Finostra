@@ -43,6 +43,17 @@
 .numberCard {
     color: rgba(0, 0, 0, 0.6);
 }
+.style_input {
+    width: 19.44vw;
+}
+.dark_mode .style_input {
+    background-color: #E2D8FD;
+    border: 1px solid #E2D8FD;
+}
+.light_mode .style_input {
+    background-color: #D4B8FF;
+    border: 1px solid #D4B8FF;
+}
 
 .wrapper_img {
     display: flex;

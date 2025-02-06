@@ -55,6 +55,28 @@
     font-size: 1em;
     color: #000;
 }
+.country_number {
+    width: 2.08vw;
+}
+.dark_mode .country_number {
+    background-color: #F2B8FF;
+    border: 1px solid #F2B8FF;
+}
+.light_mode .country_number {
+    background-color: #F2B8FF;
+    border: 1px solid #F2B8FF;
+}
+.number_mobile {
+    width: 24.31vw;
+}
+.dark_mode .number_mobile {
+    background-color: #F2B8FF;
+    border: 1px solid #F2B8FF;
+}
+.light_mode .number_mobile {
+    background-color: #F2B8FF;
+    border: 1px solid #F2B8FF;
+}
 .wrapper_img {
     display: flex;
     gap: 0.34vw;

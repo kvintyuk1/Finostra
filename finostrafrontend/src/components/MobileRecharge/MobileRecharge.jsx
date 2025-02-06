@@ -14,11 +14,13 @@ function MobileRecharge({ isDarkMode }) {
                         <div className={styles.wrapper_countryNumber}>
                             <img src="./icons/flag-ukraine.svg" alt=""/>
                             <div className={styles.countryNumber}>
-                                <div className={styles.numberCard}>+380</div>
+                                <div className={styles.numberCard}>
+                                    <input type="text" className={styles.country_number} placeholder="+380"/>
+                                </div>
                                 <img src="./icons/arrow-down.svg" alt=""/>
                             </div>
                             <div>
-                                <span>976 54 32 0 1</span>
+                                <input type="number" className={styles.number_mobile} placeholder="976 54 32 0 1"/>
                             </div>
                         </div>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./converter.module.css";
 
 const converterItems = [
@@ -11,7 +11,7 @@ const converterItems = [
         hasArrowLight: "arrow-down-white.svg",
         text:"Баланс :",
         number:"23 000",
-        total:"360, 16",
+        placeholder:"Введіть сумму",
     },
     {
         icon:"flag-usa.svg",
@@ -22,11 +22,21 @@ const converterItems = [
         hasArrowLight: "arrow-down-white.svg",
         text:"Баланс :",
         number: "0",
-        total:"8,69",
+        placeholder:"00.00"
     }
 ]
 
 function Converter({isDarkMode}) {
+    const [uah, setUah] = useState("");
+    const [usd, setUsd] = useState("");
+    const exchangeRate = 41.46;
+
+    const handleUahChange = (e)=>{
+        const value = e.target.value;
+        setUah(value);
+        setUsd((value / exchangeRate).toFixed(2));
+    }
+
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
             <div className={styles.container}>
@@ -43,8 +53,8 @@ function Converter({isDarkMode}) {
 
                 <div className={styles.info}>
                     <div className={styles.wrapper_content}>
-                        {converterItems.map(({icon,currency,iconDark,iconLight,hasArrowDark,hasArrowLight,text,number,total})=> (
-                            <div className={styles.container_exchange}>
+                        {converterItems.map(({icon,currency,iconDark,iconLight,placeholder,hasArrowDark,hasArrowLight,text,number,total})=> (
+                            <div key={currency} className={styles.container_exchange}>
                                 <div className={styles.exchange}>
                                     <div className={styles.wrapper_rate}>
                                         <div className={styles.country}>
@@ -67,7 +77,13 @@ function Converter({isDarkMode}) {
                                         </div>
                                     </div>
                                     <div className={styles.total}>
-                                        <span>{total}</span>
+                                        <span>
+                                            <input type="number"
+                                                   className={styles.input_total}
+                                                   value={currency === "UAH" ? uah : usd}
+                                                   onChange={currency === "UAH" ? handleUahChange : undefined}
+                                                   placeholder={placeholder}/>
+                                        </span>
                                         <div>
                                             <hr className={`${styles.hr} ${styles.big_size}`}/>
                                         </div>
@@ -82,12 +98,10 @@ function Converter({isDarkMode}) {
                         <img src={isDarkMode ? "./icons/switch.svg" : "./icons/switch-white.svg"} alt=""/>
                     </div>
                 </div>
-                <img className={styles.star7} src="./icons/star 7.svg" alt="star"/>
-                <img className={styles.star8} src="./icons/star 8.svg" alt="star"/>
-                <img className={styles.star9} src="./icons/star 9.svg" alt="star"/>
-                <img className={styles.star10} src="./icons/star 10.svg" alt="star"/>
-                <img className={styles.star11} src="./icons/star 11.svg" alt="star"/>
-                <img className={styles.star12} src="./icons/star 12.svg" alt="star"/>
+                {[7, 8, 9, 10, 11, 12].map((num)=>(
+                    <img key={num} className={styles[`star${num}`]} src={`./icons/star ${num}.svg`} alt="star"/>
+            ))
+            }
             </div>
         </div>
     )
