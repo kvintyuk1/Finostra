@@ -1,14 +1,22 @@
 .sidebar {
     display: flex;
     justify-content: flex-end;
+    align-items: stretch;
     font-family: 'adeneue PRO Cyr', sans-serif;
     width: 17.36vw;
-    height: 1686px;
+    min-height: 100%;
     background-color: #0F110E;
     color: white;
     font-size: 1em;
     font-weight: 400;
     border-bottom-right-radius: 32px;
+}
+.sidebar-home {
+    height: 1686px;
+}
+
+.sidebar-other {
+    height: 1739px;
 }
 
 .sidebar ul {

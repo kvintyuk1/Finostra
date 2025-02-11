@@ -20,7 +20,6 @@ function DigitalBankCard({ isDarkMode }) {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

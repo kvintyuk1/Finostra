@@ -1,12 +1,17 @@
 .main_content {
-  display: flex;
+    display: flex;
+    align-items: stretch;
 }
+
 .wrapper_content {
     display: flex;
+    align-items: stretch;
 }
+
 .dark_mode .wrapper_content {
     background-color: #28282C;
 }
+
 .light_mode .wrapper_content {
     background-color: #EAEAEA;
 }

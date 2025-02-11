@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42.64vw;
+    height: 292px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    letter-spacing: 1px;
+}
+
+.dark_mode .container {
+    background-color: #0F110E;
+}
+
+.wrapper_container {
+    display: flex;
+    flex-direction: column;
+    width: 38.47vw;
+    height: 234px;
+    gap: 40px;
+}
+
+.container_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img_title {
+    display: flex;
+    gap: 0.69vw;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFF;
+}
+
+.container_info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    color: #FFF;
+}
+
+.item_info {
+    display: flex;
+    gap: 1.04vw;
+}
+
+.transaction {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35vw;
+}
+.text {
+    font-weight: 400;
+    font-size: 1em;
+}
+.time {
+    font-weight: 400;
+    font-size: 14px;
+    opacity: 0.5;
+}
+.money {
+    display: flex;
+    font-weight: 700;
+    font-size: 1em;
+}
+

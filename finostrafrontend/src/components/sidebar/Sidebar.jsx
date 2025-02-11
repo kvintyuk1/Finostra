@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './sidebar.module.css';
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import RoundingButton from "../RoundingButton/RoundingButton";
 
 const menuItems = [
@@ -25,9 +25,10 @@ const menuItems = [
 ]
 
 function Sidebar() {
+    const location = useLocation();
     return (
         <aside className={styles.sidebar}>
-            <nav>
+            <nav className={`sidebar ${location.pathname === "/" ? "sidebar-home" : "sidebar-other"}`}>
                 <ul>
                     {menuItems.map(({to, icon, label, hasArrow}) => (
                         <li key={to}>

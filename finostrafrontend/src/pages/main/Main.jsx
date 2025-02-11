@@ -10,6 +10,8 @@ import Converter from "../../components/Converter/Converter";
 import Banner from "../../components/Banner/Banner";
 import News from "../../components/News/News";
 import {useOutletContext} from "react-router-dom";
+import Wallet from "../../components/Wallet/Wallet";
+import TransactionHistory from "../../components/TransactionHistory/TransactionHistory";
 
 const Main = () => {
     const { isDarkMode } = useOutletContext();
@@ -22,11 +24,11 @@ const Main = () => {
                         <Banner isDarkMode={isDarkMode}/>
                         <div className={styles.wrapper_item_column}>
                             <div className={styles.item_column}>
-                                <DigitalBankCard isDarkMode={isDarkMode}/>
+                                <Wallet isDarkMode={isDarkMode}/>
                                 <TransferToCard isDarkMode={isDarkMode}/>
                             </div>
                             <div className={styles.item_column}>
-                                <CardAnotherBank isDarkMode={isDarkMode}/>
+                                <TransactionHistory isDarkMode={isDarkMode}/>
                                 <MobileRecharge isDarkMode={isDarkMode}/>
                             </div>
                         </div>
