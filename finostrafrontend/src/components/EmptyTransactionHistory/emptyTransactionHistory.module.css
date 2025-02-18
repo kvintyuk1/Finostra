@@ -1,0 +1,38 @@
+.wrapper_container_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4.3vw;
+}
+.wrapper_transaction {
+    display: flex;
+    align-items: center;
+
+    width: 33.19vw;
+    height: 66px;
+    background-color: #28282C;
+    border: 1px solid #FFF;
+    border-radius: 1.04vw;
+    opacity: 0.6;
+    position: relative;
+}
+.wrapper_transaction img {
+   position: absolute;
+    top: -50px;
+    right: -90px;
+}
+.title {
+    display: flex;
+    align-items: center;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 1.25em;
+    color: #FFF;
+    margin-left: 20px;
+}
+
+.order_transaction {
+    display: flex;
+    color: #FFF;
+    opacity: 0.5;
+}
+

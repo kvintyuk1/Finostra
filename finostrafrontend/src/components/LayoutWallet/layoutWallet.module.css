@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 31.67vw;
+    height: 292px;
+    border-radius: 2.08vw;
+    letter-spacing: 1px;
+    background-color: #0F110E;
+}
+
+.dark_mode .container {
+    background-color: #0F110E;
+}
+
+.wrapper_container {
+    display: flex;
+    flex-direction: column;
+    width: 27.5vw;
+    height: 234px;
+    gap: 2.78vw;
+}
+
+.wrapper_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img_title {
+    display: flex;
+    gap: 10px;
+}
+.title {
+    display: flex;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #FFF;
+}

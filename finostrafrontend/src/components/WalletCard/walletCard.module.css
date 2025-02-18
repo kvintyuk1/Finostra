@@ -1,0 +1,71 @@
+.wrapper_container_info {
+    display: flex;
+    justify-content: space-between;
+    height: 73px;
+}
+
+.wrapper_info {
+    display: flex;
+    justify-content: space-between;
+    width: 371px;
+}
+.points {
+    display: flex;
+    width: 4px;
+    height: 16px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #FFF;
+}
+.container_title_card {
+    display: flex;
+    align-items: flex-start;
+}
+.title_card {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    letter-spacing: 2px;
+    color: #FFF;
+}
+.container_number {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.5;
+}
+
+.number_card {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 0.88em;
+}
+
+.vertical_line {
+    width: 1px;
+    height: 20px;
+    background-color: #FFF;
+}
+.money {
+    display: flex;
+
+}
+.wrap_number_account {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.UA {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 0.88em;
+    font-weight: 400;
+}
+.number_account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+

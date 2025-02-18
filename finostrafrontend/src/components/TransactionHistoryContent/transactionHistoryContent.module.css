@@ -1,0 +1,37 @@
+.container_info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.74vw;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    color: #FFF;
+}
+
+.item_info {
+    display: flex;
+    gap: 1.04vw;
+}
+
+.transaction {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35vw;
+}
+.text {
+    font-weight: 400;
+    font-size: 1em;
+}
+.time {
+    font-weight: 400;
+    font-size: 14px;
+    opacity: 0.5;
+}
+.money {
+    display: flex;
+    font-weight: 700;
+    font-size: 1em;
+}
+

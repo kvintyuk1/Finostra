@@ -12,6 +12,7 @@ import News from "../../components/News/News";
 import {useOutletContext} from "react-router-dom";
 import Wallet from "../../components/Wallet/Wallet";
 import TransactionHistory from "../../components/TransactionHistory/TransactionHistory";
+import LayoutTransactionHistory from "../../components/LayoutTransactionHistory/LayoutTransactionHistory";
 
 const Main = () => {
     const { isDarkMode } = useOutletContext();

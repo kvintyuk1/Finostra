@@ -1,0 +1,47 @@
+.wrapper_container_info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.82vw;
+}
+.wrapper_add_card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8.76vw;
+    width: 27.5vw;
+    height: 66px;
+    background-color: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 1.04vw;
+}
+.title {
+    display: flex;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 1.25em;
+}
+.title_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9.52vw;
+    height: 63px;
+    border-radius: 1.04vw;
+    background-color: #A66CFE;
+    border: 1px solid #A66CFE;
+    font-size: 1.88em;
+}
+.content_button {
+    color: #FFF;
+}
+.order {
+   display: flex;
+    flex-direction: column;
+}
+.order_text {
+    color: #FFF;
+    opacity: 0.5;
+}
+.link_order {
+    color: #FFF;
+}
