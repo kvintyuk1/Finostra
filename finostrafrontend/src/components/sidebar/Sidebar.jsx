@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './sidebar.module.css';
 import {Link, useLocation} from "react-router-dom";
 import RoundingButton from "../RoundingButton/RoundingButton";
+import Transfer_Modal from "../modals/Transfer_Modal";
 
 const menuItems = [
     {to: "/", icon: "home.svg", label: "Головна"},
-    {to: "/transactions", icon: "transfer.svg", label: "Перекази", hasArrow: true},
+    {to: "/transactions", icon: "transfer.svg", label: "Перекази", hasArrow: true,modal:"transfer"},
     {to: "/connection", icon: "connect.svg", label: "Зв'язок", hasArrow: true},
     {to: "/saving", icon: "saving.svg", label: "Заощядження", hasArrow: true},
     {to: "/conversions", icon: "conversions.svg", label: "Конверти"},
@@ -24,24 +25,53 @@ const menuItems = [
     {to: "/business", icon: "business.svg", label: "Бізнес", hasArrow: true},
 ]
 
+const modals = {
+    transfer: Transfer_Modal,
+}
+
 function Sidebar() {
     const location = useLocation();
+    const [activeModal,setActiveModal] = useState(null);
+    const handleOpenModal = (e,modal)=>{
+        e.preventDefault();
+        setActiveModal(modal);
+    };
+    const handleCloseModal = ()=>{
+        setActiveModal(null);
+    };
+    const ModalComponent = activeModal ? modals[activeModal] : null;
+
     return (
         <aside className={styles.sidebar}>
             <nav className={`sidebar ${location.pathname === "/" ? "sidebar-home" : "sidebar-other"}`}>
                 <ul>
-                    {menuItems.map(({to, icon, label, hasArrow}) => (
+                    {menuItems.map(({to, icon, label, hasArrow,modal}) => (
                         <li key={to}>
-                            <Link to={to} className={styles.iconContainer}>
-                                <img src={`./icons/${icon}`} alt={label}/>
-                                <div className={styles.iconWrapper}>
-                                    <div>{label}</div>
-                                    {hasArrow && <img src="./icons/dir_right.svg" alt="->"/>}
-                                </div>
-                            </Link></li>
+                            {modal ? (
+                                <button>
+                                    <div className={`${styles.iconContainer} ${activeModal === modal ? styles.active : ""}`}
+                                         onClick={(e) => handleOpenModal(e, modal)}>
+                                        <img src={`./icons/${icon}`} alt={label}/>
+                                        <div className={styles.iconWrapper}>
+                                            <div>{label}</div>
+                                            {hasArrow && <img src="./icons/dir_right.svg" alt="->"/>}
+                                        </div>
+                                    </div>
+                                </button>
+                            ) : (
+                                <Link to={to} className={styles.iconContainer}>
+                                    <img src={`./icons/${icon}`} alt={label}/>
+                                    <div className={styles.iconWrapper}>
+                                        <div>{label}</div>
+                                        {hasArrow && <img src="./icons/dir_right.svg" alt="->"/>}
+                                    </div>
+                                </Link>
+                            )}
+                          </li>
                     ))}
                 </ul>
             </nav>
+            {ModalComponent && <ModalComponent onClose={handleCloseModal} />}
         </aside>
     )
 }

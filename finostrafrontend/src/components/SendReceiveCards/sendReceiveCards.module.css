@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4.17vw;
+    position: relative;
+    width: 77.08vw;
+    height: 712px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+}
+.wrapper_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 71.53vw;
+    height: 617px;
+    gap: 4.17vw;
+}
+.cards_comment {
+    display: flex;
+    flex-direction: column;
+    width: 71.53vw;
+    height: 472px;
+    gap: 2.08vw;
+}
+.wrapper_cards {
+    display: flex;
+    gap: 3.61vw;
+    width: 71.53vw;
+    height: 327px;
+}
+
+.wrapper_termsBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.39vw;
+    width: 36.04vw;
+    height: 85px;
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 14px;
+}
+.color_grey {
+    color: rgba(250,250,250,0.6);
+}
+.color_white {
+    color: #FFF;
+    margin-left: 0.35vw;
+}
+.but_send {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13.89vw;
+    height: 49px;
+    color: #FFF;
+    background-color: #A66CFE;
+    border-radius: 0.56vw;
+    font-weight: 700;
+    font-size: 1em;
+}
+.img_message {
+    position: absolute;
+    right: -0.15vw;
+    top: 450px;
+}

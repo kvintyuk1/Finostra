@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.96vw;
+    height: 327px;
+    border-radius: 2.08vw;
+    background: #28282C;
+}
+.wrapper_senderInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 77px;
+    width: 29.79vw;
+    height: 273px;
+}
+.wrapper_cardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 29.79vw;
+    height: 172px;
+
+}
+.container_cardInfo {
+    display: flex;
+    width: 29.79vw;
+    height: 58px;
+    gap: 2.01vw;
+}

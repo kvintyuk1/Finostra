@@ -1,0 +1,30 @@
+.container_comment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 71.53vw;
+    height: 107px;
+    gap: 3.47vw;
+    background-color: #28282C;
+    border-radius: 2.8vw;
+}
+.item_comment {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 67.36vw;
+    height: 3.68vw;
+
+}
+.title {
+    color: #A66CFE;
+    font-weight: 700;
+    font-size: .88em;
+}
+.comment {
+    font-weight: 400;
+    font-size: 1em;
+    background-color: #28282C;
+    border-right: none;
+    color: #FFF;
+}
