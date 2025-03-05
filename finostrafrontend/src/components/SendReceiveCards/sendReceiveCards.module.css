@@ -40,28 +40,20 @@
     width: 36.04vw;
     height: 85px;
     white-space: nowrap;
-    font-weight: 400;
-    font-size: 14px;
+    letter-spacing: 1px;
 }
 .color_grey {
     color: rgba(250,250,250,0.6);
+    font-weight: 400;
+    font-size: 0.88em;
 }
 .color_white {
     color: #FFF;
     margin-left: 0.35vw;
+    font-weight: 400;
+    font-size: 0.88em;
 }
-.but_send {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 13.89vw;
-    height: 49px;
-    color: #FFF;
-    background-color: #A66CFE;
-    border-radius: 0.56vw;
-    font-weight: 700;
-    font-size: 1em;
-}
+
 .img_message {
     position: absolute;
     right: -0.15vw;

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from './sidebar.module.css';
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import RoundingButton from "../RoundingButton/RoundingButton";
 import Transfer_Modal from "../modals/Transfer_Modal";
 
@@ -31,7 +31,9 @@ const modals = {
 
 function Sidebar() {
     const location = useLocation();
+    const navigate = useNavigate();
     const [activeModal,setActiveModal] = useState(null);
+
     const handleOpenModal = (e,modal)=>{
         e.preventDefault();
         setActiveModal(modal);
@@ -40,6 +42,11 @@ function Sidebar() {
         setActiveModal(null);
     };
     const ModalComponent = activeModal ? modals[activeModal] : null;
+
+    const handleTransactionClick = ()=>{
+        navigate("/transactions");
+        setActiveModal(null);
+    }
 
     return (
         <aside className={styles.sidebar}>
@@ -71,7 +78,8 @@ function Sidebar() {
                     ))}
                 </ul>
             </nav>
-            {ModalComponent && <ModalComponent onClose={handleCloseModal} />}
+            {ModalComponent && <ModalComponent onClose={handleCloseModal}
+                                               onTransactionClick={handleTransactionClick}/>}
         </aside>
     )
 }

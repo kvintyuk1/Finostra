@@ -7,7 +7,7 @@
     border-radius: 2.08vw;
     background: #28282C;
 }
-.wrapper_senderInfo {
+.wrap_cardInfo {
     display: flex;
     flex-direction: column;
     gap: 77px;
@@ -26,5 +26,9 @@
     display: flex;
     width: 29.79vw;
     height: 58px;
+
+}
+.card_info {
+    display: flex;
     gap: 2.01vw;
 }

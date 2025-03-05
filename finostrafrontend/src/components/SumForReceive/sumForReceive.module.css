@@ -15,30 +15,7 @@
     width: 29.79vw;
     height: 53px;
 }
-.total_block {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-    width: 13.89vw;
-    height: 53px;
-}
-.title {
-    display: flex;
-    font-weight: 700;
-    font-size: 0.88em;
-    color: #FFF;
-}
-.wrapper_total {
-    display: flex;
-}
-.total {
-    display: flex;
-    font-weight: 400;
-    font-size: 1em;
-    color: #FFF;
-    background-color: #28282C;
-    border-right: none;
-}
+
 .line {
     display: flex;
     width: 13.89vw;

@@ -15,12 +15,24 @@
 }
 .my_wallet {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 9.03vw;
     height: 24px;
-    gap: 0.69vw;
 }
 .title_wallet {
     display: flex;
     color: #A66CFE;
+}
+.normal {
+    text-transform: none;
+}
+.whiteText {
+    color: #FFF;
+}
+.pinkText {
+    color: #A66CFE;
+}
+.uppercase {
+    text-transform: uppercase;
 }

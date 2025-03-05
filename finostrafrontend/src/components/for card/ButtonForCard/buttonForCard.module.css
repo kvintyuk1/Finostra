@@ -1,0 +1,42 @@
+.but_style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 13.89vw;
+    height: 49px;
+    color: #FFF;
+    background-color: #A66CFE;
+    border-radius: 0.56vw;
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.whiteText {
+    color: #FFF;
+}
+.greyText {
+    color: rgba(250,250,250,0.7);
+}
+.size_button200 {
+    width: 13.89vw;
+    height: 49px;
+}
+.size_button186 {
+    width: 12.92vw;
+    height: 45px;
+}
+.blackBackground {
+    background-color: #000;
+    border: 1px solid #FFF;
+}
+.pinkBackground {
+    background-color: #A66CFE;
+}
+.fontWeight400 {
+    font-weight: 400;
+}
+.fontWeight700 {
+    font-weight: 700;
+}
