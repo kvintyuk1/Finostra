@@ -20,7 +20,7 @@ function SendReceiveCards({setIsConfirmed}) {
                             title_wallet="Мій гаманець"
                             img="./icons/arrow_out_pink.svg"
                             title_card="Номер картки"
-                            placeholder="0000 0000 0000 0000"
+                            value="0000 0000 0000 0000"
                             img_card="./icons/card_white2.svg"
                             title_period="Термін дії"
                             validityPeriod="01 / 25"

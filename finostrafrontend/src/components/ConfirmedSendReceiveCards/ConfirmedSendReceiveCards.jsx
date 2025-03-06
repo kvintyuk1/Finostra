@@ -1,13 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./confirmedSendReceiveCards.module.css";
 import Card from "../Card/Card";
 import Total_Sum from "../for card/Total_Sum/Total_Sum";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
+import TransferPersonalMoney_Modal from "../modals/TransferPersonalMoney_Modal/TransferPersonalMoney_Modal";
+import SuccessfulTransfer_Modal from "../modals/SuccessfulTransfer_Modal/SuccessfulTransfer_Modal";
+
 
 function ConfirmedSendReceiveCards({setIsConfirmed}) {
+    const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
+    const [isSuccessfulTransferModalOpen, setIsSuccessfulTransferModalOpen] = useState(false);
+
     const handleBackClick = () => {
         setIsConfirmed(false);
-    }
+    };
+    const handleOpenTransferModal = () => {
+        setIsTransferModalOpen(true);
+    };
+    const handleCloseTransferModal = () => {
+        setIsTransferModalOpen(false);
+    };
+    const handleSuccessfulTransfer = () => {
+        setIsTransferModalOpen(false);
+        setIsSuccessfulTransferModalOpen(true);
+    };
+    const handleCloseSuccessfulTransferModal = () => {
+        setIsSuccessfulTransferModalOpen(false);
+    };
 
     return (
         <div className={styles.container}>
@@ -18,7 +37,7 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                         title_wallet="Мій гаманець"
                         img="./icons/arrow_out_pink.svg"
                         title_card="Visa | Картка Універсальна"
-                        placeholder="**** **** **** 1234"
+                        value="**** **** **** 1234"
                         img_card="./icons/card_white2.svg"
                         title_period="Термін дії"
                         validityPeriod="01 / 25"
@@ -45,7 +64,7 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                         titleColor="whiteText"
                         textTransform="uppercase"
                         title_card="Visa"
-                        placeholder="4441 1144 1234 5678"
+                        value="4441 1144 1234 5678"
                         img_card="./icons/card_white2.svg"
                         title_period="Термін дії"
                         validityPeriod="01 / 25"
@@ -80,10 +99,20 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                         <ButtonForCard
                             title_button="Надіслати"
                             sizeButton="size_button186"
+                            onClick={handleOpenTransferModal}
                         />
                     </div>
                 </div>
             </div>
+            {isTransferModalOpen && (
+                <TransferPersonalMoney_Modal
+                    onClose={handleCloseTransferModal}
+                    onSuccess={handleSuccessfulTransfer} // Передаём колбэк для успешного перевода
+                />
+            )}
+            {isSuccessfulTransferModalOpen && (
+                <SuccessfulTransfer_Modal onClose={handleCloseSuccessfulTransferModal}/>
+            )}
         </div>
     );
 }

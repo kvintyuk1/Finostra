@@ -6,7 +6,7 @@ import ValidityPeriod from "../for card/ValidityPeriod/ValidityPeriod";
 import CW_kod from "../for card/CW_kod/CW_kod";
 
 function Card({
-                  title, title_wallet, img,titleColor, textTransform, title_card, placeholder, img_card, title_period, validityPeriod,
+                  title, title_wallet, img,titleColor, textTransform, title_card, value, colorValue, img_card, title_period, validityPeriod,
                   title_kod, cw_kod, img_kod, additionalComponent1, additionalComponent2}) {
     return (
         <div className={styles.container}>
@@ -16,7 +16,7 @@ function Card({
                 />
                 <div className={styles.wrapper_cardInfo}>
                     <NumberCard
-                        title_card={title_card} placeholder={placeholder} img_card={img_card}
+                        title_card={title_card} value={value} colorValue={colorValue} img_card={img_card}
                     />
                     <div className={styles.container_cardInfo}>
                         {

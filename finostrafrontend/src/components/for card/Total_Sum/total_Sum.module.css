@@ -6,6 +6,10 @@
     height: 53px;
     letter-spacing: 1px;
 }
+.row {
+    flex-direction: row;
+    align-items: center;
+}
 .title {
     display: flex;
     font-weight: 700;
@@ -30,9 +34,18 @@
 .pinkText {
     color: #A66CFE;
 }
+.greyText {
+    color: rgba(250,250,250,0.6);
+}
 .bold {
     font-weight: 700;
 }
 .normal {
     font-weight: 400;
+}
+.noBorder {
+    border: none;
+}
+.marginLeft {
+    margin-left: 20px;
 }

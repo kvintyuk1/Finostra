@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styles from './sidebar.module.css';
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import RoundingButton from "../RoundingButton/RoundingButton";
-import Transfer_Modal from "../modals/Transfer_Modal";
+import Transfer_Modal from "../modals/Transfer_Modal/Transfer_Modal";
 
 const menuItems = [
     {to: "/", icon: "home.svg", label: "Головна"},
