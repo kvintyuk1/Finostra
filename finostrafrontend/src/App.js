@@ -24,6 +24,7 @@ import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
 import Connection from "./pages/Connection/Connection";
+import Details from "./pages/Transaction/Details/Details";
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
         <Routes>
             <Route path="/" element={<Layout/>}>
                 <Route index element={<Main/>}/>
-                <Route path="transactions" element={<Transaction/>}/>
+                <Route path="transactions" element={<Transaction/>}>
+                    <Route path="details" element={<Details/>}/>
+                </Route>
                 <Route path="connection" element={<Connection/>}/>
                 <Route path="saving" element={<Saving/>}/>
                 <Route path="conversions" element={<Conversions/>}/>

@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 const transferModalItems = [
     {img: "modal_transfer", title: "Перекази на картку", path: "/transactions"},
-    {img: "modal_for_details", title: "За реквізитами"},
+    {img: "modal_for_details", title: "За реквізитами", path: "/transactions/details"},
     {img: "modal_international", title: "Міжнародні"},
     {img: "modal_swift", title: "SWIFT"},
     {img: "modal_payoneer", title: "Payoneer"},
@@ -13,7 +13,8 @@ const transferModalItems = [
 const Transfer_Modal = ({onClose, onTransactionClick}) => {
     const navigate = useNavigate();
     const handleItemClick = (path) => {
-        if (path === "/transactions") {
+        if (path) {
+            navigate(path);
             onTransactionClick();
         } else {
             onClose();
