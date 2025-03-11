@@ -1,0 +1,51 @@
+.total_block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9vw;
+    width: 13.89vw;
+    height: 53px;
+    letter-spacing: 1px;
+}
+.row {
+    flex-direction: row;
+    align-items: center;
+}
+.title {
+    display: flex;
+    font-weight: 700;
+    font-size: 0.88em;
+    color: #FFF;
+}
+.wrapper_total {
+    display: flex;
+}
+.total {
+    display: flex;
+    width: 13.89vw;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+    background-color: #28282C;
+    border-right: none;
+}
+.whiteText {
+    color: #FFF;
+}
+.pinkText {
+    color: #A66CFE;
+}
+.greyText {
+    color: rgba(250,250,250,0.6);
+}
+.bold {
+    font-weight: 700;
+}
+.normal {
+    font-weight: 400;
+}
+.noBorder {
+    border: none;
+}
+.marginLeft {
+    margin-left: 20px;
+}

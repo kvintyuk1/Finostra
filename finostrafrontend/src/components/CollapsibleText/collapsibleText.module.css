@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.title {
+    display: flex;
+    font-weight: 700;
+    font-size: 1.25em;
+    letter-spacing: 1px;
+}
+.text {
+    display: flex;
+    font-weight: 700;
+    font-size: 0.88em;
+    color: rgba(250,250,250,0.6);
+}
+.description {
+    display: flex;
+    font-weight: 400;
+    font-size: 0.88em;
+    width: 71.53vw;
+    color: rgba(250,250,250,0.6);
+}
+
+.but_style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #A66CFE;
+    font-weight: 700;
+    font-size: 1em;
+    background-color: #0F110E;
+    border: none;
+    border-top: 1px dashed transparent;
+    border-image: repeating-linear-gradient(90deg, grey 0, grey 10px, transparent 10px, transparent 20px) 10;
+}
+.text_but {
+    display: flex;
+    gap: 0.69vw;
+    transform: translateY(2.08vw);
+}

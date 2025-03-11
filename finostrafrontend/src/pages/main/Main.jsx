@@ -25,11 +25,11 @@ const Main = () => {
                         <Banner isDarkMode={isDarkMode}/>
                         <div className={styles.wrapper_item_column}>
                             <div className={styles.item_column}>
-                                <Wallet isDarkMode={isDarkMode}/>
+                                <DigitalBankCard isDarkMode={isDarkMode}/>
                                 <TransferToCard isDarkMode={isDarkMode}/>
                             </div>
                             <div className={styles.item_column}>
-                                <TransactionHistory isDarkMode={isDarkMode}/>
+                                <CardAnotherBank isDarkMode={isDarkMode}/>
                                 <MobileRecharge isDarkMode={isDarkMode}/>
                             </div>
                         </div>

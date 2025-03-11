@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.39vw;
+    width: 71.53vw;
+    height: 624px;
+    letter-spacing: 1px;
+}
+.wrapper_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 71.53vw;
+    height: 62px;
+    border-radius: 1.04vw;
+    background-color: #28282C;
+    color: #FFF;
+}
+.title {
+    text-align: left;
+    width: 69.44vw;
+}
+.data_header {
+    width: 10.42vw;
+}
+.desc_header {
+    width: 45.14vw;
+}
+.sum_header {
+    width: 13.75vw;
+}
+tbody tr {
+    height: 50px;
+}
+.wrapper_data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7.22vw;
+    height: 53px;
+    border-radius: 1.04vw;
+    background-color: #28282C;
+    font-weight: 400;
+    font-size: 1em;
+}
+.container_table {
+    display: flex;
+    width: 71.53vw;
+}
+.wrapper_time_desc {
+    display: flex;
+    justify-content: flex-start;
+}
+.wrap_time {
+    display: flex;
+    width: 10.42vw;
+    align-items: center;
+    padding-left: 0.69vw;
+}
+.wrap_img {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 650px;
+}
+.wrap_sum {
+    display: flex;
+    align-items: center;
+    width: 13.75vw;
+    justify-self: flex-end;
+}

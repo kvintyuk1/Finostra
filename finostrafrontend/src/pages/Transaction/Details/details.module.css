@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 38px;
+    width: 77.01vw;
+    height: 1648px;
+}
+.transactionWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 77.01vw;
+    height: 997px;
+    gap: 38px;
+}
+

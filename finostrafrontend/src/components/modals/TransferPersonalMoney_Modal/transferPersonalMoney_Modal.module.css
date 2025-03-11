@@ -1,0 +1,125 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 2030px;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 1000;
+}
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 36.88vw;
+    height: 737px;
+    background-color: #1A1B1A;
+    position: relative;
+    left: 35.6vw;
+    top: 29px;
+}
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 1.04vw;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #FFF;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 32.71vw;
+    height: 635px;
+    letter-spacing: 1px;
+}
+.modal_info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 32.71vw;
+    height: 530px;
+}
+.wrap_titleCard {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 32.71vw;
+    height: 436px;
+}
+.wrapper_header {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 32.71vw;
+    height: 164px;
+}
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 2em;
+    color: #FFF;
+}
+.wrap_purposePayment {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 32.71vw;
+    height: 66px;
+}
+.purposePayment {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+    color: #A66CFE;
+}
+.transferMoney {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25em;
+    color: #FFF;
+}
+.wrapper_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32.71vw;
+    height: 232px;
+    gap: 30px;
+    border-radius: 1.04vw;
+    background-color: #28282C;
+}
+.wrap_card {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 29.93vw;
+    height: 192px;
+}
+.linea_dashed {
+    border-top: 1px dashed transparent;
+    border-image: repeating-linear-gradient(90deg, grey 0, grey 10px, transparent 10px, transparent 20px) 10;
+}
+.wrap_totalSum {
+    display: flex;
+    align-items: center;
+    width: 32.741vw;
+    height: 64px;
+    background: #28282C;
+    border-radius: 1.04vw;
+}
+.modal_footer {
+    display: flex;
+    justify-content: space-around;
+    width: 32.71vw;
+    height: 45px;
+}

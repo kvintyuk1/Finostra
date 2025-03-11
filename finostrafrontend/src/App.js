@@ -23,13 +23,18 @@ import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
 import Connection from "./pages/Connection/Connection";
+<<<<<<< HEAD
 import { LanguageProvider } from "../src/components/LanguageContext";
+=======
+import Details from "./pages/Transaction/Details/Details";
+>>>>>>> 732491b71859aaa65a280046eb0ae8a9b54f5108
 
 function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
         <Routes>
+<<<<<<< HEAD
           <Route path="/" element={<Layout />}>
             <Route index element={<Main />} />
             <Route path="transactions" element={<Transaction />} />
@@ -50,6 +55,31 @@ function App() {
             <Route path="juniors" element={<Juniors />} />
             <Route path="business" element={<Business />} />
           </Route>
+=======
+            <Route path="/" element={<Layout/>}>
+                <Route index element={<Main/>}/>
+                <Route path="transactions" element={<Transaction/>}>
+                    <Route path="details" element={<Details/>}/>
+                </Route>
+                <Route path="connection" element={<Connection/>}/>
+                <Route path="saving" element={<Saving/>}/>
+                <Route path="conversions" element={<Conversions/>}/>
+                <Route path="piggy_bank" element={<Piggy_bank/>}/>
+                <Route path="credits" element={<Credits/>}/>
+                <Route path="cards" element={<Cards/>}/>
+                <Route path="securities" element={<Securities/>}/>
+                <Route path="auto_payments" element={<Auto_payments/>}/>
+                <Route path="transport" element={<Transport/>}/>
+                <Route path="insurance" element={<Insurance/>}/>
+                <Route path="auto" element={<Auto/>}/>
+                <Route path="services" element={<Services/>}/>
+                <Route path="fun" element={<Fun/>}/>
+                <Route path="good" element={<Good/>}/>
+                <Route path="juniors" element={<Juniors/>}/>
+                <Route path="business" element={<Business/>}/>
+            </Route>
+
+>>>>>>> 732491b71859aaa65a280046eb0ae8a9b54f5108
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

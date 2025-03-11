@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 29.79vw;
+    height: 54px;
+}
+.title_card {
+    display: flex;
+    color: #FFF;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 0.88em;
+    letter-spacing: 1px;
+}
+.container_numberCard {
+    display: flex;
+    flex-direction: column;
+}
+.wrapper_numberCard {
+    display: flex;
+    justify-content: space-between;
+}
+.input_card {
+    display: flex;
+    background-color: #28282C;
+    border: none;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+    letter-spacing: 1px;
+}
+.whiteValue {
+    color: #FFF;
+}
+.greyValue {
+    color: rgba(250,250,250,0.6);
+}
+.line {
+    display: flex;
+    border-bottom: 1px solid rgba(250,250,250,0.6);
+}
+.whiteTitle {
+    color: #FFF;
+}
+.greyTitle {
+    color: rgba(250,250,250,0.6);
+}

@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 1.39vw;
+    width: 77.08vw;
+    height: 114px;
+    background-color: #0F110E;
+    border-radius: 2.08vw;
+    margin-top: 4vh;
+}
+.container img {
+    margin-left: 2.08vw;
+}
+.wrapper_info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.69vw;
+    color: #FFF;
+}
+
+.title {
+    display: flex;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+.subtitle {
+   display: flex;
+    opacity: 0.5;
+}
