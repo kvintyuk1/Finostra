@@ -1,10 +1,9 @@
-import React from 'react';
-import './App.css';
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Header from './components/header/Header';
-import Footer from './components/Footer/Footer';  // Додано імпорт Footer
-
+// App.js
+import React from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/header/Header";
+import Footer from "./components/Footer/Footer";
 import Layout from "./pages/Layout/Layout";
 import Main from "./pages/main/Main";
 import Transactions from "./pages/Transaction/Transactions";
@@ -24,6 +23,7 @@ import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
 import Connection from "./pages/Connection/Connection";
+import { LanguageProvider } from "../src/components/LanguageContext";
 import Details from "./pages/Transaction/Details/Details";
 import InternationalTransfers from "./pages/Transaction/InternationalTransfers/InternationalTransfers";
 import SWIFT from "./pages/Transaction/SWIFT/SWIFT";
@@ -33,7 +33,8 @@ import PayoneerPage from "./pages/Transaction/PayoneerPage/PayoneerPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
         <Routes>
             <Route path="/" element={<Layout/>}>
                 <Route index element={<Main/>}/>
@@ -63,8 +64,8 @@ function App() {
             </Route>
 
         </Routes>
-
-    </BrowserRouter>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 
