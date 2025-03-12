@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./header.module.css";
 import { LanguageContext } from "../LanguageContext";
+import SignInModal from "../login/SignInModal";
 
 const ThemeToggleButton = ({ isDarkMode, toggleTheme }) => {
   return (
@@ -13,6 +14,15 @@ const ThemeToggleButton = ({ isDarkMode, toggleTheme }) => {
 
 function Header({ isDarkMode, toggleTheme }) {
   const { tHeader, selectedLanguage, handleLanguageChange } = useContext(LanguageContext);
+  const [showSignIn, setShowSignIn] = useState(false);
+
+  const handleSignInClick = () => {
+    setShowSignIn(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowSignIn(false);
+  };
 
   return (
     <div className={`${styles.App} ${isDarkMode ? styles.dark_mode : styles.light_mode}`}>
@@ -55,7 +65,8 @@ function Header({ isDarkMode, toggleTheme }) {
               </div>
             </div>
             <div className={styles.Frame636}>
-              <div className={styles.Frame612}>
+              {/* Додаємо обробку кліку на кнопку "Вхід" */}
+              <div className={styles.Frame612} onClick={handleSignInClick}>
                 <div className={styles.icon_user}></div>
                 <span>{tHeader.signIn}</span>
               </div>
@@ -63,6 +74,9 @@ function Header({ isDarkMode, toggleTheme }) {
           </div>
         </div>
       </header>
+
+      {/* Рендеримо модальне вікно, якщо showSignIn === true */}
+      {showSignIn && <SignInModal onClose={handleCloseModal} />}
     </div>
   );
 }
