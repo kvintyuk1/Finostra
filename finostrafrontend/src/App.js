@@ -1,10 +1,8 @@
-import React from 'react';
-import './App.css';
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Header from './components/header/Header';
-import Footer from './components/Footer/Footer';  // Додано імпорт Footer
-
+import React from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/header/Header";
+import Footer from "./components/Footer/Footer";
 import Layout from "./pages/Layout/Layout";
 import Main from "./pages/main/Main";
 import Transaction from "./pages/Transaction/Transaction";
@@ -24,38 +22,39 @@ import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
 import Connection from "./pages/Connection/Connection";
+import { LanguageProvider } from "../src/components/LanguageContext";
 import Details from "./pages/Transaction/Details/Details";
 
 function App() {
   return (
-    <BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Layout/>}>
-                <Route index element={<Main/>}/>
-                <Route path="transactions" element={<Transaction/>}>
-                    <Route path="details" element={<Details/>}/>
-                </Route>
-                <Route path="connection" element={<Connection/>}/>
-                <Route path="saving" element={<Saving/>}/>
-                <Route path="conversions" element={<Conversions/>}/>
-                <Route path="piggy_bank" element={<Piggy_bank/>}/>
-                <Route path="credits" element={<Credits/>}/>
-                <Route path="cards" element={<Cards/>}/>
-                <Route path="securities" element={<Securities/>}/>
-                <Route path="auto_payments" element={<Auto_payments/>}/>
-                <Route path="transport" element={<Transport/>}/>
-                <Route path="insurance" element={<Insurance/>}/>
-                <Route path="auto" element={<Auto/>}/>
-                <Route path="services" element={<Services/>}/>
-                <Route path="fun" element={<Fun/>}/>
-                <Route path="good" element={<Good/>}/>
-                <Route path="juniors" element={<Juniors/>}/>
-                <Route path="business" element={<Business/>}/>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Main />} />
+            <Route path="transactions" element={<Transaction />}>
+              <Route path="details" element={<Details />} />
             </Route>
-
+            <Route path="connection" element={<Connection />} />
+            <Route path="saving" element={<Saving />} />
+            <Route path="conversions" element={<Conversions />} />
+            <Route path="piggy_bank" element={<Piggy_bank />} />
+            <Route path="credits" element={<Credits />} />
+            <Route path="cards" element={<Cards />} />
+            <Route path="securities" element={<Securities />} />
+            <Route path="auto_payments" element={<Auto_payments />} />
+            <Route path="transport" element={<Transport />} />
+            <Route path="insurance" element={<Insurance />} />
+            <Route path="auto" element={<Auto />} />
+            <Route path="services" element={<Services />} />
+            <Route path="fun" element={<Fun />} />
+            <Route path="good" element={<Good />} />
+            <Route path="juniors" element={<Juniors />} />
+            <Route path="business" element={<Business />} />
+          </Route>
         </Routes>
-
-    </BrowserRouter>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 
