@@ -1,4 +1,3 @@
-// LanguageContext.js
 import React, { createContext, useState } from "react";
 import { translations } from "./header/translations"; 
 import { footerTranslations } from "./Footer/footerTranslations"; 
