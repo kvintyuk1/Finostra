@@ -132,7 +132,6 @@
     left: 73.47vw;
     top: 99px;
 }
-
 .light_mode .appleIcon {
     background-image: url('../../assets/Photo/AppleStoreDrk.png');
 }
@@ -169,7 +168,6 @@
 .light_mode .available {
     color: #000;
 }
-
 .available {
     width: 5.76vw;
     height: 17px;
@@ -195,7 +193,6 @@
     line-height: 16px;
     color: #FFF;
 }
-
 .frame833 {
     display: flex;
     flex-direction: row;
@@ -205,15 +202,15 @@
     width: 9.86vw;
     height: 44px;
     left: 84.93vw;
-    top: 99px;
+    top: 99px; 
 }
 
 .light_mode .googlePlayIcon {
-    background-image: url('../../assets/Photo/proicons_google-play.png');
+    background-image: url('../../assets/Photo/GooglePlay.png');
 }
 
 .googlePlayIcon {
-    width: 2.57vw;
+    width: 2.43vw;
     height: 44px;
     display: flex;
     justify-content: center;
@@ -229,6 +226,31 @@
     flex-direction: row;
     align-items: center;
     gap: 1.04vw;
+}
+
+.frame640 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.14vw;
+    width: 5.76vw;
+    height: 38px;
+}
+
+.light_mode .available {
+    color: #000;
+}
+
+.available {
+    width: 5.76vw;
+    height: 17px;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.86em;
+    line-height: 16px;
+    color: #FFF;
 }
 
 .light_mode .googlePlay {

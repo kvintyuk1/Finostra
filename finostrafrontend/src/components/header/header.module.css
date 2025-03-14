@@ -332,7 +332,6 @@
     transform: rotate(90deg);
     transition: transform 0.3s ease;
 }
-
 .language_select {
     background-color: #FFF;
     border: 1px solid #ccc;
@@ -341,7 +340,6 @@
     font-size: 14px;
     color: #333;
     cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .language_select:focus {
@@ -366,8 +364,6 @@
     border-color: #FFF;
 }
 
-
-
 .Frame636 {
     box-sizing: border-box;
     display: flex;
@@ -376,13 +372,12 @@
     align-items: center;
     padding: 6px 1.39vw;
     gap: 0.69vw;
-    min-width: 7.29vw; 
+    width: 7.29vw;
     height: 36px;
     border: 1px solid #FFF;
     border-radius: 1.53vw;
     cursor: pointer;
 }
-
 
 .Frame636:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -393,11 +388,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    padding: 0px;
     gap: 0.56vw;
-    /* Видаляємо фіксовану ширину, щоб контейнер міг розширюватись */
-    /* width: 4.51vw; */
-    min-width: auto;
+    width: 4.51vw;
     height: 24px;
 }
 
@@ -407,13 +400,10 @@
     background-image: url('../../assets/Photo/icon_user.png');
     background-size: cover;
     background-position: center;
-    flex-shrink: 0; /* Забороняємо зменшення іконки */
 }
 
-
 .Frame636 span {
-    width: auto; /* або просто видаліть властивість width */
-    white-space: nowrap; /* запобігає переносу тексту */
+    width: 2.29vw;
     height: 19px;
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-style: normal;
@@ -422,7 +412,6 @@
     line-height: 19px;
     color: #FFF;
 }
-
 
 .Frame636:active {
     transform: scale(0.98);
