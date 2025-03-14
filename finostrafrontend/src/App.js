@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/header/Header";
-import Footer from "./components/Footer/Footer";
 import Layout from "./pages/Layout/Layout";
 import Main from "./pages/main/Main";
 import Transactions from "./pages/Transaction/Transactions";
@@ -22,11 +20,10 @@ import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
 import Connection from "./pages/Connection/Connection";
-import { LanguageProvider } from "../src/components/LanguageContext";
+import { LanguageProvider } from "./components/LanguageContext";
 import Details from "./pages/Transaction/Details/Details";
 import InternationalTransfers from "./pages/Transaction/InternationalTransfers/InternationalTransfers";
 import SWIFT from "./pages/Transaction/SWIFT/SWIFT";
-import TransferToCard from "./components/TransferToCard/TransferToCard";
 import TransactionToCard from "./pages/Transaction/TransactionToCard/TransactionToCard";
 import PayoneerPage from "./pages/Transaction/PayoneerPage/PayoneerPage";
 
@@ -60,7 +57,8 @@ function App() {
                 <Route path="good" element={<Good/>}/>
                 <Route path="juniors" element={<Juniors/>}/>
                 <Route path="business" element={<Business/>}/>
-          </Route>
+            </Route>
+
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

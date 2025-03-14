@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './transfer_modal.module.css';
 import {Link, useNavigate} from "react-router-dom";
-import TransactionToCard from "../../../pages/Transaction/TransactionToCard/TransactionToCard";
 
 const transferModalItems = [
     {img: "modal_transfer", title: "Перекази на картку", path: "/transactions/transactionToCard"},
