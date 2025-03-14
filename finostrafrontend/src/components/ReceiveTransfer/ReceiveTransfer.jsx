@@ -25,7 +25,7 @@ function ReceiveTransfer() {
                         receiveItems.map(({img, name},index)=> (
                             <div key={index} className={styles.wrapper_item}>
                                 <div className={styles.img_title}>
-                                    <img src={`./img/${img}.png`} alt=""/>
+                                    <img src={`/img/${img}.png`} alt=""/>
                                     <div className={styles.name}>{name}</div>
                                 </div>
                             </div>

@@ -1,11 +1,9 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import styles from './sidebar.module.css';
-import { Link, useLocation } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import { LanguageContext } from "../LanguageContext";
+import Transfer_Modal from "../modals/Transfer_Modal/Transfer_Modal";
 
-const modals = {
-    transfer: Transfer_Modal,
-}
 
 function Sidebar() {
     const location = useLocation();
@@ -13,7 +11,7 @@ function Sidebar() {
 
     const menuItems = [
         { to: "/", icon: "home.svg", label: tSidebar.home },
-        { to: "/transactions", icon: "transfer.svg", label: tSidebar.transactions, hasArrow: true },
+        { to: "/transactions", icon: "transfer.svg", label: tSidebar.transactions, hasArrow: true,modal: 'transferModal' },
         { to: "/connection", icon: "connect.svg", label: tSidebar.connection, hasArrow: true },
         { to: "/saving", icon: "saving.svg", label: tSidebar.saving, hasArrow: true },
         { to: "/conversions", icon: "conversions.svg", label: tSidebar.conversions },
@@ -34,6 +32,9 @@ function Sidebar() {
     const navigate = useNavigate();
     const [activeModal,setActiveModal] = useState(null);
 
+    const modals = {
+        transferModal: Transfer_Modal,
+    }
     const handleOpenModal = (e,modal)=>{
         e.preventDefault();
 
