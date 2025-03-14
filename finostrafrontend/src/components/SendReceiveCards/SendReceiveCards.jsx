@@ -18,15 +18,15 @@ function SendReceiveCards({setIsConfirmed}) {
                         <Card
                             title="З картки"
                             title_wallet="Мій гаманець"
-                            img="./icons/arrow_out_pink.svg"
+                            img="/icons/arrow_out_pink.svg"
                             title_card="Номер картки"
                             value="0000 0000 0000 0000"
-                            img_card="./icons/card_white2.svg"
+                            img_card="/icons/card_white2.svg"
                             title_period="Термін дії"
                             validityPeriod="01 / 25"
                             title_kod="CW-kod"
                             cw_kod="***"
-                            img_kod="./icons/information.svg"
+                            img_kod="/icons/information.svg"
                         />
                         <CardOfReceiveSum/>
                     </div>
@@ -40,7 +40,7 @@ function SendReceiveCards({setIsConfirmed}) {
                         onClick={handleTransferClick}
                     />
                 </div>
-                <img src="./icons/tabler_message.svg"
+                <img src="/icons/tabler_message.svg"
                      className={styles.img_message} alt=""/>
             </div>
         </div>

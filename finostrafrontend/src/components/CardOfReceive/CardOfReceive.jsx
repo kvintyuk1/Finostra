@@ -9,7 +9,7 @@ function CardOfReceive() {
             <HeaderForCard
                 title="Картка отримувача"
                 title_wallet="Мій гаманець"
-                img="./icons/arrow_out_pink.svg"
+                img="/icons/arrow_out_pink.svg"
             />
             <NumberCard
                 title_card="Номер картки"

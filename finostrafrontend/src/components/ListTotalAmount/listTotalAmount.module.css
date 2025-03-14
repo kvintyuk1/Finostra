@@ -13,14 +13,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3.82vw;
+    gap: 55px;
     width: 72.53vw;
     height: 811px;
 }
 .wrapper_list {
     display: flex;
     flex-direction: column;
-    gap: 3.26vw;
+    gap: 47px;
     width: 72.53vw;
     height: 707px;
 }

@@ -23,13 +23,29 @@
     width: 13.89vw;
     height: 49px;
 }
+.size_button118 {
+    width: 8.19vw;
+    height: 45px;
+}
+.size_button128 {
+    width: 8.89vw;
+    height: 45px;
+}
 .size_button186 {
     width: 12.92vw;
     height: 45px;
 }
+.size_button207 {
+    width: 14.38vw;
+    height: 49px;
+}
 .size_button226 {
     width: 15.69vw;
     height: 45px;
+}
+.size_button375 {
+    width: 26.04vw;
+    height: 49px;
 }
 .blackBackground {
     background-color: #000;

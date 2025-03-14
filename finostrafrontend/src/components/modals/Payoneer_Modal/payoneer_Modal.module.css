@@ -1,0 +1,63 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: -26px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 1000;
+}
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 531px;
+    height: 384px;
+    background-color: #1A1B1A;
+    position: relative;
+    left: 740px;
+    top: 210px;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #FFF;
+}
+
+.modal_content {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    width: 471px;
+    height: 252px;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 471px;
+    height: 107px;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFF;
+    letter-spacing: 1px;
+}
+.wrapper_button {
+    display: flex;
+    justify-content: center;
+    gap: 39px;
+}

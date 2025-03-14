@@ -6,7 +6,7 @@
     height: 114px;
     background-color: #0F110E;
     border-radius: 2.08vw;
-    margin-top: 4vh;
+    margin-top: 30px;
 }
 .container img {
     margin-left: 2.08vw;
@@ -23,7 +23,7 @@
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-weight: 400;
     font-size: 24px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 .subtitle {
    display: flex;

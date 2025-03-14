@@ -22,7 +22,7 @@ function Questions() {
                         <div key={index} className={styles.wrapper_questions}>
                             <div className={styles.question_img}>
                                 <span className={styles.question}>{question}</span>
-                                <img src={`./icons/${img}.svg`} alt=""/>
+                                <img src={`/icons/${img}.svg`} alt=""/>
                             </div>
                             <div className={styles.line}></div>
                         </div>

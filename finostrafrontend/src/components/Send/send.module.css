@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35.2vw;
+    height: 477px;
+    gap: 60px;
+    background-color: #0F110E;
+    border-radius: 2.08vw;
+    color: #FFF;
+    letter-spacing: 1px;
+}
+.wrapper_send {
+    display: flex;
+    flex-direction: column;
+    gap: 41px;
+    width: 31.04vw;
+    height: 308px;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25em;
+}
+.wrapper_info {
+    display: flex;
+    flex-direction: column;
+    width: 31.04vw;
+    height: 243px;
+    gap: 42px;
+}
+.wrap_item {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 31.04vw;
+    height: 53px;
+    border: none;
+    border-bottom: 1px solid rgba(250,250,250,0.6);
+}
+.title_item {
+    font-weight: 400;
+    font-size: 0.88em;
+}
+.send_input {
+    font-weight: 400;
+    font-size: 1em;
+    background-color: #0F110E;
+    border: none;
+}
+.valuta_select, .country_select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../assets/icons/arrow_down16.svg');
+    background-repeat: no-repeat;
+    font-weight: 400;
+    font-size: 1em;
+    background-color:  #0F110E;
+    border: none;
+    color: rgba(250,250,250,0.6);
+    background-position: right 0.69vw center;
+}

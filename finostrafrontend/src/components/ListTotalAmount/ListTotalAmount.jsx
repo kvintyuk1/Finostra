@@ -18,10 +18,11 @@ function ListTotalAmount() {
                 </div>
                 <ButtonForCard
                     title_button="Завантажити ще"
+                    sizeButton="size_button207"
                     colorText="greyText"
                     backgroundButton="blackBackground"
                     fontWeight="fontWeight400"
-                    img="./icons/arrow_down_but.svg"
+                    img="/icons/arrow_down_but.svg"
                 />
             </div>
         </div>

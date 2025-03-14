@@ -35,15 +35,15 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                     <Card
                         title="Відправник"
                         title_wallet="Мій гаманець"
-                        img="./icons/arrow_out_pink.svg"
+                        img="/icons/arrow_out_pink.svg"
                         title_card="Visa | Картка Універсальна"
                         value="**** **** **** 1234"
-                        img_card="./icons/card_white2.svg"
+                        img_card="/icons/card_white2.svg"
                         title_period="Термін дії"
                         validityPeriod="01 / 25"
                         title_kod="CW-kod"
                         cw_kod="123"
-                        img_kod="./icons/information.svg"
+                        img_kod="/icons/information.svg"
                         additionalComponent1={
                             <div className={styles.container_totalSum}>
                                 <Total_Sum
@@ -65,12 +65,12 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                         textTransform="uppercase"
                         title_card="Visa"
                         value="4441 1144 1234 5678"
-                        img_card="./icons/card_white2.svg"
+                        img_card="/icons/card_white2.svg"
                         title_period="Термін дії"
                         validityPeriod="01 / 25"
                         title_kod="CW-kod"
                         cw_kod="123"
-                        img_kod="./icons/information.svg"
+                        img_kod="/icons/information.svg"
                         additionalComponent1={
                             <div className={styles.container_totalSum}>
                                 <Total_Sum

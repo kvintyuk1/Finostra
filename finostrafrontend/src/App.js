@@ -7,7 +7,7 @@ import Footer from './components/Footer/Footer';  // Додано імпорт F
 
 import Layout from "./pages/Layout/Layout";
 import Main from "./pages/main/Main";
-import Transaction from "./pages/Transaction/Transaction";
+import Transactions from "./pages/Transaction/Transactions";
 import Saving from "./pages/Saving/Saving";
 import Conversions from "./pages/Conversions/Conversions";
 import Piggy_bank from "./pages/Piggy_bank/Piggy_bank";
@@ -25,6 +25,11 @@ import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
 import Connection from "./pages/Connection/Connection";
 import Details from "./pages/Transaction/Details/Details";
+import InternationalTransfers from "./pages/Transaction/InternationalTransfers/InternationalTransfers";
+import SWIFT from "./pages/Transaction/SWIFT/SWIFT";
+import TransferToCard from "./components/TransferToCard/TransferToCard";
+import TransactionToCard from "./pages/Transaction/TransactionToCard/TransactionToCard";
+import PayoneerPage from "./pages/Transaction/PayoneerPage/PayoneerPage";
 
 function App() {
   return (
@@ -32,8 +37,12 @@ function App() {
         <Routes>
             <Route path="/" element={<Layout/>}>
                 <Route index element={<Main/>}/>
-                <Route path="transactions" element={<Transaction/>}>
+                <Route path="transactions" element={<Transactions/>}>
+                    <Route path="transactionToCard" element={<TransactionToCard/>}/>
                     <Route path="details" element={<Details/>}/>
+                    <Route path="international" element={<InternationalTransfers/>}/>
+                    <Route path="swift" element={<SWIFT/>}/>
+                    <Route path="payoneer" element={<PayoneerPage/>}/>
                 </Route>
                 <Route path="connection" element={<Connection/>}/>
                 <Route path="saving" element={<Saving/>}/>

@@ -6,6 +6,7 @@
 .wrapper_content {
     display: flex;
     align-items: stretch;
+    width: 100vw;
 }
 
 .dark_mode .wrapper_content {

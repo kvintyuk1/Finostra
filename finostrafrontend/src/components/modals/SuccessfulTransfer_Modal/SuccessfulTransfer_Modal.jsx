@@ -11,7 +11,7 @@ function SuccessfulTransfer_Modal({onClose}) {
                     <div className={styles.wrapper_success}>
                         <div className={styles.title_img}>
                             <span className={styles.title}>Переказ</span>
-                            <img src="./img/star 3.png" alt=""/>
+                            <img src="/img/star 3.png" alt=""/>
                         </div>
                         <span className={styles.success}>Платіж успішно відправлено в обробку!</span>
                     </div>

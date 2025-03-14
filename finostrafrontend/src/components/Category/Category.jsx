@@ -28,7 +28,7 @@ function Category() {
                     {
                         categoryItems.map(({img, titleCategory},index) => (
                             <div key={index} className={styles.wrapper_item}>
-                                <img src={`./icons/${img}.svg`} alt=""/>
+                                <img src={`/icons/${img}.svg`} alt=""/>
                                 <div className={styles.title_category}>{titleCategory}</div>
                             </div>
 

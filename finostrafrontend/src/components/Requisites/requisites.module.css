@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 39.17vw;
+    height: 477px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    letter-spacing: 1px;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    width: 35vw;
+    height: 417px;
+}
+.wrapper_title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 35vw;
+    height: 53px;
+}
+.title {
+    color: #FFF;
+    font-weight: 400;
+    font-size: 1.25em;
+}
+.subtitle {
+    color: rgba(250,250,250,0.6);
+    font-weight: 400;
+    font-size: 1em;
+}
+.wrapper_info {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    width: 35vw;
+    height: 333px;
+}
+.wrapper_item {
+    display: flex;
+    justify-content: space-between;
+    width: 35vw;
+    height: 53px;
+    border-bottom: 1px solid rgba(250,250,250,0.6);
+}
+.arrow {
+    display: flex;
+    align-self: center;
+    width: 16px;
+    height: 16px;
+}
+.wrapper_valuta {
+    display: flex;
+    justify-content: space-between;
+    width: 16.53vw;
+    height: 43px;
+}
+.placeholder {
+    display: flex;
+    align-self: center;
+    width: 1.67vw;
+    height: 18px;
+    background-color: #FFF;
+}
+.flag {
+    display: flex;
+    width: 24px;
+    height: 24px;
+}
+.wrap_name {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 13.82vw;
+    height: 43px;
+}
+.name {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+}
+.subname {
+    display: flex;
+    font-weight: 400;
+    font-size: 0.88em;
+    color: rgba(250,250,250,0.6);
+}

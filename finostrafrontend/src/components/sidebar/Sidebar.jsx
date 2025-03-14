@@ -36,8 +36,14 @@ function Sidebar() {
 
     const handleOpenModal = (e,modal)=>{
         e.preventDefault();
-        setActiveModal(modal);
+
+        // Закрываем модальное окно при клике на другие пункты меню
+        if (activeModal !== modal) {
+            setActiveModal(modal);
+            navigate("/transactions", { replace: true }); // Навигация по маршруту
+        }
     };
+
     const handleCloseModal = ()=>{
         setActiveModal(null);
     };
@@ -47,6 +53,12 @@ function Sidebar() {
         navigate("/transactions");
         setActiveModal(null);
     }
+    // Закрыть модальное окно при клике на другие пункты меню
+    const handleMenuItemClick = () => {
+        if (activeModal) {
+            setActiveModal(null); // Закрываем модальное окно при клике на другой пункт меню
+        }
+    };
 
     return (
         <aside className={styles.sidebar}>
@@ -58,19 +70,19 @@ function Sidebar() {
                                 <button>
                                     <div className={`${styles.iconContainer} ${activeModal === modal ? styles.active : ""}`}
                                          onClick={(e) => handleOpenModal(e, modal)}>
-                                        <img src={`./icons/${icon}`} alt={label}/>
+                                        <img src={`/icons/${icon}`} alt={label}/>
                                         <div className={styles.iconWrapper}>
                                             <div>{label}</div>
-                                            {hasArrow && <img src="./icons/dir_right.svg" alt="->"/>}
+                                            {hasArrow && <img src="/icons/dir_right.svg" alt="->"/>}
                                         </div>
                                     </div>
                                 </button>
                             ) : (
-                                <Link to={to} className={styles.iconContainer}>
-                                    <img src={`./icons/${icon}`} alt={label}/>
+                                <Link to={to} className={styles.iconContainer} onClick={handleMenuItemClick}>
+                                    <img src={`/icons/${icon}`} alt={label}/>
                                     <div className={styles.iconWrapper}>
                                         <div>{label}</div>
-                                        {hasArrow && <img src="./icons/dir_right.svg" alt="->"/>}
+                                        {hasArrow && <img src="/icons/dir_right.svg" alt="->"/>}
                                     </div>
                                 </Link>
                             )}

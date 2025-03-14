@@ -10,10 +10,10 @@ const LayoutWallet = ({isDarkMode})=>{
                 <div className={styles.wrapper_container}>
                     <div className={styles.wrapper_title}>
                         <div className={styles.img_title}>
-                            <img src="./img/wallet.png" alt=""/>
+                            <img src="/img/wallet.png" alt=""/>
                             <div className={styles.title}>Гаманець</div>
                         </div>
-                        <img src="./icons/arrow-out_right.svg" alt=""/>
+                        <img src="/icons/arrow-out_right.svg" alt=""/>
                     </div>
                     <AddCard/>
                 </div>

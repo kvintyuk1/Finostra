@@ -35,7 +35,7 @@ function ListTable() {
                         <td className={styles.wrapper_time_desc}>
                             <span className={styles.wrap_time}>{time}</span>
                             <span className={styles.wrap_img}>
-                                <img src={`./icons/${img}`} alt=""/>
+                                <img src={`/icons/${img}`} alt=""/>
                                 <span>{description}</span>
                             </span>
                         </td>
