@@ -65,7 +65,7 @@ function Header({ isDarkMode, toggleTheme }) {
               </div>
             </div>
             <div className={styles.Frame636}>
-              {/* Додаємо обробку кліку на кнопку "Вхід" */}
+             
               <div className={styles.Frame612} onClick={handleSignInClick}>
                 <div className={styles.icon_user}></div>
                 <span>{tHeader.signIn}</span>
@@ -75,7 +75,6 @@ function Header({ isDarkMode, toggleTheme }) {
         </div>
       </header>
 
-      {/* Рендеримо модальне вікно, якщо showSignIn === true */}
       {showSignIn && <SignInModal onClose={handleCloseModal} />}
     </div>
   );

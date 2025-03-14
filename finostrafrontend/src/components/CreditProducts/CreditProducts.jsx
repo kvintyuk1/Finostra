@@ -4,7 +4,6 @@ import { LanguageContext } from "../LanguageContext";
 import { creditItemsTranslations } from "./creditItemsTranslations";
 
 function CreditProducts({ isDarkMode }) {
-  // Отримуємо вибрану мову з LanguageContext
   const { selectedLanguage } = useContext(LanguageContext);
   const creditItems =
     creditItemsTranslations[selectedLanguage] || creditItemsTranslations.UA;

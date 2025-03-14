@@ -49,7 +49,6 @@ const Footer = ({ isDarkMode }) => {
         </a>
       </div>
 
-      {/* Кнопка завантаження з Google Play */}
       <div className={styles.frame833}>
         <a
           href="https://play.google.com/store"
