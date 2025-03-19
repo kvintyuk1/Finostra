@@ -6,12 +6,17 @@
 
 .wrapper_info {
     display: flex;
-    justify-content: space-between;
-    width: 371px;
+    gap: 2.08vw;
+    width: 25.76vw;
+}
+.img_style {
+    display: flex;
+    width: 10.07vw;
+    height: 73px;
 }
 .points {
     display: flex;
-    width: 4px;
+    width: 0.28vw;
     height: 16px;
 }
 .info {
@@ -34,7 +39,7 @@
 .container_number {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.35vw;
     opacity: 0.5;
 }
 
@@ -56,7 +61,7 @@
 .wrap_number_account {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.35vw;
 }
 .UA {
     font-family: 'adeneue PRO Cyr', sans-serif;
@@ -66,6 +71,7 @@
 .number_account {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.69vw;
 }
+
 

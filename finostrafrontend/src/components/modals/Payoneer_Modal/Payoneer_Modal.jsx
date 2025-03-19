@@ -1,8 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./payoneer_Modal.module.css";
 import ButtonForCard from "../../for card/ButtonForCard/ButtonForCard";
+import RegistrationPayoneer_Modal from "../RegistrationPayoneer_Modal/RegistrationPayoneer_Modal";
 
 function Payoneer_Modal({onClose}) {
+    const [showRegistrationPayoneerModal, setShowRegistrationPayoneerModal] = useState(false);
+
+    const openShowRegistrationPayoneerModal = () => {
+        setShowRegistrationPayoneerModal(true);
+    }
+
     return (
         <div className={styles.overlay}>
             <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
@@ -14,6 +21,7 @@ function Payoneer_Modal({onClose}) {
                     </div>
                     <div className={styles.wrapper_button}>
                         <ButtonForCard
+                            onClick={openShowRegistrationPayoneerModal}
                             title_button="Ні"
                             colorText="greyText"
                             sizeButton="size_button118"
@@ -27,6 +35,8 @@ function Payoneer_Modal({onClose}) {
                     </div>
                 </div>
             </div>
+            {showRegistrationPayoneerModal &&
+                <RegistrationPayoneer_Modal onClose={()=>setShowRegistrationPayoneerModal(false)}/>}
         </div>
     );
 }

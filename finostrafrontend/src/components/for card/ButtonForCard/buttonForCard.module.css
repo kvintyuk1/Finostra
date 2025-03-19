@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 0.69vw;
     width: 13.89vw;
     height: 49px;
     color: #FFF;
@@ -29,6 +29,10 @@
 }
 .size_button128 {
     width: 8.89vw;
+    height: 45px;
+}
+.size_button173 {
+    width: 12.01vw;
     height: 45px;
 }
 .size_button186 {
