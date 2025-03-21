@@ -1,0 +1,125 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 77.08vw;
+    height: 850px;
+    background-color: #0F110E;
+    border-radius: 2.08vw;
+    letter-spacing: 1px;
+}
+.wrapper_cardForMobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 32.36vw;
+    height: 740px;
+    border-radius: 2.08vw;
+    background-color: #28282C;
+}
+.wrapper_user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    min-width: 7.64vw;
+    height: 74px;
+}
+.wrapper_user img {
+    width: 40px;
+    height: 40px;
+}
+.wrapper_cardInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 28.19vw;
+    height: 602px;
+}
+.phone_user {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+}
+
+.wrapper_sum {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 28.19vw;
+    height: 116px;
+}
+.lineHorizontal {
+    display: flex;
+    width: 28.19vw;
+    border: 1.5px solid rgba(250,250,250,0.4);
+}
+.wrapper_money {
+    display: flex;
+    justify-content: space-between;
+    width: 28.19vw;
+    height: 28px;
+}
+.wrapper_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.33vw;
+    height: 29px;
+    border-radius: 0.83vw;
+    background-color: #424242;
+}
+.money {
+    color: #FFF;
+    font-weight: 400;
+    font-size: 1em;
+}
+.wrapper_commissionPayment {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 28.19vw;
+    height: 53px;
+}
+.wrapper_commission,
+.wrapper_payment {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 1em;
+}
+.text {
+    display: flex;
+    color: rgba(250,250,250,0.6);
+}
+.money_style {
+    display: flex;
+    color: #FFF;
+}
+.wrapper_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+.wrapper_info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 28.19vw;
+    height: 167px;
+}
+
+.wrapper_walletCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28.19vw;
+    height: 113px;
+    background-color: #0F110E;
+    border-radius: 1.04vw;
+}

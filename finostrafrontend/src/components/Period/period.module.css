@@ -8,9 +8,28 @@
     letter-spacing: 1px;
     border-bottom: 1px solid #FFF;
 }
+.size209 {
+    width: 209px;
+}
+.size304 {
+    width: 304px;
+}
 .input_wrapper {
     position: relative;
     width: 100%;
+}
+.iconLeft {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.iconRight {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
 }
 .container img {
     position: absolute;
@@ -20,9 +39,14 @@
 .input_period {
     width: 100%;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     background-color: transparent;
     color: #FFF;
     border: none;
-    padding-left: 30px;
+}
+.input_width_left_icon {
+    padding-left: 40px;
+}
+.input_width_right_icon {
+    padding-right: 40px;
 }

@@ -1,17 +1,15 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 38px;
     width: 82.64vw;
-    height: 1648px;
+    height: 1780px;
 }
-.transactionWrapper {
+.wrapper_mobileTopUp {
     display: flex;
     flex-direction: column;
+    gap: 30px;
     width: 77.08vw;
-    height: 997px;
-    gap: 38px;
+    height: 1700px;
 }
-

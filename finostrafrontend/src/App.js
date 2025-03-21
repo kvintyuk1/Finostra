@@ -26,6 +26,8 @@ import InternationalTransfers from "./pages/Transaction/InternationalTransfers/I
 import SWIFT from "./pages/Transaction/SWIFT/SWIFT";
 import TransactionToCard from "./pages/Transaction/TransactionToCard/TransactionToCard";
 import PayoneerPage from "./pages/Transaction/PayoneerPage/PayoneerPage";
+import MobileRecharge from "./components/MobileRecharge/MobileRecharge";
+import MobileTopUp from "./pages/Connection/MobileTopUp/MobileTopUp";
 
 function App() {
   return (
@@ -41,7 +43,9 @@ function App() {
                     <Route path="swift" element={<SWIFT/>}/>
                     <Route path="payoneer" element={<PayoneerPage/>}/>
                 </Route>
-                <Route path="connection" element={<Connection/>}/>
+                <Route path="connection" element={<Connection/>}>
+                    <Route path="mobileRecharge" element={<MobileTopUp/>} />
+                </Route>
                 <Route path="saving" element={<Saving/>}/>
                 <Route path="conversions" element={<Conversions/>}/>
                 <Route path="piggy_bank" element={<Piggy_bank/>}/>

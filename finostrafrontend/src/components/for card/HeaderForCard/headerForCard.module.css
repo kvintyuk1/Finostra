@@ -5,6 +5,12 @@
     width: 29.79vw;
     height: 24px;
 }
+.size429 {
+    width: 29.79vw;
+}
+.size406 {
+    width: 28.19vw;
+}
 .title {
     display: flex;
     font-family: 'adeneue PRO Cyr', sans-serif;
@@ -16,9 +22,13 @@
 .my_wallet {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 10px;
     width: 9.03vw;
     height: 24px;
+}
+.size140 {
+    width: 140px;
 }
 .title_wallet {
     display: flex;
