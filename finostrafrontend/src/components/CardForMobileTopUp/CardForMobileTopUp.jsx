@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./cardForMobileTopUp.module.css";
 import PhoneNumber from "../for card/PhoneNumber/PhoneNumber";
 import Total_Sum from "../for card/Total_Sum/Total_Sum";
 import WalletCard from "../WalletCard/WalletCard";
 import HeaderForCard from "../for card/HeaderForCard/HeaderForCard";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
+import RegistrationPayoneer_Modal from "../modals/RegistrationPayoneer_Modal/RegistrationPayoneer_Modal";
+import SuccessfulMobileTopUp_Modal from "../modals/SuccessfulMobileTopUp_Modal/SuccessfulMobileTopUp_Modal";
 
 const moneyItems = [
     {number: "50"},
@@ -14,6 +16,11 @@ const moneyItems = [
 ]
 
 function CardForMobileTopUp() {
+    const [showSuccessfulMobileTopUpModal, setShowSuccessfulMobileTopUpModal] = useState(false);
+    const openShowSuccessfulMobileTopUpModal = ()=>{
+        setShowSuccessfulMobileTopUpModal(true);
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.wrapper_cardForMobile}>
@@ -72,14 +79,15 @@ function CardForMobileTopUp() {
                             </div>
                         </div>
                         <ButtonForCard
+                            onClick={openShowSuccessfulMobileTopUpModal}
                             title_button="Поповнити"
                             sizeButton="size_button219"
                         />
-
                     </div>
 
                 </div>
             </div>
+            {showSuccessfulMobileTopUpModal && <SuccessfulMobileTopUp_Modal onClose={()=>setShowSuccessfulMobileTopUpModal(false)}/>}
         </div>
     );
 }
