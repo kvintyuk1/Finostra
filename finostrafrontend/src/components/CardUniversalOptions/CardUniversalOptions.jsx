@@ -1,0 +1,102 @@
+import React from "react";
+import styles from "./cardUniversalOptions.module.css";
+import LineVerticalDotted from "../for card/ LineVerticalDotted/LineVerticalDotted";
+import LimitFilter from "../LimitFilter/LimitFilter";
+
+function CardUniversalOptions() {
+    return (
+        <div className={styles.container}>
+            <div className={styles.wrapper_cardInfo}>
+                <button className={styles.wrap_but_setting}>
+                    <div className={styles.title_but}>Картка універсальна</div>
+                    <div className={styles.wrapper_setting}>
+                        <img src="/icons/repeat_pink.svg" alt=""/>
+                        <img src="/icons/analytics.svg" alt=""/>
+                        <img src="/icons/double_arrow.svg" alt=""/>
+                        <img src="/icons/document.svg" alt=""/>
+                        <img src="/icons/settings.svg" alt=""/>
+                    </div>
+                </button>
+                <div className={styles.wrapper_account_card}>
+                    <div className={styles.wrap_number_card}>
+                        <div className={styles.wrap_number_cardInfo}>
+                            <div className={styles.wrap_item}>
+                                <div>4441 **** **** 1234</div>
+                            </div>
+                            <div className={styles.wrap_item_number}>
+                                <div className={styles.number}>01/25</div>
+                                <div className={styles.number}>CW</div>
+                            </div>
+                        </div>
+                        <LineVerticalDotted
+                            heightLine="height73"
+                        />
+                        <div className={styles.wrap_number_accountInfo}>
+                            <div className={styles.wrap_iban}>
+                                <div className={styles.number}>IBAN</div>
+                                <img src="/icons/information_iban.svg" alt=""/>
+                            </div>
+                            <div className={styles.wrap_number}>
+                                <div>UA92 123456 1234 5678 901 1010101</div>
+                                <img src="/icons/copy_number.svg" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.wrap_money_info}>
+                        <div className={styles.wrap_item_info}>
+                            <div>Власні кошти</div>
+                            <div>6345.00 UAH</div>
+                        </div>
+                        <div className={styles.wrap_item_info}>
+                            <div>Доступно</div>
+                            <div>6345.00 UAH</div>
+                        </div>
+                        <div className={styles.wrap_item_info}>
+                            <div>Розрахунковий ліміт</div>
+                            <div className={styles.color_number}>0 UAH</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.wrapper_changeCreditLimit}>
+                <button className={styles.but_limit}>
+                    <span className={styles.title_but_limit}>Зміна кредитного ліміту</span>
+                </button>
+                <div className={styles.wrapper_creditLimit}>
+                    <div className={styles.wrap_limit_info}>
+                        <div className={styles.limit_info}>
+                            <div className={styles.wrap_item_info}>
+                                <div>Поточний ліміт:</div>
+                                <div>0 UAH</div>
+                            </div>
+                            <div className={styles.wrap_item_info}>
+                                <div>Заборгованість:</div>
+                                <div>0 UAH</div>
+                            </div>
+
+                        </div>
+                       <div className={styles.wrapper_filter}>
+                           <span>0</span>
+                           <LimitFilter/>
+                           <span>200000</span>
+                       </div>
+                    </div>
+                    <div className={styles.buttons}>
+                        <div className={styles.wrapper_current_limit}>
+                            <button className={styles.but_lim}> </button>
+                                <span className={styles.text}>Поточний ліміт</span>
+                        </div>
+                        <div className={styles.wrapper_debt}>
+                            <button className={styles.but_debt}></button>
+                                <span className={styles.text}>Заборгованність</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default CardUniversalOptions;

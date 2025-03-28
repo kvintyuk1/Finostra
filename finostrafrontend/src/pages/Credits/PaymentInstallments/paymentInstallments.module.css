@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    width: 77.01vw;
+    height: 491px;
+    gap: 2.64vw;
+}
+.wrapper_payment {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 77.08vw;
+    height: 1700px;
+}

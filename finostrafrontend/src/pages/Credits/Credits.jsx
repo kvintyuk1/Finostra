@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './credits.module.css';
+import {Outlet} from "react-router-dom";
 
 function Credits(){
     return (
-        <div>
-            <h1>Credits</h1>
+        <div className={styles.container}>
+           <Outlet/>
         </div>
     )
 }

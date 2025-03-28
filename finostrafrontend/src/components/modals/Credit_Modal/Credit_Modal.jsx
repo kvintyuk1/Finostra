@@ -3,9 +3,9 @@ import styles from "./credit_Modal.module.css";
 import {Link} from "react-router-dom";
 
 const creditModalItems = [
-    {img: "moneybag_solar", title: "Мої кредити", path: "/credit/moneybagSolar"},
-    {img: "credit_limit", title: "Кредитний ліміт", path: "/credit/creditLimit"},
-    {img: "payment_installments", title: "Оплата частинами", path: "/credit/paymentInstallments"},
+    {img: "moneybag_solar", title: "Мої кредити", path: "/credits/myCredits"},
+    {img: "credit_limit", title: "Кредитний ліміт", path: "/credits/creditLimit"},
+    {img: "payment_installments", title: "Оплата частинами", path: "/credits/paymentInstallments"},
     {img: "installment", title: "Миттєва розстрочка", path: "/credit/instantInstallment"},
     {img: "credit_cash", title: "Кредит готівкою", path: "/credit/creditCash"},
     {img: "credit_car", title: "Авто в кредит", path: "/credit/creditCar"},

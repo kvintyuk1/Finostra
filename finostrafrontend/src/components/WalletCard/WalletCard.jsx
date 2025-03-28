@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './walletCard.module.css';
+import CardInfo from "../for card/CardInfo/CardInfo";
 
 const WalletCard = ({isDarkMode, showPoints = true})=>{
     return (
@@ -7,21 +8,8 @@ const WalletCard = ({isDarkMode, showPoints = true})=>{
             <div className={styles.wrapper_container_info}>
                 <div className={styles.wrapper_info}>
                     <img src="/img/finostra_card.jpg" className={styles.img_style} alt=""/>
-                    <div className={styles.info}>
-                        <div className={styles.title_card}>Картка Універсальна</div>
-                        <div className={styles.container_number}>
+                    <CardInfo />
 
-                            <img src="/icons/circle.svg" alt=""/>
-                            <div className={styles.number_c}>1234</div>
-                            <div className={styles.vertical_line}></div>
-
-                            <div className={styles.UA}>UA92</div>
-                            <img src="/icons/circle.svg" alt=""/>
-                            <div className={styles.number_ac}>1010101</div>
-
-                        </div>
-                        <div className={styles.money}>6345.00 UAH</div>
-                    </div>
                 </div>
                 <div className={styles.points}>
                     {

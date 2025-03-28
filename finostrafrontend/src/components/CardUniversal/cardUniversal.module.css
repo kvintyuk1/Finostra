@@ -1,0 +1,44 @@
+.wrapper_card {
+    display: flex;
+    position: relative;
+    width: 20.69vw;
+    height: 147px;
+    border-radius: 0.69vw;
+    background-color: #CFF500;
+}
+.wrap_part_card {
+    display: flex;
+    width: 19.51vw;
+    height: 139px;
+}
+.wrapper_item {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.69vw;
+    width: 11.81vw;
+    height: 118px;
+    margin: 15px 0 0 15px;
+}
+.wrap_cardInfo {
+    display: flex;
+}
+.img_magnet {
+    display: flex;
+    width: 2.99vw;
+    height: 29px;
+}
+.wrapper_img {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 3.54vw;
+    height: 108px;
+    margin-left: 40px;
+    z-index: 1;
+}
+.img_star_pink {
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    z-index: 0;
+}
