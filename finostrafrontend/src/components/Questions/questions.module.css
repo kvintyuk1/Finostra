@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 77.1vw;
@@ -9,12 +10,25 @@
     color: #FFF;
     letter-spacing: 1px;
 }
+
 .wrapper_info {
     display: flex;
     flex-direction: column;
     gap: 35px;
     width: 72.85vw;
     height: 539px;
+}
+.height_content613 {
+    height: 613px;
+}
+.height_wrap539 {
+    height: 539px;
+}
+.height_content491 {
+    height: 491px;
+}
+.height_wrap411 {
+    height: 411px;
 }
 .title {
     display: flex;
@@ -24,6 +38,8 @@
 .wrapper_questions {
     display: flex;
     flex-direction: column;
+    gap: 7px;
+    height: 29px;
 }
 .question_img {
     display: flex;

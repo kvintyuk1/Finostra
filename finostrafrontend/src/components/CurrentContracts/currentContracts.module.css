@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    width: 77.08vw;
+    height: 403px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    color: #FFF;
+}

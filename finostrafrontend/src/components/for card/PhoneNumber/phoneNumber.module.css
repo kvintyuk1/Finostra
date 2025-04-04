@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 28.19vw;
+    height: 76px;
+    border-bottom: 1.5px solid rgba(250,250,250,0.4);
+}
+.title {
+    font-weight: 400;
+    font-size: 1em;
+    color: rgba(250,250,250,0.6);
+}
+.wrapper_phoneInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.9vw;
+    width: 28.19vw;
+    height: 37px;
+}
+.wrapper_blockCode {
+    display: flex;
+    align-items: center;
+    gap: 0.28vw;
+    min-width: 6.18vw;
+    height: 24px;
+}
+.code {
+    font-weight: 400;
+    font-size: 1.25vw;
+    color: #FFF;
+}
+.poligon {
+    width: 14px;
+    height: 14px;
+}
+.lineVertical {
+    height: 37px;
+    border: 1.5px solid rgba(250,250,250,0.6);
+}
+.phoneNumber {
+    font-weight: 400;
+    font-size: 1.25vw;
+    color: rgba(250,250,250,0.55);
+}

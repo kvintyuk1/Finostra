@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 77.08vw;
+    height: 269px;
+    background-color: #0F110E;
+    border-radius: 2.08vw;
+}

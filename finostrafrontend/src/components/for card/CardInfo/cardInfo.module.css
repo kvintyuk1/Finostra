@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 14.51vw;
+    height: 73px;
+    color: #FFF;
+}
+.width209 {
+    width: 14.51vw;
+}
+.width170 {
+    width: 11.81vw;
+}
+.height73 {
+    height: 73px;
+}
+.height133 {
+    height: 133px;
+}
+.colorWhite {
+    color: #FFF;
+}
+.colorBlack {
+    color: #000;
+}
+
+.container_title_card {
+    display: flex;
+    align-items: flex-start;
+}
+.title_card {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+}
+.container_number {
+    display: flex;
+    align-items: center;
+    gap: 0.35vw;
+    opacity: 0.5;
+    letter-spacing: 0;
+}
+.number {
+    font-weight: 400;
+    font-size: 0.88vw;
+}
+
+.number_card {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 0.88em;
+}
+
+.vertical_line {
+    width: 1px;
+    height: 20px;
+    background-color: #FFF;
+}
+.money {
+    display: flex;
+}
+.margin5 {
+    margin-top: 5px;
+}
+.margin50 {
+    margin-top: 50px;
+}
+.wrap_number_account {
+    display: flex;
+    align-items: center;
+    gap: 0.35vw;
+}
+.UA {
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-size: 0.88em;
+    font-weight: 400;
+}
+.number_account {
+    display: flex;
+    align-items: center;
+    gap: 0.69vw;
+}
+

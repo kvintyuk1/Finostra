@@ -15,8 +15,8 @@ function CollapsibleText({title,text,description,maxLength = 100}) {
           </div>
                 <button onClick={toggleExpand} className={styles.but_style}>
                     <div className={styles.text_but}>
-                        {isExpanded ? "Скрыть" : "Читати повністю"}
-                        <img src="./icons/arrow_outlined.svg" alt=""/>
+                        {isExpanded ? "Приховати" : "Читати повністю"}
+                        <img src="/icons/arrow_outlined.svg" alt=""/>
                     </div>
                 </button>
         </div>

@@ -1,0 +1,89 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 29.17vw;
+    height: 654px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    font-weight: 400;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+.wrapper_activeCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 23.61vw;
+    height: 298px;
+}
+.wrapper_button {
+    display: flex;
+    justify-content: center;
+    gap: 14.51vw;
+    width: 23.61vw;
+    height: 62px;
+    background-color: #28282C;
+    border-radius: 3.89vw;
+    border-left: 3px solid #A66CFE;
+}
+.wrap_button img {
+    width: 32px;
+    height: 32px;
+}
+.title_but {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+}
+.wrap_active {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 20.69vw;
+    height: 196px;
+}
+.wrap_title {
+    display: flex;
+    gap: 13.68vw;
+    width: 20.69vw;
+    height: 19px;
+}
+.wrap_act_but {
+    display: flex;
+    align-items: center;
+    gap: .97vw;
+    width: 5.69vw;
+    height: 19px;
+}
+.img_style {
+    width: 7px;
+    height: 7px;
+}
+.name_but {
+    display: flex;
+    color: #FFF;
+}
+.wrapper_tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 23.61vw;
+    height: 226px;
+}
+.wrap_button {
+    display: flex;
+    width: 23.61vw;
+    height: 62px;
+    background-color: #28282C;
+    border-radius: 3.89vw;
+}
+.title_button {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    margin-left: 1.39vw;
+}

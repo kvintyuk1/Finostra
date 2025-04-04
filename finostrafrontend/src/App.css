@@ -1,6 +1,7 @@
 body {
     font-family: 'adeneue PRO Cyr', sans-serif;
-    
+    margin: 0;
+    padding: 0;
 }
 :active, :hover, :focus {
     outline: 0;

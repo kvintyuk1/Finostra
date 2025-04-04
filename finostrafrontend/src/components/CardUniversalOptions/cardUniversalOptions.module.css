@@ -1,0 +1,249 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 44.1vw;
+    height: 654px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    color: #FFF;
+    white-space: nowrap;
+    letter-spacing: 1px;
+}
+
+.wrapper_cardInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 38.54vw;
+    height: 247px;
+}
+
+.wrap_but_setting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9.17vw;
+    width: 38.54vw;
+    height: 61px;
+    border-radius: 2.08vw;
+    background-color: #28282C;
+    font-weight: 400;
+    font-size: 1em;
+    border: none;
+}
+
+.title_but {
+    display: flex;
+    color: #FFF;
+    font-weight: 400;
+    font-size: 1em;
+    width: 11.25vw;
+    height: 19px;
+    letter-spacing: 1px;
+}
+
+.wrapper_setting {
+    display: flex;
+    justify-content: center;
+    gap: 1.04vw;
+    width: 15.28vw;
+    height: 31px;
+}
+
+.wrapper_account_card {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 35.76vw;
+    height: 158px;
+}
+
+.wrap_number_card {
+    display: flex;
+    align-items: center;
+    gap: 1.94vw;
+    width: 31.39vw;
+    height: 73px;
+}
+
+.wrap_number_cardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 9.31vw;
+    height: 73px;
+}
+
+.wrap_item {
+    display: flex;
+    align-items: center;
+    width: 9.31vw;
+    height: 29px;
+    letter-spacing: 2px;
+}
+
+.wrap_item_number {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 9.31vw;
+    height: 29px;
+}
+
+.number {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.wrap_number_accountInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 17.92vw;
+    height: 63px;
+}
+
+.wrap_iban {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.04vw;
+    width: 5vw;
+    height: 24px;
+}
+
+.wrap_iban img {
+    width: 1.67vw;
+    height: 24px;
+}
+
+.wrap_number {
+    display: flex;
+    gap: 1.25vw;
+    width: 17.92vw;
+    height: 19px;
+}
+
+.wrap_number img {
+    width: 1.11vw;
+    height: 16px;
+}
+
+
+.wrap_money_info {
+    display: flex;
+    justify-content: space-between;
+    width: 35.76vw;
+    height: 48px;
+}
+
+.wrap_item_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wrap_item_info div:first-child {
+    color: rgba(250, 250, 250, 0.6);
+}
+
+.color_number {
+    color: rgba(250, 250, 250, 0.6);
+}
+
+
+.wrapper_changeCreditLimit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 38.54vw;
+    height: 281px;
+}
+
+.but_limit {
+    display: flex;
+    align-items: center;
+    width: 38.54vw;
+    height: 61px;
+    border-radius: 2.08vw;
+    background-color: #28282C;
+    border: none;
+}
+
+.title_but_limit {
+    display: flex;
+    color: #FFF;
+    font-weight: 400;
+    font-size: 1.2em;
+    margin-left: 1.04vw;
+    letter-spacing: 1px;
+}
+
+.wrapper_creditLimit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 37px;
+    width: 35.76vw;
+    height: 190px;
+}
+.wrap_limit_info {
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+    width: 35.76vw;
+    height: 128px;
+}
+.limit_info {
+    display: flex;
+    gap: 4.38vw;
+    width: 21.46vw;
+    height: 48px;
+}
+.wrapper_filter {
+    display: flex;
+    align-items: center;
+    gap: 0.69vw;
+}
+
+.buttons {
+    display: flex;
+    gap: 45px;
+    width: 22.71vw;
+    height: 25px;
+}
+.wrapper_current_limit,
+.wrapper_debt{
+    display: flex;
+    align-items: center;
+    gap: 0.69vw;
+    width: 9.72vw;
+    height: 25px;
+}
+.but_lim {
+    display: flex;
+    width: 1.74vw;
+    height: 25px;
+    border-radius: 0.35vw;
+    background-color: #CFF500;
+}
+.but_debt {
+    display: flex;
+    width: 1.74vw;
+    height: 25px;
+    border-radius: 0.35vw;
+    background-color: #F5000F;
+}
+.text {
+    display: flex;
+    font-weight: 400;
+    font-size: 0.88vw;
+    color: #FFF;
+    letter-spacing: 0;
+}

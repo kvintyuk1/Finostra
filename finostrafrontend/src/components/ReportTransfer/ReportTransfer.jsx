@@ -1,30 +1,19 @@
 import React, {useState} from "react";
 import styles from "./reportTransfer.module.css";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
+import SentReceivedSwitch from "../SentReceivedSwitch/SentReceivedSwitch";
 
 function ReportTransfer() {
-    const [activeButton, setActiveButton] = useState('sent');
-    return (
+     return (
         <div className={styles.container}>
             <div className={styles.wrapper_info}>
                 <div className={styles.wrapper_content}>
                     <div className={styles.wrapper_title}>
                         <div className={styles.title}>Перекази</div>
-                        <div className={styles.wrapper_button}>
-                            <button className={`${styles.send_but} ${activeButton === 'sent' ? styles.active : ''}`}
-                                    onClick={() => setActiveButton('sent')}
-                            >
-                                Надіслані
-                                {activeButton === 'sent' && <img src="/img/ellipse7.png" alt=""/>}
-                            </button>
-                            <button
-                                className={`${styles.receive_but} ${activeButton === 'received' ? styles.active : ''}`}
-                                onClick={() => setActiveButton('received')}
-                            >
-                                Отримані
-                                {activeButton === 'received' && <img src="/img/ellipse7.png" alt=""/>}
-                            </button>
-                        </div>
+                       <SentReceivedSwitch
+                       text_but_one="Надіслані"
+                       text_but_two="Отримані"
+                       />
                     </div>
                     <table className={styles.wrapper_table}>
                         <thead className={styles.wrapper_header}>

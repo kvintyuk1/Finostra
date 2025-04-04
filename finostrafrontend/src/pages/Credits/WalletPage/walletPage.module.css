@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    width: 77.01vw;
+    height: 491px;
+    gap: 2.64vw;
+}
+.wrapper_walletPage {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 77.08vw;
+    height: 1700px;
+}
+.wrapper_two_components {
+    display: flex;
+    gap: 30px;
+}
