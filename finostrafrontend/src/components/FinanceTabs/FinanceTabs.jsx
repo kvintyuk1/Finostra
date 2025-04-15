@@ -24,7 +24,10 @@ function FinanceTabs() {
                         </div>
                         <img src="/icons/arrow_down16.svg" alt=""/>
                     </div>
-                   <CardUniversal/>
+                   <CardUniversal
+                       totalMoney="6345.00"
+                       hideImg={false}
+                   />
                 </div>
             </div>
 

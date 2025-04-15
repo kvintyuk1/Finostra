@@ -206,11 +206,6 @@
     width: 21.46vw;
     height: 48px;
 }
-.wrapper_filter {
-    display: flex;
-    align-items: center;
-    gap: 0.69vw;
-}
 
 .buttons {
     display: flex;

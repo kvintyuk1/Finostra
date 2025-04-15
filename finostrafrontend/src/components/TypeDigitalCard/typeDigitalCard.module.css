@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 77.08vw;
+    min-height: 187px;
+    background-color: #0F110E;
+    border-radius: 2.08vw;
+    color: #FFF;
+}
+.wrap_digitalCard_out {
+    display: flex;
+    gap: 1.04vw;
+    width: 72.92vw;
+    height: 24px;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25vw;
+}
+
+.wrap_typeCard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 72.92vw;
+    height: 74px;
+}
+.name_type {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}
+.wrap_buttons {
+    display: flex;
+    gap: 1.04vw;
+    width: 72.92vw;
+    height: 35px;
+}

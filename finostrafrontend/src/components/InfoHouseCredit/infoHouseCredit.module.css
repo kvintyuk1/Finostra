@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 44px;
+    width: 77.08vw;
+    height: 530px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    color: #FFF;
+}
+.wrap_content {
+    display: flex;
+    flex-direction: column;
+    gap: 61px;
+    width: 71.53vw;
+    height: 196px;
+}
+.wrap_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 44px;
+    width: 71.53vw;
+    height: 102px;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25em;
+}
+.wrapper_buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 54.58vw;
+    height: 34px;
+}
+.wrap_item {
+    display: flex;
+    align-items: center;
+    gap: 1.04vw;
+    max-width: 18.06vw;
+    height: 34px;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.36vw;
+    height: 34px;
+    border-radius: 0.56vw;
+    border: 1px solid #FFF;
+    color: #FFF;
+    background-color: transparent;
+}
+.name {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}
+.wrap_eOselja {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 29px;
+    width: 71.53vw;
+    height: 210px;
+    border-radius: 2.08vw;
+    background-color: #28282C;
+}
+.wrap_itemEoselja {
+    display: flex;
+    flex-direction: column;
+    width: 67.36vw;
+    height: 82px;
+}
+.wrap_logoOselja {
+    display: flex;
+    align-items: center;
+    gap: 1.04vw;
+    width: 8.47vw;
+    height: 34px;
+}
+.logoName {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25em;
+}
+.wrap_tabsCredit {
+    display: flex;
+    justify-content: space-between;
+    width: 67.36vw;
+    height: 48px;
+}
+.text {
+    display: flex;
+    align-self: flex-end;
+    font-weight: 400;
+    font-size: 1em;
+    white-space: nowrap;
+}
+.wrap_buttons {
+    display: flex;
+    align-self: flex-start;
+    gap: 30px;
+    width: 406px;
+    height: 45px;
+    margin-left: 38px;
+}

@@ -2,28 +2,45 @@ import React from "react";
 import styles from "./creditTerms.module.css";
 import LineVerticalDotted from "../for card/ LineVerticalDotted/LineVerticalDotted";
 
-function CreditTerms() {
+function CreditTerms({
+                         rate, ratePercent, term, termCredit, sumCredit, numberCredit, hideLineVerticalDotted,
+                         hideLineVerticalDotted2,hideWrapperRateLine = true, prepayment, prepaymentPercent, widthWrapRate = "widthRate124",
+                         widthWrapRateTermLine = "widthWrapRateTermLine330",
+                         widthContainerCreditTerms = "widthContainerCreditTerms375"
+                     }) {
     return (
-        <div className={styles.container}>
-            <div className={styles.wrapper_rate_term_line}>
+        <div className={`${styles.container} ${styles[widthContainerCreditTerms]}`}>
+            <div className={`${styles.wrapper_rate_term_line} ${styles[widthWrapRateTermLine]}`}>
                 <div className={styles.wrapper_rate_term}>
                     <div className={styles.wrapper_rate_line}>
-                        <div className={styles.wrapper_rate}>
-                            <div className={styles.text}>Процентна ставка</div>
-                            <div className={styles.number}>0.01% на місяць</div>
+                        <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
+                            <div className={styles.text}>{rate}</div>
+                            <div className={styles.number}>{ratePercent}</div>
                         </div>
                         <LineVerticalDotted/>
                     </div>
-                    <div className={styles.wrapper_rate}>
-                        <div className={styles.text}>Максимальний строк</div>
-                        <div className={styles.number}>До 24 міс.</div>
+
+                    {!hideWrapperRateLine && (
+                        <div className={styles.wrapper_rate_line}>
+                            <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
+                                <div className={styles.text}>{prepayment}</div>
+                                <div className={styles.number}>{prepaymentPercent}</div>
+                            </div>
+                            <LineVerticalDotted/>
+                        </div>
+                    )}
+
+                    <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
+                        <div className={styles.text}>{term}</div>
+                        <div className={styles.number}>{termCredit}</div>
                     </div>
+                    {!hideLineVerticalDotted2 && <LineVerticalDotted/>}
                 </div>
-                <LineVerticalDotted/>
+                {!hideLineVerticalDotted && <LineVerticalDotted/>}
             </div>
             <div className={styles.wrapper_rate}>
-                <div className={styles.text}>Сума кредиту</div>
-                <div className={styles.number}>Від 300 до 300 000 UAH</div>
+                <div className={styles.text}>{sumCredit}</div>
+                <div className={styles.number}>{numberCredit}</div>
             </div>
         </div>
     );

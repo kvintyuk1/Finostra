@@ -6,13 +6,13 @@ const creditModalItems = [
     {img: "moneybag_solar", title: "Мої кредити", path: "/credits/myCredits"},
     {img: "credit_limit", title: "Кредитний ліміт", path: "/credits/creditLimit"},
     {img: "payment_installments", title: "Оплата частинами", path: "/credits/paymentInstallments"},
-    {img: "installment", title: "Миттєва розстрочка", path: "/credit/instantInstallment"},
-    {img: "credit_cash", title: "Кредит готівкою", path: "/credit/creditCash"},
-    {img: "credit_car", title: "Авто в кредит", path: "/credit/creditCar"},
-    {img: "credit_house", title: "Кредит на житло", path: "/credit/creditHouse"},
-    {img: "mynaui_search_home", title: "Моніторинг заставного майна", path: "/credit/monitoringCollateralProperty"},
-    {img: "hand_deposit", title: "Згода на надання депозиту в заставу", path: "/credit/depositSecurity"},
-    {img: "sad", title: "Робота з простроченою заборгованістю", path: "/credit/overdueDebts"},
+    {img: "installment", title: "Миттєва розстрочка", path: "/credits/instantInstallment"},
+    {img: "credit_cash", title: "Кредит готівкою", path: "/credits/creditCash"},
+    {img: "credit_car", title: "Авто в кредит", path: "/credits/creditCar"},
+    {img: "credit_house", title: "Кредит на житло", path: "/credits/creditHouse"},
+    {img: "mynaui_search_home", title: "Моніторинг заставного майна", path: "/credits/monitoringCollateralProperty"},
+    {img: "hand_deposit", title: "Згода на надання депозиту в заставу", path: "/credits/depositSecurity"},
+    {img: "sad", title: "Робота з простроченою заборгованістю", path: "/credits/overdueDebts"},
 ]
 
 function Credit_Modal({onClose}) {

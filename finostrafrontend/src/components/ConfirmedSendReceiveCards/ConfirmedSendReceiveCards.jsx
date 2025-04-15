@@ -10,11 +10,15 @@ import SuccessfulTransfer_Modal from "../modals/SuccessfulTransfer_Modal/Success
 function ConfirmedSendReceiveCards({setIsConfirmed}) {
     const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
     const [isSuccessfulTransferModalOpen, setIsSuccessfulTransferModalOpen] = useState(false);
+    const [activeButton,setActiveButton]= useState("back");
+
 
     const handleBackClick = () => {
+        setActiveButton("back");
         setIsConfirmed(false);
     };
     const handleOpenTransferModal = () => {
+        setActiveButton("send");
         setIsTransferModalOpen(true);
     };
     const handleCloseTransferModal = () => {
@@ -92,13 +96,14 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                         <ButtonForCard
                             title_button="Назад"
                             colorText="greyText"
-                            backgroundButton="blackBackground"
                             sizeButton="size_button186"
+                            isActive={activeButton === "back"}
                             onClick={handleBackClick}
                         />
                         <ButtonForCard
                             title_button="Надіслати"
                             sizeButton="size_button186"
+                            isActive={activeButton === "send"}
                             onClick={handleOpenTransferModal}
                         />
                     </div>

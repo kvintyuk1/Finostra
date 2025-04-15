@@ -4,7 +4,26 @@
     width: 20.69vw;
     height: 147px;
     border-radius: 0.69vw;
+    cursor: pointer;
     background-color: #CFF500;
+}
+.widthCard298 {
+    width: 20.69vw;
+    height: 147px;
+}
+.widthCard281 {
+    width: 281px;
+    height: 141px;
+}
+.widthCard253 {
+    width: 253px;
+    height: 127px;
+}
+.background_colorYellow {
+    background-color: #CFF500;
+}
+.background_colorPink {
+    background-color: #A66CFE;
 }
 .wrap_part_card {
     display: flex;

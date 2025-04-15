@@ -4,7 +4,7 @@ import styles from "./total_Sum.module.css";
 function Total_Sum({
                        title_totalSum, totalSum, title_color = "whiteText", fontWeight = "normal",
                        total_color = "totalWhite", isRow = false, hideBorder = false,
-                       isMargin = false, currency,sizeTotalBlock="size200"
+                       isMargin = false, currency,sizeTotalBlock="size200",currencyColor="currencyColorWhite"
                    }) {
     return (
         <div className={`${styles.total_block} ${styles[sizeTotalBlock]} ${isRow ? styles.row : ""}`}>
@@ -14,7 +14,7 @@ function Total_Sum({
                 <input type="text"
                        className={`${styles.total} ${styles[total_color]} ${hideBorder ? styles.noBorder : ""}`}
                        value={totalSum}/>
-                {currency && <div className={styles.currency}>{currency}</div>}
+                {currency && <div className={`${styles.currency} ${styles[currencyColor]}`}>{currency}</div>}
             </div>
         </div>
     );

@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 1.39vw;
+    width: 77.43vw;
+    height: 107px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+}
+.wrapper_breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 5vw;
+    width: 25.97vw;
+    height: 24px;
+    margin-left: 2.08vw;
+    border: 1px solid red;
+}
+.wrap_myDeposit {
+    display: flex;
+    align-items: center;
+    gap: 0.79vw;
+    width: 10.69vw;
+    height: 24px;
+    border: 1px solid green;
+}
+.name {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25em;
+    color: #FFF;
+    white-space: nowrap;
+}
+.openDeposit {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25vw;
+    color: #A66CFE;
+}

@@ -77,11 +77,9 @@ function CardUniversalOptions() {
                             </div>
 
                         </div>
-                       <div className={styles.wrapper_filter}>
-                           <span>0</span>
-                           <LimitFilter/>
-                           <span>200000</span>
-                       </div>
+                           <LimitFilter
+                               hideLabelSuffix = {true}
+                           />
                     </div>
                     <div className={styles.buttons}>
                         <div className={styles.wrapper_current_limit}>

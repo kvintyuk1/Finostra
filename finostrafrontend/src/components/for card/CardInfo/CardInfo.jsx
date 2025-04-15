@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./cardInfo.module.css";
 
-function CardInfo({colorText="colorWhite",widthContainer="width209",heightContainer="height73",img="circle",marginMoney="margin5"}) {
+function CardInfo({titleCard,totalMoney,colorText="colorWhite",widthContainer="width209",heightContainer="height73",img="circle",marginMoney="margin5"}) {
     return (
         <div className={`${styles.container} ${styles[widthContainer]} ${styles[heightContainer]} ${styles[colorText]}`}>
-            <div className={styles.title_card}>Картка Універсальна</div>
+            <div className={styles.title_card}>{titleCard}</div>
             <div className={styles.container_number}>
 
                 <img src={`/icons/${img}.svg`} alt=""/>
@@ -16,7 +16,7 @@ function CardInfo({colorText="colorWhite",widthContainer="width209",heightContai
                 <div className={styles.number}>1010101</div>
 
             </div>
-            <div className={`${styles.money} ${styles[marginMoney]}`}>6345.00 UAH</div>
+            <div className={`${styles.money} ${styles[marginMoney]}`}>{totalMoney} UAH</div>
         </div>
     );
 }

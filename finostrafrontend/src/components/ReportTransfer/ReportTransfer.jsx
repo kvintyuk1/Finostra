@@ -4,16 +4,16 @@ import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 import SentReceivedSwitch from "../SentReceivedSwitch/SentReceivedSwitch";
 
 function ReportTransfer() {
-     return (
+    return (
         <div className={styles.container}>
             <div className={styles.wrapper_info}>
                 <div className={styles.wrapper_content}>
                     <div className={styles.wrapper_title}>
                         <div className={styles.title}>Перекази</div>
-                       <SentReceivedSwitch
-                       text_but_one="Надіслані"
-                       text_but_two="Отримані"
-                       />
+                        <SentReceivedSwitch
+                            text_but_one="Надіслані"
+                            text_but_two="Отримані"
+                        />
                     </div>
                     <table className={styles.wrapper_table}>
                         <thead className={styles.wrapper_header}>

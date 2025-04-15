@@ -24,7 +24,31 @@ function PaymentInstallments({isDarkMode}) {
                      title="Оплата частинами"
                      subtitle="Оплачуй частинами легко та зручно – без зайвих турбот."
                     />
-                    <PaymentLimitInstallments/>
+                    <PaymentLimitInstallments
+                        text_but_one="Як користуватись?"
+                        text_but_two="Договори"
+                        widthContainer="width252"
+                        title_info="Купуйте зараз - платіть потім"
+                        description_info="Послуга “Оплата частинами” від Finostra дозволяє робити
+                        покупки на зручну кількість платежів"
+                        title="Доступні картки (1)"
+                        showAvailableLimit={true}
+                        rate="Процентна ставка"
+                        ratePercent="19% на місяць"
+                        term="Максимальний строк"
+                        termCredit="До 24 міс."
+                        sumCredit="Сума кредиту"
+                        numberCredit="Від 300 до 300 000 UAH"
+                        hideLineVerticalDotted
+                        infoContent={
+                            <>
+                                <span>Не забудь взяти картку з собою.</span>
+                                <span
+                                    className={styles.text_info}>Наявність картки необхідна при оформленні на касі і в магазині
+                        </span>
+                            </>
+                        }
+                    />
                     <BuyingPartsEasy/>
                     <Questions
                         sizeContent="height_content491"
