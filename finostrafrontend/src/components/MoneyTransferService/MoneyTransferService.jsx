@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./moneyTransferService.module.css";
 import CollapsibleText from "../CollapsibleText/CollapsibleText";
+import { LanguageContext } from "../LanguageContext";
+import { moneyTransferServiceTranslations } from "./moneyTransferServiceTranslations";
 
 function MoneyTransferService() {
+    const { selectedLanguage } = useContext(LanguageContext); 
+    const t = moneyTransferServiceTranslations[selectedLanguage] || moneyTransferServiceTranslations["UA"];
+
     return (
         <div className={styles.container}>
-             <CollapsibleText
-             title="Сервіс грошових переказів"
-             text="Швидко, доступно та безпечно переказуйте кошти з картки на картку будь-якого банку!"
-             description="Finostra пропонує зручний сервіс онлайн-переказів між
-             картками Visa та Mastercard, емітованими банками, що входять до
-             міжнародних платіжних систем. Для здійснення переказу потрібен лише
-             доступ до Інтернету та будь-який пристрій – комп’ютер, планшет чи
-             смартфон. Завдяки миттєвому зарахуванню коштів ви можете переказувати
-             гроші на картки банків у будь-якій країні світу."
-             maxLength={100}
-             />
+            <CollapsibleText
+                title={t.title}
+                text={t.text}
+                description={t.description}
+                maxLength={100}
+            />
         </div>
     );
 }

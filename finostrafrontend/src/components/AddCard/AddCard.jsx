@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './addCard.module.css';
+import { LanguageContext } from '../LanguageContext';
+import { addCardTranslations } from './addCardTranslations';
 
-const AddCard = ({isDarkMode}) => {
+const AddCard = ({ isDarkMode }) => {
+    const { selectedLanguage } = useContext(LanguageContext);
+    const tCard = addCardTranslations[selectedLanguage];
+
     return (
-        <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
+        <div className={isDarkMode ? styles.dark_mode : styles.light_mode}>
             <div className={styles.wrapper_container_info}>
                 <div className={styles.wrapper_add_card}>
-                    <div className={styles.title}>Додати картку</div>
+                    <div className={styles.title}>{tCard.addCard}</div>
                     <button className={styles.title_button}>
                         <div className={styles.content_button}>+</div>
                     </button>
                 </div>
                 <div className={styles.order}>
                     <div>
-                        <span className={styles.order_text}>Немає картки? </span>
-                        <a href="#" className={styles.link_order}>Замовте</a>
-                        <span className={styles.order_text}> і отримайте</span>
+                        <span className={styles.order_text}>{tCard.noCard} </span>
+                        <a href="#" className={styles.link_order}>{tCard.order}</a>
+                        <span className={styles.order_text}> {tCard.getCredit}</span>
                     </div>
-                    <span className={styles.order_text}>безвідсотковий кредит до 55 днів.</span>
                 </div>
             </div>
         </div>
-    )
+    );
 }
+
 export default AddCard;

@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./sendReceiveCards.module.css";
 import CardOfReceiveSum from "../CardOfReceiveSum/CardOfReceiveSum";
 import AddComment from "../AddComment/AddComment";
 import Card from "../Card/Card";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
+import { LanguageContext } from "../LanguageContext";
+import { sendReceiveTranslations } from "./sendReceiveTranslations";
 
-function SendReceiveCards({setIsConfirmed}) {
-    const handleTransferClick = ()=>{
+function SendReceiveCards({ setIsConfirmed }) {
+    const { language } = useContext(LanguageContext);
+    const t = sendReceiveTranslations[language] || sendReceiveTranslations["UA"];
+
+    const handleTransferClick = () => {
         setIsConfirmed(true);
-    }
+    };
 
     return (
         <div className={styles.container}>
@@ -16,15 +21,15 @@ function SendReceiveCards({setIsConfirmed}) {
                 <div className={styles.cards_comment}>
                     <div className={styles.wrapper_cards}>
                         <Card
-                            title="З картки"
-                            title_wallet="Мій гаманець"
+                            title={t.fromCard}
+                            title_wallet={t.myWallet}
                             img="/icons/arrow_out_pink.svg"
-                            title_card="Номер картки"
+                            title_card={t.cardNumber}
                             value="0000 0000 0000 0000"
                             img_card="/icons/card_white2.svg"
-                            title_period="Термін дії"
+                            title_period={t.expiryDate}
                             validityPeriod="01 / 25"
-                            title_kod="CW-kod"
+                            title_kod={t.cwCode}
                             cw_kod="***"
                             img_kod="/icons/information.svg"
                         />
@@ -33,15 +38,16 @@ function SendReceiveCards({setIsConfirmed}) {
                     <AddComment/>
                 </div>
                 <div className={styles.wrapper_termsBlock}>
-                <span className={styles.color_grey}>Натискаючи кнопку “Перекази” Ви приймаєте
-                <span className={styles.color_white}>умови користування сервісом</span></span>
+                    <span className={styles.color_grey}>
+                        {t.acceptTerms}
+                        <span className={styles.color_white}> {t.serviceTerms}</span>
+                    </span>
                     <ButtonForCard
-                        title_button="Переказати"
+                        title_button={t.transferButton}
                         onClick={handleTransferClick}
                     />
                 </div>
-                <img src="/icons/tabler_message.svg"
-                     className={styles.img_message} alt=""/>
+                <img src="/icons/tabler_message.svg" className={styles.img_message} alt=""/>
             </div>
         </div>
     );

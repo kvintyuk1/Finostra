@@ -1,28 +1,83 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import styles from "./header.module.css";
 import { LanguageContext } from "../LanguageContext";
 import SignInModal from "../login/SignInModal";
 
-const ThemeToggleButton = ({ isDarkMode, toggleTheme }) => {
-  return (
-    <button className={styles.themeToggle} onClick={toggleTheme}>
-      <div className={`${styles.sunIcon} ${isDarkMode ? "hidden" : ""}`}></div>
-      <div className={`${styles.moonIcon} ${isDarkMode ? "" : "hidden"}`}></div>
-    </button>
-  );
-};
+const ThemeToggleButton = ({ isDarkMode, toggleTheme }) => (
+  <button className={styles.themeToggle} onClick={toggleTheme}>
+    <div className={`${styles.sunIcon} ${isDarkMode ? "hidden" : ""}`}></div>
+    <div className={`${styles.moonIcon} ${isDarkMode ? "" : "hidden"}`}></div>
+  </button>
+);
 
 function Header({ isDarkMode, toggleTheme }) {
   const { tHeader, selectedLanguage, handleLanguageChange } = useContext(LanguageContext);
   const [showSignIn, setShowSignIn] = useState(false);
 
-  const handleSignInClick = () => {
-    setShowSignIn(true);
+  // Monobank rate state
+  const [rate, setRate] = useState({ buy: null, sell: null, timestamp: 0 });
+  const [loadingRate, setLoadingRate] = useState(true);
+  const [rateError, setRateError] = useState(null);
+  const intervalRef = useRef(null);
+
+  // Fetch rate function
+  const fetchRate = async () => {
+    try {
+      const response = await fetch("https://api.monobank.ua/bank/currency");
+      if (response.status === 429) {
+        throw new Error("Rate limit exceeded");
+      }
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+      const data = await response.json();
+      const usd = data.find(
+        (item) => item.currencyCodeA === 840 && item.currencyCodeB === 980
+      );
+      if (usd) {
+        const newRate = { buy: usd.rateBuy, sell: usd.rateSell, timestamp: Date.now() };
+        setRate(newRate);
+        localStorage.setItem("usdRate", JSON.stringify(newRate));
+        setRateError(null);
+      } else {
+        throw new Error("USD→UAH rate not found");
+      }
+    } catch (err) {
+      console.error("Error fetching Monobank rate:", err);
+      setRateError(err.message);
+    } finally {
+      setLoadingRate(false);
+    }
   };
 
-  const handleCloseModal = () => {
-    setShowSignIn(false);
-  };
+  useEffect(() => {
+    // Load cached rate
+    const cached = localStorage.getItem("usdRate");
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      setRate(parsed);
+      const age = Date.now() - parsed.timestamp;
+      // If cache is fresh (under 5 mins), skip immediate fetch
+      if (age < 5 * 60 * 1000) {
+        setLoadingRate(false);
+      } else {
+        // older cache: fetch new data
+        fetchRate();
+      }
+    } else {
+      // no cache: fetch
+      fetchRate();
+    }
+
+    // Set interval to refresh every 5 minutes
+    intervalRef.current = setInterval(fetchRate, 5 * 60 * 1000);
+
+    // Cleanup
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const handleSignInClick = () => setShowSignIn(true);
+  const handleCloseModal = () => setShowSignIn(false);
 
   return (
     <div className={`${styles.App} ${isDarkMode ? styles.dark_mode : styles.light_mode}`}>
@@ -48,7 +103,13 @@ function Header({ isDarkMode, toggleTheme }) {
               <div className={styles.Frame751}>
                 <div className={styles.Frame708}>
                   <span>$</span>
-                  <span>41.2 / 41.841</span>
+                  {loadingRate && !rate.buy ? (
+                    <span>Loading...</span>
+                  ) : rateError ? (
+                    <span>{rateError}</span>
+                  ) : (
+                    <span>{rate.buy} / {rate.sell}</span>
+                  )}
                 </div>
               </div>
               <div className={styles.Frame753}>
@@ -65,7 +126,6 @@ function Header({ isDarkMode, toggleTheme }) {
               </div>
             </div>
             <div className={styles.Frame636}>
-             
               <div className={styles.Frame612} onClick={handleSignInClick}>
                 <div className={styles.icon_user}></div>
                 <span>{tHeader.signIn}</span>
