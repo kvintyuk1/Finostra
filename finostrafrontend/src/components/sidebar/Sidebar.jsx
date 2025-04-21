@@ -42,10 +42,10 @@ function Sidebar() {
     const handleOpenModal = (e,modal)=>{
         e.preventDefault();
 
-        // Закрываем модальное окно при клике на другие пункты меню
+        
         if (activeModal !== modal) {
             setActiveModal(modal);
-            navigate("/transactions", { replace: true }); // Навигация по маршруту
+            navigate("/transactions", { replace: true }); 
         }
     };
 
@@ -58,10 +58,9 @@ function Sidebar() {
         navigate("/transactions");
         setActiveModal(null);
     }
-    // Закрыть модальное окно при клике на другие пункты меню
     const handleMenuItemClick = () => {
         if (activeModal) {
-            setActiveModal(null); // Закрываем модальное окно при клике на другой пункт меню
+            setActiveModal(null);
         }
     };
 

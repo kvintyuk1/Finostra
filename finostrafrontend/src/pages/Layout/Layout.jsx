@@ -27,7 +27,7 @@ function Layout() {
             <div className={styles.wrapper_content}>
                 <Sidebar isDarkMode={isDarkMode}/>
                 <div className={styles.main_content}>
-                    <Outlet context={{ isDarkMode, toggleTheme }}/> {/* Здесь будут отображаться вложенные маршруты */}
+                    <Outlet context={{ isDarkMode, toggleTheme }}/> 
                 </div>
             </div>
             <Footer isDarkMode={isDarkMode}/>

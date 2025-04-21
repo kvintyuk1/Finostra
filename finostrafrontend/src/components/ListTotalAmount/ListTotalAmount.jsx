@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./listTotalAmount.module.css";
 import Period from "../Period/Period";
 import Search from "../Search/Search";
 import ListTable from "../ListTable/ListTable";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
+import { LanguageContext } from "../LanguageContext";
+import { listTotalAmountTranslations } from "./listTotalAmountTranslations";
 
 function ListTotalAmount() {
+    const { selectedLanguage } = useContext(LanguageContext);
+    const t = listTotalAmountTranslations[selectedLanguage];
+
     return (
         <div className={styles.container}>
             <div className={styles.wrapper_listContainer}>
@@ -17,7 +22,7 @@ function ListTotalAmount() {
                     <ListTable/>
                 </div>
                 <ButtonForCard
-                    title_button="Завантажити ще"
+                    title_button={t.loadMore}
                     sizeButton="size_button207"
                     colorText="greyText"
                     backgroundButton="blackBackground"
