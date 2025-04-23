@@ -6,6 +6,7 @@ import Requisites from "../../../components/Requisites/Requisites";
 import ReportTransfer from "../../../components/ReportTransfer/ReportTransfer";
 import SendSWIFT from "../../../components/SendSWIFT/SendSWIFT";
 import PaymentDetails from "../../../components/PaymentDetails/PaymentDetails";
+import ConfirmationTransfer from "../../../components/ConfirmationTransfer/ConfirmationTransfer";
 
 function SWIFT() {
     const [isConfirmed,setIsConfirmed] = useState(false);
@@ -24,7 +25,9 @@ function SWIFT() {
                 />
                 {!isConfirmed ? (
                     <>
-                        <div className={styles.wrap_send_requisite}>
+                        <ConfirmationTransfer/>
+                        {/*
+                         <div className={styles.wrap_send_requisite}>
                             <Send
                                 setIsConfirmed={setIsConfirmed}
                                 isSum={isSum}
@@ -37,6 +40,7 @@ function SWIFT() {
                             <Requisites/>
                         </div>
                         <ReportTransfer/>
+                        */}
                     </>
                 ) : (
                     <SendSWIFT

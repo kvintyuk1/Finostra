@@ -17,6 +17,9 @@
 .width252 {
     width: 17.5vw;
 }
+.width359 {
+    width: 24.93vw;
+}
 
 .send_but, .receive_but {
     display: flex;
@@ -28,10 +31,11 @@
     color: rgba(250,250,250,0.6);
     font-weight: 400;
     font-size: 1em;
-    background-color: #0F110E;
-    border: 1px solid #0F110E;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
 }
+
 
 .send_but img, .receive_but img {
     display: flex;

@@ -2,8 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1050px;
+    width: 72.92vw;
     height: 340px;
+    border-radius: 30px;
     background-color: #28282C;
     color: #FFF;
 }
@@ -11,46 +12,57 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    width: 990px;
+    width: 68.75vw;
     height: 283px;
-    outline: 1px solid red;
 }
 .title {
     display: flex;
     font-weight: 400;
-    font-size: 16px;
-    outline: 1px solid yellow;
+    font-size: 1em;
 }
 .wrap_details {
     display: flex;
+    flex-direction: column;
     gap: 25px;
-    width: 243px;
+    width: 16.88vw;
     height: 224px;
-    outline: 1px solid yellow;
 }
 .wrap_item {
     display: flex;
     flex-direction: column;
     gap: 13px;
-    width: 243px;
+    width: 16.88vw;
     height: 58px;
     border-bottom: 1px solid rgba(250,250,250,0.6);
-    outline: 1px solid blue;
 }
 .name {
     display: flex;
     flex-direction: column;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.88em;
 }
 .wrap_options {
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../assets/icons/arrow_down16.svg');
+    background-repeat: no-repeat;
+    font-weight: 400;
+    font-size: 1em;
+    background-color: #28282C;
+    color: rgba(250,250,250,0.6);
+    background-position: right 0.69vw center;
     display: flex;
     align-items: center;
-    width: 243px;
+    width: 16.88vw;
     height: 29px;
-    font-weight: 400;
-    font-size: 16px;
-    color: rgba(250,250,250,0.6);
-    background-color: transparent;
-    outline: 1px solid green;
 }
+.input {
+    display: flex;
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+    border: none;
+}
+
