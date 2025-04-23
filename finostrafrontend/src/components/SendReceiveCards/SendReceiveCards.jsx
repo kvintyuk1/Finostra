@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./sendReceiveCards.module.css";
 import CardOfReceiveSum from "../CardOfReceiveSum/CardOfReceiveSum";
 import AddComment from "../AddComment/AddComment";
 import Card from "../Card/Card";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 
-function SendReceiveCards({setIsConfirmed}) {
+function SendReceiveCards({setIsConfirmed,senderCardNumber,setSenderCardNumber,receiverCardNumber,
+                              setReceiverCardNumber,sum,setSum,comment,setComment}) {
+
     const handleTransferClick = ()=>{
         setIsConfirmed(true);
     }
@@ -20,7 +22,8 @@ function SendReceiveCards({setIsConfirmed}) {
                             title_wallet="Мій гаманець"
                             img="/icons/arrow_out_pink.svg"
                             title_card="Номер картки"
-                            value="0000 0000 0000 0000"
+                            value={senderCardNumber}
+                            setValue={setSenderCardNumber}
                             img_card="/icons/card_white2.svg"
                             title_period="Термін дії"
                             validityPeriod="01 / 25"
@@ -28,9 +31,17 @@ function SendReceiveCards({setIsConfirmed}) {
                             cw_kod="***"
                             img_kod="/icons/information.svg"
                         />
-                        <CardOfReceiveSum/>
+                        <CardOfReceiveSum
+                            receiverCardNumber={receiverCardNumber}
+                            setReceiverCardNumber={setReceiverCardNumber}
+                            sum={sum}
+                            setSum={setSum}
+                        />
                     </div>
-                    <AddComment/>
+                    <AddComment
+                    comment={comment}
+                    setComment={setComment}
+                    />
                 </div>
                 <div className={styles.wrapper_termsBlock}>
                 <span className={styles.color_grey}>Натискаючи кнопку “Перекази” Ви приймаєте

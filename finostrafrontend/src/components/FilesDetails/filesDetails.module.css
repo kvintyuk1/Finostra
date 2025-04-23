@@ -1,0 +1,8 @@
+.container {
+    display: flex;
+    gap: 40px;
+    width: 1050px;
+    height: 430px;
+    background-color: #28282C;
+    outline: 1px solid red;
+}

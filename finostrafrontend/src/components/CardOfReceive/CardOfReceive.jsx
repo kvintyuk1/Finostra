@@ -3,7 +3,7 @@ import styles from "./cardOfReceive.module.css";
 import HeaderForCard from "../for card/HeaderForCard/HeaderForCard";
 import NumberCard from "../for card/NumberCard/NumberCard";
 
-function CardOfReceive() {
+function CardOfReceive({receiverCardNumber,cardValid,onChange}) {
     return (
         <div className={styles.container}>
             <HeaderForCard
@@ -13,7 +13,9 @@ function CardOfReceive() {
             />
             <NumberCard
                 title_card="Номер картки"
-                value="0000 0000 0000 0000"
+                value={receiverCardNumber}
+                cardValid={cardValid}
+                onChange={onChange}
             />
         </div>
     );

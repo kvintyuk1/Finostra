@@ -5,7 +5,7 @@ function ButtonForCard({title_button,img,onClick,isActive,colorText="whiteText",
                            fontWeight="fontWeight700"}) {
     return (
         <button className={`${styles.but_style} ${styles[colorText]} ${styles[sizeButton]}
-        ${styles[fontWeight]} ${isActive ? styles.active : styles.inactive}`} onClick={onClick}>
+        ${styles[fontWeight]}`} onClick={onClick}>
             {title_button}
             {img && <img src={img} alt=""/>}
         </button>

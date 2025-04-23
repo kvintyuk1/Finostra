@@ -12,6 +12,11 @@ import {useOutletContext} from "react-router-dom";
 
 function TransactionToCard() {
     const [isConfirmed, setIsConfirmed] = useState(false);
+    const [senderCardNumber,setSenderCardNumber] = useState("");
+    const [receiverCardNumber,setReceiverCardNumber] = useState("");
+    const [sum,setSum] = useState("");
+    const [comment,setComment] = useState("");
+
     return (
         <div className={styles.container}>
             <TransferToCardInfo
@@ -23,12 +28,28 @@ function TransactionToCard() {
             {
                 isConfirmed ? (
                     <>
-                        <ConfirmedSendReceiveCards setIsConfirmed={setIsConfirmed}/>
+                        <ConfirmedSendReceiveCards
+                            setIsConfirmed={setIsConfirmed}
+                            senderCardNumber={senderCardNumber}
+                            receiverCardNumber={receiverCardNumber}
+                            sum={sum}
+                            comment={comment}
+                        />
                         <ListTotalAmount/>
                     </>
                 ) : (
                     <>
-                        <SendReceiveCards setIsConfirmed={setIsConfirmed}/>
+                        <SendReceiveCards
+                            setIsConfirmed={setIsConfirmed}
+                            senderCardNumber={senderCardNumber}
+                            setSenderCardNumber={setSenderCardNumber}
+                            receiverCardNumber={receiverCardNumber}
+                            setReceiverCardNumber={setReceiverCardNumber}
+                            sum={sum}
+                            setSum={setSum}
+                            comment={comment}
+                            setComment={setComment}
+                        />
                         <MoneyTransferService/>
                     </>
                 )}

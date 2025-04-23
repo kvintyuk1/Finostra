@@ -5,13 +5,23 @@ import Total_Sum from "../for card/Total_Sum/Total_Sum";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 import TransferPersonalMoney_Modal from "../modals/TransferPersonalMoney_Modal/TransferPersonalMoney_Modal";
 import SuccessfulTransfer_Modal from "../modals/SuccessfulTransfer_Modal/SuccessfulTransfer_Modal";
+import SenderFee from "../for card/SenderFee/SenderFee";
+import ReceiverFee from "../for card/ReceiverFee/ReceiverFee";
 
 
-function ConfirmedSendReceiveCards({setIsConfirmed}) {
+function ConfirmedSendReceiveCards({setIsConfirmed,senderCardNumber,setSenderCardNumber,receiverCardNumber,
+    setReceiverCardNumber,sum,setSum}) {
     const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
     const [isSuccessfulTransferModalOpen, setIsSuccessfulTransferModalOpen] = useState(false);
     const [activeButton,setActiveButton]= useState("back");
 
+    const parsedSum = parseFloat(sum);
+    const isValidSum = !isNaN(parsedSum) && parsedSum > 0;
+    const senderFeeNum = isValidSum ? parsedSum * 0.01 : 0;
+    const senderFee = senderFeeNum.toFixed(2); //1%
+    const receiverFeeNum = isValidSum ? parsedSum * 0 : 0;
+    const receiverFee = receiverFeeNum.toFixed(2);  // 0%
+    const totalWithFee = isValidSum ? (parsedSum + senderFeeNum).toFixed(2) : "0.00" //1%
 
     const handleBackClick = () => {
         setActiveButton("back");
@@ -41,7 +51,8 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                         title_wallet="Мій гаманець"
                         img="/icons/arrow_out_pink.svg"
                         title_card="Visa | Картка Універсальна"
-                        value="**** **** **** 1234"
+                        value={senderCardNumber}
+                        setValue={setSenderCardNumber}
                         img_card="/icons/card_white2.svg"
                         title_period="Термін дії"
                         validityPeriod="01 / 25"
@@ -52,13 +63,10 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                             <div className={styles.container_totalSum}>
                                 <Total_Sum
                                     title_totalSum="Сума"
-                                    totalSum="1000 UAH"
+                                    sum={sum}
                                     title_color="pinkText"
                                 />
-                                <Total_Sum
-                                    title_totalSum="Комісія з відправника"
-                                    totalSum="0 UAH"
-                                />
+                                <SenderFee fee={senderFee}/>
                             </div>
                         }
                     />
@@ -68,7 +76,8 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                         titleColor="whiteText"
                         textTransform="uppercase"
                         title_card="Visa"
-                        value="4441 1144 1234 5678"
+                        value={receiverCardNumber}
+                        setValue={setReceiverCardNumber}
                         img_card="/icons/card_white2.svg"
                         title_period="Термін дії"
                         validityPeriod="01 / 25"
@@ -79,19 +88,16 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                             <div className={styles.container_totalSum}>
                                 <Total_Sum
                                     title_totalSum="До зарахування"
-                                    totalSum="1000 UAH"
+                                    sum={sum}
                                     title_color="pinkText"
                                 />
-                                <Total_Sum
-                                    title_totalSum="Комісія з одержувача"
-                                    totalSum="0 UAH"
-                                />
+                                <ReceiverFee fee={receiverFee}/>
                             </div>
                         }
                     />
                 </div>
                 <div className={styles.wrapper_total_buttons}>
-                    <span className={styles.total_amount}>Разом до списання: {}</span>
+                    <span className={styles.total_amount}>Разом до списання: {totalWithFee}</span>
                     <div className={styles.wrap_buttons}>
                         <ButtonForCard
                             title_button="Назад"
@@ -113,6 +119,12 @@ function ConfirmedSendReceiveCards({setIsConfirmed}) {
                 <TransferPersonalMoney_Modal
                     onClose={handleCloseTransferModal}
                     onSuccess={handleSuccessfulTransfer} // Передаём колбэк для успешного перевода
+                    senderCardNumber={senderCardNumber}
+                    setSenderCardNumber={setSenderCardNumber}
+                    receiveCardNumber={receiverCardNumber}
+                    setReceiverCardNumber={setReceiverCardNumber}
+                    totalWithFee={totalWithFee}
+                    setSum={setSum}
                 />
             )}
             {isSuccessfulTransferModalOpen && (

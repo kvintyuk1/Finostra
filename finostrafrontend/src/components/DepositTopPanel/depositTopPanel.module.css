@@ -14,7 +14,6 @@
     width: 938px;
     height: 74px;
     margin-left: 30px;
-    border: 1px solid red;
 }
 .title {
     display: flex;
@@ -22,7 +21,6 @@
     height: 16px;
     font-weight: 400;
     font-size: 14px;
-    border: 1px solid yellow;
 }
 .wrap_menu {
     display: flex;
@@ -31,14 +29,12 @@
     gap: 10px;
     width: 607px;
     height: 74px;
-    border: 1px solid yellow;
 }
 .wrap_rate {
     display: flex;
     justify-content: center;
     width: 233px;
     height: 16px;
-    border: 1px solid green;
 }
 .rate {
     display: flex;
@@ -48,7 +44,6 @@
     gap: 44px;
     width: 607px;
     height: 48px;
-    border: 1px solid green;
 }
 .account_payment {
     display: flex;
@@ -56,14 +51,12 @@
     gap: 18px;
     width: 197px;
     height: 32px;
-    border: 1px solid red;
 }
 .wrap_term {
     display: flex;
     gap: 36px;
     width: 348px;
     height: 48px;
-    border: 1px solid red;
 }
 .item {
     display: flex;

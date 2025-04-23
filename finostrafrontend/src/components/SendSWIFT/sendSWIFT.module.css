@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 38px;
+    width: 77.08vw;
+    height: 855px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    color: #FFF;
+}
+.containerCompact {
+    display: flex;
+    height: 667px;
+}
+.wrap_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 38px;
+    width: 72.92vw;
+    height: 795px;
+}
+.contentCompact {
+    display: flex;
+    height: 607px;
+}
+.wrapper_transferData {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+    width: 72.92vw;
+    height: 725px;
+}

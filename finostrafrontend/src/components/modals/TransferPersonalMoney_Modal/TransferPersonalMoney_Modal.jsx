@@ -4,11 +4,19 @@ import ButtonForCard from "../../for card/ButtonForCard/ButtonForCard";
 import NumberCard from "../../for card/NumberCard/NumberCard";
 import Total_Sum from "../../for card/Total_Sum/Total_Sum";
 
-function TransferPersonalMoney_Modal({onClose, onSuccess}) {
+function TransferPersonalMoney_Modal({onClose, onSuccess,senderCardNumber,setSenderCardNumber,
+                                     receiveCardNumber,setReceiverCardNumber,sum,setSum,totalWithFee}) {
 
     const handlePaymentClick = () => {
         onSuccess();
     };
+    const maskCardNumber = (number)=>{
+        const clean = number.replace(/\s+/g, '');
+        if (clean < 8) return number;
+        const firstFour = clean.slice(0,4);
+        const lastFour = clean.slice(-4);
+        return `${firstFour} **** **** ${lastFour}`
+    }
 
     return (
         <div className={styles.overlay} onClick={onClose}>
@@ -29,17 +37,19 @@ function TransferPersonalMoney_Modal({onClose, onSuccess}) {
                                     <NumberCard
                                         title_card="З картки:"
                                         colorTitle="greyTitle"
-                                        value="4441 **** **** 1234"
+                                        value={maskCardNumber(senderCardNumber)}
                                         colorValue="whiteValue"
                                         showLine={false}
+                                        cardValid={true}
                                     />
                                     <div className={styles.linea_dashed}></div>
                                     <NumberCard
                                         title_card="Одержувач"
                                         colorTitle="greyTitle"
-                                        value="4441 **** **** 5678"
+                                        value={maskCardNumber(receiveCardNumber)}
                                         colorValue="whiteValue"
                                         showLine={false}
+                                        cardValid={true}
                                     />
                                 </div>
                             </div>
@@ -48,7 +58,7 @@ function TransferPersonalMoney_Modal({onClose, onSuccess}) {
                             <Total_Sum
                                 title_totalSum="Сума"
                                 title_color="greyText"
-                                totalSum="1000 UAH"
+                                sum={totalWithFee}
                                 isRow={true}
                                 hideBorder={true}
                                 isMargin={true}

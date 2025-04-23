@@ -27,10 +27,10 @@ function Category() {
                 <div className={styles.wrapper_category}>
                     {
                         categoryItems.map(({img, titleCategory},index) => (
-                            <div key={index} className={styles.wrapper_item}>
+                            <button key={index} className={styles.wrapper_item}>
                                 <img src={`/icons/${img}.svg`} alt=""/>
                                 <div className={styles.title_category}>{titleCategory}</div>
-                            </div>
+                            </button>
 
                         ))
                     }

@@ -1,14 +1,16 @@
 import React from "react";
 import styles from "./sumForReceive.module.css";
 import Total_Sum from "../for card/Total_Sum/Total_Sum";
+import total_Sum from "../for card/Total_Sum/Total_Sum";
 
-function SumForReceive({selectedLanguage, handleLanguageChange}) {
+function SumForReceive({selectedLanguage, handleLanguageChange,sum,setSum}) {
     return (
         <div className={styles.container}>
             <div className={styles.wrapper_info}>
                 <Total_Sum
                     title_totalSum="Сума"
-                    totalSum="00.00"
+                    value={sum}
+                    onChange={(e)=>setSum(e.target.value)}
                     fontWeight="bold"
                 />
                 <div className={styles.wrap_languages}>
