@@ -4,34 +4,79 @@ import LineVerticalDotted from "../for card/ LineVerticalDotted/LineVerticalDott
 import { LanguageContext } from "../LanguageContext";
 import { creditTermsTranslations } from "./creditTermsTranslations";
 
-function CreditTerms() {
-    const { selectedLanguage } = useContext(LanguageContext);
-    const tCredit = creditTermsTranslations[selectedLanguage];
+function CreditTerms({
+  rate,
+  ratePercent,
+  term,
+  termCredit,
+  sumCredit,
+  numberCredit,
+  hideLineVerticalDotted = false,
+  hideLineVerticalDotted2 = false,
+  hideWrapperRateLine = true,
+  prepayment,
+  prepaymentPercent,
+  widthWrapRate = "widthRate124",
+  widthWrapRateTermLine = "widthWrapRateTermLine330",
+  widthContainerCreditTerms = "widthContainerCreditTerms375"
+}) {
+  const { selectedLanguage } = useContext(LanguageContext);
+  const tCredit = creditTermsTranslations[selectedLanguage];
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.wrapper_rate_term_line}>
-                <div className={styles.wrapper_rate_term}>
-                    <div className={styles.wrapper_rate_line}>
-                        <div className={styles.wrapper_rate}>
-                            <div className={styles.text}>{tCredit.interestRate}</div>
-                            <div className={styles.number}>{tCredit.interestRateValue}</div>
-                        </div>
-                        <LineVerticalDotted />
-                    </div>
-                    <div className={styles.wrapper_rate}>
-                        <div className={styles.text}>{tCredit.maxTerm}</div>
-                        <div className={styles.number}>{tCredit.maxTermValue}</div>
-                    </div>
-                </div>
-                <LineVerticalDotted />
+  // fallback до перекладів, якщо пропси не передані
+  const rateLabel     = rate        ?? tCredit.interestRate;
+  const rateValue     = ratePercent ?? tCredit.interestRateValue;
+  const termLabel     = term        ?? tCredit.maxTerm;
+  const termValue     = termCredit  ?? tCredit.maxTermValue;
+  const sumLabel      = sumCredit   ?? tCredit.creditAmount;
+  const sumValue      = numberCredit?? tCredit.creditAmountValue;
+
+  return (
+    <div className={`${styles.container} ${styles[widthContainerCreditTerms]}`}>
+      <div className={`${styles.wrapper_rate_term_line} ${styles[widthWrapRateTermLine]}`}>
+        <div className={styles.wrapper_rate_term}>
+
+          {/* Interest Rate */}
+          <div className={styles.wrapper_rate_line}>
+            <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
+              <div className={styles.text}>{rateLabel}</div>
+              <div className={styles.number}>{rateValue}</div>
             </div>
-            <div className={styles.wrapper_rate}>
-                <div className={styles.text}>{tCredit.creditAmount}</div>
-                <div className={styles.number}>{tCredit.creditAmountValue}</div>
+            <LineVerticalDotted />
+          </div>
+
+          {/* Prepayment (якщо потрібен) */}
+          {!hideWrapperRateLine && (
+            <div className={styles.wrapper_rate_line}>
+              <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
+                <div className={styles.text}>{prepayment}</div>
+                <div className={styles.number}>{prepaymentPercent}</div>
+              </div>
+              <LineVerticalDotted />
             </div>
+          )}
+
+          {/* Term */}
+          <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
+            <div className={styles.text}>{termLabel}</div>
+            <div className={styles.number}>{termValue}</div>
+          </div>
+
+          {/* Вертикальна лінія після терміну */}
+          {!hideLineVerticalDotted2 && <LineVerticalDotted />}
         </div>
-    );
+
+        {/* Головна вертикальна лінія зліва */}
+        {!hideLineVerticalDotted && <LineVerticalDotted />}
+      </div>
+
+      {/* Сума кредиту */}
+      <div className={styles.wrapper_rate}>
+        <div className={styles.text}>{sumLabel}</div>
+        <div className={styles.number}>{sumValue}</div>
+      </div>
+    </div>
+  );
 }
 
 export default CreditTerms;

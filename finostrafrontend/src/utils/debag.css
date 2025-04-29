@@ -1,0 +1,27 @@
+.debug_border {
+    border: 1px solid red !important;
+}
+
+.debug_dashed {
+    border: 1px dashed #00f !important;
+}
+
+.debug_outline {
+    outline: 1px solid lime !important;
+}
+
+.debug_shadow {
+    box-shadow: 0 0 0 1px magenta !important;
+}
+
+.debug_bg {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.debug_info {
+    border: 1px solid #888 !important;
+    background: rgba(0, 255, 255, 0.1);
+    color: #555;
+    font-size: 12px;
+    padding: 2px;
+}

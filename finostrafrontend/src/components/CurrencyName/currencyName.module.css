@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    border-radius: 9px;
+    max-width: 253px;
+    height: 30px;
+    border: 1px solid red;
+}
+.wrap_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #0F110E;
+    color: #FFF;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.active {
+    color: #000;
+    background-color: #CFF500;
+}

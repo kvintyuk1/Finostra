@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72.92vw;
+    height: 347px;
+    border-radius: 2.08vw;
+    background-color: #28282C;
+}
+.containerCompact {
+    display: flex;
+    height: 158px;
+}
+.containerCompact .container2 {
+    border-top: none;
+    border-bottom: none;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 68.75vw;
+    height: 290px;
+}
+.contentCompact {
+    display: flex;
+    height: 102px;
+}
+.wrap_type {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 68.75vw;
+    height: 205px;
+}
+.containerCompact .wrap_type {
+    gap: 20px;
+}
+.wrap_title_change {
+    display: flex;
+    justify-content: space-between;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}
+.wrap_descriptionType {
+    display: flex;
+    flex-direction: column;
+    width: 68.75vw;
+    height: 146px;
+}
+.container2 {
+    display: flex;
+    align-items: center;
+    width: 68.75vw;
+    height: 73px;
+    cursor: pointer;
+    border-top: 1px solid rgba(250,250,250,0.6);
+    border-bottom: 1px solid rgba(250,250,250,0.6);
+}
+.wrap_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.74vw;
+    min-width: 100%;
+    height: 43px;
+}
+.radio_img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* важно для выравнивания */
+    cursor: pointer;
+}
+
+.radio_block {
+    display: flex;
+    align-items: flex-start;
+    gap: 1vw;
+    width: 100%;
+}
+
+.wrap_title_desc {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 40.35vw;
+    height: 43px;
+    white-space: nowrap;
+}
+.title {
+    font-weight: 400;
+    font-size: 1em;
+}
+.description {
+    font-weight: 400;
+    font-size: 0.88vw;
+    color: rgba(250,250,250,0.6);
+}
+
+.wrap_buttons {
+    display: flex;
+    gap: 2.08vw;
+    width: 23.19vw;
+    height: 45px;
+}

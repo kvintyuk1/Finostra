@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./total_Sum.module.css";
 
 function Total_Sum({
-                       title_totalSum, totalSum, title_color = "whiteText", fontWeight = "normal",
+                       title_totalSum, sum, title_color = "whiteText", fontWeight = "normal",
                        total_color = "totalWhite", isRow = false, hideBorder = false,
-                       isMargin = false, currency,sizeTotalBlock="size200"
+                       isMargin = false, currency,sizeTotalBlock="size200",
+                       currencyColor="currencyColorWhite",value,onChange
                    }) {
     return (
         <div className={`${styles.total_block} ${styles[sizeTotalBlock]} ${isRow ? styles.row : ""}`}>
@@ -13,8 +14,11 @@ function Total_Sum({
             <div className={styles.wrapper_total}>
                 <input type="text"
                        className={`${styles.total} ${styles[total_color]} ${hideBorder ? styles.noBorder : ""}`}
-                       value={totalSum}/>
-                {currency && <div className={styles.currency}>{currency}</div>}
+                       placeholder="00.00"
+                       value={sum}
+                       onChange={onChange}
+                      />
+                {currency && <div className={`${styles.currency} ${styles[currencyColor]}`}>{currency}</div>}
             </div>
         </div>
     );

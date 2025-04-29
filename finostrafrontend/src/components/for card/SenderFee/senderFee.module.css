@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 13.89vw;
+    height: 58px;
+    background-color: #28282C;
+    border-bottom: 1px solid rgba(250,250,250,0.6);
+    color: #FFF;
+    letter-spacing: 1px;
+}
+.title {
+    font-weight: 700;
+    font-size: 0.88em;
+}
+.feeAmount {
+    display: flex;
+    width: 13.89vw;
+    height: 24px;
+    color: rgba(250,250,250,0.6);
+}

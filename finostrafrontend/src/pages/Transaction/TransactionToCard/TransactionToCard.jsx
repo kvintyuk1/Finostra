@@ -12,31 +12,57 @@ import { LanguageContext } from "../../../components/LanguageContext";
 import { transactionToCardTranslations } from "./transactionToCardTranslations";
 
 function TransactionToCard() {
-    const [isConfirmed, setIsConfirmed] = useState(false);
-    const { selectedLanguage } = useContext(LanguageContext);
-    const t = transactionToCardTranslations[selectedLanguage];
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
-    return (
-        <div className={styles.container}>
-            <TransferToCardInfo
-                img="card_white"
-                title={t.title}
-                subtitle={t.subtitle}
-            />
-            {
-                isConfirmed ? (
-                    <>
-                        <ConfirmedSendReceiveCards setIsConfirmed={setIsConfirmed}/>
-                        <ListTotalAmount/>
-                    </>
-                ) : (
-                    <>
-                        <SendReceiveCards setIsConfirmed={setIsConfirmed}/>
-                        <MoneyTransferService/>
-                    </>
-                )}
-        </div>
-    );
+  // Стан для карток і суми/коментаря
+  const [senderCardNumber, setSenderCardNumber] = useState("");
+  const [receiverCardNumber, setReceiverCardNumber] = useState("");
+  const [sum, setSum] = useState("");
+  const [comment, setComment] = useState("");
+
+  // Локалізація
+  const { selectedLanguage } = useContext(LanguageContext);
+  const t = transactionToCardTranslations[selectedLanguage];
+
+  return (
+    <div className={styles.container}>
+      <TransferToCardInfo
+        img="card_white"
+        title={t.title}
+        subtitle={t.subtitle}
+      />
+
+      {isConfirmed ? (
+        <>
+          <ConfirmedSendReceiveCards
+            setIsConfirmed={setIsConfirmed}
+            senderCardNumber={senderCardNumber}
+            setSenderCardNumber={setSenderCardNumber}
+            receiverCardNumber={receiverCardNumber}
+            setReceiverCardNumber={setReceiverCardNumber}
+            sum={sum}
+            setSum={setSum}
+          />
+          <ListTotalAmount />
+        </>
+      ) : (
+        <>
+          <SendReceiveCards
+            setIsConfirmed={setIsConfirmed}
+            senderCardNumber={senderCardNumber}
+            setSenderCardNumber={setSenderCardNumber}
+            receiverCardNumber={receiverCardNumber}
+            setReceiverCardNumber={setReceiverCardNumber}
+            sum={sum}
+            setSum={setSum}
+            comment={comment}
+            setComment={setComment}
+          />
+          <MoneyTransferService />
+        </>
+      )}
+    </div>
+  );
 }
 
 export default TransactionToCard;

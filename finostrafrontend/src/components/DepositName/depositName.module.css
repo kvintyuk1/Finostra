@@ -1,0 +1,123 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1115px;
+    height: 285px;
+    border-radius: 30px;
+    background-color: #0F110E;
+    color: #FFF;
+}
+.wrapper_content {
+    display: flex;
+    gap: 20px;
+    width: 1054px;
+    height: 225px;
+    border: 1px solid blue;
+}
+.wrap_description {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 317px;
+    height: 225px;
+    border: 1px solid red;
+}
+.wrap_title_describe {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 308px;
+    height: 100px;
+    border: 1px solid green;
+}
+.title {
+    font-weight: 400;
+    font-size: 24px;
+    border: 1px solid green;
+}
+.describe {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(250,250,250,0.6);
+    border: 1px solid green;
+}
+.wrap_min_sum {
+    display: flex;
+    gap: 4px;
+}
+.text_min_sun {
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(250,250,250,0.6);
+}
+.number_min_sun {
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFF;
+}
+.wrapper_download {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 308px;
+    height: 52px;
+}
+.download {
+    display: flex;
+    font-weight: 400;
+    font-size: 16px;
+    color: #A66CFE;
+}
+.wrapper_bestseller {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 158px;
+    height: 25px;
+    border: 1px solid green;
+}
+.bestseller {
+    display: flex;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+
+.text1 {
+    display: flex;
+    justify-content: center;
+    width: 72px;
+    height: 46px;
+    font-weight: 400;
+    font-size: 16px;
+    border: 1px solid red;
+}
+.text2 {
+    display: flex;
+    justify-content: center;
+    width: 91px;
+    height: 46px;
+    font-weight: 400;
+    font-size: 16px;
+    border: 1px solid red;
+}
+.wrap_table {
+    display: flex;
+    gap: 12px;
+    width: 378px;
+    height: 171px;
+    border: 1px solid red;
+}
+
+
+.wrapper_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    width: 116px;
+    height: 159px;
+    border: 1px solid yellow;
+}

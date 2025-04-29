@@ -4,7 +4,7 @@
     height: 43px;
     background-image: repeating-linear-gradient(
             to bottom,
-            rgba(250, 250, 250, 0.6) 0px,
+            rgba(250, 250, 250, 0.6) 4px,
             rgba(250, 250, 250, 0.6) 2px,
             transparent 15px,
             transparent 6px

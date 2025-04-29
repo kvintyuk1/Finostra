@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 1.39vw;
+    width: 18.47vw;
+    height: 32px;
+    color: #FFF;
+}
+.breadCrumbs_item {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.25em;
+    letter-spacing: 0.75px;
+    white-space: nowrap;
+}

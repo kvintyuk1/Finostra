@@ -7,50 +7,70 @@ import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 import { LanguageContext } from "../LanguageContext";
 import { sendReceiveTranslations } from "./sendReceiveTranslations";
 
-function SendReceiveCards({ setIsConfirmed }) {
-    const { language } = useContext(LanguageContext);
-    const t = sendReceiveTranslations[language] || sendReceiveTranslations["UA"];
+function SendReceiveCards({
+  setIsConfirmed,
+  senderCardNumber,
+  setSenderCardNumber,
+  receiverCardNumber,
+  setReceiverCardNumber,
+  sum,
+  setSum,
+  comment,
+  setComment,
+}) {
+  const { language } = useContext(LanguageContext);
+  const t = sendReceiveTranslations[language] || sendReceiveTranslations["UA"];
 
-    const handleTransferClick = () => {
-        setIsConfirmed(true);
-    };
+  const handleTransferClick = () => {
+    setIsConfirmed(true);
+  };
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.wrapper_info}>
-                <div className={styles.cards_comment}>
-                    <div className={styles.wrapper_cards}>
-                        <Card
-                            title={t.fromCard}
-                            title_wallet={t.myWallet}
-                            img="/icons/arrow_out_pink.svg"
-                            title_card={t.cardNumber}
-                            value="0000 0000 0000 0000"
-                            img_card="/icons/card_white2.svg"
-                            title_period={t.expiryDate}
-                            validityPeriod="01 / 25"
-                            title_kod={t.cwCode}
-                            cw_kod="***"
-                            img_kod="/icons/information.svg"
-                        />
-                        <CardOfReceiveSum/>
-                    </div>
-                    <AddComment/>
-                </div>
-                <div className={styles.wrapper_termsBlock}>
-                    <span className={styles.color_grey}>
-                        {t.acceptTerms}
-                        <span className={styles.color_white}> {t.serviceTerms}</span>
-                    </span>
-                    <ButtonForCard
-                        title_button={t.transferButton}
-                        onClick={handleTransferClick}
-                    />
-                </div>
-                <img src="/icons/tabler_message.svg" className={styles.img_message} alt=""/>
-            </div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.wrapper_info}>
+        <div className={styles.cards_comment}>
+          <div className={styles.wrapper_cards}>
+            <Card
+              title={t.fromCard}
+              title_wallet={t.myWallet}
+              img="/icons/arrow_out_pink.svg"
+              title_card={t.cardNumber}
+              value={senderCardNumber}
+              setValue={setSenderCardNumber}
+              img_card="/icons/card_white2.svg"
+              title_period={t.expiryDate}
+              validityPeriod="01 / 25"
+              title_kod={t.cwCode}
+              cw_kod="***"
+              img_kod="/icons/information.svg"
+            />
+            <CardOfReceiveSum
+              receiverCardNumber={receiverCardNumber}
+              setReceiverCardNumber={setReceiverCardNumber}
+              sum={sum}
+              setSum={setSum}
+            />
+          </div>
+          <AddComment
+            comment={comment}
+            setComment={setComment}
+          />
         </div>
-    );
+        <div className={styles.wrapper_termsBlock}>
+          <span className={styles.color_grey}>
+            {t.acceptTerms}
+            <span className={styles.color_white}> {t.serviceTerms}</span>
+          </span>
+          <ButtonForCard
+            title_button={t.transferButton}
+            onClick={handleTransferClick}
+          />
+        </div>
+        <img src="/icons/tabler_message.svg" className={styles.img_message} alt="Message icon" />
+      </div>
+    </div>
+  );
 }
 
 export default SendReceiveCards;
+

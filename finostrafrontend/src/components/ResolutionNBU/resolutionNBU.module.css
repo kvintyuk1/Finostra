@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72.92vw;
+    height: 118px;
+    background-color: #28282C;
+    border-radius: 2.08vw;
+}
+.wrap_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 68.75vw;
+    height: 58px;
+}
+.text {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}

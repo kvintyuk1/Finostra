@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 15.9vw;
+    height: 69px;
+}
+.title {
+    font-weight: 400;
+    font-size: 1em;
+}
+.wrap_buttons {
+    display: flex;
+    gap: 1.04vw;
+    width: 7.57vw;
+    height: 35px;
+}
+.wrapper_buttons {
+    display: flex;
+    gap: 1.53vw;
+    width: 16.11vw;
+    height: 45px;
+}

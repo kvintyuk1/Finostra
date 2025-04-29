@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import styles from "./cardOfReceive.module.css";
 import HeaderForCard from "../for card/HeaderForCard/HeaderForCard";
 import NumberCard from "../for card/NumberCard/NumberCard";
-import { LanguageContext } from "../LanguageContext"; 
+import { LanguageContext } from "../LanguageContext";
 import { cardOfReceiveTranslations } from "./cardOfReceiveTranslations";
 
-function CardOfReceive() {
+function CardOfReceive({ receiverCardNumber, cardValid, onChange }) {
     const { selectedLanguage } = useContext(LanguageContext);
     const t = cardOfReceiveTranslations[selectedLanguage];
 
@@ -18,7 +18,9 @@ function CardOfReceive() {
             />
             <NumberCard
                 title_card={t.cardNumber}
-                value="0000 0000 0000 0000"
+                value={receiverCardNumber}
+                cardValid={cardValid}
+                onChange={onChange}
             />
         </div>
     );

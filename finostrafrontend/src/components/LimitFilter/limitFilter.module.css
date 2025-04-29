@@ -1,18 +1,51 @@
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 0.69vw;
     width: 35.76vw;
     height: 41px;
     color: white;
+}
+.left, .right {
+    white-space: nowrap;
+}
+.wrap_limit {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.widthLimit72 {
+    width: 72%;
+}
+.widthLimit100 {
+    width: 100%;
+}
+.limit {
+    display: flex;
+    justify-content: space-between;
+    color: #CFF500;
+}
+.leftLabel {
+    display: flex;
+}
+.rightLabel {
+    display: flex;
 }
 .label {
     display: flex;
     font-size: 1em;
     font-weight: 400;
+    color: #CFF500;
 }
 .range {
     width: 100%;
     accent-color: #CFF500;
 }
+.minMaxBelow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
 

@@ -1,0 +1,13 @@
+.wrap_change_img {
+    display: flex;
+    gap: 0.69vw;
+    width: 6.39vw;
+    height: 19px;
+    cursor: pointer;
+}
+.change {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+    color: #A66CFE;
+}
