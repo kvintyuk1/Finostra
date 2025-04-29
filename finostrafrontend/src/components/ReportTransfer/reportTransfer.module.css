@@ -35,8 +35,9 @@
 .wrapper_title {
     display: flex;
     flex-direction: column;
+    align-self: center;
     gap: 50px;
-    width: 77.01vw;
+    width: 72.85vw;
     height: 107px;
 }
 .title {

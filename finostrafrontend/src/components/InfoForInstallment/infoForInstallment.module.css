@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 36.04vw;
+    height: 61px;
+}
+.title_info {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.description_info {
+    display: flex;
+    font-weight: 400;
+    font-size: 0.88em;
+    color: rgba(250,250,250,0.6);
+}

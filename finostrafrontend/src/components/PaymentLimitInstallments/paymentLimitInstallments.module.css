@@ -10,12 +10,48 @@
     color: #FFF;
     letter-spacing: 1px;
 }
+.gap153 {
+    gap: 10.63vw;
+}
+.gap251 {
+    gap: 17.43vw;
+}
+.height441 {
+    height: 441px;
+}
+.height477 {
+    height: 477px;
+}
+.height594 {
+    height: 594px;
+}
 .wrapper_info {
     display: flex;
     flex-direction: column;
     width: 36.04vw;
     height: 361px;
     gap: 37px;
+}
+.widthWrapperInfo519 {
+    width: 36.04vw;
+}
+.heightWrapperInfo361 {
+    height: 361px;
+}
+.widthWrapperInfo421 {
+    width: 29.24vw;
+}
+.heightWrapperInfo487 {
+    height: 487px;
+}
+.gap37 {
+    gap: 37px;
+}
+.gap58 {
+    gap: 58px;
+}
+.gap108 {
+    gap: 108px;
 }
 .wrapper_howUsePayment {
     display: flex;
@@ -24,6 +60,7 @@
     width: 36.04vw;
     height: 210px;
 }
+
 .wrapper_payNow {
     display: flex;
     flex-direction: column;
@@ -31,89 +68,21 @@
     width: 36.04vw;
     height: 134px;
 }
-.wrapper_title_description {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.gapPayNow28 {
+    gap: 28px;
+}
+.gapPayNow0 {
+    gap: 0;
+}
+.widthPayNow421 {
+    width: 29.24vw;
+    height: 89px;
+}
+.widthPayNow519 {
     width: 36.04vw;
-    height: 61px;
-}
-.title {
-    display: flex;
-    font-weight: 400;
-    font-size: 1em;
-}
-.description {
-    display: flex;
-    font-weight: 400;
-    font-size: 0.88em;
-    color: rgba(250,250,250,0.6);
+    height: 134px;
 }
 
-.wrapper_availableLimit {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 12.78vw;
-    height: 114px;
-}
-.wrapper_limit {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 12.78vw;
-    height: 53px;
-}
-.limit {
-    display: flex;
-    color: rgba(250,250,250,0.6);
-    font-weight: 400;
-    font-size: 1em;
-}
-.sum_limit {
-    display: flex;
-    gap: 0.28vw;
-    white-space: nowrap;
-    font-weight: 400;
-    font-size: 1.25vw;
-    width: 12.78vw;
-    letter-spacing: -1px;
-}
-.color_text {
-    color: rgba(250,250,250,0.6);
-}
-.wrapper_cards {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 37px;
-    width: 24.86vw;
-    height: 361px;
-    border-radius: 2.08vw;
-    background-color: #28282C;
-}
-.wrapper_availableCards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 38px;
-    width: 20.69vw;
-    height: 204px;
-}
-.text {
-    display: flex;
-    font-weight: 400;
-    font-size: 1em;
-}
-
-.wrapper_text {
-    width: 20.69vw;
-    height: 60px;
-    font-weight: 400;
-    font-size: 0.88em;
-    letter-spacing: 0;
-}
 .text_info {
     color: rgba(250,250,250,0.6);
 }

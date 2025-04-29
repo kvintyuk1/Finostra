@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 77.08vw;
+    height: 799px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+    color: #FFF;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+    width: 72.92vw;
+    height: 739px;
+}
+
+.wrapper_transferData {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+    width: 72.92vw;
+    height: 669px;
+}

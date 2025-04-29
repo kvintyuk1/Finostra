@@ -48,6 +48,7 @@
     font-size: 1em;
     background-color: #0F110E;
     border: none;
+    color: #FFF;
 }
 .valuta_select, .country_select{
     appearance: none;
@@ -61,4 +62,9 @@
     border: none;
     color: rgba(250,250,250,0.6);
     background-position: right 0.69vw center;
+}
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 8px;
 }

@@ -51,8 +51,12 @@
     height: 140px;
     border-radius: 2.08vw;
     background-color: #28282C;
+    border: none;
+    cursor: pointer;
 }
 .title_category {
     display: flex;
     color: #FFF;
+    font-weight: 400;
+    font-size: 16px;
 }

@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    gap: 25px;
+    width: 1115px;
+    height: 107px;
+    border: 1px solid red;
+}
+
+.wrap_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 355px;
+    height: 107px;
+    border-radius: 30px;
+    border: none;
+    background-color: #0F110E;
+    cursor: pointer;
+}
+.active {
+    background-color: #A66CFE;
+    color: #FFF;
+}
+.wrap_content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 202px;
+    height: 37px;
+}
+.name {
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFF;
+}

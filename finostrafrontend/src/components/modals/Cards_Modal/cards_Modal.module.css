@@ -1,0 +1,77 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 16.5vw;
+    width: 82%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 1000;
+}
+.modal {
+    display: flex;
+    justify-content: center;
+    width: 23.96vw;
+    height: 1707px;
+    background-color: #28282C;
+    position: relative;
+    left: 0;
+    top: 98px;
+}
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #FFF;
+}
+
+.modal_content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 18.4vw;
+    height: 678px;
+    position: relative;
+    top: 40px;
+}
+.wrapper_item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 18.4vw;
+    height: 54px;
+}
+.wrapper_item img {
+    margin-left: 1.04vw;
+}
+.wrapper_item:hover,
+.wrapper_item:active {
+    display: flex;
+    background-color: #0F110E;
+    border-radius: 1.04vw;
+    cursor: pointer;
+}
+.item {
+    display: flex;
+    align-items: center;
+    gap: 1.04vw;
+}
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+.title {
+    display: flex;
+    font-family: 'adeneue PRO Cyr', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+    letter-spacing: 1px;
+}

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import styles from "./sentReceivedSwitch.module.css";
 
-function SentReceivedSwitch({text_but_one,text_but_two}) {
+function SentReceivedSwitch({text_but_one,text_but_two,widthContainer="width182"}) {
     const [activeButton, setActiveButton] = useState('sent');
 
     return (
-        <div className={styles.wrapper_button}>
+        <div className={`${styles.wrapper_button} ${styles[widthContainer]}`}>
             <button className={`${styles.send_but} ${activeButton === 'sent' ? styles.active : ''}`}
                     onClick={() => setActiveButton('sent')}
             >

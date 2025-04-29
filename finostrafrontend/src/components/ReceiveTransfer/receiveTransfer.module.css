@@ -50,6 +50,8 @@
     height: 109px;
     border-radius: 0.69vw;
     background-color: #28282C;
+    border: none;
+    cursor: pointer;
 }
 .img_title {
     display: flex;

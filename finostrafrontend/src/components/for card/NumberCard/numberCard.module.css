@@ -30,6 +30,19 @@
     color: #FFF;
     letter-spacing: 1px;
 }
+.inValid {
+    border: 2px solid red;
+}
+.errorText {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+.successText {
+    color: green;
+    font-size: 12px;
+    margin-top: 4px;
+}
 .whiteValue {
     color: #FFF;
 }

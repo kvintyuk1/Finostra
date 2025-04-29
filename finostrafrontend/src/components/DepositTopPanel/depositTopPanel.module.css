@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 1114px;
+    height: 109px;
+    border-radius: 30px;
+    background-color: #0F110E;
+    color: #FFF;
+}
+.wrap_content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 938px;
+    height: 74px;
+    margin-left: 30px;
+}
+.title {
+    display: flex;
+    width: 312px;
+    height: 16px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.wrap_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    width: 607px;
+    height: 74px;
+}
+.wrap_rate {
+    display: flex;
+    justify-content: center;
+    width: 233px;
+    height: 16px;
+}
+.rate {
+    display: flex;
+}
+.wrap_items_menu {
+    display: flex;
+    gap: 44px;
+    width: 607px;
+    height: 48px;
+}
+.account_payment {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    width: 197px;
+    height: 32px;
+}
+.wrap_term {
+    display: flex;
+    gap: 36px;
+    width: 348px;
+    height: 48px;
+}
+.item {
+    display: flex;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-size: 14px;
+}

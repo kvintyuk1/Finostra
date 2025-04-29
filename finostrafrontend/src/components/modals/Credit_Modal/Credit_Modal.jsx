@@ -8,13 +8,13 @@ const creditModalItems = [
   { img: "moneybag_solar", titleKey: "myCredits", path: "/credits/myCredits" },
   { img: "credit_limit", titleKey: "creditLimit", path: "/credits/creditLimit" },
   { img: "payment_installments", titleKey: "paymentInstallments", path: "/credits/paymentInstallments" },
-  { img: "installment", titleKey: "instantInstallment", path: "/credit/instantInstallment" },
-  { img: "credit_cash", titleKey: "creditCash", path: "/credit/creditCash" },
-  { img: "credit_car", titleKey: "creditCar", path: "/credit/creditCar" },
-  { img: "credit_house", titleKey: "creditHouse", path: "/credit/creditHouse" },
-  { img: "mynaui_search_home", titleKey: "monitoringCollateralProperty", path: "/credit/monitoringCollateralProperty" },
-  { img: "hand_deposit", titleKey: "depositSecurity", path: "/credit/depositSecurity" },
-  { img: "sad", titleKey: "overdueDebts", path: "/credit/overdueDebts" },
+  { img: "installment", titleKey: "instantInstallment", path: "/credits/instantInstallment" },
+  { img: "credit_cash", titleKey: "creditCash", path: "/credits/creditCash" },
+  { img: "credit_car", titleKey: "creditCar", path: "/credits/creditCar" },
+  { img: "credit_house", titleKey: "creditHouse", path: "/credits/creditHouse" },
+  { img: "mynaui_search_home", titleKey: "monitoringCollateralProperty", path: "/credits/monitoringCollateralProperty" },
+  { img: "hand_deposit", titleKey: "depositSecurity", path: "/credits/depositSecurity" },
+  { img: "sad", titleKey: "overdueDebts", path: "/credits/overdueDebts" },
 ];
 
 function Credit_Modal({ onClose }) {
@@ -22,9 +22,7 @@ function Credit_Modal({ onClose }) {
   const tModal = creditModalTranslations[selectedLanguage];
 
   const handleOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+    if (e.target === e.currentTarget) onClose();
   };
 
   return (
