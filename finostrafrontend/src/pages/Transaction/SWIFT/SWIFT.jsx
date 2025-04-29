@@ -9,12 +9,20 @@ import PaymentDetails from "../../../components/PaymentDetails/PaymentDetails";
 import ConfirmationTransfer from "../../../components/ConfirmationTransfer/ConfirmationTransfer";
 
 function SWIFT() {
-    const [isConfirmed,setIsConfirmed] = useState(false);
-    const [isSum,setIsSum] = useState("");
-    const [isCurrency,setIsCurrency] = useState("");
-    const [isCountry,setIsCountry] = useState("");
+    const [isConfirmed, setIsConfirmed] = useState(false);
+    const [showSendSwift, setShowSendSwift] = useState(false);
+    const [commissionConfirmed, setCommissionConfirmed] = useState(false);
+    const [isSum, setIsSum] = useState("");
+    const [isCurrency, setIsCurrency] = useState("");
+    const [isCountry, setIsCountry] = useState("");
+
+    const handleBackToSend = ()=>{
+        setShowSendSwift(false);
+        setCommissionConfirmed(false);
+    }
 
     return (
+
         <div className={styles.container}>
             <div className={styles.wrapper_content}>
                 <TransferToCardInfo
@@ -23,13 +31,14 @@ function SWIFT() {
                     subtitle="SWIFT-платежі – це зручний спосіб переказу коштів за кордон з особистого або
                         корпоративного рахунку на рахунок іншої фізичної чи юридичної особи. Детальніше"
                 />
-                {!isConfirmed ? (
+                {!showSendSwift ? (
                     <>
-                        <ConfirmationTransfer/>
-                        {/*
-                         <div className={styles.wrap_send_requisite}>
+                        {/*  <ConfirmationTransfer/> */}
+
+                        <div className={styles.wrap_send_requisite}>
                             <Send
-                                setIsConfirmed={setIsConfirmed}
+                                isConfirmed={isConfirmed}
+                                setIsConfirmed={() => setShowSendSwift(true)}
                                 isSum={isSum}
                                 setIsSum={setIsSum}
                                 isCurrency={isCurrency}
@@ -40,20 +49,23 @@ function SWIFT() {
                             <Requisites/>
                         </div>
                         <ReportTransfer/>
-                        */}
                     </>
                 ) : (
-                    <SendSWIFT
-                    setIsConfirmed={setIsConfirmed}
-                    isSum={isSum}
-                    setIsSum={setIsSum}
-                    isCurrency={isCurrency}
-                    setIsCurrency={setIsCurrency}
-                    isCountry={isCountry}
-                    setIsCountry={setIsCountry}
-                    />
+                    <>
+                        <SendSWIFT
+                            isConfirmed={commissionConfirmed}
+                            setIsConfirmed={setCommissionConfirmed}
+                            isSum={isSum}
+                            setIsSum={setIsSum}
+                            isCurrency={isCurrency}
+                            setIsCurrency={setIsCurrency}
+                            isCountry={isCountry}
+                            setIsCountry={setIsCountry}
+                            handleBack={handleBackToSend}
+                        />
+                        {commissionConfirmed &&  <PaymentDetails/>}
+                    </>
                 )}
-                <PaymentDetails/>
             </div>
         </div>
     );
