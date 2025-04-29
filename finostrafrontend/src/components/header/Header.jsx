@@ -14,13 +14,11 @@ function Header({ isDarkMode, toggleTheme }) {
   const { tHeader, selectedLanguage, handleLanguageChange } = useContext(LanguageContext);
   const [showSignIn, setShowSignIn] = useState(false);
 
-  // Monobank rate state
   const [rate, setRate] = useState({ buy: null, sell: null, timestamp: 0 });
   const [loadingRate, setLoadingRate] = useState(true);
   const [rateError, setRateError] = useState(null);
   const intervalRef = useRef(null);
 
-  // Fetch rate function
   const fetchRate = async () => {
     try {
       const response = await fetch("https://api.monobank.ua/bank/currency");
@@ -51,28 +49,25 @@ function Header({ isDarkMode, toggleTheme }) {
   };
 
   useEffect(() => {
-    // Load cached rate
     const cached = localStorage.getItem("usdRate");
     if (cached) {
       const parsed = JSON.parse(cached);
       setRate(parsed);
       const age = Date.now() - parsed.timestamp;
-      // If cache is fresh (under 5 mins), skip immediate fetch
       if (age < 5 * 60 * 1000) {
         setLoadingRate(false);
       } else {
-        // older cache: fetch new data
+        
         fetchRate();
       }
     } else {
-      // no cache: fetch
       fetchRate();
     }
 
-    // Set interval to refresh every 5 minutes
+    
     intervalRef.current = setInterval(fetchRate, 5 * 60 * 1000);
 
-    // Cleanup
+    
     return () => clearInterval(intervalRef.current);
   }, []);
 
