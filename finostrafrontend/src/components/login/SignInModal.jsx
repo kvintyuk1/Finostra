@@ -3,6 +3,7 @@ import styles from "./SignInModal.module.css";
 import CloseIcon from "../../assets/Photo/Union.png";
 import EyeOpenIcon from "../../assets/Photo/eyeoff.png";
 import EyeClosedIcon from "../../assets/Photo/eyeoff.png";
+import EditIcon from '../../assets/Photo/EditIcon.png';
 
 const checkPhoneExists = (phone) =>
   new Promise((resolve) => setTimeout(() => resolve(phone.endsWith("0")), 500));
@@ -36,7 +37,6 @@ function SignInModal({ onClose }) {
 
   const stop = (e) => e.stopPropagation();
 
-  // Валідація
   const isValidPhone = (value) => /^\d{9,10}$/.test(value);
   const isValidEmail = (value) =>
     /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value);
@@ -52,7 +52,6 @@ function SignInModal({ onClose }) {
     passwordRules.digits.test(value) &&
     passwordRules.noSpecial.test(value);
 
-  // Обробники
   const handlePhoneChange = (e) => {
     const digits = e.target.value.replace(/\D/g, "");
     setPhone(digits);
@@ -60,6 +59,7 @@ function SignInModal({ onClose }) {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showPhoneEditable, setShowPhoneEditable] = useState(false);
 
   const handlePhoneSubmit = async () => {
     setError("");
@@ -102,6 +102,22 @@ function SignInModal({ onClose }) {
     setStep("setPassword");
   };
 
+  const formatPhoneDisplay = (raw) => {
+    const digits = raw.replace(/\D/g, '');
+    let local = digits.length > 10 ? digits.slice(digits.length - 10) : digits;
+    if (local.length === 9) {
+      local = '0' + local;
+    }
+    if (local.length === 10) {
+      const area = local.slice(0, 3);
+      const part1 = local.slice(3, 6);
+      const part2 = local.slice(6, 8);
+      const part3 = local.slice(8, 10);
+      return `+38 (${area}) ${part1} ${part2} ${part3}`;
+    }
+    return raw;
+  };
+
   const handleRegister = async () => {
     setError("");
     if (!password || !confirmPassword)
@@ -125,7 +141,8 @@ function SignInModal({ onClose }) {
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      {step === "enterEmail" ? (
+      {/* Enter Email Step */}
+      {step === 'enterEmail' && (
         <div className={styles.frame900} onClick={stop}>
           <div className={styles.frame900Header}>
             <button className={styles.closeButton} onClick={onClose}>
@@ -162,10 +179,13 @@ function SignInModal({ onClose }) {
             disabled={loading}
             className={styles.continueButton}
           >
-            {loading ? "Перевірка..." : "Продовжити"}
+            {loading ? 'Перевірка...' : 'Продовжити'}
           </button>
         </div>
-      ) : step === "setPassword" ? (
+      )}
+
+      {/* Set Password Step */}
+      {step === 'setPassword' && (
         <div className={styles.frame908} onClick={stop}>
           <div className={styles.frame900Header}>
             <button className={styles.closeButton} onClick={onClose}>
@@ -183,7 +203,7 @@ function SignInModal({ onClose }) {
                   {error && <div className={styles.errorText}>{error}</div>}
                   <div className={styles.frame902}>
                     <input
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className={styles.passwordInput}
@@ -194,9 +214,7 @@ function SignInModal({ onClose }) {
                     >
                       <img
                         src={showPassword ? EyeOpenIcon : EyeClosedIcon}
-                        alt={
-                          showPassword ? "Приховати пароль" : "Показати пароль"
-                        }
+                        alt={showPassword ? 'Приховати пароль' : 'Показати пароль'}
                       />
                     </span>
                   </div>
@@ -206,7 +224,7 @@ function SignInModal({ onClose }) {
                     <br />
                     <span className={styles.passwordHintStrong}>
                       Не рекомендується
-                    </span>{" "}
+                    </span>{' '}
                     використовувати спеціальні символи (@#$^:;/”)?* та інші
                   </p>
                 </div>
@@ -215,7 +233,7 @@ function SignInModal({ onClose }) {
                   <label className={styles.inputLabel}>Повторіть пароль</label>
                   <div className={styles.frame902}>
                     <input
-                      type={showConfirmPassword ? "text" : "password"}
+                      type={showConfirmPassword ? 'text' : 'password'}
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       className={styles.passwordInput}
@@ -226,11 +244,7 @@ function SignInModal({ onClose }) {
                     >
                       <img
                         src={showConfirmPassword ? EyeOpenIcon : EyeClosedIcon}
-                        alt={
-                          showConfirmPassword
-                            ? "Приховати пароль"
-                            : "Показати пароль"
-                        }
+                        alt={showConfirmPassword ? 'Приховати пароль' : 'Показати пароль'}
                       />
                     </span>
                   </div>
@@ -247,8 +261,8 @@ function SignInModal({ onClose }) {
               onChange={(e) => setAgreed(e.target.checked)}
             />
             <label htmlFor="agree2" className={styles.checkboxLabel}>
-              Я ознайомлений (-на) з{" "}
-              <span className={styles.highlight}>Умовами</span> та{" "}
+              Я ознайомлений (-на) з{' '}
+              <span className={styles.highlight}>Умовами</span> та{' '}
               <span className={styles.highlight}>Правилами</span> надання
               банківських послуг.
             </label>
@@ -259,11 +273,94 @@ function SignInModal({ onClose }) {
             disabled={loading}
             className={styles.frame657}
           >
-            {loading ? "Реєстрація..." : "Продовжити"}
+            {loading ? 'Реєстрація...' : 'Продовжити'}
           </button>
         </div>
-      ) : (
+      )}
+
+      {/* Login Step */}
+      {step === 'login' && (
         <div className={styles.frame887} onClick={stop}>
+          <div className={styles.frame867}>
+            <button className={styles.closeButton} onClick={onClose}>
+              <img src={CloseIcon} alt="Закрити" className={styles.icon} />
+            </button>
+          </div>
+          <div className={styles.frame883}>
+            <h2 className={styles.modalTitle2}>Вхід</h2>
+
+            {/* Номер телефону з можливістю редагування */}
+            <div className={styles.step2Container}>
+              <label className={styles.label}>Номер телефону</label>
+              <div className={styles.passwordWrapper}>
+                {showPhoneEditable ? (
+                  <input
+                    type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className={styles.input}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    value={formatPhoneDisplay(phone)}
+                    readOnly
+                    className={styles.input}
+                  />
+                )}
+                <span
+                  className={styles.eyeIcon}
+                  onClick={() => setShowPhoneEditable((v) => !v)}
+                >
+                  <img
+                    src={EditIcon}
+                    alt={showPhoneEditable ? 'Зберегти номер' : 'Редагувати номер'}
+                  />
+                </span>
+              </div>
+            </div>
+
+            {/* Пароль */}
+            <div className={styles.step2Container}>
+              <label className={styles.label}>Пароль Finostra</label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type={showPassword ? 'text' : 'password'}
+                  className={styles.input}
+                />
+                <span
+                  className={styles.eyeIcon}
+                  onClick={() => setShowPassword((v) => !v)}
+                >
+                  <img
+                    src={showPassword ? EyeOpenIcon : EyeClosedIcon}
+                    alt={showPassword ? 'Приховати пароль' : 'Показати пароль'}
+                  />
+                </span>
+              </div>
+            </div>
+
+            <a href="#" className={styles.forgotPassword}>
+              Забули пароль?
+            </a>
+          </div>
+          <div className={styles.submitWrapper}>
+            <button
+              onClick={handleLogin}
+              disabled={loading}
+              className={styles.submitButton}
+            >
+              {loading ? 'Увійти...' : 'Увійти'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Enter Phone Step */}
+      {step === 'enterPhone' && (
+        <div className={styles.frame837} onClick={stop}>
           <div className={styles.frame867}>
             <button className={styles.closeButton} onClick={onClose}>
               <img src={CloseIcon} alt="Закрити" className={styles.icon} />
@@ -272,134 +369,70 @@ function SignInModal({ onClose }) {
           <div className={styles.frame868}>
             <h2 className={styles.modalTitle}>Вхід / Реєстрація</h2>
             <div className={styles.stepContainer}>
-              {step === "enterPhone" && (
-                <div className={styles.step1Container}>
-                  <div className={styles.container}>
-                    <div className={styles.title}>Номер телефону</div>
-                    <div className={styles.wrapper_phoneInfo}>
-                      <div className={styles.wrapper_blockCode}>
-                        <img
-                          src="/icons/flag_ukraine25.svg"
-                          alt="Ukraine Flag"
-                        />
-                        <div className={styles.code}>+380</div>
-                        <img
-                          src="/img/polygon.png"
-                          className={styles.poligon}
-                          alt="Dropdown"
-                        />
-                      </div>
-                      <div className={styles.lineVertical}></div>
-                      <input
-                        value={phone}
-                        onChange={handlePhoneChange}
-                        type="text"
-                        placeholder="000 000 00 00"
-                        className={styles.phoneNumber}
-                      />
+              <div className={styles.step1Container}>
+                <div className={styles.container}>
+                  <div className={styles.title}>Номер телефону</div>
+                  <div className={styles.wrapper_phoneInfo}>
+                    <div className={styles.wrapper_blockCode}>
+                      <img src="/icons/flag_ukraine25.svg" alt="Ukraine Flag" />
+                      <div className={styles.code}>+380</div>
+                      <img src="/img/polygon.png" className={styles.poligon} alt="Dropdown" />
                     </div>
-                    <div className={styles.checkboxContainer}>
-                      <input
-                        id="agree"
-                        type="checkbox"
-                        checked={agreed}
-                        onChange={(e) => setAgreed(e.target.checked)}
-                      />
-                      <label
-                        htmlFor="agree"
-                        className={styles.confirmationText}
-                      >
-                        Продовжуючи, я підтверджую, що згоден (-на) з{" "}
-                        <span className={styles.highlight}>Умовами</span> та{" "}
-                        <span className={styles.highlight}>Правилами</span>, й
-                        ознайомлений (-на) із{" "}
-                        <span className={styles.highlight}>
-                          Повідомленням про обробку персональних даних у Банку
-                        </span>
-                      </label>
-                    </div>
+                    <div className={styles.lineVertical}></div>
+                    <input
+                      value={phone}
+                      onChange={handlePhoneChange}
+                      type="text"
+                      placeholder="000 000 00 00"
+                      className={styles.phoneNumber}
+                    />
+                  </div>
+                  <div className={styles.checkboxContainer}>
+                    <input
+                      id="agree"
+                      type="checkbox"
+                      checked={agreed}
+                      onChange={(e) => setAgreed(e.target.checked)}
+                    />
+                    <label htmlFor="agree" className={styles.confirmationText}>
+                      Продовжуючи, я підтверджую, що згоден (-на) з{' '}
+                      <span className={styles.highlight}>Умовами</span> та{' '}
+                      <span className={styles.highlight}>Правилами</span>, й ознайомлений (-на) із{' '}
+                      <span className={styles.highlight}>Повідомленням про обробку персональних даних у Банку</span>
+                    </label>
                   </div>
                 </div>
-              )}
-              {step === "login" && (
-                <div className={styles.step2Container}>
-                  <label className={styles.label}>Пароль</label>
-                  <input
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    type="password"
-                    className={styles.input}
-                  />
-                </div>
-              )}
+              </div>
             </div>
-            {error && <div className={styles.errorText}>{error}</div>}
             <div className={styles.Frame953}>
               <div className={styles.submitWrapper}>
-                {step === "enterPhone" && (
-                  <button
-                    onClick={handlePhoneSubmit}
-                    disabled={loading}
-                    className={styles.submitButton}
-                  >
-                    {loading ? "Перевірка..." : "Продовжити"}
-                  </button>
-                )}
-                {step === "login" && (
-                  <button
-                    onClick={handleLogin}
-                    disabled={loading}
-                    className={styles.submitButton}
-                  >
-                    {loading ? "Увійти..." : "Увійти"}
-                  </button>
-                )}
+                <button
+                  onClick={handlePhoneSubmit}
+                  disabled={loading}
+                  className={styles.submitButton}
+                >
+                  {loading ? 'Перевірка...' : 'Продовжити'}
+                </button>
               </div>
-              {step === "enterPhone" && (
-                <div className={styles.qrWrapper}>
-                  <div className={styles.qrImage}></div>
-                  <p className={styles.qrText}>
-                    QR-код для входу через смартфон
-                  </p>
-                </div>
-              )}
+              <div className={styles.qrWrapper}>
+                <div className={styles.qrImage}></div>
+                <p className={styles.qrText}>QR-код для входу через смартфон</p>
+              </div>
             </div>
-            {step === "enterPhone" && (
-              <div className={styles.storeLinksContainer}>
-                <div className={styles.frame641}>
-                  <a
-                    href="https://www.apple.com/app-store/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.appleLink}
-                  >
-                    <div className={styles.appleIcon}>
-                      <div className={styles.vector}></div>
-                    </div>
-                    <div className={styles.frame640}>
-                      <div className={styles.available}>Доступно в</div>
-                      <div className={styles.appleStore}>Apple Store</div>
-                    </div>
-                  </a>
-                </div>
-                <div className={styles.frame833}>
-                  <a
-                    href="https://play.google.com/store"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.googlePlayLink}
-                  >
-                    <div className={styles.googlePlayIcon}>
-                      <div className={styles.vector}></div>
-                    </div>
-                    <div className={styles.frame640}>
-                      <div className={styles.available}>Доступно в</div>
-                      <div className={styles.googlePlay}>Google Play</div>
-                    </div>
-                  </a>
-                </div>
+            <div className={styles.storeLinksContainer}>
+              <div className={styles.frame641}>
+                <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer" className={styles.appleLink}>
+                  <div className={styles.appleIcon}><div className={styles.vector}></div></div>
+                  <div className={styles.frame640}><div className={styles.available}>Доступно в</div><div className={styles.appleStore}>Apple Store</div></div>
+                </a>
               </div>
-            )}
+              <div className={styles.frame833}>
+                <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" className={styles.googlePlayLink}>
+                  <div className={styles.googlePlayIcon}><div className={styles.vector}></div></div>
+                  <div className={styles.frame640}><div className={styles.available}>Доступно в</div><div className={styles.googlePlay}>Google Play</div></div>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
