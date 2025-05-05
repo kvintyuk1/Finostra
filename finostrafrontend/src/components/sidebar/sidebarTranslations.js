@@ -40,25 +40,6 @@ export const sidebarTranslations = {
       juniors: "Juniors",
       business: "Business",
     },
-    RU: {
-      home: "Главная",
-      transactions: "Переводы",
-      connection: "Связь",
-      saving: "Сбережения",
-      conversions: "Конвертации",
-      piggyBank: "Копилка",
-      credits: "Кредиты",
-      cards: "Карты",
-      securities: "Ценные бумаги",
-      autoPayments: "Автоплатежи",
-      transport: "Транспорт",
-      insurance: "Страхование",
-      auto: "Авто",
-      services: "Услуги",
-      fun: "Развлечения",
-      good: "Добро",
-      juniors: "Юниоры",
-      business: "Бизнес",
-    },
+   
   };
   

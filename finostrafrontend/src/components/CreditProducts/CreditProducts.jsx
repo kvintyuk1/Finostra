@@ -1,12 +1,22 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";      
 import styles from "./creditProducts.module.css";
 import { LanguageContext } from "../LanguageContext";
 import { creditItemsTranslations } from "./creditItemsTranslations";
 
 function CreditProducts({ isDarkMode }) {
   const { selectedLanguage } = useContext(LanguageContext);
+  const navigate = useNavigate();                    
+
   const creditItems =
-    creditItemsTranslations[selectedLanguage] || creditItemsTranslations.UA;
+    creditItemsTranslations[selectedLanguage] ||
+    creditItemsTranslations.UA;
+
+  const rows = creditItems.reduce((acc, item, idx) => {
+    if (idx % 2 === 0) acc.push([item]);
+    else acc[acc.length - 1].push(item);
+    return acc;
+  }, []);
 
   return (
     <div className={isDarkMode ? styles.dark_mode : styles.light_mode}>
@@ -40,29 +50,26 @@ function CreditProducts({ isDarkMode }) {
         </div>
 
         <div className={styles.info}>
-          {creditItems
-            .reduce((acc, item, index) => {
-              if (index % 2 === 0) {
-                acc.push([item]);
-              } else {
-                acc[acc.length - 1].push(item);
-              }
-              return acc;
-            }, [])
-            .map((pair, index) => (
-              <div className={styles.wrapper_content} key={index}>
-                {pair.map(({ icon, title, text, color }) => (
-                  <div className={`${styles.item} ${color}`} key={title}>
-                    <img src={`./icons/${icon}`} alt="" />
-                    <div className={styles.wrapper_text}>
-                      <div>{title}</div>
-                      <span className={styles.text}>{text}</span>
-                    </div>
+          {rows.map((pair, rowIndex) => (
+            <div className={styles.wrapper_content} key={rowIndex}>
+              {pair.map(({ icon, title, text, color, path }) => (
+                <div
+                  key={title}
+                  className={`${styles.item} ${color}`}
+                  style={{ cursor: "pointer" }}      
+                  onClick={() => navigate(path)}   
+                >
+                  <img src={`./icons/${icon}`} alt={title} />
+                  <div className={styles.wrapper_text}>
+                    <div>{title}</div>
+                    <span className={styles.text}>{text}</span>
                   </div>
-                ))}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
+
       </div>
     </div>
   );
