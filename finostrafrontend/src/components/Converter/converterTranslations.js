@@ -3,9 +3,10 @@ import styles from "./converter.module.css";
 export const converterTranslations = {
   UA: {
     title: "Конвертор валют",
-    exchangeRate: "41,46",
+    exchangeRateLabel: "Курс",
     equal: "=",
-    unitLeft: "1",
+    unitLeft: "USD",
+    unitRight: "UAH",
     converterItems: [
       {
         icon: "flag-ukraine.svg",
@@ -16,7 +17,7 @@ export const converterTranslations = {
         hasArrowLight: "arrow-down-white.svg",
         text: "Баланс :",
         number: "23 000",
-        placeholder: "Введіть сумму",
+        placeholder: "00.00",
       },
       {
         icon: "flag-usa.svg",
@@ -33,9 +34,10 @@ export const converterTranslations = {
   },
   EN: {
     title: "Currency Converter",
-    exchangeRate: "41.46",
+    exchangeRateLabel: "Exchange Rate",
     equal: "=",
-    unitLeft: "1",
+    unitLeft: "USD",
+    unitRight: "UAH",
     converterItems: [
       {
         icon: "flag-ukraine.svg",
@@ -46,7 +48,7 @@ export const converterTranslations = {
         hasArrowLight: "arrow-down-white.svg",
         text: "Balance:",
         number: "23,000",
-        placeholder: "Enter amount",
+        placeholder: "00.00",
       },
       {
         icon: "flag-usa.svg",

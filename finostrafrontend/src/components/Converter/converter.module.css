@@ -13,11 +13,13 @@
 }
 .wrapper_title {
     display: flex;
-    justify-content: space-around;
-    gap: 12.5vw;
+    justify-content: flex-start; 
     align-items: center;
     height: 20%;
+    padding-left: 2.5rem;      
+    gap: 10px;                     
 }
+
 .title {
     font-family: 'adeneue PRO Cyr', sans-serif;
     font-size: 1.25em;
@@ -125,10 +127,12 @@
 .dark_mode .input_total {
     border: 1px solid #FFF;
     color: #000;
+    font-size: 16px;
 }
 .light_mode .input_total {
     background-color: #000;
     border: 1px solid #000;
+    font-size: 16px;
     color: #FFF;
 }
 .balance {
@@ -190,3 +194,20 @@
     top: 1260px;
     left: 88.33vw;
 }
+
+
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+  }
+  .star7, .star8, .star9, .star10, .star11, .star12 {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .star8  { animation-delay: 1s; }
+  .star9  { animation-delay: 0.7s; }
+  .star10 { animation-delay: 1.3s; }
+  .star11 { animation-delay: 0.4s; }
+  .star12 { animation-delay: 0.9s; }
+  
