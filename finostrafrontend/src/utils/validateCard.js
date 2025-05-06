@@ -1,6 +1,7 @@
 export const isValidCardNumber = (number) => {
-    const digits = number.replace(/\s+/g, '').split('').reverse().map(Number);
-    if (digits.length !== 16) return false;
+    const cleaned = number.replace(/\D/g, '');
+    if (cleaned.length !== 16) return false;
+    const digits = cleaned.split('').reverse().map(Number);
     const sum = digits.reduce((acc, digit, idx) => {
         if (idx % 2 === 1) {
             let double = digit * 2;

@@ -4,12 +4,34 @@ import CardOfReceiveSum from "../CardOfReceiveSum/CardOfReceiveSum";
 import AddComment from "../AddComment/AddComment";
 import Card from "../Card/Card";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
+import {isValidCardNumber, isValidExpiry} from "../../utils/validateCard";
 
 function SendReceiveCards({setIsConfirmed,senderCardNumber,setSenderCardNumber,receiverCardNumber,
                               setReceiverCardNumber,sum,setSum,comment,setComment}) {
+    const [cardPeriod,setCardPeriod] = useState('');
+    const [periodValid,setPeriodValid] = useState('');
+    const [expiry,setExpiry] = useState('');
 
     const handleTransferClick = ()=>{
+        const rawSender = senderCardNumber.replace(/\s/g, '');
+        const rawReceiver = receiverCardNumber.replace(/\s/g, '');
+        if(rawSender.length !== 16 || !isValidCardNumber(rawSender)){
+            alert("Будь ласка,введіть дійсний номер картки відправника");
+            return;
+        }
+        if(rawReceiver.length !== 16 || !isValidCardNumber(rawReceiver)){
+            alert("Будь ласка,введіть дійсний номер картки відправника");
+            return;
+        }
+        if(!isValidExpiry(cardPeriod)){
+            alert("Будь ласка, введіть дійсний термін дії картки");
+            return;
+        }
         setIsConfirmed(true);
+    };
+    const handleCardPeriodChange = (value)=>{
+        setCardPeriod(value);
+        setPeriodValid(isValidExpiry(value));
     }
 
     return (
@@ -26,7 +48,11 @@ function SendReceiveCards({setIsConfirmed,senderCardNumber,setSenderCardNumber,r
                             setValue={setSenderCardNumber}
                             img_card="/icons/card_white2.svg"
                             title_period="Термін дії"
-                            validityPeriod="01 / 25"
+                            cardPeriod={cardPeriod}
+                            handleCardPeriodChange={handleCardPeriodChange}
+                            periodValid={periodValid}
+                            validityPeriod={expiry}
+                            setValidityPeriod={setExpiry}
                             title_kod="CW-kod"
                             cw_kod="***"
                             img_kod="/icons/information.svg"

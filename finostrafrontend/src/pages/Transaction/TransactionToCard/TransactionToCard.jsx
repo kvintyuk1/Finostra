@@ -53,7 +53,6 @@ function TransactionToCard() {
                         <MoneyTransferService/>
                     </>
                 )}
-
         </div>
     );
 }
