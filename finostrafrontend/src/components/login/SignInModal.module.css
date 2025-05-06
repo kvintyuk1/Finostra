@@ -1,143 +1,1092 @@
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(11.4px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(11.4px);
+  -webkit-backdrop-filter: blur(11.4px); 
 }
 
-.frame887 {
-    position: absolute;
-    width: 531px;
-    height: 712px;
-    top: 54.5px;
-    left: 455px;
-    border-radius: 30px;
-    background-color: #1A1B1A;
-    padding: 30px;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-   
+
+.frame837 {
+  background: #1c1c1e;
+  border-radius: 20px;
+  width: 400px;
+  max-width: 90%;
+  padding: 20px 24px 24px;
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+}
+
+
+
+.registerTitle {
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
+}
+.registerSubtitle {
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+
+.frame898 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+  width: 471px;
+  height: 182px;
+}
+
+
+.frame890 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  width: 471px;
+  height: 66px;
+}
+.labelPhone {
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #A66CFE;
+  margin: 0;
+}
+.fieldDisplay {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 8px;
+  gap: 10px;
+  width: 100%;
+  height: 32px;
+  border-bottom: 1px solid rgba(166, 108, 254, 0.4);
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+
+.frame891 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  width: 471px;
+  height: 66px;
+}
+.labelEmail {
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #A66CFE;
+  margin: 0;
+}
+.frame889 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 8px;
+  gap: 10px;
+  width: 471px;
+  height: 32px;
+  border-bottom: 1px solid rgba(166, 108, 254, 0.4);
+}
+.emailInput {
+  flex: 1;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+.continueButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 35px;
+  gap: 10px;
+  width: 179px;
+  height: 49px;
+  background: #A66CFE;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+}
+.continueButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+.Frame953 {
+  display: flex;
+  flex-direction: column;
+  width: 262px;
+  height: 305px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.modalTitle {
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 44px;
+  text-align: center;
+  color: #FFFFFF;
+  width: 100%;
+}
+.frame900 {
+  background: #1c1c1e;
+  border-radius: 20px;
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 471px;
+  height: 465px;
+  padding: 20px 24px 24px;
+}
+
+.frame897 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  width: 471px;
+  height: 119px;
+}
+
+
+.frame900Header {
+  width: 100%;           
+  display: flex;
+  justify-content: flex-end; 
+  
 }
 
 
 .frame867 {
-    display: flex;
-    justify-content: flex-end;
-}
-
-
-.frame868 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    gap: 40px;
-    width: 471px;
-    height: 614px;
-    flex: none;
-    order: 1;
-    align-self: center;
-    flex-grow: 0;
-}
-
-
-.modalTitle {
-    width: 100%;
-    text-align: center;
-    font-family: 'adeneue PRO Cyr', sans-serif;
-    font-size: 26px;
-    line-height: 31px;
-    color: #FFFFFF;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .closeButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
 }
 
-
-.closeButton:hover .icon {
-    transform: scale(1.2);
-    transition: transform 0.2s ease;
+.closeButton:hover {
+  transform: scale(1.1);
 }
+
+.closeButton:active {
+  transform: scale(0.85) rotate(-10deg);
+}
+
+.qrWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.qrImage {
+  width: 173px;
+  height: 173px;
+  background: url('../../assets/Photo/qr-code.png') no-repeat center center;
+  background-size: cover;
+  border-radius: 12px;
+}
+
+.qrText {
+  font-family: 'adineue PRO';
+  font-size: 16px;
+  color: #ffffff;
+  height: 19px;
+  text-align: center;
+}
+
 
 .icon {
-    width: 18px;
-    height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
-.frame866 {
-    display: flex;
-    padding: 0;
-    gap: 40px;
-    width: 471px;
-    height: 543px;
+.frame868 {
+  margin-top: 4px;
 }
 
-.frame955 {
-    
-    width: 471px;
-    height: 467px;
-    gap: 26px;
+
+
+
+.Frame952 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px; 
 }
 
-.frame954 {
-    width: 471;
-    height: 467;
-    gap: 26px;
 
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.frame952 {
-    width: 471px;
-    height: 148px;
-    gap: 24px;
+.title {
+  font-family: 'adineue PRO Cyr', sans-serif;
+  font-style: normal;
+  text-align: left;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a66cfe;
+  margin: 0;
 }
 
-.frame852 {
-    
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 10px;
-    width: 471px;
-    height: 76px;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
+
+.wrapper_phoneInfo {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: 2px solid #a864f3;
+  border-radius: 0;
+  padding: 4px 12px;
+}
+
+.wrapper_blockCode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wrapper_blockCode img {
+  display: block;
+}
+
+.code {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.poligon {
+  width: 10px;
+  height: 6px;
+}
+
+.lineVertical {
+  width: 1px;
+  height: 24px;
+  background: #444444;
+  margin: 0 12px;
 }
 
 .phoneNumber {
-    display: flex;
-    width: 471px;
-    height: 19px;
-    font-family: 'adeneue PRO Cyr', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #A66CFE;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  padding-left: 8px;
 }
 
+.label {
+  font-size: 14px;
+  color: #dddddd;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  background: #2c2c2e;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+}
+
+
+.checkboxContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+
+input[type="checkbox"] {
+  width: 50px;
+  height: 30px;
+  margin: 0;
+  accent-color: #a864f3;
+}
+
+.confirmationText {
+  display: block;      
+  text-align: left;    
+  font-size: 12px;
+  color: #aaaaaa;
+  line-height: 15px;
+  margin: 0;         
+}
+
+
+
+.submitButton {
+  width: 180px;
+  height: 45px;
+  padding: 12px 0;
+ 
+  background: #a864f3;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  display: flex;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorText {
+  color: #ff5f5f;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.qrText {
+  font-size: 16px;
+  color: #FFFFFF;
+  font-family: 'adineue PRO Cyr', sans-serif;
+  
+
+}
+
+.bottomApps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #2c2c2e;
+}
+
+.appItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.appIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.appLabel {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+
+@media (max-width: 420px) {
+  .frame887 {
+    width: 90%;
+    padding: 16px;
+  }
+  .modalTitle {
+    font-size: 20px;
+  }
+}
+
+.appleIcon {
+  width: 2.43vw;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-image: url('../../assets/Photo/AppleStore.png');
+}
+
+.appleLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.26vw;
+}
+
+.appleStore {
+  width: 5.76vw;
+  height: 19px;
+  font-family: 'adeneue PRO Cyr', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.02vw;
+  line-height: 16px;
+  color: #FFF;
+}
+
+.googlePlayIcon {
+  width: 2.57vw;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-image: url('../../assets/Photo/GooglePlay.png');
+}
+
+.googlePlayLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.26vw;
+
+}
+
+.googlePlay {
+  width: 5.90vw;
+  height: 19px;
+  font-family: 'adeneue PRO Cyr', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.02vw;
+  line-height: 16px;
+  color: #FFF;
+}
+
+
+.storeLinksContainer {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  gap: 10px;           
+  width: 326px;        
+  margin: 0 auto;      
+  font-family: 'adineue PRO Cyr', sans-serif;
+}
+
+.labelEmail {
+  color: rgba(255,255,255,0.6); 
+  transition: color 0.15s;
+}
+.frame889 {
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  transition: border-color 0.15s;
+}
+
+.frame891:focus-within .labelEmail {
+  color: #A66CFE;
+}
+.frame891:focus-within .frame889 {
+  border-bottom-color: #A66CFE;
+}
+
+.frame889:focus-within .emailInput {
+  color: #FFFFFF;
+}
+.frame889:focus-within .emailInput::placeholder {
+  color: #FFFFFF;
+}
+
+
+.title {
+  color: rgba(255,255,255,0.6);   
+  transition: color 0.2s;
+}
+
+.wrapper_phoneInfo {
+  border-bottom: 1px solid rgba(255,255,255,0.4); 
+  transition: border-color 0.2s;
+}
+
+
+.wrapper_phoneInfo input {
+  color: rgba(255,255,255,0.6);
+}
+.wrapper_phoneInfo input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+
+.container:focus-within .title {
+  color: #A66CFE;
+}
+
+
+.container:focus-within .wrapper_phoneInfo {
+  border-bottom-color: #A66CFE;
+}
+
+
+.container:focus-within .wrapper_phoneInfo input {
+  color: #FFFFFF;
+}
+.container:focus-within .wrapper_phoneInfo input::placeholder {
+  color: #FFFFFF;
+}
+
+
+.frame908 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 30px 30px 40px;
+  gap: 30px;
+  width: 471px;
+  height: 565px;
+  background: #1a1b1a;
+  border-radius: 30px;
+  position: relative;
+}
+
+.frame908 .frame897 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 60px;
+  width: 100%;
+}
+
+.registerTitle {
+  font-family: 'adineue PRO';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+}
+
+.frame907 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 60px;
+  width: 471px;
+  height: 494px;
+}
+.frame907 > * {
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.frame906 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 60px;
+  width: 471px;
+  height: 305px;
+}
+.frame906 > * {
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+
+.frame905 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 50px;
+  width: 471px;
+  height: 293px;
+}
+.frame905 > * {
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+
+.frame903 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 15px;
+  width: 471px;
+  height: 171px;
+}
+.frame903 > * {
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+
+.frame902 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 8px;
+  width: 471px;
+  height: 46px;
+  border-bottom: 1px solid rgba(166, 108, 254, 0.4);
+}
+
+.passwordInput {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 24px; 
+  
+}
+
+
+
+
+
+
+.passwordHint {
+  font-family: 'adineue PRO';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  text-align: left;
+}
+
+.passwordHintStrong {
+  font-weight: 700;
+}
+
+
+.frame910 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0 0 3px;
+  gap: 10px;
+  width: 93px;
+  height: 38px;
+  border-left: 1.5px solid #FFFFFF;
+}
+.frame910 > * {
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+
+.frame904 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 15px;
+  width: 471px;
+  height: 72px;
+}
+.frame904 > * {
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+
 .frame862 {
-    width: 471px;
-    height: 48px;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 20px;
+  width: 471px;
+  height: 32px;
+}
+.frame862 > * {
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.frame862 input[type="checkbox"] {
+  width: 50px;
+  height: 30px;
+  margin: 0;
+  accent-color: #a864f3;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.frame862 label {
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  width: 417px;
+  height: 32px;
+  font-family: "adineue PRO", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: left;
+}
+
+.highlight {
+  color: #FFFFFF;
+}
+
+.frame657 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 35px;
+  gap: 10px;
+  width: 179px;
+  height: 49px;
+  background: #A66CFE;
+  border-radius: 10px;
+  align-self: center;
+  margin: 0;
+}
+.frame657 > * {
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.inputLabel {
+  font-family: 'adineue PRO';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a66cfe;
+  text-align: left;
+}
+
+
+.frame903 .inputLabel {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.15s;
+}
+.frame903 .frame902 {
+  border-bottom-color: rgba(166, 108, 254, 0.4);
+  transition: border-color 0.15s;
+}
+
+
+.frame903:focus-within .inputLabel {
+  color: #A66CFE;
+}
+.frame903:focus-within .frame902 {
+  border-bottom-color: #A66CFE;
+}
+
+
+.frame904 .inputLabel {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.15s;
+}
+.frame904 .frame902 {
+  border-bottom-color: rgba(166, 108, 254, 0.4);
+  transition: border-color 0.15s;
+}
+
+
+.frame904:focus-within .inputLabel {
+  color: #A66CFE;
+}
+.frame904:focus-within .frame902 {
+  border-bottom-color: #A66CFE;
+}
+
+
+.passwordInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.15s;
+}
+.frame903:focus-within .passwordInput::placeholder,
+.frame904:focus-within .passwordInput::placeholder {
+  color: #FFFFFF;
+}
+
+.frame887 {
+  background: #1c1c1e;
+  border-radius: 20px;
+  width: 400px;
+  max-width: 90%;
+  padding: 20px 24px 24px;
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+}
+
+.frame887 {
+  position: relative;
+}
+
+
+.frame867 {
+  position: absolute;
+  top: 20px;      
+  right: 24px;    
+  width: 21.67px;
+  height: 21.67px;
+}
+
+
+.frame867 button {
+  margin: 0;
+}
+
+
+
+.frame883 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 35px;    
+  padding-left: 0;
+  padding-right: 0;
+  gap: 55px;
+  width: 100%;
+}
+
+.modalTitle2 {
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 0px;
+  text-align: center;
+  color: #FFFFFF;
+  width: 100%;
+}
+
+
+.step2Container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+
+.label {
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #A66CFE;
+  margin: 0;
+}
+
+
+
+.passwordWrapper {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-bottom: 8px;
+  gap: 10px;
+  width: 100%;
+  height: 32px;
+  border-bottom: 1px solid rgba(166, 108, 254, 0.4);
+}
+
+
+.input {
+  flex: 1;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+
+.eyeIcon {
+  cursor: pointer;
+}
+
+
+.forgotPassword {
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  margin-top: -35px;
+}
+
+
+.submitWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 40px;
+}
+
+
+.submitButton {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 60px;
+  width: 178px;
+  height: 49px;
+  background: #A66CFE;
+  border: none;
+  border-radius: 10px;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.eyeIcon {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.eyeIcon:hover {
+  transform: scale(1.1);
+}
+.eyeIcon:active {
+  transform: scale(0.9);
+}
+
+.forgotPassword {
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.submitWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.submitButton {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 60px;
+  width: 178px;
+  height: 49px;
+  background: #A66CFE;
+  border: none;
+  border-radius: 10px;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.submitButton:hover {
+  background: #8e5ddf;
+}
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

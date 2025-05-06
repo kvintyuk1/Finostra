@@ -1,0 +1,13 @@
+export const listTableTranslations = {
+    UA: {
+      date: "Дата",
+      description: "Опис",
+      amount: "Сума",
+    },
+    EN: {
+      date: "Date",
+      description: "Description",
+      amount: "Amount",
+    },
+  };
+  

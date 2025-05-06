@@ -1,8 +1,47 @@
 {
   "name": "finostrafrontend",
+<<<<<<< HEAD
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
+||||||| f97bed7b
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
+    "cra-template": "1.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+=======
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
+    "cra-template": "1.2.0",
+    "html-entities": "^2.6.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+  "devDependencies": {
+    "webpack": "4.46.0"
+  },
+  "overrides": {
+    "webpack-dev-server": {
+      "html-entities": "^2.0.0"
+    }
+  },
+>>>>>>> 451f41dea9c175c23fc4721d89eb73b2dab16121
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
