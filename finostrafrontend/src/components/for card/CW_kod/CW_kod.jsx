@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./CW_kod.module.css";
 
-function CW_kod({title_kod, cw_kod, img_kod, inputRef}) {
+function CW_kod({onChange,title_kod, cw_kod, setCwKod,img_kod, inputRef}) {
+    const handleChange = (e) => {
+        const val = e.target.value.replace(/\D/g, "").slice(0, 3);
+        setCwKod(val);
+    };
     return (
         <div className={styles.container_cw_kod}>
             <div className={styles.title}>{title_kod}</div>
@@ -12,6 +16,8 @@ function CW_kod({title_kod, cw_kod, img_kod, inputRef}) {
                         placeholder="***"
                         maxLength={3}
                         ref={inputRef}
+                        value={cw_kod}
+                        onChange={handleChange}
                     />
                     <img src={img_kod} alt=""/>
                 </div>

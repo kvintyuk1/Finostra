@@ -1,4 +1,4 @@
-import React, {useContext,useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 import styles from "./sendReceiveCards.module.css";
 import CardOfReceiveSum from "../CardOfReceiveSum/CardOfReceiveSum";
 import AddComment from "../AddComment/AddComment";
@@ -23,8 +23,10 @@ function SendReceiveCards({
     const {language} = useContext(LanguageContext);
     const t = sendReceiveTranslations[language] || sendReceiveTranslations["UA"];
     const [cardPeriod, setCardPeriod] = useState('');
-    const [periodValid, setPeriodValid] = useState('');
-    const [expiry, setExpiry] = useState('');
+    const [isPeriodValid, setIsPeriodValid] = useState(true);
+    const periodInputRef = useRef(null);
+    const [cw_kod,setCwKod]= useState('');
+
     const handleTransferClick = () => {
         const rawSender = senderCardNumber.replace(/\s/g, '');
         const rawReceiver = receiverCardNumber.replace(/\s/g, '');
@@ -34,18 +36,24 @@ function SendReceiveCards({
         }
         if (rawReceiver.length !== 16 || !isValidCardNumber(rawReceiver)) {
             alert("Будь ласка,введіть дійсний номер картки одержувача");
+
             return;
         }
         if (!isValidExpiry(cardPeriod)) {
             alert("Будь ласка, введіть дійсний термін дії картки");
             return;
+        };
+        if(cw_kod.length !== 3  || /\D/.test(cw_kod)){
+            alert("Невірний cw код");
+            return;;
         }
         setIsConfirmed(true);
     };
     const handleCardPeriodChange = (value) => {
         setCardPeriod(value);
-        setPeriodValid(isValidExpiry(value));
-    }
+        setIsPeriodValid(isValidExpiry(value));
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.wrapper_info}>
@@ -63,10 +71,10 @@ function SendReceiveCards({
                             title_kod={t.cwCode}
                             cardPeriod={cardPeriod}
                             handleCardPeriodChange={handleCardPeriodChange}
-                            periodValid={periodValid}
-                            validityPeriod={expiry}
-                            setValidityPeriod={setExpiry}
-                            cw_kod="***"
+                            isPeriodValid={isPeriodValid}
+                            periodInputRef={periodInputRef}
+                            cw_kod={cw_kod}
+                            setCwKod={setCwKod}
                             img_kod="/icons/information.svg"
                         />
                         <CardOfReceiveSum
