@@ -2,7 +2,7 @@ export const translations = {
   UA: {
     searchPlaceholder: "Пошук",
     signIn: "Вхід",
-    profile: "Профіль",
+    profile: "Профі",
   },
   EN: {
     searchPlaceholder: "Search",
