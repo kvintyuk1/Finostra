@@ -1,36 +1,66 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import styles from "./converter.module.css";
 import { LanguageContext } from "../LanguageContext";
 import { converterTranslations } from "./converterTranslations";
+import {
+  fetchMonobankCurrencies,
+  RateLimitError,
+} from "..//services/monobankService";
 
-function Converter({ isDarkMode }) {
+const INITIAL_INTERVAL = 5 * 60 * 1000; 
+const MAX_BACKOFF = 60 * 60 * 1000;     
+
+ function Converter({ isDarkMode }) {
   const { selectedLanguage } = useContext(LanguageContext);
-  const { title, equal, converterItems } =
+  const { title, converterItems } =
     converterTranslations[selectedLanguage] || converterTranslations.UA;
 
   const [uah, setUah] = useState("");
   const [usd, setUsd] = useState("");
   const [rate, setRate] = useState(41.46);
+  const [error, setError] = useState(null);
   const [reversed, setReversed] = useState(false);
 
-  useEffect(() => {
-    async function fetchRate() {
-      try {
-        const res = await fetch("https://api.monobank.ua/bank/currency");
-        const data = await res.json();
-        const usdRate = data.find(
-          (item) => item.currencyCodeA === 840 && item.currencyCodeB === 980
-        );
-        if (usdRate) {
-          const newRate =
-            usdRate.rateCross || (usdRate.rateBuy + usdRate.rateSell) / 2;
-          setRate(newRate);
-        }
-      } catch (err) {
-        console.error(err);
+  const timeoutRef = useRef(null);
+  const backoffRef = useRef(INITIAL_INTERVAL);
+
+  // Шедулінг повторних запитів
+  const scheduleNext = (delay) => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(loadRate, delay);
+  };
+
+
+  async function loadRate() {
+    try {
+      const data = await fetchMonobankCurrencies();
+      const usdEntry = data.find(
+        (i) => i.currencyCodeA === 840 && i.currencyCodeB === 980
+      );
+      if (!usdEntry) throw new Error("USD→UAH not found");
+
+      const newRate =
+        usdEntry.rateCross || (usdEntry.rateBuy + usdEntry.rateSell) / 2;
+      setRate(newRate);
+      setError(null);
+
+      backoffRef.current = INITIAL_INTERVAL;
+      scheduleNext(INITIAL_INTERVAL);
+    } catch (e) {
+      if (e instanceof RateLimitError) {
+        setError("Забагато запитів, спробуємо пізніше…");
+      } else {
+        console.error(e);
+        setError("Не вдалося отримати курс");
       }
+      scheduleNext(backoffRef.current);
+      backoffRef.current = Math.min(backoffRef.current * 2, MAX_BACKOFF);
     }
-    fetchRate();
+  }
+
+  useEffect(() => {
+    loadRate();
+    return () => clearTimeout(timeoutRef.current);
   }, []);
 
   const handleUahChange = (e) => {
@@ -53,11 +83,8 @@ function Converter({ isDarkMode }) {
     }
   };
 
-  const handleSwitch = () => {
-    setReversed((prev) => !prev);
-  };
+  const handleSwitch = () => setReversed((p) => !p);
 
-  // Decide order for rendering
   const [first, second] = reversed
     ? [converterItems[1], converterItems[0]]
     : converterItems;
@@ -116,11 +143,7 @@ function Converter({ isDarkMode }) {
                     <input
                       type="number"
                       className={styles.input_total}
-                      value={
-                        item.currency === "UAH"
-                          ? uah
-                          : usd
-                      }
+                      value={item.currency === "UAH" ? uah : usd}
                       onChange={
                         item.currency === "UAH"
                           ? handleUahChange
@@ -154,6 +177,8 @@ function Converter({ isDarkMode }) {
             />
           </div>
         </div>
+
+        {error && <div className={styles.error}>{error}</div>}
 
         {[7, 8, 9, 10, 11, 12].map((num) => (
           <img

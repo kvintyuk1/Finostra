@@ -1,18 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./mobileRecharge.module.css";
 import { LanguageContext } from "../LanguageContext";
 import { mobileRechargeTranslations } from "./mobileRechargeTranslations";
 
 function MobileRecharge({ isDarkMode }) {
   const { selectedLanguage } = useContext(LanguageContext);
-  const {
-    title,
-    placeholderCountry,
-    placeholderMobile,
-    text,
-  } =
+  const navigate = useNavigate();
+  const [countryCode, setCountryCode] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+
+  const { title, placeholderCountry, placeholderMobile, text } =
     mobileRechargeTranslations[selectedLanguage] ||
     mobileRechargeTranslations.UA;
+
+  // Handle submission: navigate to the mobileRecharge path with phone data
+  const handleSubmit = () => {
+    if (!mobileNumber) return; // optionally validate further
+    navigate("/connection/mobileRecharge", {
+      state: { countryCode, mobileNumber },
+    });
+  };
 
   return (
     <div className={isDarkMode ? styles.dark_mode : styles.light_mode}>
@@ -31,6 +39,8 @@ function MobileRecharge({ isDarkMode }) {
                     type="text"
                     className={styles.country_number}
                     placeholder={placeholderCountry}
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
                   />
                 </div>
                 <img src="./icons/arrow-down.svg" alt="" />
@@ -40,11 +50,20 @@ function MobileRecharge({ isDarkMode }) {
                   type="number"
                   className={styles.number_mobile}
                   placeholder={placeholderMobile}
+                  value={mobileNumber}
+                  onChange={(e) => setMobileNumber(e.target.value)}
                 />
               </div>
             </div>
 
-            <img src="./icons/arrow-out.svg" alt="" />
+            {/* Clicking this arrow triggers navigation */}
+            <img
+              src="./icons/arrow-out.svg"
+              alt="Submit"
+              className={styles.submit_icon}
+              onClick={handleSubmit}
+              style={{ cursor: 'pointer' }}
+            />
           </div>
           <hr className={styles.hr} />
           <div className={styles.text}>
