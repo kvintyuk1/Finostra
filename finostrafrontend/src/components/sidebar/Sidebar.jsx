@@ -38,7 +38,7 @@ function Sidebar() {
             label: tSidebar.saving,
             hasArrow: true,
             modal: "depositModal",
-            path: "/deposit",
+            path: "/saving",
         },
         {to: "/conversions", icon: "conversions.svg", label: tSidebar.conversions},
         {to: "/piggy_bank", icon: "piggy_bank.svg", label: tSidebar.piggyBank},
