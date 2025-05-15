@@ -13,7 +13,6 @@
   -webkit-backdrop-filter: blur(11.4px); 
 }
 
-
 .frame837 {
   background: #1c1c1e;
   border-radius: 20px;
@@ -25,8 +24,6 @@
   position: relative;
 }
 
-
-
 .registerTitle {
   font-family: 'adineue PRO', sans-serif;
   font-style: normal;
@@ -37,6 +34,7 @@
   color: #FFFFFF;
   margin: 0;
 }
+
 .registerSubtitle {
   font-family: 'adineue PRO', sans-serif;
   font-style: normal;
@@ -48,7 +46,6 @@
   margin: 0;
 }
 
-
 .frame898 {
   display: flex;
   flex-direction: column;
@@ -57,7 +54,6 @@
   width: 471px;
   height: 182px;
 }
-
 
 .frame890 {
   display: flex;
@@ -75,6 +71,7 @@
   color: #A66CFE;
   margin: 0;
 }
+
 .fieldDisplay {
   box-sizing: border-box;
   display: flex;
@@ -92,7 +89,6 @@
   color: #FFFFFF;
 }
 
-
 .frame891 {
   display: flex;
   flex-direction: column;
@@ -101,6 +97,7 @@
   width: 471px;
   height: 66px;
 }
+
 .labelEmail {
   font-family: 'adineue PRO', sans-serif;
   font-weight: 400;
@@ -109,6 +106,7 @@
   color: #A66CFE;
   margin: 0;
 }
+
 .frame889 {
   box-sizing: border-box;
   display: flex;
@@ -120,6 +118,7 @@
   height: 32px;
   border-bottom: 1px solid rgba(166, 108, 254, 0.4);
 }
+
 .emailInput {
   flex: 1;
   font-family: 'adineue PRO', sans-serif;
@@ -131,7 +130,6 @@
   background: transparent;
   color: rgba(255, 255, 255, 0.6);
 }
-
 
 .continueButton {
   display: flex;
@@ -156,7 +154,6 @@
   cursor: not-allowed;
 }
 
-
 .Frame953 {
   display: flex;
   flex-direction: column;
@@ -168,6 +165,7 @@
   overflow: hidden;
   box-sizing: border-box;
 }
+
 .modalTitle {
   font-family: 'adineue PRO', sans-serif;
   font-style: normal;
@@ -178,6 +176,7 @@
   color: #FFFFFF;
   width: 100%;
 }
+
 .frame900 {
   background: #1c1c1e;
   border-radius: 20px;
@@ -202,14 +201,12 @@
   height: 119px;
 }
 
-
 .frame900Header {
   width: 100%;           
   display: flex;
   justify-content: flex-end; 
   
 }
-
 
 .frame867 {
   display: flex;
@@ -256,7 +253,6 @@
   text-align: center;
 }
 
-
 .icon {
   width: 20px;
   height: 20px;
@@ -266,16 +262,12 @@
   margin-top: 4px;
 }
 
-
-
-
 .Frame952 {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-bottom: 16px; 
 }
-
 
 .container {
   display: flex;
@@ -293,7 +285,6 @@
   color: #a66cfe;
   margin: 0;
 }
-
 
 .wrapper_phoneInfo {
   display: flex;
@@ -358,13 +349,11 @@
   outline: none;
 }
 
-
 .checkboxContainer {
   display: flex;
   align-items: flex-start;
   gap: 8px;
 }
-
 
 input[type="checkbox"] {
   width: 50px;
@@ -381,8 +370,6 @@ input[type="checkbox"] {
   line-height: 15px;
   margin: 0;         
 }
-
-
 
 .submitButton {
   width: 180px;
@@ -446,7 +433,6 @@ input[type="checkbox"] {
   font-size: 12px;
   color: #ffffff;
 }
-
 
 @media (max-width: 420px) {
   .frame887 {
@@ -519,7 +505,6 @@ input[type="checkbox"] {
   color: #FFF;
 }
 
-
 .storeLinksContainer {
   display: flex;
   justify-content: space-between; 
@@ -553,7 +538,6 @@ input[type="checkbox"] {
   color: #FFFFFF;
 }
 
-
 .title {
   color: rgba(255,255,255,0.6);   
   transition: color 0.2s;
@@ -564,7 +548,6 @@ input[type="checkbox"] {
   transition: border-color 0.2s;
 }
 
-
 .wrapper_phoneInfo input {
   color: rgba(255,255,255,0.6);
 }
@@ -572,16 +555,13 @@ input[type="checkbox"] {
   color: rgba(255,255,255,0.6);
 }
 
-
 .container:focus-within .title {
   color: #A66CFE;
 }
 
-
 .container:focus-within .wrapper_phoneInfo {
   border-bottom-color: #A66CFE;
 }
-
 
 .container:focus-within .wrapper_phoneInfo input {
   color: #FFFFFF;
@@ -589,7 +569,6 @@ input[type="checkbox"] {
 .container:focus-within .wrapper_phoneInfo input::placeholder {
   color: #FFFFFF;
 }
-
 
 .frame908 {
   display: flex;
@@ -656,7 +635,6 @@ input[type="checkbox"] {
   flex-grow: 0;
 }
 
-
 .frame905 {
   display: flex;
   flex-direction: column;
@@ -673,7 +651,6 @@ input[type="checkbox"] {
   flex-grow: 0;
 }
 
-
 .frame903 {
   display: flex;
   flex-direction: column;
@@ -689,7 +666,6 @@ input[type="checkbox"] {
   align-self: stretch;
   flex-grow: 0;
 }
-
 
 .frame902 {
   box-sizing: border-box;
@@ -711,11 +687,6 @@ input[type="checkbox"] {
   font-size: 24px; 
   
 }
-
-
-
-
-
 
 .passwordHint {
   font-family: 'adineue PRO';
@@ -760,13 +731,13 @@ input[type="checkbox"] {
   width: 471px;
   height: 72px;
 }
+
 .frame904 > * {
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
 }
-
 
 .frame862 {
   display: flex;
@@ -777,6 +748,7 @@ input[type="checkbox"] {
   width: 471px;
   height: 32px;
 }
+
 .frame862 > * {
   flex: none;
   order: 1;
@@ -828,6 +800,7 @@ input[type="checkbox"] {
   align-self: center;
   margin: 0;
 }
+
 .frame657 > * {
   flex: none;
   order: 1;
@@ -862,7 +835,6 @@ input[type="checkbox"] {
   border-bottom-color: #A66CFE;
 }
 
-
 .frame904 .inputLabel {
   color: rgba(255, 255, 255, 0.6);
   transition: color 0.15s;
@@ -885,6 +857,7 @@ input[type="checkbox"] {
   color: rgba(255, 255, 255, 0.4);
   transition: color 0.15s;
 }
+
 .frame903:focus-within .passwordInput::placeholder,
 .frame904:focus-within .passwordInput::placeholder {
   color: #FFFFFF;
@@ -905,7 +878,6 @@ input[type="checkbox"] {
   position: relative;
 }
 
-
 .frame867 {
   position: absolute;
   top: 20px;      
@@ -914,12 +886,9 @@ input[type="checkbox"] {
   height: 21.67px;
 }
 
-
 .frame867 button {
   margin: 0;
 }
-
-
 
 .frame883 {
   display: flex;
@@ -952,7 +921,6 @@ input[type="checkbox"] {
   width: 100%;
 }
 
-
 .label {
   font-family: 'adineue PRO', sans-serif;
   font-weight: 400;
@@ -961,8 +929,6 @@ input[type="checkbox"] {
   color: #A66CFE;
   margin: 0;
 }
-
-
 
 .passwordWrapper {
   box-sizing: border-box;
@@ -975,7 +941,6 @@ input[type="checkbox"] {
   border-bottom: 1px solid rgba(166, 108, 254, 0.4);
 }
 
-
 .input {
   flex: 1;
   font-family: 'adineue PRO', sans-serif;
@@ -987,11 +952,9 @@ input[type="checkbox"] {
   background: transparent;
 }
 
-
 .eyeIcon {
   cursor: pointer;
 }
-
 
 .forgotPassword {
   font-family: 'adineue PRO', sans-serif;
@@ -1003,14 +966,12 @@ input[type="checkbox"] {
   margin-top: -35px;
 }
 
-
 .submitWrapper {
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top: 40px;
 }
-
 
 .submitButton {
   box-sizing: border-box;
@@ -1038,11 +999,22 @@ input[type="checkbox"] {
 
 .eyeIcon {
   cursor: pointer;
+  display: inline-block;      
+  width: 30px;
+  height: 30px;
   transition: transform 0.2s ease-in-out;
 }
+
+.eyeIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        
+}
+
 .eyeIcon:hover {
   transform: scale(1.1);
 }
+
 .eyeIcon:active {
   transform: scale(0.9);
 }
@@ -1087,6 +1059,284 @@ input[type="checkbox"] {
   background: #8e5ddf;
 }
 .submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.frame895 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 30px 30px 40px;
+  gap: 10px;
+
+  position: absolute;
+  width: auto;
+  
+  left: auto;
+  top: 48px;
+
+  background: #1A1B1A;
+  border-radius: 30px;
+}
+
+.closeWrapper {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 21.67px;
+  height: 21.67px;
+  flex: none;
+}
+
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 40px;
+  width: 471px;
+  height: auto;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.registerTitle {
+  width: 471px;
+  height: 38px;
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  color: #FFFFFF;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.registerSubtitle {
+  width: 471px;
+  height: 48px;
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.errorText {
+  color: #FF4D4F;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.continueButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  gap: 10px;
+  width: 263px;
+  height: 49px;
+  background: #A66CFE;
+  border-radius: 10px;
+  border: none;
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.continueButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 15px;
+  width: 471px;
+  height: 66px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* .label {
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(255, 255, 255, 0.6);
+  width: 471px;
+  height: 19px;
+} */
+
+.codeInput {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 0 8px;
+  gap: 10px;
+  width: 471px;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  font-family: 'adineue PRO', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.codeInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.codeInput:focus {
+  outline: none;
+}
+.smsImage2 {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  align-self: center;
+  margin-top: 10px;
+}
+.verifyWrapper {
+  position: absolute;
+  background: #1A1B1A;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 30px 30px 40px;
+  gap: 10px;
+}
+
+.closeContainer {
+  width: 21.67px;
+  height: 21.67px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 471px;
+  gap: 30px; 
+}
+
+
+
+.subtitle {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 471px;
+  gap: 53px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.inputLabel {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.inputField {
+  width: 100%;
+  height: 24px;
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  outline: none;
+}
+
+.errorText {
+  color: #FF4D4F;
+  font-size: 14px;
+  margin-top: -40px;
+}
+
+.smsImage {
+  width: 151px; 
+  height: auto;
+  align-self: center;
+  order: 1;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 308px;
+  gap: 15px;
+}
+
+.actionButton {
+  box-sizing: border-box;
+  padding: 15px 40px;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  background: #A66CFE;
+  border-radius: 10px;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  width: 308px;
+  height: 49px;
+}
+
+.actionButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

@@ -1,92 +1,97 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchCurrentUser } from "../../redux/slices/authSlice";
 import styles from "./SignInModal.module.css";
 import CloseIcon from "../../assets/Photo/Union.png";
-import EyeOpenIcon from "../../assets/Photo/eyeoff.png";
+import EyeOpenIcon from "../../assets/Photo/eyelook.png";
 import EyeClosedIcon from "../../assets/Photo/eyeoff.png";
-import EditIcon from '../../assets/Photo/EditIcon.png';
-
-const checkPhoneExists = (phone) =>
-  new Promise((resolve) => setTimeout(() => resolve(phone.endsWith("0")), 500));
-const loginWithPassword = (phone, password) =>
-  new Promise((resolve, reject) =>
-    setTimeout(
-      () =>
-        password === "1234"
-          ? resolve(true)
-          : reject(new Error("Невірний пароль")),
-      500
-    )
-  );
-const registerUser = (phone, email, password) =>
-  new Promise((resolve) =>
-    setTimeout(() => {
-      console.log(`Зареєстровано ${phone}, email=${email}`);
-      resolve(true);
-    }, 500)
-  );
+import EditIcon from "../../assets/Photo/EditIcon.png";
+import SMSImage from "../../assets/Photo/SMS.png";
+import {
+  toInternational,
+  isValidPhone,
+  isValidEmail,
+  isValidPassword,
+} from "./utils";
+import {
+  sendSmsCode,
+  verifySmsCode,
+  registerEmail,
+  verifyEmail,
+  setPassword,
+  sendLoginSmsCode,
+  confirmLoginCode
+} from "./api";
 
 function SignInModal({ onClose }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [step, setStep] = useState("enterPhone");
   const [phone, setPhone] = useState("");
+  const [smsSent, setSmsSent] = useState(false);
+  const [smsCode, setSmsCode] = useState("");
+  const [publicUUID, setPublicUUID] = useState("");
+
   const [email, setEmail] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailCode, setEmailCode] = useState("");
+  const [emailUUID, setEmailUUID] = useState("");
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agreed, setAgreed] = useState(false);
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const stop = (e) => e.stopPropagation();
-
-  const isValidPhone = (value) => /^\d{9,10}$/.test(value);
-  const isValidEmail = (value) =>
-    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value);
-  const passwordRules = {
-    length: /^(?=.{6,15}$).+$/,
-    letter: /[A-Za-z]/,
-    digits: /(.*\d){2,}/,
-    noSpecial: /^[^@#$^:;\\/”)?*]+$/,
-  };
-  const isValidPassword = (value) =>
-    passwordRules.length.test(value) &&
-    passwordRules.letter.test(value) &&
-    passwordRules.digits.test(value) &&
-    passwordRules.noSpecial.test(value);
-
-  const handlePhoneChange = (e) => {
-    const digits = e.target.value.replace(/\D/g, "");
-    setPhone(digits);
-  };
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showPhoneEditable, setShowPhoneEditable] = useState(false);
+
+  const [confirmCode, setConfirmCode] = useState("");
+  const [confirmSent, setConfirmSent] = useState(false);
+
+  const stop = (e) => e.stopPropagation();
+  const handlePhoneChange = (e) => setPhone(e.target.value.replace(/\D/g, ""));
+
+  // ----- РЕЄСТРАЦІЯ -----
 
   const handlePhoneSubmit = async () => {
     setError("");
     if (!phone) return setError("Вкажіть номер телефону");
     if (!isValidPhone(phone))
-      return setError(
-        "Номер телефону повинен містити тільки цифри (9-10 символів)"
-      );
+      return setError("Номер телефону повинен містити тільки цифри (9–10 символів)");
     if (!agreed) return setError("Підтвердіть згоду");
 
     setLoading(true);
     try {
-      const exists = await checkPhoneExists(phone);
-      setStep(exists ? "login" : "enterEmail");
+      await sendSmsCode(toInternational(phone));
+      setSmsSent(true);
+      setStep("sms");
+    } catch (e) {
+      if (e.status === 409) {
+        // Якщо обліковий запис вже є — відразу запускаємо SMS‑логін
+        await sendLoginSmsCode(toInternational(phone));
+        setConfirmSent(true);
+        setStep("confirmPhone");
+      } else {
+        setError(e.message);
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleLogin = async () => {
+  const handleSendSms = handlePhoneSubmit;
+
+  const handleVerifySms = async () => {
     setError("");
-    if (!password) return setError("Введіть пароль");
+    if (!smsCode) return setError("Введіть код із SMS");
     setLoading(true);
     try {
-      await loginWithPassword(phone, password);
-      alert("Успішний вхід");
-      onClose();
+      const uuid = await verifySmsCode(toInternational(phone), smsCode);
+      setPublicUUID(uuid);
+      setStep("enterEmail");
     } catch (e) {
       setError(e.message);
     } finally {
@@ -94,55 +99,116 @@ function SignInModal({ onClose }) {
     }
   };
 
-  const handleEmailSubmit = () => {
+  const handleEmailSubmit = async () => {
     setError("");
     if (!email) return setError("Вкажіть email");
     if (!isValidEmail(email))
       return setError("Некоректний email. Використовуйте лише латиницю та @");
-    setStep("setPassword");
-  };
-
-  const formatPhoneDisplay = (raw) => {
-    const digits = raw.replace(/\D/g, '');
-    let local = digits.length > 10 ? digits.slice(digits.length - 10) : digits;
-    if (local.length === 9) {
-      local = '0' + local;
-    }
-    if (local.length === 10) {
-      const area = local.slice(0, 3);
-      const part1 = local.slice(3, 6);
-      const part2 = local.slice(6, 8);
-      const part3 = local.slice(8, 10);
-      return `+38 (${area}) ${part1} ${part2} ${part3}`;
-    }
-    return raw;
-  };
-
-  const handleRegister = async () => {
-    setError("");
-    if (!password || !confirmPassword)
-      return setError("Заповніть усі поля пароля");
-    if (password !== confirmPassword) return setError("Паролі не співпадають");
-    if (!isValidPassword(password))
-      return setError(
-        "Пароль має бути 6-15 символів, містити мінімум 1 букву та 2 цифри, без спеціальних символів"
-      );
-    if (!agreed) return setError("Підтвердіть згоду");
-
     setLoading(true);
     try {
-      await registerUser(phone, email, password);
-      alert("Реєстрація успішна");
-      onClose();
+      await registerEmail(email);
+      setEmailSent(true);
+      setStep("verifyEmail");
+    } catch (e) {
+      setError(e.message);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleVerifyEmail = async () => {
+    setError("");
+    if (!emailCode) return setError("Введіть код із листа");
+    setLoading(true);
+    try {
+      const uuid = await verifyEmail(email, emailCode, publicUUID);
+      setEmailUUID(uuid);
+      setStep("setPassword");
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRegister = async () => {
+    setError("");
+    if (!password || !confirmPassword) return setError("Заповніть усі поля пароля");
+    if (password !== confirmPassword) return setError("Паролі не співпадають");
+    if (!isValidPassword(password))
+      return setError("Пароль має бути 6–15 символів, містити принаймні одну ВЕЛИКУ літеру та одну цифру");
+    if (!agreed) return setError("Підтвердіть згоду");
+
+    setLoading(true);
+    try {
+      const { access_token } = await setPassword(emailUUID || publicUUID, password);
+      document.cookie = `access_token=${access_token}; path=/; max-age=${60 * 60 * 24 * 7}`;
+      dispatch(fetchCurrentUser());
+      onClose();
+      navigate("/");
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ----- ЛОГІН -----
+
+  const handleLogin = async () => {
+    setError("");
+    if (!phone) return setError("Вкажіть номер телефону");
+    setLoading(true);
+    try {
+      await sendLoginSmsCode(toInternational(phone));
+      setConfirmSent(true);
+      setStep("confirmPhone");
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleConfirmPhone = async () => {
+  setError("");
+  if (!confirmCode) return setError("Введіть код підтвердження");
+  setLoading(true);
+  try {
+    const token = await confirmLoginCode(toInternational(phone), confirmCode);
+    document.cookie = `access_token=${token}; path=/; max-age=${60 * 60 * 24 * 7}`;
+    await dispatch(fetchCurrentUser());
+    onClose();
+    navigate("/");
+  } catch (e) {
+    setError(e.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+  // ----- UI Helpers -----
+
+  const formatPhoneDisplay = (raw) => {
+    const digits = raw.replace(/\D/g, "");
+    let local = digits.length > 10 ? digits.slice(-10) : digits;
+    if (local.length === 9) local = "0" + local;
+    if (local.length === 10) {
+      const [a, b, c, d] = [
+        local.slice(0, 3),
+        local.slice(3, 6),
+        local.slice(6, 8),
+        local.slice(8, 10),
+      ];
+      return `+38 (${a}) ${b} ${c} ${d}`;
+    }
+    return raw;
+  };
+
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      {/* Enter Email Step */}
-      {step === 'enterEmail' && (
+      {step === "enterEmail" && (
         <div className={styles.frame900} onClick={stop}>
           <div className={styles.frame900Header}>
             <button className={styles.closeButton} onClick={onClose}>
@@ -179,13 +245,106 @@ function SignInModal({ onClose }) {
             disabled={loading}
             className={styles.continueButton}
           >
-            {loading ? 'Перевірка...' : 'Продовжити'}
+            {loading ? "Перевірка..." : "Продовжити"}
           </button>
         </div>
       )}
 
-      {/* Set Password Step */}
-      {step === 'setPassword' && (
+      {step === "verifyEmail" && (
+        <div className={styles.verifyWrapper} onClick={stop}>
+          <div className={styles.closeContainer}>
+            <button className={styles.closeButton} onClick={onClose}>
+              <img src={CloseIcon} alt="Закрити" className={styles.closeIcon} />
+            </button>
+          </div>
+          <div className={styles.contentContainer} onClick={stop}>
+            <h2 className={styles.title}>Підтвердження Email</h2>
+            <p className={styles.subtitle}>
+              Введіть код, який надійшов на {email}
+            </p>
+            <div className={styles.inputContainer}>
+              <div className={styles.inputGroup}>
+                <span className={styles.inputLabel}>Код підтвердження</span>
+                <input
+                  type="text"
+                  placeholder="123456"
+                  value={emailCode}
+                  onChange={(e) => setEmailCode(e.target.value)}
+                  className={styles.inputField}
+                />
+              </div>
+              {error && <div className={styles.errorText}>{error}</div>}
+            </div>
+            <img src={SMSImage} alt="SMS" className={styles.smsImage2} />
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={handleVerifyEmail}
+                disabled={loading}
+                className={styles.actionButton}
+              >
+                {loading ? "Перевірка..." : "Підтвердити Email"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {step === "sms" && (
+        <div className={styles.frame895} onClick={stop}>
+          <div className={styles.closeWrapper}>
+            <button className={styles.closeButton} onClick={onClose}>
+              <img src={CloseIcon} alt="Закрити" className={styles.closeIcon} />
+            </button>
+          </div>
+
+          <div className={styles.contentWrapper}>
+            <h2 className={styles.registerTitle}>Підтвердіть телефон</h2>
+            <p className={styles.registerSubtitle}>
+              Код буде відправлено на номер +380{phone}.<br />
+              Будь ласка, очікуйте SMS з кодом протягом 2 хвилин.
+            </p>
+            <img
+              src={SMSImage}
+              alt="SMS illustration"
+              className={styles.smsImage}
+            />
+
+            {error && <div className={styles.errorText}>{error}</div>}
+
+            {!smsSent ? (
+              <button
+                onClick={handleSendSms}
+                disabled={loading}
+                className={styles.continueButton}
+              >
+                {loading ? "Надсилання..." : "Надіслати SMS-код"}
+              </button>
+            ) : (
+              <>
+                <div className={styles.inputWrapper}>
+                  <span className={styles.label}>Код із SMS</span>
+                  <input
+                    type="text"
+                    placeholder="0000"
+                    value={smsCode}
+                    onChange={(e) => setSmsCode(e.target.value)}
+                    className={styles.codeInput}
+                  />
+                </div>
+                <button
+                  onClick={handleVerifySms}
+                  disabled={loading}
+                  className={styles.continueButton}
+                >
+                  {loading ? "Перевірка..." : "Підтвердити код"}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {step === "setPassword" && (
         <div className={styles.frame908} onClick={stop}>
           <div className={styles.frame900Header}>
             <button className={styles.closeButton} onClick={onClose}>
@@ -203,7 +362,7 @@ function SignInModal({ onClose }) {
                   {error && <div className={styles.errorText}>{error}</div>}
                   <div className={styles.frame902}>
                     <input
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPassword ? "text" : "password"}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className={styles.passwordInput}
@@ -214,7 +373,9 @@ function SignInModal({ onClose }) {
                     >
                       <img
                         src={showPassword ? EyeOpenIcon : EyeClosedIcon}
-                        alt={showPassword ? 'Приховати пароль' : 'Показати пароль'}
+                        alt={
+                          showPassword ? "Приховати пароль" : "Показати пароль"
+                        }
                       />
                     </span>
                   </div>
@@ -224,7 +385,7 @@ function SignInModal({ onClose }) {
                     <br />
                     <span className={styles.passwordHintStrong}>
                       Не рекомендується
-                    </span>{' '}
+                    </span>{" "}
                     використовувати спеціальні символи (@#$^:;/”)?* та інші
                   </p>
                 </div>
@@ -233,7 +394,7 @@ function SignInModal({ onClose }) {
                   <label className={styles.inputLabel}>Повторіть пароль</label>
                   <div className={styles.frame902}>
                     <input
-                      type={showConfirmPassword ? 'text' : 'password'}
+                      type={showConfirmPassword ? "text" : "password"}
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       className={styles.passwordInput}
@@ -244,7 +405,11 @@ function SignInModal({ onClose }) {
                     >
                       <img
                         src={showConfirmPassword ? EyeOpenIcon : EyeClosedIcon}
-                        alt={showConfirmPassword ? 'Приховати пароль' : 'Показати пароль'}
+                        alt={
+                          showConfirmPassword
+                            ? "Приховати пароль"
+                            : "Показати пароль"
+                        }
                       />
                     </span>
                   </div>
@@ -261,8 +426,8 @@ function SignInModal({ onClose }) {
               onChange={(e) => setAgreed(e.target.checked)}
             />
             <label htmlFor="agree2" className={styles.checkboxLabel}>
-              Я ознайомлений (-на) з{' '}
-              <span className={styles.highlight}>Умовами</span> та{' '}
+              Я ознайомлений (-на) з{" "}
+              <span className={styles.highlight}>Умовами</span> та{" "}
               <span className={styles.highlight}>Правилами</span> надання
               банківських послуг.
             </label>
@@ -273,13 +438,12 @@ function SignInModal({ onClose }) {
             disabled={loading}
             className={styles.frame657}
           >
-            {loading ? 'Реєстрація...' : 'Продовжити'}
+            {loading ? "Реєстрація..." : "Продовжити"}
           </button>
         </div>
       )}
 
-      {/* Login Step */}
-      {step === 'login' && (
+      {step === "login" && (
         <div className={styles.frame887} onClick={stop}>
           <div className={styles.frame867}>
             <button className={styles.closeButton} onClick={onClose}>
@@ -289,7 +453,6 @@ function SignInModal({ onClose }) {
           <div className={styles.frame883}>
             <h2 className={styles.modalTitle2}>Вхід</h2>
 
-            {/* Номер телефону з можливістю редагування */}
             <div className={styles.step2Container}>
               <label className={styles.label}>Номер телефону</label>
               <div className={styles.passwordWrapper}>
@@ -314,20 +477,21 @@ function SignInModal({ onClose }) {
                 >
                   <img
                     src={EditIcon}
-                    alt={showPhoneEditable ? 'Зберегти номер' : 'Редагувати номер'}
+                    alt={
+                      showPhoneEditable ? "Зберегти номер" : "Редагувати номер"
+                    }
                   />
                 </span>
               </div>
             </div>
 
-            {/* Пароль */}
             <div className={styles.step2Container}>
               <label className={styles.label}>Пароль Finostra</label>
               <div className={styles.passwordWrapper}>
                 <input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   className={styles.input}
                 />
                 <span
@@ -336,30 +500,63 @@ function SignInModal({ onClose }) {
                 >
                   <img
                     src={showPassword ? EyeOpenIcon : EyeClosedIcon}
-                    alt={showPassword ? 'Приховати пароль' : 'Показати пароль'}
+                    alt={showPassword ? "Приховати пароль" : "Показати пароль"}
                   />
                 </span>
               </div>
             </div>
 
-            <a href="#" className={styles.forgotPassword}>
-              Забули пароль?
-            </a>
+            {error && <div className={styles.errorText}>{error}</div>}
+
+            <div className={styles.submitWrapper}>
+              <button
+                onClick={handleLogin} // ← тут зміна
+                disabled={loading}
+                className={styles.submitButton}
+              >
+                {loading ? "Увійти..." : "Увійти"}
+              </button>
+            </div>
           </div>
-          <div className={styles.submitWrapper}>
+        </div>
+      )}
+
+      {step === "confirmPhone" && (
+        <div className={styles.frame895} onClick={stop}>
+          <div className={styles.closeWrapper}>
+            <button className={styles.closeButton} onClick={onClose}>
+              <img src={CloseIcon} alt="Закрити" className={styles.closeIcon} />
+            </button>
+          </div>
+          <div className={styles.contentWrapper}>
+            <h2 className={styles.registerTitle}>Підтвердження номера</h2>
+            <p className={styles.registerSubtitle}>
+              Код підтвердження надіслано на {formatPhoneDisplay(phone)}.
+            </p>
+            <img src={SMSImage} alt="SMS illustration" className={styles.smsImage} />
+            {error && <div className={styles.errorText}>{error}</div>}
+            <div className={styles.inputWrapper}>
+              <span className={styles.label}>Код підтвердження</span>
+              <input
+                type="text"
+                placeholder="0000"
+                value={confirmCode}
+                onChange={(e) => setConfirmCode(e.target.value)}
+                className={styles.codeInput}
+              />
+            </div>
             <button
-              onClick={handleLogin}
+              onClick={handleConfirmPhone}
               disabled={loading}
-              className={styles.submitButton}
+              className={styles.continueButton}
             >
-              {loading ? 'Увійти...' : 'Увійти'}
+              {loading ? "Перевірка..." : "Підтвердити"}
             </button>
           </div>
         </div>
       )}
 
-      {/* Enter Phone Step */}
-      {step === 'enterPhone' && (
+      {step === "enterPhone" && (
         <div className={styles.frame837} onClick={stop}>
           <div className={styles.frame867}>
             <button className={styles.closeButton} onClick={onClose}>
@@ -376,7 +573,11 @@ function SignInModal({ onClose }) {
                     <div className={styles.wrapper_blockCode}>
                       <img src="/icons/flag_ukraine25.svg" alt="Ukraine Flag" />
                       <div className={styles.code}>+380</div>
-                      <img src="/img/polygon.png" className={styles.poligon} alt="Dropdown" />
+                      <img
+                        src="/img/polygon.png"
+                        className={styles.poligon}
+                        alt="Dropdown"
+                      />
                     </div>
                     <div className={styles.lineVertical}></div>
                     <input
@@ -395,10 +596,13 @@ function SignInModal({ onClose }) {
                       onChange={(e) => setAgreed(e.target.checked)}
                     />
                     <label htmlFor="agree" className={styles.confirmationText}>
-                      Продовжуючи, я підтверджую, що згоден (-на) з{' '}
-                      <span className={styles.highlight}>Умовами</span> та{' '}
-                      <span className={styles.highlight}>Правилами</span>, й ознайомлений (-на) із{' '}
-                      <span className={styles.highlight}>Повідомленням про обробку персональних даних у Банку</span>
+                      Продовжуючи, я підтверджую, що згоден (-на) з{" "}
+                      <span className={styles.highlight}>Умовами</span> та{" "}
+                      <span className={styles.highlight}>Правилами</span>, й
+                      ознайомлений (-на) із{" "}
+                      <span className={styles.highlight}>
+                        Повідомленням про обробку персональних даних у Банку
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -411,7 +615,7 @@ function SignInModal({ onClose }) {
                   disabled={loading}
                   className={styles.submitButton}
                 >
-                  {loading ? 'Перевірка...' : 'Продовжити'}
+                  {loading ? "Перевірка..." : "Продовжити"}
                 </button>
               </div>
               <div className={styles.qrWrapper}>
@@ -421,15 +625,35 @@ function SignInModal({ onClose }) {
             </div>
             <div className={styles.storeLinksContainer}>
               <div className={styles.frame641}>
-                <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer" className={styles.appleLink}>
-                  <div className={styles.appleIcon}><div className={styles.vector}></div></div>
-                  <div className={styles.frame640}><div className={styles.available}>Доступно в</div><div className={styles.appleStore}>Apple Store</div></div>
+                <a
+                  href="https://www.apple.com/app-store/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.appleLink}
+                >
+                  <div className={styles.appleIcon}>
+                    <div className={styles.vector}></div>
+                  </div>
+                  <div className={styles.frame640}>
+                    <div className={styles.available}>Доступно в</div>
+                    <div className={styles.appleStore}>Apple Store</div>
+                  </div>
                 </a>
               </div>
               <div className={styles.frame833}>
-                <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" className={styles.googlePlayLink}>
-                  <div className={styles.googlePlayIcon}><div className={styles.vector}></div></div>
-                  <div className={styles.frame640}><div className={styles.available}>Доступно в</div><div className={styles.googlePlay}>Google Play</div></div>
+                <a
+                  href="https://play.google.com/store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.googlePlayLink}
+                >
+                  <div className={styles.googlePlayIcon}>
+                    <div className={styles.vector}></div>
+                  </div>
+                  <div className={styles.frame640}>
+                    <div className={styles.available}>Доступно в</div>
+                    <div className={styles.googlePlay}>Google Play</div>
+                  </div>
                 </a>
               </div>
             </div>
