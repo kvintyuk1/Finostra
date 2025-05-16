@@ -1,16 +1,15 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+// Converter.jsx
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./converter.module.css";
 import { LanguageContext } from "../LanguageContext";
 import { converterTranslations } from "./converterTranslations";
-import {
-  fetchMonobankCurrencies,
-  RateLimitError,
-} from "..//services/monobankService";
+import { fetchMonobankCurrencies, RateLimitError } from "../services/monobankService";
 
-const INITIAL_INTERVAL = 5 * 60 * 1000; 
-const MAX_BACKOFF = 60 * 60 * 1000;     
+const CACHE_TTL = 5 * 60 * 1000; // 5 хвилин
+const RATE_KEY = "monobankRate";
+const TIME_KEY = "monobankRateTimestamp";
 
- function Converter({ isDarkMode }) {
+function Converter({ isDarkMode }) {
   const { selectedLanguage } = useContext(LanguageContext);
   const { title, converterItems } =
     converterTranslations[selectedLanguage] || converterTranslations.UA;
@@ -21,16 +20,7 @@ const MAX_BACKOFF = 60 * 60 * 1000;
   const [error, setError] = useState(null);
   const [reversed, setReversed] = useState(false);
 
-  const timeoutRef = useRef(null);
-  const backoffRef = useRef(INITIAL_INTERVAL);
-
-  // Шедулінг повторних запитів
-  const scheduleNext = (delay) => {
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(loadRate, delay);
-  };
-
-
+  // Завантажити курс із API Monobank і зберегти в localStorage
   async function loadRate() {
     try {
       const data = await fetchMonobankCurrencies();
@@ -44,8 +34,9 @@ const MAX_BACKOFF = 60 * 60 * 1000;
       setRate(newRate);
       setError(null);
 
-      backoffRef.current = INITIAL_INTERVAL;
-      scheduleNext(INITIAL_INTERVAL);
+      // Зберігаємо в localStorage
+      localStorage.setItem(RATE_KEY, newRate.toString());
+      localStorage.setItem(TIME_KEY, Date.now().toString());
     } catch (e) {
       if (e instanceof RateLimitError) {
         setError("Забагато запитів, спробуємо пізніше…");
@@ -53,14 +44,23 @@ const MAX_BACKOFF = 60 * 60 * 1000;
         console.error(e);
         setError("Не вдалося отримати курс");
       }
-      scheduleNext(backoffRef.current);
-      backoffRef.current = Math.min(backoffRef.current * 2, MAX_BACKOFF);
     }
   }
 
+  // При монтуванні перевіряємо локальний кеш або завантажуємо новий курс
   useEffect(() => {
-    loadRate();
-    return () => clearTimeout(timeoutRef.current);
+    const storedRate = localStorage.getItem(RATE_KEY);
+    const storedTime = localStorage.getItem(TIME_KEY);
+
+    if (
+      storedRate &&
+      storedTime &&
+      Date.now() - parseInt(storedTime, 10) < CACHE_TTL
+    ) {
+      setRate(parseFloat(storedRate));
+    } else {
+      loadRate();
+    }
   }, []);
 
   const handleUahChange = (e) => {
