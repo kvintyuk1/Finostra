@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 12.64vw;
+    height: 33px;
+    white-space: nowrap;
+}
+.width247 {
+    width: 17.15vw;
+}
+
+.hryvnia_but, .dollar_but,
+.euro_but {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    width: auto;
+    height: 33px;
+    color: rgba(250,250,250,0.6);
+    font-weight: 400;
+    font-size: 1em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.hryvnia_but img, .dollar_but img,
+.euro_but img {
+    display: flex;
+    align-self: center;
+    width: 7px;
+    height: 7px;
+}
+.active {
+    opacity: 1;
+    color: #FFF;
+}
+.active img {
+    display: inline-block;
+}

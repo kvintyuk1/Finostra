@@ -2,122 +2,150 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1115px;
+    width: 77.43vw;
     height: 285px;
-    border-radius: 30px;
+    border-radius: 2.08vw;
     background-color: #0F110E;
     color: #FFF;
 }
+.height_container236 {
+    height: 236px;
+}
+.height_container285 {
+    height: 285px;
+}
 .wrapper_content {
     display: flex;
-    gap: 20px;
-    width: 1054px;
+    gap: 1.39vw;
+    width: 73.19vw;
     height: 225px;
-    border: 1px solid blue;
 }
 .wrap_description {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    width: 317px;
+    width: 22.01vw;
     height: 225px;
-    border: 1px solid red;
+}
+.height_wrap_description176 {
+    height: 176px;
+}
+.height_wrap_description225 {
+    height: 225px;
+}
+.height_wrapper_content176 {
+    height: 176px;
+}
+.height_wrapper_content225 {
+    height: 225px;
 }
 .wrap_title_describe {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 308px;
+    width: 21.39vw;
     height: 100px;
-    border: 1px solid green;
 }
 .title {
     font-weight: 400;
-    font-size: 24px;
-    border: 1px solid green;
+    font-size: 1.5vw;
 }
 .describe {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.88em;
     color: rgba(250,250,250,0.6);
-    border: 1px solid green;
 }
 .wrap_min_sum {
     display: flex;
-    gap: 4px;
+    gap: 0.28vw;
 }
 .text_min_sun {
     display: flex;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.88em;
     color: rgba(250,250,250,0.6);
 }
 .number_min_sun {
     display: flex;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.88em;
     color: #FFF;
 }
 .wrapper_download {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 308px;
+    width: 21.39vw;
     height: 52px;
 }
 .download {
     display: flex;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     color: #A66CFE;
 }
 .wrapper_bestseller {
     display: flex;
     align-items: center;
-    gap: 12px;
-    width: 158px;
+    gap: 0.83vw;
+    width: 10.97vw;
     height: 25px;
-    border: 1px solid green;
 }
 .bestseller {
     display: flex;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
 }
-
-
 .text1 {
     display: flex;
     justify-content: center;
-    width: 72px;
+    width: 5vw;
     height: 46px;
     font-weight: 400;
-    font-size: 16px;
-    border: 1px solid red;
+    font-size: 1em;
 }
 .text2 {
     display: flex;
     justify-content: center;
-    width: 91px;
+    width: 6.32vw;
     height: 46px;
     font-weight: 400;
-    font-size: 16px;
-    border: 1px solid red;
+    font-size: 1em;
 }
 .wrap_table {
     display: flex;
-    gap: 12px;
-    width: 378px;
+    gap: 0.83vw;
+    width: 26.25vw;
     height: 171px;
-    border: 1px solid red;
 }
-
+.wrap_body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.wrap_row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 26.25vw;
+    height: 49px;
+    border-bottom: 1px solid rgba(250,250,250,0.6);
+}
+.item {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}
 
 .wrapper_buttons {
     display: flex;
     flex-direction: column;
     gap: 27px;
-    width: 116px;
+    width: 7.71vw;
     height: 159px;
-    border: 1px solid yellow;
+}
+.inner_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
 }

@@ -1,18 +1,17 @@
 .container {
     display: flex;
-    gap: 25px;
-    width: 1115px;
+    gap: 1.74vw;
+    width: 77.43vw;
     height: 107px;
-    border: 1px solid red;
 }
 
 .wrap_button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 355px;
+    width: 24.65vw;
     height: 107px;
-    border-radius: 30px;
+    border-radius: 2.08vw;
     border: none;
     background-color: #0F110E;
     cursor: pointer;
@@ -24,12 +23,13 @@
 .wrap_content {
     display: flex;
     align-items: center;
-    gap: 8px;
-    width: 202px;
+    justify-content: center;
+    gap: 0.56vw;
+    width: 14.03vw;
     height: 37px;
 }
 .name {
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 1.25em;
     color: #FFF;
 }

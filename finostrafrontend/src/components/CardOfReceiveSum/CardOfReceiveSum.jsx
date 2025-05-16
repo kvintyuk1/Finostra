@@ -4,7 +4,7 @@ import CardOfReceive from "../CardOfReceive/CardOfReceive";
 import SumForReceive from "../SumForReceive/SumForReceive";
 import {isValidCardNumber} from "../../utils/validateCard";
 
-function CardOfReceiveSum({receiverCardNumber,setReceiverCardNumber,sum,setSum}) {
+function CardOfReceiveSum({receiverCardNumber, setReceiverCardNumber, sum, setSum}) {
     const [receiverCardValid, setReceiverCardValid] = useState(true);
 
     const handleChange = (e) => {
@@ -16,19 +16,19 @@ function CardOfReceiveSum({receiverCardNumber,setReceiverCardNumber,sum,setSum})
 
     return (
         <div className={styles.container}>
-           <CardOfReceive
-               receiverCardNumber={receiverCardNumber}
-               setReceiverCardNumber={setReceiverCardNumber}
-               value={receiverCardNumber}
-               onChange={handleChange}
-               cardValid={receiverCardValid}
-           />
-           <SumForReceive
-           sum={sum}
-           setSum={setSum}
-           selectedLanguage={"UA"}
-           handleLanguageChange={(e)=>console.log("change", e.target.value)}
-           />
+            <CardOfReceive
+                receiverCardNumber={receiverCardNumber}
+                setReceiverCardNumber={setReceiverCardNumber}
+                value={receiverCardNumber}
+                onChange={handleChange}
+                cardValid={receiverCardValid}
+            />
+            <SumForReceive
+                sum={sum}
+                setSum={setSum}
+                selectedLanguage={"UA"}
+                handleLanguageChange={(e) => console.log("change", e.target.value)}
+            />
         </div>
     );
 }

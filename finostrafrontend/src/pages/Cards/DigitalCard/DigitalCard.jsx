@@ -4,7 +4,6 @@ import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferT
 import TypeDiginalCard from "../../../components/TypeDigitalCard/TypeDigitalCard";
 import PaymentSystem from "../../../components/PaymentSystem/PaymentSystem";
 import CreditLimit from "../../../components/CreditLimit/CreditLimit";
-import CurrencyCard from "../../../components/CurrencyCard/CurrencyCard";
 
 function DigitalCard() {
     const [selectedType,setSelectedType] = useState("Кредитна");
@@ -30,6 +29,7 @@ function DigitalCard() {
                     onSelectPaymentSystem={setPaymentSystem}
                     selectedShowActive={showActive}
                     onSelectShowActive={setShowActive}
+                    selectedType={selectedType}
                 />
                 {selectedType === "Кредитна" && (
                    <>

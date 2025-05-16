@@ -10,6 +10,7 @@
     font-weight: 700;
     font-size: 1em;
     letter-spacing: 1px;
+    white-space: nowrap;
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #000;
@@ -67,6 +68,10 @@
 }
 .size_button102 {
     width: 7.08vw;
+    height: 35px;
+}
+.size_button111 {
+    width: 7.71vw;
     height: 35px;
 }
 .size_button112 {
