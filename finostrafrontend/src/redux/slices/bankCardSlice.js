@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 export const createBankCard = createAsyncThunk('bankCard/createBankCard',
     async (cardData, thunkAPI) => {
         try {
@@ -24,7 +23,6 @@ export const fetchBankCardsByCurrency = createAsyncThunk(
         }
     }
 );
-
 
 const bankCardSlice = createSlice({
     name: 'bankCard',
