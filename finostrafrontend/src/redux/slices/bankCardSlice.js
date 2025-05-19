@@ -1,13 +1,18 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
+const URL = 'http://localhost:8081/api/v1';
 
 export const createBankCard = createAsyncThunk('bankCard/createBankCard',
     async (cardData, thunkAPI) => {
         try {
-            const response = await axios.post('/api/v1/bankCard/create', cardData);
+            const response = await axios.post(`${URL}/bankCard/create`, cardData, {
+                withCredentials: true
+            });
+            console.log(response);
             return response.data;
         } catch (error) {
+            console.log(error);
             return thunkAPI.rejectWithValue(error.response.data || "Помилка створення карточки");
         }
     });
@@ -15,7 +20,8 @@ export const fetchBankCardsByCurrency = createAsyncThunk(
     'bankCard/fetchByCurrency',
     async (currency, thunkAPI) => {
         try {
-            const response = await axios.get('/api/v1/bankCard/get', {
+            const response = await axios.get(`${URL}/bankCard/get`, {
+                withCredentials: true,
                 params: {currency}
             });
             return response.data.cards
@@ -44,6 +50,7 @@ const bankCardSlice = createSlice({
             .addCase(createBankCard.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
                 state.message = action.payload;
+                state.cards.push(action.payload);
             })
             .addCase(createBankCard.rejected, (state,action)=>{
                 state.status = "failed";
