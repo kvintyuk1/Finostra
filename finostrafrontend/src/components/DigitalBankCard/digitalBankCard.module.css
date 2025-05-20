@@ -50,22 +50,4 @@
 .light_mode .info ul {
     color: #000;
 }
-.container button {
-    display: flex;
-    align-self: flex-start;
-    align-items: center;
-    justify-content: center;
-    background-color: #A66CFE;
-    border: 1px solid #A66CFE;
-    font-family: 'adineue PRO Cyr', sans-serif;
-    font-size: 1em;
-    font-weight: 400;
-    border-radius: 9px;
-    width: 13.06vw;
-    height: 43px;
-    color: white;
-}
 
-.button {
-
-}

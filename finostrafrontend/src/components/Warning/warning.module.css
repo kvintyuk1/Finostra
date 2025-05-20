@@ -1,6 +1,14 @@
 .container {
     display: flex;
-    width: 1110px;
+    justify-content: center;
+    width: 77.08vw;
     height: 277px;
-    border: 1px solid red;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+}
+.wrap_content {
+    display: flex;
+    width: 72.92vw;
+    height: 119px;
+    margin-top: 1vw;
 }

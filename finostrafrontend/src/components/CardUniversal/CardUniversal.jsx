@@ -5,7 +5,8 @@ import CardInfo from "../for card/CardInfo/CardInfo";
 function CardUniversal({
                            sizeCard = "widthCard298", titleCard, totalMoney,
                            background_color = "background_colorYellow",
-                           onClick, hideImg = true, hideLogo=false,paymentSystem
+                           onClick, hideImg = true, hideLogo=false,paymentSystem,
+                           cardNumber = "1234",accountNumber = "1010101"
                        }) {
 
     return (
@@ -23,6 +24,8 @@ function CardUniversal({
                             marginMoney="margin50"
                             totalMoney={totalMoney}
                             hideImg={hideImg}
+                            cardNumber={cardNumber}
+                            accountNumber={accountNumber}
                         />
                     </div>
                     {!hideImg && (

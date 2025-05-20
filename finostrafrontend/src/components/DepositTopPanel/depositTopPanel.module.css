@@ -1,61 +1,56 @@
 .container {
     display: flex;
     align-items: center;
-    width: 1114px;
+    width: 72.92vw;
     height: 109px;
-    border-radius: 30px;
     background-color: #0F110E;
     color: #FFF;
 }
 .wrap_content {
     display: flex;
     align-items: center;
-    gap: 20px;
-    width: 938px;
+    gap: 1.39vw;
+    width: 65.14vw;
     height: 74px;
-    margin-left: 30px;
 }
 .title {
     display: flex;
-    width: 312px;
-    height: 16px;
+    width: 21.67vw;
+    height: 24px;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 1.25vw;
 }
 .wrap_menu {
     display: flex;
-    flex-direction: column;
     align-items: flex-end;
-    gap: 10px;
-    width: 607px;
-    height: 74px;
-}
-.wrap_rate {
-    display: flex;
-    justify-content: center;
-    width: 233px;
-    height: 16px;
-}
-.rate {
-    display: flex;
-}
-.wrap_items_menu {
-    display: flex;
-    gap: 44px;
-    width: 607px;
-    height: 48px;
+    gap: 2.57vw;
+    width: 40.56vw;
+    height: 87px;
+    color: rgba(250,250,250,0.6);
 }
 .account_payment {
     display: flex;
-    justify-content: center;
-    gap: 18px;
-    width: 197px;
-    height: 32px;
+    gap: 3.54vw;
+    width: 21.39vw;
+    height: 48px;
 }
 .wrap_term {
     display: flex;
-    gap: 36px;
-    width: 348px;
+    flex-direction: column;
+    gap: 20px;
+    width: 16.6vw;
+    height: 87px;
+}
+.rate {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+}
+.wrap_item {
+    display: flex;
+    width: 16.6vw;
     height: 48px;
 }
 .item {
@@ -63,5 +58,10 @@
     text-align: center;
     letter-spacing: 1px;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.88em;
+}
+.wrap_text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

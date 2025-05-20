@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.08vw;
+    width: 77.08vw;
+    height: 210px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 72.92vw;
+    height: 150px;
+}

@@ -7,10 +7,10 @@ import CW_kod from "../for card/CW_kod/CW_kod";
 import {isValidCardNumber, isValidExpiry} from "../../utils/validateCard";
 
 function Card({title, title_wallet, img,titleColor, textTransform, title_card, colorValue, img_card, title_period,
-                  title_kod, cw_kod, img_kod, additionalComponent1, additionalComponent2,value,setValue}) {
+                  title_kod,cardPeriod,handleCardPeriodChange,isPeriodValid,periodInputRef, cw_kod,setCwKod, img_kod,
+                  additionalComponent1, additionalComponent2,value,setValue}) {
     const [cardValid,setCardValid] = useState(true);
-    const [cardPeriod,setCardPeriod] = useState("");
-    const [periodValid,setPeriodValid] = useState(true);
+    const [periodTouched,setPeriodTouched] = useState(false);
     const cwInputRef = useRef(null);
 
     const handleCardNumberChange = (e)=>{
@@ -19,23 +19,9 @@ function Card({title, title_wallet, img,titleColor, textTransform, title_card, c
         const formattedValue = rawValue.replace(/(.{4})/g, "$1 ").trim();
         const isValid = isValidCardNumber(rawValue);
         setCardValid(isValid);
-        // 👉 Передаём наружу через props
         setValue(formattedValue);
-    };
-
-    const handleCardPeriodChange = (e)=>{
-        let input = e.target.value.replace(/[^\d]/g, "");
-        if (input.length >= 3) {
-            input = input.slice(0, 4);
-            input = input.replace(/(\d{2})(\d{1,2})/, "$1/$2");
-        }
-        setCardPeriod(input);
-
-        if (input.length === 5) {
-            setPeriodValid(isValidExpiry(input));
-            cwInputRef.current?.focus(); // 👉 автофокус
-        } else {
-            setPeriodValid(true);
+        if(isValid && formattedValue.length === 19){
+            periodInputRef?.current?.focus();
         }
     };
 
@@ -60,14 +46,19 @@ function Card({title, title_wallet, img,titleColor, textTransform, title_card, c
                                         title_period={title_period}
                                         value={cardPeriod}
                                         onChange={handleCardPeriodChange}
-                                        periodValid={periodValid}
+                                        isPeriodValid={isPeriodValid}
                                         nextRef={cwInputRef}
+                                        touched={periodTouched}
+                                        setTouched={setPeriodTouched}
+                                        inputRef={periodInputRef}
                                     />
                                     <CW_kod
                                         title_kod={title_kod}
                                         cw_kod={cw_kod}
+                                        setCwKod={setCwKod}
                                         img_kod={img_kod}
                                         inputRef={cwInputRef}
+
                                     />
                                 </div>
                             )}
@@ -75,7 +66,6 @@ function Card({title, title_wallet, img,titleColor, textTransform, title_card, c
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

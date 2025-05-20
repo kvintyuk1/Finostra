@@ -10,6 +10,7 @@
     font-weight: 700;
     font-size: 1em;
     letter-spacing: 1px;
+    white-space: nowrap;
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #000;
@@ -69,6 +70,10 @@
     width: 7.08vw;
     height: 35px;
 }
+.size_button111 {
+    width: 7.71vw;
+    height: 35px;
+}
 .size_button112 {
     width: 7.78vw;
     height: 45px;
@@ -88,6 +93,10 @@
 .size_button152 {
     width: 10.56vw;
     height: 45px;
+}
+.size_button162 {
+    width: 162px;
+    height: 49px;
 }
 .size_button168 {
     width: 11.67vw;

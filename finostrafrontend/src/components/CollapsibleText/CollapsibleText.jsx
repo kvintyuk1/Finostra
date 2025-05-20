@@ -15,7 +15,17 @@ function CollapsibleText({ title, text, description, maxLength = 100 }) {
             <div className={styles.title}>{title}</div>
             <div className={styles.text}>{text}</div>
             <div className={styles.description}>
-                {isExpanded ? description : description.slice(0, maxLength) + "..."}
+                {Array.isArray(description) ? (
+                    <ul>
+                        {(isExpanded ? description : description.slice(0, maxLength)).map((item,index)=>(
+                            <li key={index}>{item}</li>
+                        ))}
+                        {!isExpanded && description.length > maxLength && <li>...</li>}
+                    </ul>
+                ) : (
+                    isExpanded ? description : description.slice(0,maxLength) + "..."
+                )}
+
             </div>
             <button onClick={toggleExpand} className={styles.but_style}>
                 <div className={styles.text_but}>

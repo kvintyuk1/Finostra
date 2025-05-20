@@ -2,22 +2,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 49px;
+    gap: 32px;
     width: 82.64vw;
-    height: 1788px;
-    border: 1px solid red;
+    height: 2275px;
 }
 .wrapper_content {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    width: 1115px;
-    height: 1462px;
-    border: 1px solid red;
+    width: 77.43vw;
+    min-height: 2275px;
+    transition: min-height 0.3s ease;
 }
-
-
-
-.wrap_warning {
+.wrap_currencySwitch {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 77.08vw;
+    height: 117px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+}
+.wrap_content {
+    display: flex;
+    width: 72.92vw;
+    height: 33px;
 }
