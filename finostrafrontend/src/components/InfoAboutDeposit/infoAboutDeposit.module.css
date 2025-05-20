@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.57vw;
+    width: 77.08vw;
+    height: 1111px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+}
+.choice_deposit_options {
+    display: flex;
+    flex-direction: column;
+    width: 50.97vw;
+    height: 1051px;
+    gap: 30px;
+}
+
+.calculation_options {
+    display: flex;
+    flex-direction: column;
+    width: 19.38vw;
+    height: 1051px;
+    gap: 30px;
+}
+.calculation_afterTaxes {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 19.38vw;
+    height: 762px;
+}

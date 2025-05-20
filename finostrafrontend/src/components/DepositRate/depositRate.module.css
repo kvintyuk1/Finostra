@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    width: 50.97vw;
+    height: 178px;
+    border-radius: 2.08vw;
+    color: #FFF;
+    background-color: #28282C;
+}
+.wrap_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 46.81vw;
+    height: 23px;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.13em;
+}
+.wrap_percent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 4.24vw;
+    height: 23px;
+    border-radius: 5px;
+    background-color: #0F110E;
+}
+.number, .percent {
+    display: flex;
+    font-weight: 400;
+    font-size: 0.88em;
+}

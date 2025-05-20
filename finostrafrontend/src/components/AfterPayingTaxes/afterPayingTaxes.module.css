@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    width: 19.38vw;
+    height: 246px;
+    border-radius: 2.08vw;
+    color: #FFF;
+    background-color: #28282C;
+}
+.title {
+    display: flex;
+    width: 13.96vw;
+    height: 21px;
+}
+.wrap_percent {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 13.96vw;
+    height: 130px;
+}
+.wrap_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    width: 10.83vw;
+    height: 50px;
+}
+.name {
+    display: flex;
+    font-weight: 700;
+    font-size: 0.88em;
+    color: rgba(250,250,250,0.6);
+}
+.sum{
+    display: flex;
+    font-weight: 700;
+    font-size: 1em;
+    color: #FFF;
+}

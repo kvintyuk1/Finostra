@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    width: 50.97vw;
+    height: 261px;
+    border-radius: 2.08vw;
+    color: #FFF;
+    background-color: #28282C;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.13em;
+    width: 46.25vw;
+    height: 21px;
+}
+.wrap_item {
+    display: flex;
+    align-items: center;
+    gap: 1.39vw;
+    width: 46.25vw;
+    height: 24px;
+}
+.text {
+    display: flex;
+    font-weight: 700;
+    font-size: 1em;
+}

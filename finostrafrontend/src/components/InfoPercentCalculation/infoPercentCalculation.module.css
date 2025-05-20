@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.39vw;
+    width: 32.22vw;
+    height: 44px;
+}
+.description {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.13em;
+    color: #A66CFE;
+}
