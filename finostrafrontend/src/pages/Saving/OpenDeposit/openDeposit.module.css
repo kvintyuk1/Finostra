@@ -4,12 +4,27 @@
     align-items: center;
     gap: 32px;
     width: 82.64vw;
-    height: 1788px;
+    height: 2275px;
 }
 .wrapper_content {
     display: flex;
     flex-direction: column;
     gap: 32px;
     width: 77.43vw;
-    height: 1462px;
+    min-height: 2275px;
+    transition: min-height 0.3s ease;
+}
+.wrap_currencySwitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 77.08vw;
+    height: 117px;
+    border-radius: 2.08vw;
+    background-color: #0F110E;
+}
+.wrap_content {
+    display: flex;
+    width: 72.92vw;
+    height: 33px;
 }

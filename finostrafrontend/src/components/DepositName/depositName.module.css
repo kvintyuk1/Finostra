@@ -8,17 +8,50 @@
     background-color: #0F110E;
     color: #FFF;
 }
+.height_container220 {
+    height: 220px;
+}
 .height_container236 {
     height: 236px;
 }
+.height_container242 {
+    height: 242px;
+}
 .height_container285 {
     height: 285px;
+}
+.height_container444 {
+    height: 444px;
 }
 .wrapper_content {
     display: flex;
     gap: 1.39vw;
     width: 73.19vw;
     height: 225px;
+}
+.gap_wrapper_content20 {
+    gap: 1.39vw;
+}
+.gap_wrapper_content30 {
+    gap: 2.08vw;
+}
+.height_wrapper_content160 {
+    height: 160px;
+}
+.height_wrapper_content176 {
+    height: 176px;
+}
+.height_wrapper_content182 {
+    height: 182px;
+}
+.height_wrapper_content225 {
+    height: 225px;
+}
+.height_wrapper_content242 {
+    height: 242px;
+}
+.height_wrapper_content384 {
+    height: 384px;
 }
 .wrap_description {
     display: flex;
@@ -27,18 +60,26 @@
     width: 22.01vw;
     height: 225px;
 }
+.height_wrap_description160 {
+    height: 160px;
+}
 .height_wrap_description176 {
     height: 176px;
 }
+.height_wrap_description182 {
+    height: 182px;
+}
+
 .height_wrap_description225 {
     height: 225px;
 }
-.height_wrapper_content176 {
-    height: 176px;
+.width_wrap_description317 {
+    width: 22.01vw;
 }
-.height_wrapper_content225 {
-    height: 225px;
+.width_wrap_description647 {
+    width: 44.93vw;
 }
+
 .wrap_title_describe {
     display: flex;
     flex-direction: column;
@@ -54,6 +95,12 @@
     font-weight: 400;
     font-size: 0.88em;
     color: rgba(250,250,250,0.6);
+}
+.describe_nowrap {
+    white-space: wrap;
+}
+.describe_nowrap {
+    white-space: nowrap;
 }
 .wrap_min_sum {
     display: flex;
@@ -109,30 +156,6 @@
     justify-content: center;
     width: 6.32vw;
     height: 46px;
-    font-weight: 400;
-    font-size: 1em;
-}
-.wrap_table {
-    display: flex;
-    gap: 0.83vw;
-    width: 26.25vw;
-    height: 171px;
-}
-.wrap_body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.wrap_row {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 26.25vw;
-    height: 49px;
-    border-bottom: 1px solid rgba(250,250,250,0.6);
-}
-.item {
-    display: flex;
     font-weight: 400;
     font-size: 1em;
 }

@@ -1,0 +1,30 @@
+.wrap_table {
+    display: flex;
+    gap: 0.83vw;
+    width: 26.25vw;
+    height: 171px;
+}
+.height_wrap_table171 {
+    height: 171px;
+}
+.height_wrap_table384 {
+    height: 384px;
+}
+.wrap_body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.wrap_row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 26.25vw;
+    height: 49px;
+    border-bottom: 1px solid rgba(250,250,250,0.6);
+}
+.item {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+}

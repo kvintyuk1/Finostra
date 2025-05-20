@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    gap: 4.38vw;
+    width: 37.43vw;
+    height: 129px;
+    color: #FFF;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.13em;
+}
+.to_card,
+.to_deposit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    width: 11.25vw;
+    height: 129px;
+}
+.description {
+    display: flex;
+    font-weight: 400;
+    font-size: 0.88em;
+    letter-spacing: 1px;
+}

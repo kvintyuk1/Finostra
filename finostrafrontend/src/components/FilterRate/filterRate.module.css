@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+    width: 46.81vw;
+    height: 60px;
+    background-color: #2a2a2a;
+    padding: 0 10px;
+    border-radius: 0.56vw;
+    position: relative;
+}
+.container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0.69vw;
+    right: 0.69vw;
+    height: 2px;
+    background-color: #A9A9AB;
+    z-index: 0;
+}
+.rate_point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #A9A9AB;
+    font-size: 0.75vw;
+    z-index: 1;
+}
+
+.rate_point .rate {
+    margin-bottom: 8px;
+}
+
+.rate_point .dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #A9A9AB;
+    margin-bottom: 8px;
+}
+
+.rate_point .month {
+    font-size: 0.75em;
+}
+
+.rate_point.active {
+    color: #A66CFE;
+}
+
+.rate_point.active .dot {
+    background-color: #A66CFE;
+}
