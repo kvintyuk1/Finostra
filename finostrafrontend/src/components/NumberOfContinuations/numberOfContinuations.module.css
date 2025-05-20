@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 50.97vw;
+    height: 146px;
+    border-radius: 2.08vw;
+    color: #FFF;
+    background-color: #28282C;
+}
+.title {
+    display: flex;
+    font-weight: 400;
+    font-size: 1.13em;
+    width: 46.81vw;
+    height: 21px;
+}
+.wrap_content {
+    display: flex;
+    align-items: center;
+    gap: 4.03vw;
+    width: 46.81vw;
+    height: 30px;
+
+}
+.slider_number {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 92%;
+    z-index: 1;
+}
+.number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 0.35vw;
+    background-color: #0F110E;
+}
+.slider_number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #A9A9AB;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+.rate_point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #A9A9AB;
+    font-size: 0.75em;
+    z-index: 1;
+}
+
+.rate_point .rate {
+    margin-bottom: 8px;
+}
+
+.rate_point .dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #A9A9AB;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.rate_point .month {
+    font-size: 0.75em;
+}
+
+.rate_point.active {
+    color: #A66CFE;
+}
+
+.rate_point.active .dot {
+    background-color: #A66CFE;
+}

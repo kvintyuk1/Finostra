@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    width: 50.97vw;
+    height: 143px;
+    border-radius: 2.08vw;
+    background-color: #28282C;
+}
+.background_container_grey {
+    background-color: #28282C;
+}
+.background_container_black {
+    background-color: #0F110E;
+}
+.width_container734 {
+    width: 50.97vw;
+    height: 143px;
+}
+.width_container1110 {
+    width: 77.08vw;
+    height: 143px;
+}
+.title {
+    display: flex;
+    gap: 0.69vw;
+    width: 46.81vw;
+    height: 21px;
+    font-weight: 400;
+    font-size: 1.13em;
+    color: #FFF;
+}
+.width_title666 {
+    width: 46.81vw;
+}
+.width_title1050 {
+    width: 72.92vw;
+}

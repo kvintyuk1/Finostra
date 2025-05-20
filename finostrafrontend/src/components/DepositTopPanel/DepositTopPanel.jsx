@@ -15,7 +15,10 @@ function DepositTopPanel() {
                     <div className={styles.wrap_term}>
                         <span className={styles.rate}>Ставка річних</span>
                         <div className={styles.wrap_item}>
-                            <div className={styles.item}>Без дострокового закриття</div>
+                            <div className={styles.wrap_text}>
+                                <div className={styles.item}>Без</div>
+                                <div className={styles.item}>дострокового закриття</div>
+                            </div>
                             <div className={styles.wrap_text}>
                                 <div className={styles.item}>З</div>
                                 <div className={styles.item}>достроковим закриттям</div>
