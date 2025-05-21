@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCurrentUser } from "./redux/slices/authSlice";
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchCurrentUser} from "./redux/slices/authSlice";
 
-import { LanguageProvider } from "./components/LanguageContext";
+import {LanguageProvider} from "./components/LanguageContext";
 
 import Layout from "./pages/Layout/Layout";
 import Main from "./pages/main/Main";
@@ -40,81 +40,86 @@ import Fun from "./pages/Fun/Fun";
 import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
+import MyDeposit from "./pages/Saving/MyDeposit/MyDeposit";
+import MyKonverty from "./pages/Conversions/MyKonverty/MyKonverty";
 
 function App() {
-  const dispatch = useDispatch();
-  const { status, isAuthenticated } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const {status, isAuthenticated} = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchCurrentUser());
+    }, [dispatch]);
 
-  if (status === "loading") {
-    return <div className="loading">Завантаження...</div>;
-  }
+    if (status === "loading") {
+        return <div className="loading">Завантаження...</div>;
+    }
 
-  return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
+    return (
+        <LanguageProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout/>}>
 
-            <Route index element={<Main />} />
+                        <Route index element={<Main/>}/>
 
-            <Route path="transactions" element={<Transactions />}>
-              <Route path="transactionToCard" element={<TransactionToCard />} />
-              <Route path="details" element={<Details />} />
-              <Route path="international" element={<InternationalTransfers />} />
-              <Route path="swift" element={<SWIFT />} />
-              <Route path="payoneer" element={<PayoneerPage />} />
-            </Route>
+                        <Route path="transactions" element={<Transactions/>}>
+                            <Route path="transactionToCard" element={<TransactionToCard/>}/>
+                            <Route path="details" element={<Details/>}/>
+                            <Route path="international" element={<InternationalTransfers/>}/>
+                            <Route path="swift" element={<SWIFT/>}/>
+                            <Route path="payoneer" element={<PayoneerPage/>}/>
+                        </Route>
 
-            <Route path="connection" element={<Connection />}>
-              <Route path="mobileRecharge" element={<MobileTopUp />} />
-            </Route>
+                        <Route path="connection" element={<Connection/>}>
+                            <Route path="mobileRecharge" element={<MobileTopUp/>}/>
+                        </Route>
 
-            <Route path="saving" element={<Saving />}>
-              <Route path="openDeposit" element={<OpenDeposit />} />
-            </Route>
+                        <Route path="saving" element={<Saving/>}>
+                            <Route path="openDeposit" element={<OpenDeposit/>}/>
+                            <Route path="myDeposit" element={<MyDeposit/>}/>
+                        </Route>
 
-            <Route path="conversions" element={<Conversions />} />
-            <Route path="piggy_bank" element={<PiggyBank />} />
+                        <Route path="conversions" element={<Conversions/>}>
+                            <Route path="myKonverty" element={<MyKonverty/>}/>
+                        </Route>
+                        <Route path="piggy_bank" element={<PiggyBank/>}/>
 
-            <Route path="credits" element={<Credits />}>
-              <Route path="myCredits" element={<MyCredits />} />
-              <Route path="creditLimit" element={<WalletPage />} />
-              <Route
-                path="paymentInstallments"
-                element={<PaymentInstallments />}
-              />
-              <Route
-                path="instantInstallment"
-                element={<InstantInstallment />}
-              />
-              <Route path="creditCash" element={<CreditCash />} />
-              <Route path="creditCar" element={<CreditCar />} />
-              <Route path="creditHouse" element={<CreditHouse />} />
-            </Route>
+                        <Route path="credits" element={<Credits/>}>
+                            <Route path="myCredits" element={<MyCredits/>}/>
+                            <Route path="creditLimit" element={<WalletPage/>}/>
+                            <Route
+                                path="paymentInstallments"
+                                element={<PaymentInstallments/>}
+                            />
+                            <Route
+                                path="instantInstallment"
+                                element={<InstantInstallment/>}
+                            />
+                            <Route path="creditCash" element={<CreditCash/>}/>
+                            <Route path="creditCar" element={<CreditCar/>}/>
+                            <Route path="creditHouse" element={<CreditHouse/>}/>
+                        </Route>
 
-            <Route path="cards" element={<Cards />}>
-              <Route path="digitalCard" element={<DigitalCard />} />
-            </Route>
-            <Route path="securities" element={<Securities />} />
-            <Route path="auto_payments" element={<AutoPayments />} />
-            <Route path="transport" element={<Transport />} />
-            <Route path="insurance" element={<Insurance />} />
-            <Route path="auto" element={<Auto />} />
-            <Route path="services" element={<Services />} />
-            <Route path="fun" element={<Fun />} />
-            <Route path="good" element={<Good />} />
-            <Route path="juniors" element={<Juniors />} />
-            <Route path="business" element={<Business />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </LanguageProvider>
-  );
+                        <Route path="cards" element={<Cards/>}>
+                            <Route path="digitalCard" element={<DigitalCard/>}/>
+                        </Route>
+                        <Route path="securities" element={<Securities/>}/>
+                        <Route path="auto_payments" element={<AutoPayments/>}/>
+                        <Route path="transport" element={<Transport/>}/>
+                        <Route path="insurance" element={<Insurance/>}/>
+                        <Route path="auto" element={<Auto/>}/>
+                        <Route path="services" element={<Services/>}/>
+                        <Route path="fun" element={<Fun/>}/>
+                        <Route path="good" element={<Good/>}/>
+                        <Route path="juniors" element={<Juniors/>}/>
+                        <Route path="business" element={<Business/>}/>
+                        <Route path="*" element={<Navigate to="/" replace/>}/>
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </LanguageProvider>
+    );
 }
 
 export default App;

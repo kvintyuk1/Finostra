@@ -61,7 +61,14 @@
     width: 3.96vw;
     height: 35px;
 }
-
+.size_button68 {
+    width: 4.72vw;
+    height: 29px;
+}
+.size_button88 {
+    width: 6.11vw;
+    height: 39px;
+}
 .size_button98 {
     width: 6.81vw;
     height: 45px;
@@ -69,6 +76,10 @@
 .size_button102 {
     width: 7.08vw;
     height: 35px;
+}
+.size_button103 {
+    width: 7.15vw;
+    height: 49px;
 }
 .size_button111 {
     width: 7.71vw;
@@ -85,6 +96,10 @@
 .size_button118 {
     width: 8.19vw;
     height: 45px;
+}
+.size_button128_39 {
+    width: 8.89vw;
+    height: 39px;
 }
 .size_button128 {
     width: 8.89vw;
@@ -104,6 +119,10 @@
 }
 .size_button173 {
     width: 12.01vw;
+    height: 45px;
+}
+.size_button179 {
+    width: 12.43vw;
     height: 45px;
 }
 .size_button184 {

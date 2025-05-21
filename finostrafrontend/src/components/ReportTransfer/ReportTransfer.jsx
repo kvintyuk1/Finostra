@@ -5,7 +5,7 @@ import SentReceivedSwitch from "../SentReceivedSwitch/SentReceivedSwitch";
 import {LanguageContext} from "../LanguageContext";
 import {reportTransferTranslations} from "./reportTransferTranslations";
 
-function ReportTransfer() {
+function ReportTransfer({activeButton, setActiveButton}) {
     const {language} = useContext(LanguageContext);
     const t = reportTransferTranslations[language] || reportTransferTranslations["UA"];
 
@@ -15,7 +15,12 @@ function ReportTransfer() {
                 <div className={styles.wrapper_content}>
                     <div className={styles.wrapper_title}>
                         <div className={styles.title}>{t.title}</div>
-                        <SentReceivedSwitch text_but_one={t.sent} text_but_two={t.received}/>
+                        <SentReceivedSwitch
+                            text_but_one={t.sent}
+                            text_but_two={t.received}
+                            active={activeButton}
+                            onChange={setActiveButton}
+                        />
                     </div>
                     <table className={styles.wrapper_table}>
                         <thead className={styles.wrapper_header}>

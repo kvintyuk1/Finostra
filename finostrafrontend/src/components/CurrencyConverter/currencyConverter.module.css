@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 36.6vw;
+    height: 758px;
+    border-radius: 30px;
+    background-color: #0E0E0E;
+}

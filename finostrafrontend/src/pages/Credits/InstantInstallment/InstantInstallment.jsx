@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./instantInstallment.module.css";
 import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferToCardInfo";
 import PaymentLimitInstallments from "../../../components/PaymentLimitInstallments/PaymentLimitInstallments";
@@ -16,6 +16,7 @@ const questionsData3 = [
 ]
 
 function InstantInstallment({isDarkMode}) {
+    const [activeButton, setActiveButton] = useState("sent");
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
             <div className={styles.container}>
@@ -42,6 +43,8 @@ function InstantInstallment({isDarkMode}) {
                     sumCredit="Сума кредиту"
                     numberCredit="Від 300 до 300 000 UAH"
                     hideLineVerticalDotted
+                    activeButton={activeButton}
+                    setActiveButton={setActiveButton}
                     customContent={
                         <div className={styles.wrapper_item}>
                             <img src="/icons/card_white20.svg" alt=""/>

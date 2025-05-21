@@ -7,6 +7,9 @@ import Connection_Modal from "../modals/Connection_Modal/Connection_Modal";
 import Credit_Modal from "../modals/Credit_Modal/Credit_Modal";
 import Cards_Modal from "../modals/Cards_Modal/Cards_Modal";
 import Deposit_Modal from "../modals/Deposit_Modal/Deposit_Modal";
+import Konverty_one_Modal from "../modals/Konverty_one_Modal/Konverty_one_Modal";
+import Konverty_two_Modal from "../modals/Konverty_two_Modal/Konverty_two_Modal";
+import Konverty_three_Modal from "../modals/Konverty_three_Modal/Konverty_three_Modal";
 
 function Sidebar() {
     const location = useLocation();
@@ -40,7 +43,14 @@ function Sidebar() {
             modal: "depositModal",
             path: "/saving",
         },
-        {to: "/conversions", icon: "conversions.svg", label: tSidebar.conversions},
+        {
+            to: "/conversions",
+            icon: "conversions.svg",
+            label: tSidebar.conversions,
+            hasArrow: true,
+            modal: "konvertyOneModal",
+            path: "/conversions"
+        },
         {to: "/piggy_bank", icon: "piggy_bank.svg", label: tSidebar.piggyBank},
         {
             to: "/credits",
@@ -69,6 +79,9 @@ function Sidebar() {
         creditModal: Credit_Modal,
         cardsModal: Cards_Modal,
         depositModal: Deposit_Modal,
+        konvertyOneModal: Konverty_one_Modal,
+        konvertyTwoModal: Konverty_two_Modal,
+        konvertyThreeModal: Konverty_three_Modal
     };
 
     const handleOpenModal = (e, modal, path) => {
@@ -125,7 +138,18 @@ function Sidebar() {
                     ))}
                 </ul>
             </nav>
-            {ModalComponent && <ModalComponent onClose={handleCloseModal} onTransactionClick={handleTransactionClick}/>}
+            {ModalComponent && <ModalComponent onClose={handleCloseModal}
+                                               onTransactionClick={handleTransactionClick}
+                                               onNextStep={()=>{
+                                                   if(activeModal === "konvertyOneModal"){
+                                                       setActiveModal("konvertyTwoModal");
+                                                   } else if(activeModal === "konvertyTwoModal"){setActiveModal("konvertyThreeModal");
+                                                   }
+                                               }}
+                                               navigateToConversions={()=>{setActiveModal(null);
+                                               navigate("/conversions/myKonverty")}}
+
+            />}
         </aside>
     );
 }
