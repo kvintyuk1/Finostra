@@ -1,0 +1,237 @@
+.container {
+  position: absolute;
+  top: 138px;
+  left: 300px;
+  width: 1136px;
+  background: #0F110E;
+  border-radius: 30px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.tabs {
+  display: flex;
+  gap: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  padding-bottom: 30px;
+}
+
+.tab,
+.activeTab {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.tab {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.activeTab {
+  color: #A66CFE;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.sectionTitle {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.profileContent {
+  display: flex;
+  gap: 100px;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  background: url('../../assets/Photo/Emili.png') center/cover no-repeat;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.avatarOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 17, 14, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.pencilIcon {
+  width: 40px;
+  height: 40px;
+  color: #FFFFFF;
+}
+
+.infoForm {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.languageToggle {
+  display: flex;
+  gap: 10px;
+}
+
+.langButton,
+.langButtonActive {
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  background: transparent;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.langButtonActive {
+  background: #A66CFE;
+  border: none;
+}
+
+button {
+  transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes buttonPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.langButtonActive {
+  animation: buttonPulse 0.4s ease;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fieldRow {
+  display: flex;
+  align-items: center;
+  padding: 0 0 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  width: 437px;
+  height: 39px;
+  flex: none;
+  align-self: stretch;
+}
+.fields .fieldRow:nth-child(1) { flex-direction: row; gap: 90px; order: 0; }
+.fields .fieldRow:nth-child(2) { justify-content: space-between; gap: 171px; order: 1; }
+.fields .fieldRow:nth-child(3) { justify-content: space-between; gap: 124px; order: 2; }
+.fields .fieldRow:nth-child(4) { justify-content: space-between; gap: 124px; order: 3; }
+
+.label {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.value {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.reportLink {
+  width: 437px;
+  height: 24px;
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #A66CFE;
+  cursor: pointer;
+  flex: none;
+  order: 4;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.changeBtn {
+  padding: 15px 50px;
+  border: 2px solid #A66CFE;
+  border-radius: 9px;
+  background: transparent;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #A66CFE;
+  cursor: pointer;
+}
+
+.contactActions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.addContactBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: #424242;
+  border-radius: 9px;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.plusIcon {
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.saveBtn {
+  padding: 15px 50px;
+  background: #A66CFE;
+  border-radius: 9px;
+  font-family: 'adineue PRO', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+}

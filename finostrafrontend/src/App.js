@@ -8,6 +8,7 @@ import {LanguageProvider} from "./components/LanguageContext";
 
 import Layout from "./pages/Layout/Layout";
 import Main from "./pages/main/Main";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import Transactions from "./pages/Transaction/Transactions";
 import Details from "./pages/Transaction/Details/Details";
 import InternationalTransfers from "./pages/Transaction/InternationalTransfers/InternationalTransfers";
@@ -62,6 +63,7 @@ function App() {
                     <Route path="/" element={<Layout/>}>
 
                         <Route index element={<Main/>}/>
+                        <Route path="profile" element={<ProfilePage/>}/>
 
                         <Route path="transactions" element={<Transactions/>}>
                             <Route path="transactionToCard" element={<TransactionToCard/>}/>
@@ -84,7 +86,6 @@ function App() {
                             <Route path="myKonverty" element={<MyKonverty/>}/>
                         </Route>
                         <Route path="piggy_bank" element={<PiggyBank/>}/>
-
                         <Route path="credits" element={<Credits/>}>
                             <Route path="myCredits" element={<MyCredits/>}/>
                             <Route path="creditLimit" element={<WalletPage/>}/>
@@ -100,7 +101,6 @@ function App() {
                             <Route path="creditCar" element={<CreditCar/>}/>
                             <Route path="creditHouse" element={<CreditHouse/>}/>
                         </Route>
-
                         <Route path="cards" element={<Cards/>}>
                             <Route path="digitalCard" element={<DigitalCard/>}/>
                         </Route>

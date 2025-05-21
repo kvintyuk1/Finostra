@@ -1,13 +1,15 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 import styles from "./ProfileMenu.module.css";
 import { translations } from "./translations";
 import { LanguageContext } from "../LanguageContext";
-import { User, Settings, LogOut, Pencil, Lock, Phone, Info, Globe, Moon, Volume2, Gift } from 'lucide-react';
+import { User, Settings, LogOut, Pencil, Lock, Phone, Info, Gift } from 'lucide-react';
 
 export default function ProfileMenu({ avatarUrl, name = "Верес А. М.", phone = "+38 (096) 759 28 96" }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { selectedLanguage } = useContext(LanguageContext);
   const t = translations[selectedLanguage] || translations['en'];
@@ -16,12 +18,16 @@ export default function ProfileMenu({ avatarUrl, name = "Верес А. М.", ph
   const handleToggle = () => setOpen(prev => !prev);
   const handleLogout = async () => {
     await dispatch(fetchLogout());
-    window.location.reload();
+    navigate("/", { replace: true });
+  };
+  const goToProfile = () => {
+    setOpen(false);
+    navigate("/profile");
   };
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    function handleClickOutside(e) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
         setOpen(false);
       }
     }
@@ -38,10 +44,9 @@ export default function ProfileMenu({ avatarUrl, name = "Верес А. М.", ph
       />
 
       {open && (
-        <>  
+        <>
           <div className={styles.backdrop} />
           <div className={styles.dropdown}>
-            {/* Profile Header */}
             <div className={styles.profileHeader}>
               <div className={styles.headerAvatar} style={{ backgroundImage: `url(${avatarUrl || '/default-avatar.png'})` }}>
                 <div className={styles.avatarOverlay} />
@@ -54,10 +59,8 @@ export default function ProfileMenu({ avatarUrl, name = "Верес А. М.", ph
                 <div className={styles.userPhone}>{phone}</div>
               </div>
             </div>
-
-            {/* Main Menu */}
             <div className={styles.menuGroup}>
-              <button className={styles.menuItem} onClick={() => alert(t.profile)}>
+              <button className={styles.menuItem} onClick={goToProfile}>
                 <User size={18} />
                 <span>{t.profile}</span>
               </button>
@@ -67,7 +70,6 @@ export default function ProfileMenu({ avatarUrl, name = "Верес А. М.", ph
               </button>
             </div>
 
-            {/* Account Controls */}
             <div className={styles.menuGroup}>
               <div className={styles.groupHeader}>{t.accountControls}</div>
               <button className={styles.menuItem} onClick={() => alert(t.changePassword)}>
@@ -80,7 +82,6 @@ export default function ProfileMenu({ avatarUrl, name = "Верес А. М.", ph
               </button>
             </div>
 
-            {/* Utilities */}
             <div className={styles.menuGroup}>
               <button className={styles.menuItem} onClick={() => alert(t.info)}>
                 <Info size={18} />
@@ -92,7 +93,6 @@ export default function ProfileMenu({ avatarUrl, name = "Верес А. М.", ph
               </button>
             </div>
 
-            {/* Logout */}
             <div className={styles.menuGroup}>
               <button className={styles.menuItem} onClick={handleLogout}>
                 <LogOut size={18} />
