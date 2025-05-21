@@ -3,7 +3,7 @@ import styles from "./addComment.module.css";
 import { LanguageContext } from "../LanguageContext";
 import { addCommentTranslations } from "./addCommentTranslations";
 
-function AddComment() {
+function AddComment({comment, setComment}) {
     const { selectedLanguage } = useContext(LanguageContext);
     const tComment = addCommentTranslations[selectedLanguage];
 
@@ -12,7 +12,8 @@ function AddComment() {
             <div className={styles.item_comment}>
                 <div className={styles.title}>{tComment.addCommentTitle}</div>
                 <input 
-                    type="text" 
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
                     className={styles.comment} 
                     placeholder={tComment.placeholder} 
                 />

@@ -1,15 +1,27 @@
-import React, {useState} from "react";
 import styles from "./digitalCard.module.css";
 import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferToCardInfo";
 import TypeDiginalCard from "../../../components/TypeDigitalCard/TypeDigitalCard";
 import PaymentSystem from "../../../components/PaymentSystem/PaymentSystem";
 import CreditLimit from "../../../components/CreditLimit/CreditLimit";
 
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createBankCard, fetchBankCardsByCurrency } from "../../../redux/slices/bankCardSlice";
+
 function DigitalCard() {
-    const [selectedType,setSelectedType] = useState("Кредитна");
+
+    const dispatch = useDispatch();
+    const { cards, status, error, message } = useSelector(state => state.bankCard);
+    const [currency, setCurrency] = useState('UAH');
+
+    useEffect(() => {
+        dispatch(fetchBankCardsByCurrency(currency));
+    }, [currency, dispatch]);
+
+    const [selectedType, setSelectedType] = useState("Кредитна");
     const [selectedCard, setSelectedCard] = useState("yellow");
-    const [paymentSystem,setPaymentSystem] = useState("visa");
-    const [showActive,setShowActive] = useState("visa");
+    const [paymentSystem, setPaymentSystem] = useState("visa");
+    const [showActive, setShowActive] = useState("visa");
 
     return (
         <div className={styles.container}>
@@ -19,9 +31,12 @@ function DigitalCard() {
             />
             <div className={styles.wrapper_info_digitalCard}>
                 <TypeDiginalCard
-                selectedType={selectedType}
-                onSelectType={setSelectedType}
+                    selectedType={selectedType}
+                    onSelectType={setSelectedType}
                 />
+
+                
+
                 <PaymentSystem
                     selectedCard={selectedCard}
                     onSelectCard={setSelectedCard}
@@ -30,31 +45,32 @@ function DigitalCard() {
                     selectedShowActive={showActive}
                     onSelectShowActive={setShowActive}
                     selectedType={selectedType}
+                    cards={cards}
                 />
                 {selectedType === "Кредитна" && (
-                   <>
-                       {selectedCard === "yellow" && (
-                           <CreditLimit
-                               hideAddCreditLimit={false}
-                               selectedCard="widthCard281"
-                               text1="Кредитний ліміт до 200 000 UAN"
-                               text2="Пільговий період 55 днів"
-                               text3="Оплата покупок та послуг без комісій, у тому числі з Apple Pay та Google Pay"
-                           />
-                       )}
-                       {selectedCard === "pink" && (
-                           <CreditLimit
-                               hideAttention={false}
-                               hideAddCreditLimit={false}
-                               sizeContainer="heightContainer544"
-                               heightContent="heightContent485"
-                               text1="Кредитний ліміт до 200 000 UAN"
-                               text2="Знижена процентна ставка(34%)"
-                               text3="Оплата покупок та послуг без комісій, у тому числі з Apple Pay та Google Pay"
-                               hideCurrencyCard={false}
-                           />
-                       )}
-                   </>
+                    <>
+                        {selectedCard === "yellow" && (
+                            <CreditLimit
+                                hideAddCreditLimit={false}
+                                selectedCard="widthCard281"
+                                text1="Кредитний ліміт до 200 000 UAN"
+                                text2="Пільговий період 55 днів"
+                                text3="Оплата покупок та послуг без комісій, у тому числі з Apple Pay та Google Pay"
+                            />
+                        )}
+                        {selectedCard === "pink" && (
+                            <CreditLimit
+                                hideAttention={false}
+                                hideAddCreditLimit={false}
+                                sizeContainer="heightContainer544"
+                                heightContent="heightContent485"
+                                text1="Кредитний ліміт до 200 000 UAN"
+                                text2="Знижена процентна ставка(34%)"
+                                text3="Оплата покупок та послуг без комісій, у тому числі з Apple Pay та Google Pay"
+                                hideCurrencyCard={false}
+                            />
+                        )}
+                    </>
                 )}
                 {selectedType === "Дебетова" && (
                     <>
