@@ -8,7 +8,8 @@ import {isValidCardNumber, isValidExpiry} from "../../utils/validateCard";
 
 function Card({title, title_wallet, img,titleColor, textTransform, title_card, colorValue, img_card, title_period,
                   title_kod,cardPeriod,handleCardPeriodChange,isPeriodValid,periodInputRef, cw_kod,setCwKod, img_kod,
-                  additionalComponent1, additionalComponent2,value,setValue}) {
+                  additionalComponent1, additionalComponent2,value,setValue,
+                expiry, setExpiry}) {
     const [cardValid,setCardValid] = useState(true);
     const [periodTouched,setPeriodTouched] = useState(false);
     const cwInputRef = useRef(null);
@@ -44,7 +45,7 @@ function Card({title, title_wallet, img,titleColor, textTransform, title_card, c
                                 <div className={styles.card_info}>
                                     <ValidityPeriod
                                         title_period={title_period}
-                                        value={cardPeriod}
+                                        value={expiry}
                                         onChange={handleCardPeriodChange}
                                         isPeriodValid={isPeriodValid}
                                         nextRef={cwInputRef}

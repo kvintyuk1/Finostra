@@ -17,7 +17,8 @@ function ConfirmedSendReceiveCards({
                                        receiverCardNumber,
                                        setReceiverCardNumber,
                                        sum,
-                                       setSum
+                                       setSum,
+                                       onSubmit
                                    }) {
     const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
     const [isSuccessfulTransferModalOpen, setIsSuccessfulTransferModalOpen] = useState(false);
@@ -49,6 +50,10 @@ function ConfirmedSendReceiveCards({
         setIsTransferModalOpen(false);
     };
     const handleSuccessfulTransfer = () => {
+
+        // Here we're transfering money
+        onSubmit();
+
         setIsTransferModalOpen(false);
         setIsSuccessfulTransferModalOpen(true);
     };

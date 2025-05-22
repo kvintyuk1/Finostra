@@ -63,6 +63,7 @@ function App() {
             <Route index element={<Main />} />
             <Route path="profile" element={<ProfilePage />} />
 
+
             <Route path="transactions" element={<Transactions />}>
               <Route path="transactionToCard" element={<TransactionToCard />} />
               <Route path="details" element={<Details />} />
@@ -109,7 +110,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </LanguageProvider>
+    </LanguageProvider >
   );
 }
 
