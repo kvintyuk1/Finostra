@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "../../redux/slices/authSlice";
+import axiosInstance from "../../utils/axiosInstance";
 import styles from "./SignInModal.module.css";
 import CloseIcon from "../../assets/Photo/Union.png";
 import EyeOpenIcon from "../../assets/Photo/eyelook.png";
@@ -19,48 +20,56 @@ import {
   verifySmsCode,
   registerEmail,
   verifyEmail,
-  setPassword,
+  setPassword as apiSetPassword,
   sendLoginSmsCode,
-  confirmLoginCode
+  confirmLoginCode,
+  createUserProfile,
 } from "./api";
 
 function SignInModal({ onClose }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [step, setStep] = useState("enterPhone");
+
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const [smsSent, setSmsSent] = useState(false);
   const [smsCode, setSmsCode] = useState("");
   const [publicUUID, setPublicUUID] = useState("");
 
-  const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailCode, setEmailCode] = useState("");
   const [emailUUID, setEmailUUID] = useState("");
 
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [agreed, setAgreed] = useState(false);
-
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [showPhoneEditable, setShowPhoneEditable] = useState(false);
-
-  const [confirmCode, setConfirmCode] = useState("");
   const [confirmSent, setConfirmSent] = useState(false);
+  const [confirmCode, setConfirmCode] = useState("");
+  const [loginToken, setLoginToken] = useState("");
+
+  const [firstNameUa, setFirstNameUa] = useState("");
+  const [lastNameUa, setLastNameUa] = useState("");
+  const [patronymicUa, setPatronymicUa] = useState("");
+  const [firstNameEn, setFirstNameEn] = useState("");
+  const [lastNameEn, setLastNameEn] = useState("");
+  const [patronymicEn, setPatronymicEn] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [agreed, setAgreed] = useState(false);
 
   const stop = (e) => e.stopPropagation();
   const handlePhoneChange = (e) => setPhone(e.target.value.replace(/\D/g, ""));
 
   // ----- РЕЄСТРАЦІЯ -----
-
   const handlePhoneSubmit = async () => {
     setError("");
     if (!phone) return setError("Вкажіть номер телефону");
     if (!isValidPhone(phone))
-      return setError("Номер телефону повинен містити тільки цифри (9–10 символів)");
+      return setError(
+        "Номер телефону повинен містити тільки цифри (9–10 символів)"
+      );
     if (!agreed) return setError("Підтвердіть згоду");
 
     setLoading(true);
@@ -70,7 +79,6 @@ function SignInModal({ onClose }) {
       setStep("sms");
     } catch (e) {
       if (e.status === 409) {
-        // Якщо обліковий запис вже є — відразу запускаємо SMS‑логін
         await sendLoginSmsCode(toInternational(phone));
         setConfirmSent(true);
         setStep("confirmPhone");
@@ -81,8 +89,6 @@ function SignInModal({ onClose }) {
       setLoading(false);
     }
   };
-
-  const handleSendSms = handlePhoneSubmit;
 
   const handleVerifySms = async () => {
     setError("");
@@ -133,28 +139,25 @@ function SignInModal({ onClose }) {
 
   const handleRegister = async () => {
     setError("");
-    if (!password || !confirmPassword) return setError("Заповніть усі поля пароля");
+    if (!password) return setError("Введіть пароль");
     if (password !== confirmPassword) return setError("Паролі не співпадають");
     if (!isValidPassword(password))
-      return setError("Пароль має бути 6–15 символів, містити принаймні одну ВЕЛИКУ літеру та одну цифру");
-    if (!agreed) return setError("Підтвердіть згоду");
+      return setError("Пароль недостатньо складний");
 
     setLoading(true);
     try {
-      const { access_token } = await setPassword(emailUUID || publicUUID, password);
-      document.cookie = `access_token=${access_token}; path=/; max-age=${60 * 60 * 24 * 7}`;
-      dispatch(fetchCurrentUser());
+      await apiSetPassword(emailUUID || publicUUID, password);
+      await dispatch(fetchCurrentUser());
       onClose();
       navigate("/");
     } catch (e) {
-      setError(e.message);
+      setError(e.message || "Сталася помилка при збереженні пароля");
     } finally {
       setLoading(false);
     }
   };
 
   // ----- ЛОГІН -----
-
   const handleLogin = async () => {
     setError("");
     if (!phone) return setError("Вкажіть номер телефону");
@@ -174,20 +177,80 @@ function SignInModal({ onClose }) {
   setError("");
   if (!confirmCode) return setError("Введіть код підтвердження");
   setLoading(true);
+
   try {
     const token = await confirmLoginCode(toInternational(phone), confirmCode);
-    document.cookie = `access_token=${token}; path=/; max-age=${60 * 60 * 24 * 7}`;
-    await dispatch(fetchCurrentUser());
-    onClose();
-    navigate("/");
+    setLoginToken(token);
+
+    let profile = null;
+    try {
+      const resp = await axiosInstance.get("/api/v1/userProfile/get", {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      });
+      profile = resp.data;
+    } catch (err) {
+      if (err.response?.status !== 404) {
+        throw err;
+      }
+    }
+
+    const hasAllFields = profile && [
+      "firstNameUa", "lastNameUa", "patronymicUa",
+      "firstNameEn", "lastNameEn", "patronymicEn",
+      "birthDate"
+    ].every(key => !!profile[key]);
+
+    if (hasAllFields) {
+      await dispatch(fetchCurrentUser());
+      onClose();
+      navigate("/");
+    } else {
+      setStep("profile");
+    }
+
   } catch (e) {
-    setError(e.message);
+    setError(e.response?.data?.message || e.message);
   } finally {
     setLoading(false);
   }
 };
 
 
+  const handleProfileSubmit = async () => {
+    setError("");
+    if (
+      !firstNameUa ||
+      !lastNameUa ||
+      !patronymicUa ||
+      !firstNameEn ||
+      !lastNameEn ||
+      !patronymicEn ||
+      !birthDate
+    ) {
+      return setError("Заповніть всі поля профілю");
+    }
+    setLoading(true);
+    try {
+      const profilePayload = {
+        firstNameUa,
+        lastNameUa,
+        patronymicUa,
+        firstNameEn,
+        lastNameEn,
+        patronymicEn,
+        birthDate,
+      };
+      await createUserProfile(profilePayload, loginToken);
+      await dispatch(fetchCurrentUser());
+      onClose();
+      navigate("/");
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   // ----- UI Helpers -----
 
   const formatPhoneDisplay = (raw) => {
@@ -533,7 +596,11 @@ function SignInModal({ onClose }) {
             <p className={styles.registerSubtitle}>
               Код підтвердження надіслано на {formatPhoneDisplay(phone)}.
             </p>
-            <img src={SMSImage} alt="SMS illustration" className={styles.smsImage} />
+            <img
+              src={SMSImage}
+              alt="SMS illustration"
+              className={styles.smsImage}
+            />
             {error && <div className={styles.errorText}>{error}</div>}
             <div className={styles.inputWrapper}>
               <span className={styles.label}>Код підтвердження</span>
@@ -553,6 +620,55 @@ function SignInModal({ onClose }) {
               {loading ? "Перевірка..." : "Підтвердити"}
             </button>
           </div>
+        </div>
+      )}
+
+      {step === "profile" && (
+        <div className={styles.profileWrapper} onClick={stop}>
+          <h2>Заповніть профіль</h2>
+          <input
+            placeholder="Ім'я (укр)"
+            value={firstNameUa}
+            onChange={(e) => setFirstNameUa(e.target.value)}
+          />
+          <input
+            placeholder="Прізвище (укр)"
+            value={lastNameUa}
+            onChange={(e) => setLastNameUa(e.target.value)}
+          />
+          <input
+            placeholder="По батькові (укр)"
+            value={patronymicUa}
+            onChange={(e) => setPatronymicUa(e.target.value)}
+          />
+          <input
+            placeholder="First Name (en)"
+            value={firstNameEn}
+            onChange={(e) => setFirstNameEn(e.target.value)}
+          />
+          <input
+            placeholder="Last Name (en)"
+            value={lastNameEn}
+            onChange={(e) => setLastNameEn(e.target.value)}
+          />
+          <input
+            placeholder="Patronymic (en)"
+            value={patronymicEn}
+            onChange={(e) => setPatronymicEn(e.target.value)}
+          />
+          <input
+            type="date"
+            value={birthDate}
+            onChange={(e) => setBirthDate(e.target.value)}
+          />
+          {error && <p className={styles.error}>{error}</p>}
+          <button
+            onClick={handleProfileSubmit}
+            disabled={loading}
+            className={styles.continueButton}
+          >
+            {loading ? "Завантаження..." : "Зберегти профіль"}
+          </button>
         </div>
       )}
 

@@ -1,73 +1,86 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const URL = 'http://localhost:8081/api/v1';
+const API_BASE_URL = "http://localhost:8081/api/v1";
 
-export const createBankCard = createAsyncThunk('bankCard/createBankCard',
-    async (cardData, thunkAPI) => {
-        try {
-            const response = await axios.post(`${URL}/bankCard/create`, cardData, {
-                withCredentials: true
-            });
-            console.log(response);
-            return response.data;
-        } catch (error) {
-            console.log(error);
-            return thunkAPI.rejectWithValue(error.response.data || "Помилка створення карточки");
-        }
-    });
-export const fetchBankCardsByCurrency = createAsyncThunk(
-    'bankCard/fetchByCurrency',
-    async (currency, thunkAPI) => {
-        try {
-            const response = await axios.get(`${URL}/bankCard/get`, {
-                withCredentials: true,
-                params: {currency}
-            });
-            return response.data.cards
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання карток");
-        }
+export const createBankCard = createAsyncThunk(
+  "bankCard/createBankCard",
+  async (cardData, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/bankCard/create`,
+        cardData,
+        { withCredentials: true }
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Помилка створення картки"
+      );
     }
+  }
 );
 
+export const fetchBankCardsByCurrency = createAsyncThunk(
+  "bankCard/fetchByCurrency",
+  async (currency, thunkAPI) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/bankCard/get`, {
+        withCredentials: true,
+        params: { currency },
+      });
+      return response.data.cards;
+    } catch (error) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Помилка отримання карток"
+      );
+    }
+  }
+);
 
 const bankCardSlice = createSlice({
-    name: 'bankCard',
-    initialState: {
-        status: "idle",
-        error: null,
-        message: null,
-        cards: []
-    },
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(createBankCard.pending, (state) => {
-                state.status = 'loading';
-                state.error = null
-            })
-            .addCase(createBankCard.fulfilled, (state,action)=>{
-                state.status = 'succeeded';
-                state.message = action.payload;
-                state.cards.push(action.payload);
-            })
-            .addCase(createBankCard.rejected, (state,action)=>{
-                state.status = "failed";
-                state.error = action.payload
-            })
-            .addCase(fetchBankCardsByCurrency.pending, (state) => {
-                state.status = "loading";
-                state.error = null
-            })
-            .addCase(fetchBankCardsByCurrency.fulfilled, (state, action) => {
-                state.status = "succeeded";
-                state.cards = action.payload
-            })
-            .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.payload
-            });
-    },
+  name: "bankCard",
+  initialState: {
+    status: "idle",
+    error: null,
+    message: null,
+    cards: [],
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      // createBankCard
+      .addCase(createBankCard.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(createBankCard.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.message = action.payload;
+        state.cards.push(action.payload);
+      })
+      .addCase(createBankCard.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+
+      // fetchBankCardsByCurrency
+      .addCase(fetchBankCardsByCurrency.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(fetchBankCardsByCurrency.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.cards = action.payload;
+      })
+      .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      });
+  },
 });
+
 export default bankCardSlice.reducer;

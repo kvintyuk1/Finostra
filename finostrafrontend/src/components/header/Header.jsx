@@ -11,8 +11,8 @@ import {
   RateLimitError,
 } from "../services/monobankService";
 
-const INITIAL_INTERVAL = 5 * 60 * 1000; 
-const MAX_BACKOFF = 60 * 60 * 1000;     
+const INITIAL_INTERVAL = 5 * 60 * 1000;
+const MAX_BACKOFF = 60 * 60 * 1000;
 
 const ThemeToggleButton = ({ isDarkMode, toggleTheme }) => (
   <button className={styles.themeToggle} onClick={toggleTheme}>
@@ -47,11 +47,9 @@ export default function Header({ isDarkMode, toggleTheme }) {
       );
       if (!usd) throw new Error("USD→UAH not found");
 
-      const newRate = { buy: usd.rateBuy, sell: usd.rateSell };
-      setRate(newRate);
+      setRate({ buy: usd.rateBuy, sell: usd.rateSell });
       setRateError(null);
 
-      
       backoffRef.current = INITIAL_INTERVAL;
       scheduleNext(INITIAL_INTERVAL);
     } catch (err) {
@@ -68,19 +66,22 @@ export default function Header({ isDarkMode, toggleTheme }) {
     }
   };
 
-  useEffect(() => {
-
+  const loadProfile = () => {
     axiosInstance
       .get("/api/v1/user/verification/me", { withCredentials: true })
       .then(({ data }) => {
+        const user = data.user || data; // handle nested or flat response
         setIsLoggedIn(true);
-        setAvatarUrl(data.avatarUrl || "/default-avatar.png");
+        setAvatarUrl(user.avatarUrl || "/default-avatar.png");
       })
       .catch(() => {
         setIsLoggedIn(false);
         setAvatarUrl(null);
       });
+  };
 
+  useEffect(() => {
+    loadProfile();
     fetchRate();
     return () => clearTimeout(timeoutRef.current);
   }, []);
@@ -88,16 +89,7 @@ export default function Header({ isDarkMode, toggleTheme }) {
   const handleSignInClick = () => setShowSignIn(true);
   const handleCloseModal = () => {
     setShowSignIn(false);
-    axiosInstance
-      .get("/api/v1/user/verification/me", { withCredentials: true })
-      .then(({ data }) => {
-        setIsLoggedIn(true);
-        setAvatarUrl(data.avatarUrl || "/default-avatar.png");
-      })
-      .catch(() => {
-        setIsLoggedIn(false);
-        setAvatarUrl(null);
-      });
+    loadProfile();
   };
 
   const langTrans = translations[selectedLanguage];
