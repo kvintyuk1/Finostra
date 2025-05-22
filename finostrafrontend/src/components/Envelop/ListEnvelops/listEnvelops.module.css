@@ -1,0 +1,127 @@
+.wrapper_envelops {
+    color: #ffffff;
+    border: 0px solid yellow;
+    border-radius: 16px;
+    margin: auto;
+    padding: 1.875rem;
+    background-color: #0F110E;
+    font-size: 1rem;
+
+    font-weight: 400;
+
+    width: clamp(400px, 90%, 1100px);
+
+
+}
+
+.header {
+    border: 0px solid wheat;
+}
+
+.header_title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.tabs {
+    margin-top: 3.125rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 1rem;
+}
+.tabs span {
+    cursor: pointer;
+}
+
+.tab {
+    opacity: 60%;
+}
+
+.tab_active {
+    opacity: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.tab_active::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: yellow;
+    border-radius: 50%;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    border: 0px solid wheat;
+    margin-top: 1.5rem;
+}
+
+.body_description {
+    text-align: center;
+}
+
+.body_description p:nth-child(2) {
+    opacity: 60%;
+}
+
+.body_list_envelops {
+    margin-top: 1rem;
+}
+
+.body_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.body_buttons button {
+    border: 0;
+    height: 2.5rem;
+    border-radius: 9px;
+    margin: 0 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+.body_buttons button:hover {
+    transform: scale(1.03);
+    opacity: 0.85;
+}
+.body_buttons button:active {
+    transform: scale(0.97);
+    opacity: 0.75;
+}
+
+
+.body_buttons button > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.body_buttons button:first-child {
+    
+    width: 12rem;
+    background-color: #A66CFE;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.body_buttons button:last-child {
+    width: 6rem;
+    background-color: #28282C;
+    color: #FFFFFF;
+    opacity: 70%;
+    border: 1px solid #FFFFFF;
+}

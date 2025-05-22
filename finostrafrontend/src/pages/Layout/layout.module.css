@@ -1,6 +1,7 @@
 .main_content {
-    display: flex;
-    align-items: stretch;
+    /* display: flex;
+    align-items: stretch; */
+    width: 82.57vw;
 }
 
 .wrapper_content {
