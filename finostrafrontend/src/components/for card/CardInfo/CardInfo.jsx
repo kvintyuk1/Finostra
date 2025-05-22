@@ -13,7 +13,8 @@ function CardInfo({
                       img = "circle",
                       marginMoney = "margin5",
                       cardNumber = "1234",
-                      accountNumber = "1010101"
+                      accountNumber = "1010101",
+                      expiryDate, balance
                   }) {
     const {selectedLanguage} = useContext(LanguageContext);
     const t = cardInfoTranslations[selectedLanguage];
@@ -21,19 +22,18 @@ function CardInfo({
     const title = titleCard ?? t.title;
     const money = totalMoney ?? "0.00";
 
+    const [year, month, day] = expiryDate.split("-");
+
     return (
         <div
             className={`${styles.container} ${styles[widthContainer]} ${styles[heightContainer]} ${styles[colorText]}`}>
             <div className={styles.title_card}>{title}</div>
             <div className={styles.container_number}>
-                <div className={styles.number}>{maskCardNumber(cardNumber)}</div>
+                <div className={styles.number}>CVV {cardNumber}</div>
                 <div className={styles.vertical_line}></div>
-
-                <div className={styles.UA}>UA92</div>
-                <img src={`/icons/${img}.svg`} alt=""/>
-                <div className={styles.number}>{accountNumber}</div>
+                <div className={styles.number}>Expiry date: {`${month}/${year.slice(2)}`}</div>
             </div>
-            <div className={`${styles.money} ${styles[marginMoney]}`}>{money} {t.currency}</div>
+            <div className={`${styles.money} ${styles[marginMoney]}`}>{balance.amount} {balance.currency}</div>
         </div>
     );
 }

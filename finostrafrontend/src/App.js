@@ -119,7 +119,7 @@ function App() {
                 </Routes>
             </BrowserRouter>
         </LanguageProvider>
-    );
+  );
 }
 
 export default App;

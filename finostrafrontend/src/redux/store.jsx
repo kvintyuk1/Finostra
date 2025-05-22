@@ -5,6 +5,7 @@ import bankCardByIdReducer from "./slices/bankCardByIdSlice";
 import bankCardsByUserReducer from "./slices/bankCardsByUserSlice";
 import envelopReducer from "./slices/envelopSlice";
 import creditCardReducer from "./slices/creditCardSlice";
+import transactionReducer from "./slices/transactionSlice";
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         bankCardById: bankCardByIdReducer,
         bankCardsByUser: bankCardsByUserReducer,
         envelop: envelopReducer,
-        creditCard: creditCardReducer
+        creditCard: creditCardReducer,
+        transaction: transactionReducer
     },
 });
 export default store;

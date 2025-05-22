@@ -5,8 +5,9 @@ import CardInfo from "../for card/CardInfo/CardInfo";
 function CardUniversal({
                            sizeCard = "widthCard298", titleCard, totalMoney,
                            background_color = "background_colorYellow",
-                           onClick, hideImg = true, hideLogo=false,paymentSystem,
-                           cardNumber = "1234",accountNumber = "1010101"
+                           onClick, hideImg = false, hideLogo=false,paymentSystem,
+                           cardNumber = "1234",accountNumber = "1010101",
+                           expiryDate, balance
                        }) {
 
     return (
@@ -26,6 +27,8 @@ function CardUniversal({
                             hideImg={hideImg}
                             cardNumber={cardNumber}
                             accountNumber={accountNumber}
+                            expiryDate={expiryDate}
+                            balance={balance}
                         />
                     </div>
                     {!hideImg && (

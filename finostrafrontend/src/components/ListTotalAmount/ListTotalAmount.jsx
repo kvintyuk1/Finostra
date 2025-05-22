@@ -7,7 +7,7 @@ import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 import { LanguageContext } from "../LanguageContext";
 import { listTotalAmountTranslations } from "./listTotalAmountTranslations";
 
-function ListTotalAmount() {
+function ListTotalAmount({ transactions }) {
     const { selectedLanguage } = useContext(LanguageContext);
     const t = listTotalAmountTranslations[selectedLanguage];
 
@@ -19,7 +19,7 @@ function ListTotalAmount() {
                         <Period/>
                         <Search/>
                     </div>
-                    <ListTable/>
+                    <ListTable transactions={transactions}/>
                 </div>
                 <ButtonForCard
                     title_button={t.loadMore}

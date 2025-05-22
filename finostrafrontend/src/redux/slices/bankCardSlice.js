@@ -1,27 +1,44 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const createBankCard = createAsyncThunk('bankCard/createBankCard',
-    async (cardData, thunkAPI) => {
-        try {
-            const response = await axios.post('/api/v1/bankCard/create', cardData);
-            return response.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data || "Помилка створення карточки");
-        }
-    });
-export const fetchBankCardsByCurrency = createAsyncThunk(
-    'bankCard/fetchByCurrency',
-    async (currency, thunkAPI) => {
-        try {
-            const response = await axios.get('/api/v1/bankCard/get', {
-                params: {currency}
-            });
-            return response.data.cards
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання карток");
-        }
+const API_BASE_URL = "http://localhost:8081/api/v1";
+
+export const createBankCard = createAsyncThunk(
+  "bankCard/createBankCard",
+  async (cardData, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/bankCard/create`,
+        cardData,
+        { withCredentials: true }
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Помилка створення картки"
+      );
     }
+  }
+);
+
+export const fetchBankCardsByCurrency = createAsyncThunk(
+  "bankCard/fetchByCurrency",
+  async (currency, thunkAPI) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/bankCard/get`, {
+        withCredentials: true,
+        params: { currency },
+      });
+      return response.data.cards;
+    } catch (error) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Помилка отримання карток"
+      );
+    }
+  }
 );
 
 const bankCardSlice = createSlice({
@@ -65,4 +82,5 @@ const bankCardSlice = createSlice({
             });
     },
 });
+
 export default bankCardSlice.reducer;

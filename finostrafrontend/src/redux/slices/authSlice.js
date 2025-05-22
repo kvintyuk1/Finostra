@@ -1,53 +1,52 @@
-// src/redux/slices/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../utils/axiosInstance";
 
-
-export const fetchRegisterUser = createAsyncThunk(
-  "auth/registerUser",
-  async (userData, { rejectWithValue }) => {
+export const sendLoginSms = createAsyncThunk(
+  "auth/sendLoginSms",
+  async (phone, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(
-        "/auth/register",
-        userData,
-        { withCredentials: true } 
+        "/api/v1/user/verification/login",
+        { phoneNumber: phone },
+        { withCredentials: true }
       );
-      const data = response.data;
-      if (data.access_token) {
-        localStorage.setItem("access_token", data.access_token);
-      }
-      if (data.refresh_token) {
-        localStorage.setItem("refresh_token", data.refresh_token);
-      }
-      return data;
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
-// Логін
-export const fetchUserData = createAsyncThunk(
-  "auth/fetchUserData",
-  async (credentials, { rejectWithValue }) => {
+export const confirmLoginSms = createAsyncThunk(
+  "auth/confirmLoginSms",
+  async ({ phone, code }, { rejectWithValue }) => {
+    try {
+      await axiosInstance.post(
+        "/api/v1/user/verification/confirmLogin",
+        { phoneNumber: phone, verificationCode: code },
+        { withCredentials: true }
+      );
+      const me = await axiosInstance.get(
+        "/api/v1/user/verification/me",
+        { withCredentials: true }
+      );
+      return me.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const createProfile = createAsyncThunk(
+  "auth/createProfile",
+  async (profileData, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(
-        "/auth/login",
-        credentials,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true, 
-
-        }
+        "/api/v1/userProfile/create",
+        profileData,
+        { withCredentials: true }
       );
-      const data = response.data;
-      if (data.access_token) {
-        localStorage.setItem("access_token", data.access_token);
-      }
-      if (data.refresh_token) {
-        localStorage.setItem("refresh_token", data.refresh_token);
-      }
-      return data;
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -59,8 +58,8 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get(
-        "/user/verification/me",
-        { withCredentials: true } 
+        "/api/v1/user/verification/me",
+        { withCredentials: true }
       );
       return response.data;
     } catch (error) {
@@ -74,7 +73,7 @@ export const fetchLogout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await axiosInstance.post(
-        "/auth/logout",
+        "/api/v1/user/verification/logout",
         {},
         { withCredentials: true }
       );
@@ -96,36 +95,45 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
-      .addCase(fetchRegisterUser.pending, (state) => {
+      // Відправка SMS
+      .addCase(sendLoginSms.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(fetchRegisterUser.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.user = action.payload.user;
-        state.isAuthenticated = true;
+      .addCase(sendLoginSms.fulfilled, (state) => {
+        state.status = "smsSent";
       })
-      .addCase(fetchRegisterUser.rejected, (state, action) => {
+      .addCase(sendLoginSms.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })
-
-      .addCase(fetchUserData.pending, (state) => {
+      // Підтвердження SMS і отримання користувача
+      .addCase(confirmLoginSms.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(fetchUserData.fulfilled, (state, action) => {
+      .addCase(confirmLoginSms.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = action.payload.user;
+        state.user = action.payload;
         state.isAuthenticated = true;
       })
-      .addCase(fetchUserData.rejected, (state, action) => {
+      .addCase(confirmLoginSms.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })
-
-
+      // Створення профілю
+      .addCase(createProfile.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(createProfile.fulfilled, (state) => {
+        state.status = "profileCreated";
+      })
+      .addCase(createProfile.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+      // Поточний користувач
       .addCase(fetchCurrentUser.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -141,19 +149,10 @@ const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
       })
-
+      // Logout
       .addCase(fetchLogout.fulfilled, (state) => {
         state.status = "idle";
         state.error = null;
-        state.user = null;
-        state.isAuthenticated = false;
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-      })
-      .addCase(fetchLogout.rejected, (state) => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        state.status = "idle";
         state.user = null;
         state.isAuthenticated = false;
       });

@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "./paymentSystem.module.css";
 import CardUniversal from "../CardUniversal/CardUniversal";
-import {maskCardNumber} from "../../utils/maskCardNumber";
+import { maskCardNumber } from "../../utils/maskCardNumber";
 
 function PaymentSystem({
-                           onSelectCard, selectedCard, selectedPaymentSystem, onSelectPaymentSystem,
-                           selectedShowActive, onSelectShowActive,selectedType
-                       }) {
+    onSelectCard, selectedCard, selectedPaymentSystem, onSelectPaymentSystem,
+    selectedShowActive, onSelectShowActive, selectedType, cards
+}) {
 
-    const getCardNumber = ()=>{
-        if(selectedType === "Дебетова"){
-            if(selectedPaymentSystem === "visa") return "4441 2236 5675 1234";
-            if(selectedPaymentSystem === "mastercard") return "4441 2334 3121 5678";
+    const getCardNumber = () => {
+        if (selectedType === "Дебетова") {
+            if (selectedPaymentSystem === "visa") return "4441 2236 5675 1234";
+            if (selectedPaymentSystem === "mastercard") return "4441 2334 3121 5678";
         }
         return "1234";
     };
@@ -22,23 +22,23 @@ function PaymentSystem({
             <div className={styles.title}>Платіжна система</div>
             <div className={styles.wrap_typeCard}>
                 <button className={`${styles.button} ${selectedShowActive === "visa" ? styles.active : ""}`}
-                        onClick={() => {
-                            onSelectPaymentSystem("visa");
-                            onSelectShowActive("visa");
-                        }}>
-                    <img src="/icons/visa_logo.svg" alt=""/>
+                    onClick={() => {
+                        onSelectPaymentSystem("visa");
+                        onSelectShowActive("visa");
+                    }}>
+                    <img src="/icons/visa_logo.svg" alt="" />
                 </button>
                 <button className={`${styles.button} ${selectedShowActive === "mastercard" ? styles.active : ""}`}
-                        onClick={() => {
-                            onSelectPaymentSystem("mastercard");
-                            onSelectShowActive("mastercard");
-                        }}>
-                    <img src="/icons/mastercard_logo.svg" alt=""/>
+                    onClick={() => {
+                        onSelectPaymentSystem("mastercard");
+                        onSelectShowActive("mastercard");
+                    }}>
+                    <img src="/icons/mastercard_logo.svg" alt="" />
                 </button>
 
             </div>
             <div className={styles.wrap_cards}>
-                <div onClick={() => onSelectCard("yellow")}
+                {/* <div onClick={() => onSelectCard("yellow")}
                      className={`${styles.card} ${selectedCard !== "yellow" ? styles.cardInactive : ""}`}
                 >
                     <CardUniversal
@@ -60,7 +60,27 @@ function PaymentSystem({
                         paymentSystem={selectedPaymentSystem}
                         cardNumber={cardNumber}
                     />
-                </div>
+                </div> */}
+
+
+                {cards
+                    .filter(card => {
+                        const system = card.cardNumber[0] === '4' ? 'visa' : 'mastercard';
+                        return selectedPaymentSystem === system;
+                    })
+                    .map(card => (
+                        <div key={card.cardNumber} className={styles.card}>
+                            <CardUniversal
+                                titleCard={card.cardNumber}
+                                cardNumber={card.CVV}
+                                expiryDate={card.expired}
+                                balance={card.balance}
+                                paymentSystem={card.cardNumber[0] === '4' ? "visa" : "mastercard"}
+                            />
+                        </div>
+                    ))}
+
+
             </div>
         </div>
     );
