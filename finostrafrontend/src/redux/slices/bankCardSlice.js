@@ -12,7 +12,6 @@ export const createBankCard = createAsyncThunk(
         cardData,
         { withCredentials: true }
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -60,7 +59,6 @@ const bankCardSlice = createSlice({
       .addCase(createBankCard.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.message = action.payload;
-        state.cards.push(action.payload);
       })
       .addCase(createBankCard.rejected, (state, action) => {
         state.status = "failed";
