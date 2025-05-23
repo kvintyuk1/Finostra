@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./header.module.css";
 import { LanguageContext } from "../LanguageContext";
 import SignInModal from "../login/SignInModal";
 import { translations } from "./translations";
 import axiosInstance from "../../utils/axiosInstance";
 import ProfileMenu from "../userProfile/ProfileMenu";
-
 import {
   fetchMonobankCurrencies,
   RateLimitError,
@@ -22,11 +22,11 @@ const ThemeToggleButton = ({ isDarkMode, toggleTheme }) => (
 );
 
 export default function Header({ isDarkMode, toggleTheme }) {
+  const navigate = useNavigate();
   const { selectedLanguage, handleLanguageChange } = useContext(LanguageContext);
   const [showSignIn, setShowSignIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(null);
-
   const [rate, setRate] = useState({ buy: null, sell: null });
   const [loadingRate, setLoadingRate] = useState(true);
   const [rateError, setRateError] = useState(null);
@@ -70,7 +70,7 @@ export default function Header({ isDarkMode, toggleTheme }) {
     axiosInstance
       .get("/api/v1/user/verification/me", { withCredentials: true })
       .then(({ data }) => {
-        const user = data.user || data; // handle nested or flat response
+        const user = data.user || data;
         setIsLoggedIn(true);
         setAvatarUrl(user.avatarUrl || "/default-avatar.png");
       })
@@ -102,10 +102,15 @@ export default function Header({ isDarkMode, toggleTheme }) {
     >
       <header className={styles.header}>
         <div className={styles.frame757}>
-          <div className={styles.Frame614}>
+          <div
+            className={styles.Frame614}
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
+          >
             <div className={styles.Rectangle2} />
             <div className={styles.Logo}>Finostra</div>
           </div>
+
           <div>
             <div
               className={`${styles.searchBar} ${

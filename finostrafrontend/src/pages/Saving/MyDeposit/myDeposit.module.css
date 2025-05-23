@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 77.08vw;
+    height: 1682px;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 72.92vw;
+    height: 560px;
+}

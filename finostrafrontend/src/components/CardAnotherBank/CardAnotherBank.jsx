@@ -36,7 +36,7 @@ function CardAnotherBank({ isDarkMode }) {
                             <span>{title}</span>
                         </div>
                         <div className={styles.info}>
-                            <img src="./img/anotherCard.jpg" alt=" " />
+                            <img src="/img/anotherCard.jpg" alt=" " />
                             <div>{info}</div>
                         </div>
                         <ButtonForCard
@@ -46,7 +46,7 @@ function CardAnotherBank({ isDarkMode }) {
                         />
                     </div>
                     <div>
-                        <img src="./img/star 3.png" alt="star" />
+                        <img src="/img/star3.png" alt="star" />
                     </div>
                 </div>
             </div>

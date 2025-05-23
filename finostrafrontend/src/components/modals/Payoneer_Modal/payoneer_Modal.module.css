@@ -1,7 +1,7 @@
 .overlay {
     position: fixed;
     top: 0;
-    left: -26px;
+    left: -1.81vw;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
@@ -15,21 +15,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 531px;
+    width: 36.88vw;
     height: 384px;
     background-color: #1A1B1A;
     position: relative;
-    left: 740px;
+    left: 41.39vw;
     top: 210px;
 }
 
 .closeButton {
     position: absolute;
     top: 10px;
-    right: 15px;
+    right: 1.04vw;
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 1.5em;
     cursor: pointer;
     color: #FFF;
 }
@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: column;
     gap: 70px;
-    width: 471px;
+    width: 32.71vw;
     height: 252px;
 }
 .wrapper_content {
@@ -46,18 +46,18 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 471px;
+    width: 32.71vw;
     height: 107px;
 }
 .title {
     display: flex;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25em;
     color: #FFF;
     letter-spacing: 1px;
 }
 .wrapper_button {
     display: flex;
     justify-content: center;
-    gap: 39px;
+    gap: 2.71vw;
 }

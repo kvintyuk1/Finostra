@@ -1,4 +1,3 @@
-// src/pages/ProfileMenu/ProfileMenu.js
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
@@ -7,8 +6,8 @@ import Cookies from "js-cookie";
 import styles from "./ProfileMenu.module.css";
 import translations from "./profileMenuTranslations";
 import { LanguageContext } from "../../components/LanguageContext";
-import { ProfileContext } from "../contexts/ProfileContext";
-import { buildAvatarUrl } from "../../utils/avatar";
+import { ProfileContext } from "../../components/contexts/ProfileContext";
+import { buildAvatarUrl } from "../../utils/avatar"; 
 import defaultAvatar from "../../assets/Photo/default-avatar.png";
 import {
   User,
@@ -23,15 +22,11 @@ import {
 export default function ProfileMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  
-
   const { selectedLanguage } = useContext(LanguageContext);
   const langKey = selectedLanguage === "EN" ? "en" : "ua";
   const t = translations[langKey];
 
   const { profile, loading, error } = useContext(ProfileContext);
-
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
 

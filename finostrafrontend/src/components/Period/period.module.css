@@ -1,18 +1,21 @@
 .container {
     display: flex;
     align-items: center;
-    gap: 8px;
-    width: 209px;
+    gap: 0.56vw;
+    width: 14.51vw;
     height: 36px;
     color: #FFF;
     letter-spacing: 1px;
     border-bottom: 1px solid #FFF;
 }
 .size209 {
-    width: 209px;
+    width: 14.51vw;
 }
 .size304 {
-    width: 304px;
+    width: 21.11vw;
+}
+.size447 {
+    width: 31.04vw;
 }
 .input_wrapper {
     position: relative;
@@ -45,8 +48,8 @@
     border: none;
 }
 .input_width_left_icon {
-    padding-left: 40px;
+    padding-left: 2.78vw;
 }
 .input_width_right_icon {
-    padding-right: 40px;
+    padding-right: 2.78vw;
 }

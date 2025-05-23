@@ -3,6 +3,7 @@ import axios from "axios";
 
 const API_BASE_URL = "http://localhost:8081/api/v1";
 
+// Async thunk: створення картки
 export const createBankCard = createAsyncThunk(
   "bankCard/createBankCard",
   async (cardData, thunkAPI) => {
@@ -22,6 +23,7 @@ export const createBankCard = createAsyncThunk(
   }
 );
 
+// Async thunk: отримання карток за валютою
 export const fetchBankCardsByCurrency = createAsyncThunk(
   "bankCard/fetchByCurrency",
   async (currency, thunkAPI) => {
@@ -40,43 +42,46 @@ export const fetchBankCardsByCurrency = createAsyncThunk(
   }
 );
 
+// Slice
 const bankCardSlice = createSlice({
   name: "bankCard",
   initialState: {
-    status: "idle",
-    error: null,
+    createStatus: "idle",
+    createError: null,
     message: null,
+    fetchStatus: "idle",
+    fetchError: null,
     cards: [],
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // createBankCard
+      // Обробка створення картки
       .addCase(createBankCard.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
+        state.createStatus = "loading";
+        state.createError = null;
       })
       .addCase(createBankCard.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.createStatus = "succeeded";
         state.message = action.payload;
       })
       .addCase(createBankCard.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
+        state.createStatus = "failed";
+        state.createError = action.payload;
       })
 
-      // fetchBankCardsByCurrency
+      // Обробка отримання карток
       .addCase(fetchBankCardsByCurrency.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
+        state.fetchStatus = "loading";
+        state.fetchError = null;
       })
       .addCase(fetchBankCardsByCurrency.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.fetchStatus = "succeeded";
         state.cards = action.payload;
       })
       .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
+        state.fetchStatus = "failed";
+        state.fetchError = action.payload;
       });
   },
 });
