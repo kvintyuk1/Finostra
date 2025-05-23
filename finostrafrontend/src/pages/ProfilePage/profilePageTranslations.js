@@ -15,7 +15,6 @@ export const profilePageTranslations = {
       ukrainian: "Ukrainian",
     },
     labels: {
-      birthDate: "Birth Date",
       financialNumber: "Financial Number",
       addContact: "Add Contact",
       saveChanges: "Save Changes",
@@ -24,6 +23,8 @@ export const profilePageTranslations = {
     },
     status: {
       loadingProfile: "Loading profile...",
+      uploadingAvatar: "Uploading avatar",
+      uploadAvatarFailed: "Failed to upload avatar",
       error: "Error: {{error}}",
       profileNotFound: "Profile not found",
     },
@@ -44,7 +45,6 @@ export const profilePageTranslations = {
       ukrainian: "Українська",
     },
     labels: {
-      birthDate: "Дата народження",
       financialNumber: "Фінансовий номер",
       addContact: "Додати контакт",
       saveChanges: "Зберегти зміни",
@@ -53,6 +53,8 @@ export const profilePageTranslations = {
     },
     status: {
       loadingProfile: "Завантаження профілю...",
+      uploadingAvatar: "Завантаження аватару",
+      uploadAvatarFailed: "Не вдалося завантажити аватар",
       error: "Помилка: {{error}}",
       profileNotFound: "Профіль не знайдено",
     },

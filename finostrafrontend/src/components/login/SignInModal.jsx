@@ -42,6 +42,9 @@ function SignInModal({ onClose }) {
   const [smsCode, setSmsCode] = useState("");
   const [publicUUID, setPublicUUID] = useState("");
 
+const [showPassword, setShowPassword] = useState(false);
+const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+ 
   const [emailSent, setEmailSent] = useState(false);
   const [emailCode, setEmailCode] = useState("");
   const [emailUUID, setEmailUUID] = useState("");
@@ -147,9 +150,9 @@ function SignInModal({ onClose }) {
     setLoading(true);
     try {
       await apiSetPassword(emailUUID || publicUUID, password);
-      await dispatch(fetchCurrentUser());
-      onClose();
-      navigate("/");
+      alert("Ви успішно зареєструвались! Тепер, будь ласка, увійдіть.");
+
+      setStep("enterPhone");
     } catch (e) {
       setError(e.message || "Сталася помилка при збереженні пароля");
     } finally {
