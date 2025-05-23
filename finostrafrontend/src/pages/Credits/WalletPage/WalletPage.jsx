@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 import styles from "./walletPage.module.css";
 import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferToCardInfo";
 import FinanceTabs from "../../../components/FinanceTabs/FinanceTabs";
@@ -8,7 +8,7 @@ import { walletPageTranslations } from "./walletPageTranslations";
 
 function WalletPage() {
     const { selectedLanguage } = useContext(LanguageContext);  
-    const t = walletPageTranslations[selectedLanguage];  
+    const t = walletPageTranslations[selectedLanguage];
 
     return (
         <div className={styles.container}>

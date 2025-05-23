@@ -14,6 +14,7 @@ function InternationalTransfers() {
     const [isSum, setIsSum] = useState("");
     const [isCurrency, setIsCurrency] = useState("");
     const [isCountry, setIsCountry] = useState("");
+    const [activeButton, setActiveButton] = useState("sent");
 
     // локалізація
     const { selectedLanguage } = useContext(LanguageContext);
@@ -42,7 +43,10 @@ function InternationalTransfers() {
                             />
                             <ReceiveTransfer setIsConfirmed={setIsConfirmed} />
                         </div>
-                        <ReportTransfer setIsConfirmed={setIsConfirmed} />
+                        <ReportTransfer
+                            activeButton={activeButton}
+                            setActiveButton={setActiveButton}
+                            setIsConfirmed={setIsConfirmed} />
                     </>
                 ) : (
                     <TransferDetails

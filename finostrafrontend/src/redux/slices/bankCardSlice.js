@@ -42,45 +42,45 @@ export const fetchBankCardsByCurrency = createAsyncThunk(
 );
 
 const bankCardSlice = createSlice({
-  name: "bankCard",
-  initialState: {
-    status: "idle",
-    error: null,
-    message: null,
-    cards: [],
-  },
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      // createBankCard
-      .addCase(createBankCard.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(createBankCard.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.message = action.payload;
-        state.cards.push(action.payload);
-      })
-      .addCase(createBankCard.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
-      })
+    name: 'bankCard',
+    initialState: {
+        createStatus: "idle",
+        createError: null,
+        message: null,
+        cards: [],
 
-      // fetchBankCardsByCurrency
-      .addCase(fetchBankCardsByCurrency.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(fetchBankCardsByCurrency.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.cards = action.payload;
-      })
-      .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
-      });
-  },
+        fetchStatus: 'idle',
+        fetchError: null
+    },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(createBankCard.pending, (state) => {
+                state.createStatus = 'loading';
+                state.createError = null
+            })
+            .addCase(createBankCard.fulfilled, (state,action)=>{
+                state.createStatus = 'succeeded';
+                state.message = action.payload;
+            })
+            .addCase(createBankCard.rejected, (state,action)=>{
+                state.createStatus = "failed";
+                state.createError = action.payload
+            })
+
+            .addCase(fetchBankCardsByCurrency.pending, (state) => {
+                state.fetchStatus = "loading";
+                state.fetchError = null
+            })
+            .addCase(fetchBankCardsByCurrency.fulfilled, (state, action) => {
+                state.fetchStatus = "succeeded";
+                state.cards = action.payload
+            })
+            .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
+                state.fetchStatus = "failed";
+                state.fetchError = action.payload
+            });
+    },
 });
 
 export default bankCardSlice.reducer;

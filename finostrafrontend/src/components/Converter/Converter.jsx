@@ -9,7 +9,7 @@ const CACHE_TTL = 5 * 60 * 1000; // 5 хвилин
 const RATE_KEY = "monobankRate";
 const TIME_KEY = "monobankRateTimestamp";
 
-function Converter({ isDarkMode }) {
+function Converter({ isDarkMode,new_container="width_container614",showStar=true }) {
   const { selectedLanguage } = useContext(LanguageContext);
   const { title, converterItems } =
     converterTranslations[selectedLanguage] || converterTranslations.UA;
@@ -91,7 +91,7 @@ function Converter({ isDarkMode }) {
 
   return (
     <div className={isDarkMode ? styles.dark_mode : styles.light_mode}>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles[new_container]}`}>
         <div className={styles.wrapper_title}>
           <div className={styles.title}>{title}</div>
         </div>
@@ -104,23 +104,23 @@ function Converter({ isDarkMode }) {
                   <div className={styles.wrapper_rate}>
                     <div className={styles.country}>
                       <img
-                        src={`./icons/${item.icon}`}
+                        src={`/icons/${item.icon}`}
                         alt={item.currency}
                       />
                       <div className={styles.currency}>{item.currency}</div>
                       <img
                         src={
                           isDarkMode
-                            ? `./icons/${item.iconDark}`
-                            : `./icons/${item.iconLight}`
+                            ? `/icons/${item.iconDark}`
+                            : `/icons/${item.iconLight}`
                         }
                         alt="icon"
                       />
                       <img
                         src={
                           isDarkMode
-                            ? "./icons/arrow-down.svg"
-                            : "./icons/arrow-down-white.svg"
+                            ? "/icons/arrow-down.svg"
+                            : "/icons/arrow-down-white.svg"
                         }
                         alt="arrow"
                       />
@@ -132,8 +132,8 @@ function Converter({ isDarkMode }) {
                       <img
                         src={
                           isDarkMode
-                            ? `./icons/${item.iconDark}`
-                            : `./icons/${item.iconLight}`
+                            ? `/icons/${item.iconDark}`
+                            : `/icons/${item.iconLight}`
                         }
                         alt="icon"
                       />
@@ -162,8 +162,8 @@ function Converter({ isDarkMode }) {
             <img
               src={
                 isDarkMode
-                  ? "./icons/switch.svg"
-                  : "./icons/switch-white.svg"
+                  ? "/icons/switch.svg"
+                  : "/icons/switch-white.svg"
               }
               alt="switch"
               style={{
@@ -180,14 +180,19 @@ function Converter({ isDarkMode }) {
 
         {error && <div className={styles.error}>{error}</div>}
 
-        {[7, 8, 9, 10, 11, 12].map((num) => (
-          <img
-            key={num}
-            className={styles[`star${num}`]}
-            src={`./icons/star ${num}.svg`}
-            alt="star"
-          />
-        ))}
+        {showStar && (
+           <>
+             {[7, 8, 9, 10, 11, 12].map((num) => (
+                 <img
+                     key={num}
+                     className={styles[`star${num}`]}
+                     src={`/icons/star ${num}.svg`}
+                     alt="star"
+                 />
+             ))}
+           </>
+        )}
+
       </div>
     </div>
   );

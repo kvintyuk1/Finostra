@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 import styles from "./paymentInstallments.module.css";
 import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferToCardInfo";
 import Questions from "../../../components/Questions/Questions";
@@ -10,6 +10,7 @@ import { paymentInstallmentsTranslations } from "./paymentInstallmentsTranslatio
 function PaymentInstallments({ isDarkMode }) {
   const { selectedLanguage } = useContext(LanguageContext);
   const t = paymentInstallmentsTranslations[selectedLanguage];
+  const [activeButton, setActiveButton] = useState("sent");
 
   return (
     <div className={`${isDarkMode ? styles.dark_mode : styles.light_mode}`}>
@@ -37,6 +38,8 @@ function PaymentInstallments({ isDarkMode }) {
             sumCredit="Сума кредиту"
             numberCredit="Від 300 до 300 000 UAH"
             hideLineVerticalDotted={true}
+            activeButton={activeButton}
+            setActiveButton={setActiveButton}
             infoContent={
               <>
                 <span>Не забудь взяти картку з собою.</span>

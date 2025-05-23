@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 77.08vw;
+    height: 1682px;
+}
+.wrapper_component {
+    display: flex;
+    gap: 30px;
+}

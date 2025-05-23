@@ -5,6 +5,12 @@
     height: 368px;
     border-radius: 30px;
 }
+.width_container527 {
+    width: 36.6vw;
+}
+.width_container614 {
+    width: 42.64vw;
+}
 .dark_mode .container {
     background-color: #FFF;
 }
@@ -90,7 +96,6 @@
 }
 .light_mode .currency {
     color: #FFF;
-;
 }
 .hr {
     display: flex;
