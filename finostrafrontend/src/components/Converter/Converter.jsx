@@ -3,13 +3,20 @@ import React, { useContext, useState, useEffect } from "react";
 import styles from "./converter.module.css";
 import { LanguageContext } from "../LanguageContext";
 import { converterTranslations } from "./converterTranslations";
-import { fetchMonobankCurrencies, RateLimitError } from "../services/monobankService";
+import {
+  fetchMonobankCurrencies,
+  RateLimitError,
+} from "../services/monobankService";
 
 const CACHE_TTL = 5 * 60 * 1000; // 5 хвилин
 const RATE_KEY = "monobankRate";
 const TIME_KEY = "monobankRateTimestamp";
 
-function Converter({ isDarkMode,new_container="width_container614",showStar=true }) {
+function Converter({
+  isDarkMode,
+  new_container = "width_container614",
+  showStar = true,
+}) {
   const { selectedLanguage } = useContext(LanguageContext);
   const { title, converterItems } =
     converterTranslations[selectedLanguage] || converterTranslations.UA;
@@ -103,10 +110,7 @@ function Converter({ isDarkMode,new_container="width_container614",showStar=true
                 <div className={styles.exchange}>
                   <div className={styles.wrapper_rate}>
                     <div className={styles.country}>
-                      <img
-                        src={`/icons/${item.icon}`}
-                        alt={item.currency}
-                      />
+                      <img src={`/icons/${item.icon}`} alt={item.currency} />
                       <div className={styles.currency}>{item.currency}</div>
                       <img
                         src={
@@ -160,11 +164,7 @@ function Converter({ isDarkMode,new_container="width_container614",showStar=true
 
           <div className={styles.img_switch} onClick={handleSwitch}>
             <img
-              src={
-                isDarkMode
-                  ? "/icons/switch.svg"
-                  : "/icons/switch-white.svg"
-              }
+              src={isDarkMode ? "/icons/switch.svg" : "/icons/switch-white.svg"}
               alt="switch"
               style={{
                 cursor: "pointer",
@@ -181,18 +181,17 @@ function Converter({ isDarkMode,new_container="width_container614",showStar=true
         {error && <div className={styles.error}>{error}</div>}
 
         {showStar && (
-           <>
-             {[7, 8, 9, 10, 11, 12].map((num) => (
-                 <img
-                     key={num}
-                     className={styles[`star${num}`]}
-                     src={`/icons/star ${num}.svg`}
-                     alt="star"
-                 />
-             ))}
-           </>
+          <>
+            {[7, 8, 9, 10, 11, 12].map((num) => (
+              <img
+                key={num}
+                className={styles[`star${num}`]}
+                src={`/icons/star-${num}.svg`}
+                alt="star"
+              />
+            ))}
+          </>
         )}
-
       </div>
     </div>
   );

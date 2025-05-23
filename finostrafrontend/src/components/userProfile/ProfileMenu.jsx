@@ -1,4 +1,4 @@
-// src/pages/ProfileMenu/ProfileMenu.js
+// src/pages/ProfileMenu/ProfileMenu.jsx
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
@@ -7,8 +7,8 @@ import Cookies from "js-cookie";
 import styles from "./ProfileMenu.module.css";
 import translations from "./profileMenuTranslations";
 import { LanguageContext } from "../../components/LanguageContext";
-import { ProfileContext } from "../contexts/ProfileContext";
-import { buildAvatarUrl } from "../../utils/avatar";
+import { ProfileContext } from "../../components/contexts/ProfileContext";
+import { buildAvatarUrl } from "../../utils/avatar"; 
 import defaultAvatar from "../../assets/Photo/default-avatar.png";
 import {
   User,
@@ -23,15 +23,11 @@ import {
 export default function ProfileMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  
-
   const { selectedLanguage } = useContext(LanguageContext);
   const langKey = selectedLanguage === "EN" ? "en" : "ua";
   const t = translations[langKey];
 
   const { profile, loading, error } = useContext(ProfileContext);
-
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -67,6 +63,7 @@ export default function ProfileMenu() {
   if (error) return <div className={styles.error}>{`${t.errorPrefix || "Error:"} ${error}`}</div>;
   if (!profile) return null;
 
+  // Build avatar URL or fallback
   const avatarUrl = profile.avatarBlobLink
     ? buildAvatarUrl(profile.avatarBlobLink, profile.avatarFileName)
     : defaultAvatar;

@@ -27,7 +27,7 @@ function CardAnotherBank({isDarkMode}) {
                        />
                     </div>
                     <div>
-                        <img src="./img/star 3.png" alt="star"/>
+                        <img src="/img/star-3.png" alt="star" />
                     </div>
                 </div>
             </div>
