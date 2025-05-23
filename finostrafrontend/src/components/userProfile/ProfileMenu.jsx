@@ -1,4 +1,3 @@
-// src/pages/ProfileMenu/ProfileMenu.jsx
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
@@ -63,7 +62,6 @@ export default function ProfileMenu() {
   if (error) return <div className={styles.error}>{`${t.errorPrefix || "Error:"} ${error}`}</div>;
   if (!profile) return null;
 
-  // Build avatar URL or fallback
   const avatarUrl = profile.avatarBlobLink
     ? buildAvatarUrl(profile.avatarBlobLink, profile.avatarFileName)
     : defaultAvatar;

@@ -8,7 +8,7 @@ function Konverty_one_Modal({onClose,onNextStep}) {
             <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
                 <button className={styles.closeButton} onClick={onClose}>X</button>
                 <div className={styles.modal_content}>
-                    <img src="/img/star 3.png" className={styles.img} alt=""/>
+                    <img src="/img/star3.png" className={styles.img} alt=""/>
                     <div className={styles.wrap_describer}>
                         <div className={styles.title_description}>
                             <div className={styles.title}>Плануйте свій бюджет</div>

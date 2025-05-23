@@ -150,6 +150,13 @@
     height: 49px;
     left: 4.17vw;
     top: 26px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.Frame614:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .Rectangle2 {
@@ -157,6 +164,14 @@
     height: 49px;
     background-image: url('../../assets/Photo/Finostra_logo.png');
     border-radius: 0.49vw;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.Frame614:hover .Rectangle2 {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .Logo {
@@ -168,7 +183,15 @@
     font-size: 14px;
     line-height: 16px;
     color: #FFF;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
+
+.Frame614:hover .Logo {
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+    transform: scale(1.05);
+}
+
 
 .searchBar {
     position: absolute;

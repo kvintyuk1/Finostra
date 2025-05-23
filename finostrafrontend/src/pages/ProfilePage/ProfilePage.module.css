@@ -1,8 +1,8 @@
 .container {
-  position: absolute;
-  top: 138px;
-  left: 300px;
-  width: 1136px;
+  position: relative;
+  margin: 138px auto 0;
+  width: 90%;
+  max-width: 1136px;
   background: #0F110E;
   border-radius: 30px;
   padding: 40px;
@@ -11,11 +11,34 @@
   gap: 50px;
 }
 
+@media (min-width: 1440px) {
+  .container {
+    position: absolute;
+    top: 138px;
+    left: 300px;
+    margin: 0;
+    width: 1136px;
+    transform: none;
+  }
+}
+
+
+@media (min-width: 1920px) {
+  .container {
+    position: absolute;
+    top: 138px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1136px;
+  }
+}
+
 .tabs {
   display: flex;
   gap: 60px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
   padding-bottom: 30px;
+  overflow-x: auto;
 }
 
 .avatarWrapper {
@@ -23,6 +46,7 @@
   width: 200px;
   height: 200px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .avatarImg {
@@ -54,9 +78,10 @@
 .tab,
 .activeTab {
   font-family: 'adineue PRO', sans-serif;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.2;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .tab {
@@ -75,14 +100,15 @@
 
 .sectionTitle {
   font-family: 'adineue PRO', sans-serif;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem;
+  line-height: 1.2;
   font-weight: 700;
   color: #FFFFFF;
 }
 
 .profileContent {
   display: flex;
+  flex-wrap: wrap;
   gap: 100px;
 }
 
@@ -90,6 +116,7 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
+  flex: 1;
 }
 
 .languageToggle {
@@ -99,11 +126,11 @@
 
 .langButton,
 .langButtonActive {
-  padding: 8px 20px;
+  padding: 0.5rem 1.25rem;
   border-radius: 30px;
   font-family: 'adineue PRO', sans-serif;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.2;
   background: transparent;
   border: 1px solid #FFFFFF;
   color: #FFFFFF;
@@ -134,61 +161,48 @@
   align-items: center;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  width: 437px;
+  width: 100%;
+  max-width: 437px;
   height: 39px;
 }
 
-.label {
-  font-family: 'adineue PRO', sans-serif;
-  font-size: 20px;
-  line-height: 24px;
-  color: #FFFFFF;
-}
-
-.value {
-  font-family: 'adineue PRO', sans-serif;
-  font-size: 20px;
-  line-height: 24px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
 .reportLink {
-  width: 437px;
+  width: 100%;
+  max-width: 437px;
   height: 24px;
   font-family: 'adineue PRO', sans-serif;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.2;
   color: #A66CFE;
   cursor: pointer;
 }
 
-.contactRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-.changeBtn {
-  padding: 15px 50px;
-  border: 2px solid #A66CFE;
+.changeBtn,
+.saveBtn {
+  padding: 0.75rem 3.125rem;
   border-radius: 9px;
-  background: transparent;
   font-family: 'adineue PRO', sans-serif;
   font-weight: 700;
-  font-size: 16px;
-  color: #A66CFE;
+  font-size: 1rem;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
 
-.changeBtn:hover {
+.changeBtn {
+  border: 2px solid #A66CFE;
+  background: transparent;
+  color: #A66CFE;
+}
+
+.changeBtn:hover,
+.addContactBtn:hover,
+.saveBtn:hover {
   transform: scale(1.05);
 }
 
 .contactActions {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
@@ -196,38 +210,122 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 15px 30px;
+  padding: 0.75rem 1.875rem;
   background: #424242;
   border-radius: 9px;
   font-family: 'adineue PRO', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
   color: #FFFFFF;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.addContactBtn:hover {
-  transform: scale(1.05);
 }
 
 .plusIcon {
-  font-size: 18px;
-  line-height: 18px;
+  font-size: 1.125rem;
+  line-height: 1;
 }
 
 .saveBtn {
-  padding: 15px 50px;
   background: #A66CFE;
-  border-radius: 9px;
-  font-family: 'adineue PRO', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
   color: #FFFFFF;
-  cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
-.saveBtn:hover {
-  transform: scale(1.05);
+.deleteBtn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.deleteBtn:active {
+  background-color: rgba(220, 53, 69, 0.2);
+}
+
+.deleteBtn svg {
+  width: 30px;
+  height: 30px;
+  color: #dc3545;
+}
+
+.contactRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto auto;
+  column-gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  width: 100%;
+}
+
+.label {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+.value {
+  font-family: 'adineue PRO', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .profileContent {
+    gap: 50px;
+  }
+  .contactRow {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabs {
+    gap: 30px;
+  }
+  .avatarWrapper {
+    width: 150px;
+    height: 150px;
+  }
+  .infoForm,
+  .fields {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+    gap: 30px;
+    margin: 80px auto 0;
+  }
+  .tab,
+  .activeTab {
+    font-size: 1rem;
+  }
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+  .avatarWrapper {
+    width: 100px;
+    height: 100px;
+  }
+  .changeBtn,
+  .saveBtn,
+  .addContactBtn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
 }

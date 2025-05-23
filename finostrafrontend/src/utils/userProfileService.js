@@ -14,19 +14,24 @@ export function fetchUserProfile() {
   return axiosInstance.get("/api/v1/userProfile");
 }
 
-
-// не працює має змінити на put 
-export function updatePhoneNumber({ phoneNumber, description }) {
+export function updatePhoneNumber({ id, phoneNumber, description }) {
   return axiosInstance.post(
     "/api/v1/userProfile/updatePhoneNumber",
-    { phoneNumber, description }
+    { id, phoneNumber, description }
   );
 }
-
 
 export function addPhoneNumber({ phoneNumber, description }) {
   return axiosInstance.post(
     "/api/v1/userProfile/addPhoneNumber",
     { phoneNumber, description }
   );
+}
+
+
+export function deletePhoneNumber({ phoneNumber }) {
+  return axiosInstance
+    .delete("/api/v1/userProfile/deletePhoneNumber", { params: { phoneNumber } })
+    .then(res => res)
+    .catch(err => { throw err; });
 }
