@@ -5,10 +5,11 @@
     justify-content: center;
     gap: 30px;
     width: 77.08vw;
-    min-height: 387px;
+    /* min-height: 387px; */
     border-radius: 2.08vw;
     background-color: #0F110E;
     color: #FFF;
+    padding: 2rem 0;
 }
 
 .card {
@@ -27,7 +28,7 @@
     font-weight: 400;
     font-size: 1.25em;
     width: 72.92vw;
-    height: 24px;
+    /* height: 24px; */
 }
 
 .wrap_typeCard {
@@ -58,10 +59,11 @@
 }
 
 .wrap_cards {
+    margin: auto 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start; 
     gap: 1.88vw;
     width: 72.92vw;
-    height: 141px;
+    /* height: 141px; */
 }

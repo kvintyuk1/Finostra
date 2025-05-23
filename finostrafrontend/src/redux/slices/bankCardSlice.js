@@ -3,6 +3,7 @@ import axios from "axios";
 
 const API_BASE_URL = "http://localhost:8081/api/v1";
 
+// Async thunk: створення картки
 export const createBankCard = createAsyncThunk(
   "bankCard/createBankCard",
   async (cardData, thunkAPI) => {
@@ -12,7 +13,6 @@ export const createBankCard = createAsyncThunk(
         cardData,
         { withCredentials: true }
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -23,6 +23,7 @@ export const createBankCard = createAsyncThunk(
   }
 );
 
+// Async thunk: отримання карток за валютою
 export const fetchBankCardsByCurrency = createAsyncThunk(
   "bankCard/fetchByCurrency",
   async (currency, thunkAPI) => {
@@ -41,46 +42,48 @@ export const fetchBankCardsByCurrency = createAsyncThunk(
   }
 );
 
+// Slice
 const bankCardSlice = createSlice({
-    name: 'bankCard',
-    initialState: {
-        createStatus: "idle",
-        createError: null,
-        message: null,
-        cards: [],
+  name: "bankCard",
+  initialState: {
+    createStatus: "idle",
+    createError: null,
+    message: null,
+    fetchStatus: "idle",
+    fetchError: null,
+    cards: [],
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      // Обробка створення картки
+      .addCase(createBankCard.pending, (state) => {
+        state.createStatus = "loading";
+        state.createError = null;
+      })
+      .addCase(createBankCard.fulfilled, (state, action) => {
+        state.createStatus = "succeeded";
+        state.message = action.payload;
+      })
+      .addCase(createBankCard.rejected, (state, action) => {
+        state.createStatus = "failed";
+        state.createError = action.payload;
+      })
 
-        fetchStatus: 'idle',
-        fetchError: null
-    },
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(createBankCard.pending, (state) => {
-                state.createStatus = 'loading';
-                state.createError = null
-            })
-            .addCase(createBankCard.fulfilled, (state,action)=>{
-                state.createStatus = 'succeeded';
-                state.message = action.payload;
-            })
-            .addCase(createBankCard.rejected, (state,action)=>{
-                state.createStatus = "failed";
-                state.createError = action.payload
-            })
-
-            .addCase(fetchBankCardsByCurrency.pending, (state) => {
-                state.fetchStatus = "loading";
-                state.fetchError = null
-            })
-            .addCase(fetchBankCardsByCurrency.fulfilled, (state, action) => {
-                state.fetchStatus = "succeeded";
-                state.cards = action.payload
-            })
-            .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
-                state.fetchStatus = "failed";
-                state.fetchError = action.payload
-            });
-    },
+      // Обробка отримання карток
+      .addCase(fetchBankCardsByCurrency.pending, (state) => {
+        state.fetchStatus = "loading";
+        state.fetchError = null;
+      })
+      .addCase(fetchBankCardsByCurrency.fulfilled, (state, action) => {
+        state.fetchStatus = "succeeded";
+        state.cards = action.payload;
+      })
+      .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
+        state.fetchStatus = "failed";
+        state.fetchError = action.payload;
+      });
+  },
 });
 
 export default bankCardSlice.reducer;
