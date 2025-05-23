@@ -1,52 +1,39 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+// src/pages/ProfileMenu/ProfileMenu.js
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../utils/axiosInstance";
 import Cookies from "js-cookie";
 import styles from "./ProfileMenu.module.css";
 import translations from "./profileMenuTranslations";
-import { LanguageContext } from "../LanguageContext";
+import { LanguageContext } from "../../components/LanguageContext";
+import { ProfileContext } from "../contexts/ProfileContext";
+import { buildAvatarUrl } from "../../utils/avatar";
+import defaultAvatar from "../../assets/Photo/default-avatar.png";
 import {
   User,
   Settings,
   LogOut,
-  Pencil,
   Lock,
   Phone,
   Info,
-  Gift
+  Gift,
 } from "lucide-react";
 
 export default function ProfileMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  
+
   const { selectedLanguage } = useContext(LanguageContext);
   const langKey = selectedLanguage === "EN" ? "en" : "ua";
   const t = translations[langKey];
 
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { profile, loading, error } = useContext(ProfileContext);
+
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
-
-  useEffect(() => {
-    async function loadProfile() {
-      setLoading(true);
-      try {
-        const response = await axiosInstance.get("/api/v1/userProfile/get", {
-          withCredentials: true,
-        });
-        setProfile(response.data);
-      } catch (err) {
-        setError(err.response?.data || err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadProfile();
-  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -58,55 +45,39 @@ export default function ProfileMenu() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleToggle = () => setOpen((prev) => !prev);
-
+  const handleToggle = () => setOpen(prev => !prev);
   const goToProfile = () => {
     setOpen(false);
     navigate("/profile");
   };
 
   const handleLogout = async () => {
-  try {
-    await dispatch(fetchLogout()).unwrap();
+    try {
+      await dispatch(fetchLogout()).unwrap();
+      localStorage.clear();
+      Cookies.remove("accessToken");
+      Cookies.remove("refreshToken");
+      window.location.href = "/login";
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
 
-    localStorage.clear();
-    Cookies.remove("accessToken");
-    Cookies.remove("refreshToken");
-
-    setOpen(false);
-
-    window.location.href = "/login";
-  } catch (err) {
-    console.error("Logout failed:", err);
-  }
-};
-
-
-  if (loading)
-    return <div className={styles.loading}>{t.loading || "Loading..."}</div>;
-  if (error)
-    return (
-      <div className={styles.error}>
-        {t.errorPrefix || "Error:"} {error}
-      </div>
-    );
+  if (loading) return <div className={styles.loading}>{t.loading || "Loading..."}</div>;
+  if (error) return <div className={styles.error}>{`${t.errorPrefix || "Error:"} ${error}`}</div>;
   if (!profile) return null;
 
-  const {
-    firstNameUa,
-    lastNameUa,
-    patronymicUa,
-    firstNameEn,
-    lastNameEn,
-    patronymicEn,
-    avatarBlobLink,
-    phoneNumber,
-  } = profile;
+  const avatarUrl = profile.avatarBlobLink
+    ? buildAvatarUrl(profile.avatarBlobLink, profile.avatarFileName)
+    : defaultAvatar;
 
-  const nameUa = [firstNameUa, lastNameUa, patronymicUa].filter(Boolean).join(" ");
-  const nameEn = [firstNameEn, lastNameEn, patronymicEn].filter(Boolean).join(" ");
+  const nameUa = [profile.firstNameUa, profile.lastNameUa, profile.patronymicUa]
+    .filter(Boolean)
+    .join(" ");
+  const nameEn = [profile.firstNameEn, profile.lastNameEn, profile.patronymicEn]
+    .filter(Boolean)
+    .join(" ");
   const displayName = langKey === "en" ? nameEn : nameUa;
-  const avatarUrl = avatarBlobLink || "/default-avatar.png";
 
   return (
     <div className={styles.container} ref={menuRef}>
@@ -125,35 +96,22 @@ export default function ProfileMenu() {
               <div
                 className={styles.headerAvatar}
                 style={{ backgroundImage: `url(${avatarUrl})` }}
-              >
-                <div className={styles.avatarOverlay} />
-                <button
-                  className={styles.editButton}
-                  onClick={() => alert(t.editAvatar)}
-                >
-                  <Pencil size={24} />
-                </button>
-              </div>
+              />
               <div className={styles.headerInfo}>
                 <div className={styles.userName}>{displayName}</div>
-                <div className={styles.userPhone}>{phoneNumber}</div>
+                <div className={styles.userPhone}>{profile.phoneNumber}</div>
               </div>
             </div>
 
             <div className={styles.menuGroup}>
               <button className={styles.menuItem} onClick={goToProfile}>
-                <User size={18} />
-                <span>{t.profile}</span>
+                <User size={18} /><span>{t.profile}</span>
               </button>
               <button
                 className={styles.menuItem}
-                onClick={() => {
-                  setOpen(false);
-                  navigate("/settings");
-                }}
+                onClick={() => { setOpen(false); navigate("/settings"); }}
               >
-                <Settings size={18} />
-                <span>{t.settings}</span>
+                <Settings size={18} /><span>{t.settings}</span>
               </button>
             </div>
 
@@ -161,53 +119,36 @@ export default function ProfileMenu() {
               <div className={styles.groupHeader}>{t.accountControls}</div>
               <button
                 className={styles.menuItem}
-                onClick={() => {
-                  setOpen(false);
-                  navigate("/change-password");
-                }}
+                onClick={() => { setOpen(false); navigate("/change-password"); }}
               >
-                <Lock size={18} />
-                <span>{t.changePassword}</span>
+                <Lock size={18} /><span>{t.changePassword}</span>
               </button>
               <button
                 className={styles.menuItem}
-                onClick={() => {
-                  setOpen(false);
-                  navigate("/change-phone");
-                }}
+                onClick={() => { setOpen(false); navigate("/change-phone"); }}
               >
-                <Phone size={18} />
-                <span>{t.changePhone}</span>
+                <Phone size={18} /><span>{t.changePhone}</span>
               </button>
             </div>
 
             <div className={styles.menuGroup}>
               <button
                 className={styles.menuItem}
-                onClick={() => {
-                  setOpen(false);
-                  navigate("/info");
-                }}
+                onClick={() => { setOpen(false); navigate("/info"); }}
               >
-                <Info size={18} />
-                <span>{t.info}</span>
+                <Info size={18} /><span>{t.info}</span>
               </button>
               <button
                 className={styles.menuItem}
-                onClick={() => {
-                  setOpen(false);
-                  navigate("/whats-new");
-                }}
+                onClick={() => { setOpen(false); navigate("/whats-new"); }}
               >
-                <Gift size={18} />
-                <span>{t.whatsNew}</span>
+                <Gift size={18} /><span>{t.whatsNew}</span>
               </button>
             </div>
 
             <div className={styles.menuGroup}>
               <button className={styles.menuItem} onClick={handleLogout}>
-                <LogOut size={18} />
-                <span>{t.logout}</span>
+                <LogOut size={18} /><span>{t.logout}</span>
               </button>
             </div>
           </div>

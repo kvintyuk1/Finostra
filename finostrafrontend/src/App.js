@@ -41,6 +41,7 @@ import Fun from "./pages/Fun/Fun";
 import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
+import { ProfileProvider } from "./components/contexts/ProfileContext";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
 
   return (
     <LanguageProvider>
+      <ProfileProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -110,6 +112,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </ProfileProvider>
     </LanguageProvider >
   );
 }
