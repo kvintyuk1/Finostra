@@ -1,5 +1,9 @@
-import React, { useContext, useRef, useState } from "react";
-import axiosInstance from "../../utils/axiosInstance";
+import React, { useContext, useRef, useState, useEffect } from "react";
+import {
+  uploadAvatarImage,
+  updatePhoneNumber,
+  addPhoneNumber,
+} from "../../utils/userProfileService";
 import styles from "./ProfilePage.module.css";
 import { Pencil } from "lucide-react";
 import { LanguageContext } from "../../components/LanguageContext";
@@ -16,6 +20,10 @@ export default function ProfilePage() {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
 
+  useEffect(() => {
+    if (!profile) refreshProfile();
+  }, [profile, refreshProfile]);
+
   const handleLangClick = (lang) => {
     if (lang !== "EN" && lang !== "UA") return;
     handleLanguageChange({ target: { value: lang } });
@@ -28,63 +36,71 @@ export default function ProfilePage() {
   const handleAvatarChange = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    const previewUrl = URL.createObjectURL(file);
     setUploading(true);
-
-    const form = new FormData();
-    form.append("image", file);
-
     try {
-      await axiosInstance.post(
-        "/api/v1/userProfile/uploadAvatarImage",
-        form,
-        {
-          withCredentials: true,
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      await uploadAvatarImage(file);
       await refreshProfile();
     } catch (err) {
       console.error("Upload failed:", err);
-      const msg =
+      alert(
         t.status?.uploadAvatarFailed ||
-        (langKey === "en"
-          ? "Failed to upload avatar"
-          : "Не вдалося завантажити аватар");
-      alert(msg);
+        (langKey === "en" ? "Failed to upload avatar" : "Не вдалося завантажити аватар")
+      );
     } finally {
       setUploading(false);
     }
   };
 
-  if (loading) {
-    return <div className={styles.loading}>{t.status.loadingProfile}</div>;
-  }
-  if (error) {
-    const msg = t.status.error.replace("{{error}}", error);
-    return <div className={styles.error}>{msg}</div>;
-  }
-  if (!profile) {
-    return <div className={styles.empty}>{t.status.profileNotFound}</div>;
-  }
-
-  let avatarUrl = defaultAvatar;
-  if (profile.avatarBlobLink) {
+  const handleChangePhone = async (number) => {
+    const newNumber = prompt(
+      langKey === "en" ? "Enter new phone number:" : "Введіть новий номер телефону:",
+      number
+    );
+    if (!newNumber) return;
     try {
-      const urlObj = new URL(profile.avatarBlobLink);
-      const isContainer = urlObj.pathname.endsWith("/");
-      if (isContainer && profile.avatarFileName) {
-        avatarUrl = `${profile.avatarBlobLink}${profile.avatarFileName}${urlObj.search || ""}`;
-      } else {
-        avatarUrl = profile.avatarBlobLink;
-      }
-      const sep = avatarUrl.includes("?") ? "&" : "?";
-      avatarUrl = `${avatarUrl}${sep}t=${Date.now()}`;
-    } catch {
-      avatarUrl = profile.avatarBlobLink;
+      await updatePhoneNumber({ phoneNumber: newNumber, description: "" });
+      alert(
+        langKey === "en"
+          ? "Phone number updated successfully"
+          : "Номер телефону успішно оновлено"
+      );
+      refreshProfile();
+    } catch (err) {
+      console.error("Phone update failed:", err);
+      alert(
+        langKey === "en"
+          ? "Failed to update phone number"
+          : "Не вдалося оновити номер телефону"
+      );
     }
-  }
+  };
+
+  const handleAddPhone = async () => {
+    const newNumber = prompt(
+      langKey === "en" ? "Enter phone number to add:" : "Введіть номер телефону для додавання:"
+    );
+    if (!newNumber) return;
+    const description = prompt(
+      langKey === "en" ? "Enter a description (optional):" : "Введіть опис (необов'язково):",
+      ""
+    );
+    try {
+      await addPhoneNumber({ phoneNumber: newNumber, description });
+      alert(
+        langKey === "en" ? "Contact added successfully" : "Контакт успішно додано"
+      );
+      refreshProfile();
+    } catch (err) {
+      console.error("Add contact failed:", err);
+      alert(
+        langKey === "en" ? "Failed to add contact" : "Не вдалося додати контакт"
+      );
+    }
+  };
+
+  if (loading) return <div className={styles.loading}>{t.status.loadingProfile}</div>;
+  if (error) return <div className={styles.error}>{t.status.error.replace("{{error}}", error)}</div>;
+  if (!profile) return <div className={styles.empty}>{t.status.profileNotFound}</div>;
 
   const {
     firstNameUa,
@@ -94,11 +110,34 @@ export default function ProfilePage() {
     lastNameEn,
     patronymicEn,
     birthDate,
+    phoneNumbers,
     phoneNumber,
+    avatarBlobLink,
+    avatarFileName,
   } = profile;
+
+  const contacts = [
+    { phoneNumber, description: langKey === "en" ? "Primary" : "Основний" },
+    ...(Array.isArray(phoneNumbers) ? phoneNumbers : []),
+  ];
+
   const nameUa = [firstNameUa, lastNameUa, patronymicUa].filter(Boolean).join(" ");
   const nameEn = [firstNameEn, lastNameEn, patronymicEn].filter(Boolean).join(" ");
   const displayName = langKey === "en" ? nameEn : nameUa;
+
+  let avatarUrl = defaultAvatar;
+  if (avatarBlobLink) {
+    try {
+      const urlObj = new URL(avatarBlobLink);
+      const isContainer = urlObj.pathname.endsWith("/");
+      avatarUrl = isContainer && avatarFileName
+        ? `${avatarBlobLink}${avatarFileName}${urlObj.search || ""}`
+        : avatarBlobLink;
+      avatarUrl += avatarUrl.includes("?") ? `&t=${Date.now()}` : `?t=${Date.now()}`;
+    } catch {
+      avatarUrl = avatarBlobLink;
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -119,42 +158,31 @@ export default function ProfilePage() {
             style={{ display: "none" }}
             onChange={handleAvatarChange}
           />
-
           <div
             className={styles.avatarWrapper}
             onClick={handleAvatarWrapperClick}
             title={t.sections.editAvatar}
           >
             <div className={styles.avatarOverlay}>
-              {uploading ? (
-                <span>{t.status.uploadingAvatar}…</span>
-              ) : (
-                <Pencil size={32} />
-              )}
+              {uploading ? <span>{t.status.uploadingAvatar}…</span> : <Pencil size={32} />}
             </div>
             <img src={avatarUrl} alt="Avatar" className={styles.avatarImg} />
           </div>
-
           <div className={styles.infoForm}>
             <div className={styles.languageToggle}>
               <button
-                className={
-                  langKey === "en" ? styles.langButtonActive : styles.langButton
-                }
+                className={langKey === "en" ? styles.langButtonActive : styles.langButton}
                 onClick={() => handleLangClick("EN")}
               >
                 {t.languageToggle.english}
               </button>
               <button
-                className={
-                  langKey === "ua" ? styles.langButtonActive : styles.langButton
-                }
+                className={langKey === "ua" ? styles.langButtonActive : styles.langButton}
                 onClick={() => handleLangClick("UA")}
               >
                 {t.languageToggle.ukrainian}
               </button>
             </div>
-
             <div className={styles.fields}>
               {displayName.split(" ").map((val, idx) => (
                 <div key={idx} className={styles.fieldRow}>
@@ -172,13 +200,27 @@ export default function ProfilePage() {
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>{t.sections.contactDetails}</h2>
-        <div className={styles.contactRow}>
-          <div className={styles.label}>{t.labels.phoneNumber}</div>
-          <div className={styles.value}>{phoneNumber}</div>
-          <button className={styles.changeBtn}>{t.labels.change}</button>
-        </div>
+        {contacts.map((c, idx) => (
+          <div key={idx} className={styles.contactRow}>
+            <div className={styles.label}>
+              {idx === 0 ? t.labels.primaryPhone : t.labels.phoneNumber}
+            </div>
+            <div className={styles.value}>
+              {c.phoneNumber}
+              {c.description && <span> ({c.description})</span>}
+            </div>
+            {idx === 0 && (
+              <button
+                className={styles.changeBtn}
+                onClick={() => handleChangePhone(c.phoneNumber)}
+              >
+                {t.labels.change}
+              </button>
+            )}
+          </div>
+        ))}
         <div className={styles.contactActions}>
-          <button className={styles.addContactBtn}>
+          <button className={styles.addContactBtn} onClick={handleAddPhone}>
             <span className={styles.plusIcon}>+</span>
             {t.labels.addContact}
           </button>
