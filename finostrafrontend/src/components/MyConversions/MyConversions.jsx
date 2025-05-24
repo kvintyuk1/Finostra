@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import styles from "./myConversions.module.css";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 import SentReceivedSwitch from "../SentReceivedSwitch/SentReceivedSwitch";
 import { fetchAllEnvelops } from "../../redux/slices/envelopSlice";
 
-export default function MyConversions({ setShowKonvert }) {
+export default function MyConversions({
+  setShowKonvert,
+  onTopUp = () => {},
+  onExtract = () => {},
+}) {
   const dispatch = useDispatch();
-  const { status, error, envelops } = useSelector((state) => state.envelop);
+  const { status, error, envelops } = useSelector((s) => s.envelop);
 
   const [activeButton, setActiveButton] = useState("sent");
   const [showArchiv, setShowArchiv] = useState(false);
@@ -17,12 +22,16 @@ export default function MyConversions({ setShowKonvert }) {
   }, [dispatch]);
 
   const items = envelops?.dtos || [];
-  const displayed = items.filter((env) => (showArchiv ? !env.isEnabled : env.isEnabled));
+
+  const displayed = items.filter((env) =>
+    showArchiv ? !env.enabled : env.enabled
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.name}>Мої конверти</div>
+
         <SentReceivedSwitch
           text_but_one="Власник"
           text_but_two="Учасник"
@@ -37,19 +46,48 @@ export default function MyConversions({ setShowKonvert }) {
         {error && <p className={styles.errorText}>{error}</p>}
 
         {status === "succeeded" && (
-          displayed.length > 0 ? (
+          displayed.length ? (
             <div className={styles.grid}>
-              {displayed.map((env) => (
-                <div key={env.id} className={styles.card}>
+              {displayed.map((env, idx) => (
+                <div key={env.id ?? idx} className={styles.card}>
                   <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>{env.name}</h3>
-                    <span className={styles.progress}>
-                      {env.actualAmount} / {env.capacityAmount} {env.currency}
-                    </span>
+                    <h3 className={styles.cardName}>{env.name}</h3>
+                    <p className={styles.cardDesc}>{env.description}</p>
                   </div>
-                  <p className={styles.cardDesc}>{env.description}</p>
+
+                  <div className={styles.progressBox}>
+                    <span>{env.actualAmount}</span>
+                    <div className={styles.progressTrack}>
+                      <div
+                        className={styles.progressFill}
+                        style={{
+                          width: `${
+                            env.amountCapacity
+                              ? Math.min(
+                                  100,
+                                  (env.actualAmount / env.amountCapacity) * 100
+                                )
+                              : 0
+                          }%`,
+                        }}
+                      />
+                    </div>
+                    <span>{env.amountCapacity}</span>
+                  </div>
+
                   <div className={styles.cardFooter}>
-                    Завершення: <strong>{env.expiryDate}</strong>
+                    <button
+                      className={styles.btnTopUp}
+                      onClick={() => onTopUp(env)}
+                    >
+                      Поповнити
+                    </button>
+                    <button
+                      className={styles.btnExtract}
+                      onClick={() => onExtract(env)}
+                    >
+                      Вилучити
+                    </button>
                   </div>
                 </div>
               ))}
