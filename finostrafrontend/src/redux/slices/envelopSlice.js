@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 
 export const createEnvelop = createAsyncThunk("envelop/createEnvelop",
     async (envelopData, thunkAPI) => {
         try {
-            const response = await axios.post('/Finostra_/api/v1/createEnvelop', envelopData);
+            const response = await axiosInstance.post('/api/v1/createEnvelop', envelopData);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data || "Помилка створення конверта");
@@ -14,7 +15,7 @@ export const createEnvelop = createAsyncThunk("envelop/createEnvelop",
 export const fetchAllEnvelops = createAsyncThunk('envelop/fetchAllEnvelops',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('/api/v1/fetchAllEnvelops');
+            const response = await axiosInstance.get('/api/v1/fetchAllEnvelops');
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання всіх конвертів");
@@ -31,15 +32,23 @@ export const extractMoneyFromEnvelop = createAsyncThunk('envelop/extractMoneyFro
         }
     });
 
-export const disableEnvelop = createAsyncThunk('envelop/disableEnvelop',
-    async (_, thunkAPI) => {
-        try {
-            const response = await axios.put('/api/v1/disableEnvelop');
-            return response.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.response?.data || 'Помилка відключення конверта');
-        }
-    })
+export const disableEnvelop = createAsyncThunk(
+  'envelop/disableEnvelop',
+  async (envPublicUUID, thunkAPI) => {
+    console.log('[Thunk disableEnvelop] envPublicUUID:', envPublicUUID);
+    try {
+      const response = await axiosInstance.put(
+        '/api/v1/disableEnvelop',
+        { envPublicUUID }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || 'Помилка відключення конверта'
+      );
+    }
+  }
+);
 
 const envelopSlice = createSlice({
     name: 'envelop',

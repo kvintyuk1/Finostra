@@ -170,3 +170,17 @@
 .fontWeight700 {
     font-weight: 700;
 }
+
+
+.whiteText { color: #fff; }
+.blackText { color: #000; }
+
+.size_button200 { width: 200px; height: 40px; }
+
+.fontWeight700 { font-weight: 700; }
+
+.active {
+   background-color: #A66CFE;
+    border: 1px solid #A66CFE;
+  color: #fff !important;
+}
