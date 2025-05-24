@@ -11,19 +11,31 @@ function CollectingMoney({ setShowKonvert }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [amountCapacity, setAmountCapacity] = useState("");
-  const [expiryDate, setExpiryDate] = useState(""); 
-  const [currency, setCurrency] = useState("UAH");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [currency, setCurrency] = useState("UAH"); 
   const [preset, setPreset] = useState("");
+  const [errors, setErrors] = useState({});
 
   const currencies = ["UAH", "USD", "EUR"];
 
+  const validate = () => {
+    const newErrors = {};
+    if (!name.trim()) newErrors.name = "Вкажіть назву";
+    if (!amountCapacity || isNaN(amountCapacity) || +amountCapacity <= 0) newErrors.amount = "Вкажіть коректну суму";
+    if (!expiryDate) newErrors.expiryDate = "Оберіть дату закінчення";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async () => {
+    if (!validate()) return;
     const data = { name, description, amountCapacity: +amountCapacity, expiryDate, currency };
     try {
       await dispatch(createEnvelop(data)).unwrap();
       dispatch(fetchAllEnvelops());
       setShowKonvert(true);
     } catch {
+      // можна обробити помилку запиту
     }
   };
 
@@ -33,6 +45,7 @@ function CollectingMoney({ setShowKonvert }) {
     computeDate(d);
     const iso = d.toISOString().slice(0, 10);
     setExpiryDate(iso);
+    setErrors(prev => ({ ...prev, expiryDate: "" }));
     console.log(`Preset "${label}" встановлено:`, iso);
   };
 
@@ -59,12 +72,13 @@ function CollectingMoney({ setShowKonvert }) {
               type="text"
               value={name}
               maxLength={45}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => { setName(e.target.value); setErrors(prev => ({ ...prev, name: "" })); }}
               className={styles.input}
               placeholder="Виберіть або напишіть назву"
             />
           </div>
           <div className={styles.count}>{name.length}/45</div>
+          {errors.name && <p className={styles.errorText}>{errors.name}</p>}
         </div>
 
         <div className={styles.wrap_sum_money_collected}>
@@ -73,11 +87,12 @@ function CollectingMoney({ setShowKonvert }) {
             <input
               type="number"
               value={amountCapacity}
-              onChange={(e) => setAmountCapacity(e.target.value)}
+              onChange={(e) => { setAmountCapacity(e.target.value); setErrors(prev => ({ ...prev, amount: "" })); }}
               className={styles.input_sum}
               placeholder="00.00"
             />
           </div>
+          {errors.amount && <p className={styles.errorText}>{errors.amount}</p>}
           <div className={styles.wrap_info_collected}>
             <div className={styles.info_collected}>
               <img src="/icons/info_percent24.svg" alt="info" />
@@ -134,6 +149,7 @@ function CollectingMoney({ setShowKonvert }) {
               Обрана дата: {expiryDate}
             </div>
           )}
+          {errors.expiryDate && <p className={styles.errorText}>{errors.expiryDate}</p>}
         </div>
       </div>
 

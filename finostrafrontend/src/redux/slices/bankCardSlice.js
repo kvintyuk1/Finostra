@@ -1,62 +1,66 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8081/api/v1";
+const API = "http://localhost:8081/api/v1";
 
-// Async thunk: створення картки
 export const createBankCard = createAsyncThunk(
-  "bankCard/createBankCard",
-  async (cardData, thunkAPI) => {
+  "bankCard/create",
+  async (payload, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}/bankCard/create`,
-        cardData,
-        { withCredentials: true }
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      return thunkAPI.rejectWithValue(
-        error.response?.data || "Помилка створення картки"
-      );
+      const { data } = await axios.post(`${API}/bankCard/create`, payload, {
+        withCredentials: true,
+      });
+      return data;
+    } catch (e) {
+      return rejectWithValue(e.response?.data || "Помилка створення картки");
     }
   }
 );
 
-// Async thunk: отримання карток за валютою
 export const fetchBankCardsByCurrency = createAsyncThunk(
   "bankCard/fetchByCurrency",
-  async (currency, thunkAPI) => {
+  async (currency, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/bankCard/get`, {
-        withCredentials: true,
+      const { data } = await axios.get(`${API}/bankCard/get`, {
         params: { currency },
+        withCredentials: true,
       });
-      return response.data.cards;
-    } catch (error) {
-      console.error(error);
-      return thunkAPI.rejectWithValue(
-        error.response?.data || "Помилка отримання карток"
-      );
+      return data.cards;
+    } catch (e) {
+      return rejectWithValue(e.response?.data || "Помилка отримання карток");
     }
   }
 );
 
-// Slice
+export const fetchUserCards = createAsyncThunk(
+  "bankCard/fetchUserCards",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`${API}/bankCard/my`, {
+        withCredentials: true,
+      });
+      return data.cards;
+    } catch (e) {
+      return rejectWithValue(e.response?.data || "Не вдалося отримати картки");
+    }
+  }
+);
+
 const bankCardSlice = createSlice({
   name: "bankCard",
   initialState: {
+    cards: [],
+    status: "idle",
+    error: null,
+    fetchStatus: "idle",
+    fetchError: null,
     createStatus: "idle",
     createError: null,
     message: null,
-    fetchStatus: "idle",
-    fetchError: null,
-    cards: [],
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Обробка створення картки
       .addCase(createBankCard.pending, (state) => {
         state.createStatus = "loading";
         state.createError = null;
@@ -69,8 +73,6 @@ const bankCardSlice = createSlice({
         state.createStatus = "failed";
         state.createError = action.payload;
       })
-
-      // Обробка отримання карток
       .addCase(fetchBankCardsByCurrency.pending, (state) => {
         state.fetchStatus = "loading";
         state.fetchError = null;
@@ -82,6 +84,18 @@ const bankCardSlice = createSlice({
       .addCase(fetchBankCardsByCurrency.rejected, (state, action) => {
         state.fetchStatus = "failed";
         state.fetchError = action.payload;
+      })
+      .addCase(fetchUserCards.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(fetchUserCards.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.cards = action.payload;
+      })
+      .addCase(fetchUserCards.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
       });
   },
 });

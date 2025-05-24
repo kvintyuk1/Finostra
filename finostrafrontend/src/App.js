@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser } from "./redux/slices/authSlice";
-
 import { LanguageProvider } from "./components/LanguageContext";
 import { ProfileProvider } from "./components/contexts/ProfileContext";
 
@@ -44,6 +43,9 @@ import Fun from "./pages/Fun/Fun";
 import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -117,9 +119,23 @@ function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
+
+          <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         </BrowserRouter>
       </ProfileProvider>
     </LanguageProvider>
+    
   );
 }
 
