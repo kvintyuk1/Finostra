@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./headerForCard.module.css";
 import { useOutletContext } from "react-router-dom";
+import { SpinnerCircular } from "spinners-react";
 
 function HeaderForCard({ title, title_wallet, img, titleColor = "pinkText", textTransform = "normal",
     sizeWrapperTitle = "size429", setSenderCardNumber, setExpiry, setCvv }) {
 
-    const cards = useOutletContext();
+    const { cards, status } = useOutletContext();
 
     const [showModal, setShowModal] = useState(false);
     const [selectedCard, setSelectedCard] = useState("");
@@ -32,7 +33,7 @@ function HeaderForCard({ title, title_wallet, img, titleColor = "pinkText", text
             <div className={styles.modal}>
                 <h2 className={styles.modalTitle}>Оберіть картку</h2>
 
-                {isLoadingCards ? (
+                {status === 'loading' ? (
                     <div className={styles.spinnerBox}>
                         <SpinnerCircular size={100} thickness={140} />
                         <span>Завантаження карток…</span>
@@ -55,7 +56,7 @@ function HeaderForCard({ title, title_wallet, img, titleColor = "pinkText", text
                                         checked={selectedCard?.cardNumber === card.cardNumber}
                                         onChange={() => setSelectedCard(card)}
                                     />
-                                    💳 {card.cardNumber.slice(-4).padStart(16, "•")} — {card.balance.amount} {card.balance.currency}
+                                    {card.cardNumber.slice(-4).padStart(16, "•")}  {card.balance.amount} {card.balance.currency}
                                 </label>
                             ))}
                         </div>

@@ -30,7 +30,7 @@ function ConfirmedSendReceiveCards({
     // Розрахунок комісій
     const parsedSum = parseFloat(sum);
     const isValidSum = !isNaN(parsedSum) && parsedSum > 0;
-    const senderFeeNum = isValidSum ? parsedSum * 0.01 : 0;
+    const senderFeeNum = isValidSum ? parsedSum * 0.00 : 0;
     const receiverFeeNum = isValidSum ? parsedSum * 0 : 0;
     const totalWithFee = isValidSum
         ? (parsedSum + senderFeeNum).toFixed(2)
@@ -53,6 +53,8 @@ function ConfirmedSendReceiveCards({
         try {
             onSubmit();
 
+            
+
             setIsTransferModalOpen(false);
             setIsSuccessfulTransferModalOpen(true);
 
@@ -61,10 +63,6 @@ function ConfirmedSendReceiveCards({
             setIsTransferModalOpen(false);
             setIsSuccessfulTransferModalOpen(false);
         }
-
-        // Here we're transfering money
-        
-
         
     };
     const handleCloseSuccessfulTransferModal = () => {

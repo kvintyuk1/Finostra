@@ -7,7 +7,7 @@ import { fetchBankCardsByCurrency } from "../../redux/slices/bankCardSlice";
 function Transactions() {
 
     const dispatch = useDispatch();
-    const { cards } = useSelector(state => state.bankCard);
+    const { cards, fetchStatus } = useSelector(state => state.bankCard);
     const [currency, setCurrency] = useState('UAH');
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function Transactions() {
 
     return (
         <div className={styles.container}>
-            <Outlet context={cards}/>
+            <Outlet context={{ cards, status: fetchStatus }} />
         </div>
     )
 }

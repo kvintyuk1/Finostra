@@ -27,7 +27,7 @@ function ListTable({ transactions }) {
     const { selectedLanguage } = useContext(LanguageContext);
     const t = listTableTranslations[selectedLanguage];
 
-    const cards = useOutletContext();
+    const { cards } = useOutletContext();
 
     const myCardNumbers = cards?.map(card => card.cardNumber) || [];
 
@@ -65,7 +65,6 @@ function ListTable({ transactions }) {
                         </tr>
                         {txs.map((tx, j) => {
                             const type = getTransactionType(tx);
-                            console.log(type);
                             const icon =
                                 type === "incoming" ? "card-send-linear.svg" : "arrow-down-broken.svg";
 
