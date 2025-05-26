@@ -50,12 +50,22 @@ function ConfirmedSendReceiveCards({
         setIsTransferModalOpen(false);
     };
     const handleSuccessfulTransfer = () => {
+        try {
+            onSubmit();
+
+            setIsTransferModalOpen(false);
+            setIsSuccessfulTransferModalOpen(true);
+
+        } catch (error) {
+            
+            setIsTransferModalOpen(false);
+            setIsSuccessfulTransferModalOpen(false);
+        }
 
         // Here we're transfering money
-        onSubmit();
+        
 
-        setIsTransferModalOpen(false);
-        setIsSuccessfulTransferModalOpen(true);
+        
     };
     const handleCloseSuccessfulTransferModal = () => {
         setIsSuccessfulTransferModalOpen(false);

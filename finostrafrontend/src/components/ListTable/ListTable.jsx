@@ -4,6 +4,7 @@ import { LanguageContext } from "../LanguageContext";
 import { listTableTranslations } from "./listTableTranslations";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBankCardsByCurrency } from "../../redux/slices/bankCardSlice";
+import { useOutletContext } from "react-router-dom";
 
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -26,13 +27,7 @@ function ListTable({ transactions }) {
     const { selectedLanguage } = useContext(LanguageContext);
     const t = listTableTranslations[selectedLanguage];
 
-    const dispatch = useDispatch();
-    const { cards, status, error, message } = useSelector(state => state.bankCard);
-    const [currency, setCurrency] = useState('UAH');
-
-    useEffect(() => {
-        dispatch(fetchBankCardsByCurrency(currency));
-    }, [currency, dispatch]);
+    const cards = useOutletContext();
 
     const myCardNumbers = cards?.map(card => card.cardNumber) || [];
 
