@@ -1341,73 +1341,67 @@ input[type="checkbox"] {
   cursor: not-allowed;
 }
 
-/* Modal.module.css */
-
 .profileWrapper {
   background: #0f110e;
   padding: 24px;
   border-radius: 12px;
   max-width: 460px;
   margin: 0 auto;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  color: #fff;
 }
 
-.profileWrapper h2 {
-  margin-bottom: 16px;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-/* Контейнер полів (для вирівнювання у ряд або стовпець за потреби) */
-.fieldRow {
-  display: flex;
-  align-items: center;
-  padding: 0 0 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  width: 100%;
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   margin-bottom: 16px;
 }
 
-/* Базовий стиль для всіх інпутів */
-.fieldRow input {
-  flex: 1;
+
+.fullWidth {
+  width: 95%;
+  margin-bottom: 16px;
+}
+
+.profileWrapper input {
   background: transparent;
-  border: none;
-  outline: none;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 6px;
+  padding: 8px 12px;
   font-size: 1rem;
-  color: #ffffff;
-  padding: 8px 0;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-/* Плейсхолдер */
-.fieldRow input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* При фокусі додаємо підкреслення */
-.fieldRow input:focus {
-  border-bottom: 2px solid #32d296;
-  color: #ffffff;
-}
-
-/* При наведенні трохи підсвічуємо рядок */
-.fieldRow:hover input {
-  color: #e0e0e0;
-}
-
-/* Додатковий стан для помилки */
-.fieldRow.error input {
-  border-bottom: 2px solid #ff6b6b;
-}
-
-/* Для полів типу date, щоб узгодити фон і колір */
-.fieldRow input[type="date"] {
-  padding: 6px 0;
-  color: #ffffff;
+  color: #fff;
+  transition: border-color 0.2s;
 }
 
 
+.profileWrapper input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.profileWrapper input:focus {
+  outline: none;
+  border-color: #A66CFE;
+}
+
+.profileWrapper input.error {
+  border-color: #ff6b6b;
+}
 
 
+.continueButton {
+  width: 100%;
+  padding: 12px;
+  background: #A66CFE;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.continueButton:disabled {
+  background: #644297;
+  cursor: not-allowed;
+}
+.continueButton:not(:disabled):hover {
+  background: #A66CFE;
+}

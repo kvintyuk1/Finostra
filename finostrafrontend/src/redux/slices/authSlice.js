@@ -95,7 +95,6 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Відправка SMS
       .addCase(sendLoginSms.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -107,7 +106,7 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-      // Підтвердження SMS і отримання користувача
+
       .addCase(confirmLoginSms.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -121,7 +120,6 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-      // Створення профілю
       .addCase(createProfile.pending, (state) => {
         state.status = "loading";
         state.error = null;

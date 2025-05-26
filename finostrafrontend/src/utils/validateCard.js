@@ -19,7 +19,7 @@ export function isValidExpiry(value) {
     if (!monthStr || !yearStr || monthStr.length !== 2 || yearStr.length !== 2) return false;
 
     const month = parseInt(monthStr, 10);
-    const year = parseInt("20" + yearStr, 10); // "25" -> 2025
+    const year = parseInt("20" + yearStr, 10); 
 
     if (isNaN(month) || isNaN(year)) return false;
     if (month < 1 || month > 12) return false;
