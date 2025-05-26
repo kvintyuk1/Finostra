@@ -13,8 +13,8 @@ function CardOfReceive({ receiverCardNumber, cardValid, onChange }) {
         <div className={styles.container}>
             <HeaderForCard
                 title={t.receiverCard}
-                title_wallet={t.myWallet}
-                img="/icons/arrow_out_pink.svg"
+                title_wallet={null}
+                img={null}
             />
             <NumberCard
                 title_card={t.cardNumber}

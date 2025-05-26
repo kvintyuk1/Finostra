@@ -13,6 +13,7 @@ import { transactionToCardTranslations } from "./transactionToCardTranslations";
 import { useDispatch, useSelector } from 'react-redux';
 import { performCardToCardTransaction, fetchTransactions } from "../../../redux/slices/transactionSlice";
 import { fetchBankCardsByCurrency } from "../../../redux/slices/bankCardSlice";
+import { toast } from "react-toastify";
 
 function TransactionToCard() {
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -37,7 +38,7 @@ function TransactionToCard() {
         return `20${year}-${month}-01`;
     }
 
-    const handleTransfer = () => {
+    const handleTransfer = async () => {
         try {
             const transactionBody = {
                 senderCardNumber: senderCardNumber.replaceAll(' ', ''),
@@ -49,15 +50,16 @@ function TransactionToCard() {
                 cvv: cvv
             }
 
-            dispatch(performCardToCardTransaction(transactionBody));
-        } catch (error) {
+            await dispatch(performCardToCardTransaction(transactionBody)).unwrap();
 
+            dispatch(fetchTransactions());
+        } catch (error) {
+            toast.error("Не вдалося виконати переказ")
         }
     };
 
     useEffect(() => {
         dispatch(fetchTransactions());
-
     }, [dispatch]);
 
     return (
