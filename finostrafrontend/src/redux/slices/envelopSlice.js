@@ -3,52 +3,57 @@ import axios from "../../utils/axiosInstance";
 
 const base = "/api/v1";
 
-
 export const fetchAllEnvelops = createAsyncThunk(
   "envelop/fetchAll",
   async () => {
     const { data } = await axios.get(`${base}/fetchAllEnvelops`);
-    return data; 
+    return data;
   }
 );
 
 export const createEnvelop = createAsyncThunk(
   "envelop/create",
   async (payload) => {
-    await axios.post(`${base}/createEnvelop`, payload);
+    const { data } = await axios.post(`${base}/createEnvelop`, payload);
+    return data;
   }
 );
 
 export const disableEnvelop = createAsyncThunk(
   "envelop/disable",
   async ({ name, capacity }) => {
-    await axios.put(`${base}/disableEnvelop`, { name, amountCapacity: capacity });
+    const { data } = await axios.put(`${base}/disableEnvelop`, {
+      name,
+      amountCapacity: capacity,
+    });
+    return data;
   }
 );
 
 export const extractMoneyFromEnvelop = createAsyncThunk(
   "envelop/extract",
   async ({ name, capacity, amount }) => {
-    await axios.put(`${base}/extractMoneyFromEnvelop`, {
+    const { data } = await axios.put(`${base}/extractMoneyFromEnvelop`, {
       name,
       amountCapacity: capacity,
       amount,
     });
+    return data;
   }
 );
 
 export const topUpEnvelop = createAsyncThunk(
   "envelop/topUp",
   async ({ name, capacity, cardNumber, amount }) => {
-    await axios.put(`${base}/topUpEnvelop`, {
+    const { data } = await axios.put(`${base}/topUpEnvelop`, {
       name,
       capacity,
       cardNumber,
       amount,
     });
+    return data;
   }
 );
-
 
 const envelopSlice = createSlice({
   name: "envelop",

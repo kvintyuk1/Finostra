@@ -108,10 +108,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;          
+  text-align: center; /* додано */
+  gap: 0.5rem;
   width: 72.92vw;
-  height: 48px;
+  height: 100%; /* або auto, якщо треба повна висота wrap_content */
 }
+
 
 .title {
   font-weight: 400;
@@ -227,4 +229,15 @@
 }
 .btnExtract:hover {
   background: #e34040;
+}
+
+
+.centeredMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
 }

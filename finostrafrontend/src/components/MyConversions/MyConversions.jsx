@@ -17,12 +17,8 @@ export default function MyConversions({
   const [activeButton, setActiveButton] = useState("sent");
   const [showArchiv, setShowArchiv] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchAllEnvelops());
-  }, [dispatch]);
 
   const items = envelops?.dtos || [];
-
   const displayed = items.filter((env) =>
     showArchiv ? !env.enabled : env.enabled
   );
@@ -31,7 +27,6 @@ export default function MyConversions({
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.name}>Мої конверти</div>
-
         <SentReceivedSwitch
           text_but_one="Власник"
           text_but_two="Учасник"
@@ -45,8 +40,8 @@ export default function MyConversions({
         {status === "loading" && <p>Завантаження конвертів...</p>}
         {error && <p className={styles.errorText}>{error}</p>}
 
-        {status === "succeeded" && (
-          displayed.length ? (
+        {status === "succeeded" &&
+          (displayed.length ? (
             <div className={styles.grid}>
               {displayed.map((env, idx) => (
                 <div key={env.id ?? idx} className={styles.card}>
@@ -56,23 +51,24 @@ export default function MyConversions({
                   </div>
 
                   <div className={styles.progressBox}>
-                    <span>{env.actualAmount}</span>
+                    <span>
+                      {env.actualAmount} / {env.capacityAmount}
+                    </span>
                     <div className={styles.progressTrack}>
                       <div
                         className={styles.progressFill}
                         style={{
                           width: `${
-                            env.amountCapacity
+                            env.capacity
                               ? Math.min(
                                   100,
-                                  (env.actualAmount / env.amountCapacity) * 100
+                                  (env.actualAmount / env.capacity) * 100
                                 )
                               : 0
                           }%`,
                         }}
                       />
                     </div>
-                    <span>{env.amountCapacity}</span>
                   </div>
 
                   <div className={styles.cardFooter}>
@@ -109,8 +105,7 @@ export default function MyConversions({
                   : "Прийміть запрошення, щоб приєднатися до збору коштів."}
               </div>
             </div>
-          )
-        )}
+          ))}
       </div>
 
       <div className={styles.wrap_buttons}>
