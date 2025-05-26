@@ -42,9 +42,9 @@ function SignInModal({ onClose }) {
   const [smsCode, setSmsCode] = useState("");
   const [publicUUID, setPublicUUID] = useState("");
 
-const [showPassword, setShowPassword] = useState(false);
-const [showConfirmPassword, setShowConfirmPassword] = useState(false);
- 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [emailSent, setEmailSent] = useState(false);
   const [emailCode, setEmailCode] = useState("");
   const [emailUUID, setEmailUUID] = useState("");
@@ -177,48 +177,52 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   };
 
   const handleConfirmPhone = async () => {
-  setError("");
-  if (!confirmCode) return setError("Введіть код підтвердження");
-  setLoading(true);
+    setError("");
+    if (!confirmCode) return setError("Введіть код підтвердження");
+    setLoading(true);
 
-  try {
-    const token = await confirmLoginCode(toInternational(phone), confirmCode);
-    setLoginToken(token);
-
-    let profile = null;
     try {
-      const resp = await axiosInstance.get("/api/v1/userProfile/get", {
-        headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
-      });
-      profile = resp.data;
-    } catch (err) {
-      if (err.response?.status !== 404) {
-        throw err;
+      const token = await confirmLoginCode(toInternational(phone), confirmCode);
+      setLoginToken(token);
+
+      let profile = null;
+      try {
+        const resp = await axiosInstance.get("/api/v1/userProfile/get", {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        });
+        profile = resp.data;
+      } catch (err) {
+        if (err.response?.status !== 404) {
+          throw err;
+        }
       }
+
+      const hasAllFields =
+        profile &&
+        [
+          "firstNameUa",
+          "lastNameUa",
+          "patronymicUa",
+          "firstNameEn",
+          "lastNameEn",
+          "patronymicEn",
+          "birthDate",
+        ].every((key) => !!profile[key]);
+
+      if (hasAllFields) {
+        await dispatch(fetchCurrentUser());
+        onClose();
+        navigate("/");
+      } else {
+        setStep("profile");
+      }
+    } catch (e) {
+      setError(e.response?.data?.message || e.message);
+    } finally {
+      setLoading(false);
     }
-
-    const hasAllFields = profile && [
-      "firstNameUa", "lastNameUa", "patronymicUa",
-      "firstNameEn", "lastNameEn", "patronymicEn",
-      "birthDate"
-    ].every(key => !!profile[key]);
-
-    if (hasAllFields) {
-      await dispatch(fetchCurrentUser());
-      onClose();
-      navigate("/");
-    } else {
-      setStep("profile");
-    }
-
-  } catch (e) {
-    setError(e.response?.data?.message || e.message);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   const handleProfileSubmit = async () => {
     setError("");
@@ -629,42 +633,54 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
       {step === "profile" && (
         <div className={styles.profileWrapper} onClick={stop}>
           <h2>Заповніть профіль</h2>
+
+          <div className={styles.row2}>
+            <input
+              placeholder="Ім'я (укр)"
+              value={firstNameUa}
+              onChange={(e) => setFirstNameUa(e.target.value)}
+            />
+            <input
+              placeholder="Прізвище (укр)"
+              value={lastNameUa}
+              onChange={(e) => setLastNameUa(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.row2}>
+            <input
+              placeholder="First Name (en)"
+              value={firstNameEn}
+              onChange={(e) => setFirstNameEn(e.target.value)}
+            />
+            <input
+              placeholder="Last Name (en)"
+              value={lastNameEn}
+              onChange={(e) => setLastNameEn(e.target.value)}
+            />
+          </div>
+
           <input
-            placeholder="Ім'я (укр)"
-            value={firstNameUa}
-            onChange={(e) => setFirstNameUa(e.target.value)}
-          />
-          <input
-            placeholder="Прізвище (укр)"
-            value={lastNameUa}
-            onChange={(e) => setLastNameUa(e.target.value)}
-          />
-          <input
+            className={styles.fullWidth}
             placeholder="По батькові (укр)"
             value={patronymicUa}
             onChange={(e) => setPatronymicUa(e.target.value)}
           />
           <input
-            placeholder="First Name (en)"
-            value={firstNameEn}
-            onChange={(e) => setFirstNameEn(e.target.value)}
-          />
-          <input
-            placeholder="Last Name (en)"
-            value={lastNameEn}
-            onChange={(e) => setLastNameEn(e.target.value)}
-          />
-          <input
+            className={styles.fullWidth}
             placeholder="Patronymic (en)"
             value={patronymicEn}
             onChange={(e) => setPatronymicEn(e.target.value)}
           />
           <input
+            className={styles.fullWidth}
             type="date"
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
           />
+
           {error && <p className={styles.error}>{error}</p>}
+
           <button
             onClick={handleProfileSubmit}
             disabled={loading}

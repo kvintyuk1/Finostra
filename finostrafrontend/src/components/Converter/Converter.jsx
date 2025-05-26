@@ -1,4 +1,3 @@
-// Converter.jsx
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./converter.module.css";
 import { LanguageContext } from "../LanguageContext";
@@ -8,7 +7,7 @@ import {
   RateLimitError,
 } from "../services/monobankService";
 
-const CACHE_TTL = 5 * 60 * 1000; // 5 хвилин
+const CACHE_TTL = 5 * 60 * 1000; 
 const RATE_KEY = "monobankRate";
 const TIME_KEY = "monobankRateTimestamp";
 
@@ -27,7 +26,6 @@ function Converter({
   const [error, setError] = useState(null);
   const [reversed, setReversed] = useState(false);
 
-  // Завантажити курс із API Monobank і зберегти в localStorage
   async function loadRate() {
     try {
       const data = await fetchMonobankCurrencies();
@@ -41,7 +39,6 @@ function Converter({
       setRate(newRate);
       setError(null);
 
-      // Зберігаємо в localStorage
       localStorage.setItem(RATE_KEY, newRate.toString());
       localStorage.setItem(TIME_KEY, Date.now().toString());
     } catch (e) {
@@ -54,7 +51,6 @@ function Converter({
     }
   }
 
-  // При монтуванні перевіряємо локальний кеш або завантажуємо новий курс
   useEffect(() => {
     const storedRate = localStorage.getItem(RATE_KEY);
     const storedTime = localStorage.getItem(TIME_KEY);
