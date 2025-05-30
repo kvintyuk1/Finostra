@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7.5vw;
+    width: 77.08vw;
+    height: 318px;
+    border-radius: 2.08vw;
+    color: #FFF;
+    background-color: #0F110E;
+}
+.wrapper_content {
+    display: flex;
+    flex-direction: column;
+    gap: 49px;
+    width: 39.31vw;
+    height: 228px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 39.31vw;
+    height: 97px;
+}
+.title {
+    font-weight: 400;
+    font-size: 1.25em;
+}
+.wrap_pules_but {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 14.44vw;
+    height: 82px;
+}
+.wrap_rules {
+    display: flex;
+    align-items: center;
+    gap: 0.69vw;
+    width: 12.15vw;
+    height: 24px;
+}
+.rules {
+    display: flex;
+    font-weight: 400;
+    font-size: 1em;
+    color: rgba(250,250,250,0.6);
+}

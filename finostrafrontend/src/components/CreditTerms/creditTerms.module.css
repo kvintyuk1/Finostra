@@ -28,12 +28,24 @@
     width: 21.53vw;
     height: 45px;
 }
+.wrapper_rate_term10_53 {
+    width: 10.53vw;
+}
+.wrapper_rate_term21_53 {
+    width: 21.53vw;
+}
 
 .wrapper_rate_line {
     display: flex;
     gap: 1.39vw;
-    min-width: 85px;
+    min-width: 8.9vw;
     height: 45px;
+}
+.wrapper_rate_line3_9 {
+    min-width: 3.9vw;
+}
+.wrapper_rate_line8_9 {
+    min-width: 8.9vw;
 }
 .wrapper_rate {
     display: flex;
@@ -44,12 +56,16 @@
     height: 45px;
     white-space: nowrap;
 }
+.widthRate87 {
+    max-width: 6.04vw;
+}
 .widthRate95 {
     max-width: 6.6vw;
 }
 .widthRate124 {
     max-width: 8.61vw;
 }
+
 .text {
     font-weight: 400;
     font-size: 0.88vw;

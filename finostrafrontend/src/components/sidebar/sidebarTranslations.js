@@ -6,7 +6,7 @@ export const sidebarTranslations = {
       connection: "Зв'язок",
       saving: "Заощадження",
       conversions: "Конверти",
-      piggyBank: "Скарбничка",
+      moneybox: "Скарбничка",
       credits: "Кредити",
       cards: "Картки",
       securities: "Цінні папери",
