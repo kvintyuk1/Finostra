@@ -1,9 +1,9 @@
 export const questionsTranslations = {
     UA: {
-      title: "Поширені запитання",
+        title: "Поширені запитання",
     },
     EN: {
-      title: "Frequently Asked Questions",
+        title: "Frequently Asked Questions",
     },
-  };
+};
   

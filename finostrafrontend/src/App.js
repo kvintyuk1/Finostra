@@ -22,7 +22,6 @@ import OpenDeposit from "./pages/Saving/OpenDeposit/OpenDeposit";
 import MyDeposit from "./pages/Saving/MyDeposit/MyDeposit";
 import Conversions from "./pages/Conversions/Conversions";
 import MyKonverty from "./pages/Conversions/MyKonverty/MyKonverty";
-import PiggyBank from "./pages/Piggy_bank/Piggy_bank";
 import Credits from "./pages/Credits/Credits";
 import MyCredits from "./pages/Credits/MyCredits/MyCredits";
 import WalletPage from "./pages/Credits/WalletPage/WalletPage";
@@ -43,7 +42,7 @@ import Fun from "./pages/Fun/Fun";
 import Good from "./pages/Good/Good";
 import Juniors from "./pages/Juniors/Juniors";
 import Business from "./pages/Business/Business";
-
+import MoneyBox from "./pages/MoneyBox/MoneyBox";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -89,7 +88,7 @@ function App() {
                 <Route path="myKonverty" element={<MyKonverty />} />
               </Route>
 
-              <Route path="piggy_bank" element={<PiggyBank />} />
+              <Route path="moneybox" element={<MoneyBox />} />
 
               <Route path="credits" element={<Credits />}>                
                 <Route path="myCredits" element={<MyCredits />} />

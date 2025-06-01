@@ -2,13 +2,11 @@ import React, {useContext} from "react";
 import styles from "./paymentLimitInstallments.module.css";
 import SentReceivedSwitch from "../SentReceivedSwitch/SentReceivedSwitch";
 import CreditTerms from "../CreditTerms/CreditTerms";
-import CardUniversal from "../CardUniversal/CardUniversal";
 import AvailableLimit from "../AvailableLimit/AvailableLimit";
 import AvailableCards from "../AvailableCards/AvailableCards";
 import InfoForInstallment from "../InfoForInstallment/InfoForInstallment";
 import LimitFilter from "../LimitFilter/LimitFilter";
 import SumCredit from "../SumCredit/SumCredit";
-import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 import {LanguageContext} from "../LanguageContext";
 import {paymentLimitInstallmentsTranslations} from "./paymentLimitInstallmentsTranslations";
 
@@ -23,8 +21,9 @@ function PaymentLimitInstallments(props) {
         widthContainer,
         title_info = t.title,
         description_info = t.description,
-        title = t.availableCards,
-        infoContent,
+        availableCards = t.availableCards,
+        text = t.text,
+        text_info = t.text_info,
         heightContainer = "height441",
         heightCard,
         sizeGap = "gap37",
@@ -135,14 +134,11 @@ function PaymentLimitInstallments(props) {
                     />
                 ) : (
                     <>
-                        <div className={styles.wrapper_availableCards}>
-                            <div className={styles.text}>{title}</div>
-                            <CardUniversal/>
-                        </div>
-                        <span className={styles.wrapper_text}>
-              <span>{t.reminder}</span>
-              <span className={styles.text_info}>{t.infoText}</span>
-            </span>
+                        <AvailableCards
+                            availableCards={t.availableCards}
+                            text={t.text}
+                            text_info={t.text_info}
+                        />
                     </>
                 )}
             </div>

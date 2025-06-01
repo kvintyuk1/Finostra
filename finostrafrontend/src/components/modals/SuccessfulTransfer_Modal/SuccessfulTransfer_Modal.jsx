@@ -17,7 +17,7 @@ const t = successfulTransferModalTranslations[selectedLanguage] || successfulTra
                     <div className={styles.wrapper_success}>
                         <div className={styles.title_img}>
                             <span className={styles.title}>{t.title}</span>
-                            <img src="/img/star 3.png" alt=""/>
+                            <img src="/img/star3.png" alt=""/>
                         </div>
                         <span className={styles.success}>{t.successMessage}</span>
                     </div>
