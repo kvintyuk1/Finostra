@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import styles from "./instantInstallment.module.css";
 import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferToCardInfo";
 import PaymentLimitInstallments from "../../../components/PaymentLimitInstallments/PaymentLimitInstallments";
 import ButtonForCard from "../../../components/for card/ButtonForCard/ButtonForCard";
 import BuyingPartsEasy from "../../../components/BuyingPartsEasy/BuyingPartsEasy";
 import Questions from "../../../components/Questions/Questions";
+import {LanguageContext} from "../../../components/LanguageContext";
+import {instantInstallmentTranslation} from "./instantInstallmentTranslation";
 
 const questionsData3 = [
     {question:"Що таке сервіс «Миттєва розстрочка» для покупців?",img:"arrow_down16"},
@@ -16,6 +18,8 @@ const questionsData3 = [
 ]
 
 function InstantInstallment({isDarkMode}) {
+    const { selectedLanguage } = useContext(LanguageContext);
+    const tParts = instantInstallmentTranslation[selectedLanguage];
     const [activeButton, setActiveButton] = useState("sent");
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
@@ -71,7 +75,10 @@ function InstantInstallment({isDarkMode}) {
                         </>
                     }
                 />
-                <BuyingPartsEasy/>
+                <BuyingPartsEasy
+                 containerTitle={tParts.containerTitle}
+                 items={tParts.items}
+                />
                 <Questions
                 sizeContent="height_content491"
                 sizeWrapper="height_wrap411"

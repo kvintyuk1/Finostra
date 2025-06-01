@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./creditCash.module.css";
 import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferToCardInfo";
 import PaymentLimitInstallments from "../../../components/PaymentLimitInstallments/PaymentLimitInstallments";
@@ -18,6 +18,7 @@ const infoCreditData1 = [
 ]
 
 function CreditCash({isDarkMode}) {
+    const [activeButton, setActiveButton] = useState("sent");
     return (
         <div className={`${isDarkMode ? `${styles.dark_mode}` : `${styles.light_mode}`}`}>
             <div className={styles.container}>
@@ -38,6 +39,8 @@ function CreditCash({isDarkMode}) {
                     showLimitFilter={true}
                     showSumCredit={true}
                     hideInfoSumCredit={true}
+                    activeButton={activeButton}
+                    setActiveButton={setActiveButton}
                     name="Сума кредиту"
                     info="15 000"
                     sizeButton="size_button184"

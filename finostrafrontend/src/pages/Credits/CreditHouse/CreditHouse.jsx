@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./creditHouse.module.css";
 import TransferToCardInfo from "../../../components/TransferToCardInfo/TransferToCardInfo";
 import Questions from "../../../components/Questions/Questions";
@@ -12,6 +12,7 @@ const questionsData6 = [
 ]
 
 function CreditHouse() {
+    const [activeButton, setActiveButton] = useState("sent");
     return (
         <div className={styles.container}>
             <TransferToCardInfo
@@ -19,7 +20,13 @@ function CreditHouse() {
                 title="Житло в кредит"
                 subtitle="Іпотечне кредитування"
             />
-            <InfoHouseCredit/>
+            <InfoHouseCredit
+                text_but_one="Оформлення"
+                text_but_two="Моя іпотека"
+                widthContainer="width228"
+                activeButton={activeButton}
+                setActiveButton={setActiveButton}
+            />
             <InfoTabsHouseCredit/>
             <Questions
                 sizeContent="height_content299"

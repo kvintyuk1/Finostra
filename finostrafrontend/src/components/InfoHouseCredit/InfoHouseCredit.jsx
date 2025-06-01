@@ -10,14 +10,16 @@ const houseCreditItems = [
     {number: "3", name: "Отримайте рішення"},
 ]
 
-function InfoHouseCredit() {
+function InfoHouseCredit({text_but_one,text_but_two,widthContainer,activeButton,setActiveButton}) {
     return (
         <div className={styles.container}>
             <div className={styles.wrap_content}>
                 <SentReceivedSwitch
-                    text_but_one="Оформлення"
-                    text_but_two="Моя іпотека"
-                    widthContainer="width228"
+                    text_but_one={text_but_one}
+                    text_but_two={text_but_two}
+                    widthContainer={widthContainer}
+                    active={activeButton}
+                    onChange={setActiveButton}
                 />
                 <div className={styles.wrap_info}>
                     <span
