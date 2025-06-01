@@ -131,7 +131,6 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-      // Поточний користувач
       .addCase(fetchCurrentUser.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -147,7 +146,6 @@ const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
       })
-      // Logout
       .addCase(fetchLogout.fulfilled, (state) => {
         state.status = "idle";
         state.error = null;

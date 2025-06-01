@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "../../redux/slices/authSlice";
 import axiosInstance from "../../utils/axiosInstance";
 import styles from "./SignInModal.module.css";
+import ErrorMessage from "../common/ErrorMessage";
 import CloseIcon from "../../assets/Photo/Union.png";
 import EyeOpenIcon from "../../assets/Photo/eyelook.png";
 import EyeClosedIcon from "../../assets/Photo/eyeoff.png";
 import EditIcon from "../../assets/Photo/EditIcon.png";
 import SMSImage from "../../assets/Photo/SMS.png";
+import { ERROR_MESSAGES } from "../../constants/errorMessages";
 import {
   toInternational,
   isValidPhone,
@@ -65,15 +67,11 @@ function SignInModal({ onClose }) {
   const stop = (e) => e.stopPropagation();
   const handlePhoneChange = (e) => setPhone(e.target.value.replace(/\D/g, ""));
 
-  // ----- РЕЄСТРАЦІЯ -----
   const handlePhoneSubmit = async () => {
     setError("");
-    if (!phone) return setError("Вкажіть номер телефону");
-    if (!isValidPhone(phone))
-      return setError(
-        "Номер телефону повинен містити тільки цифри (9–10 символів)"
-      );
-    if (!agreed) return setError("Підтвердіть згоду");
+    if (!phone) return setError(ERROR_MESSAGES.PHONE_REQUIRED);
+    if (!isValidPhone(phone)) return setError(ERROR_MESSAGES.PHONE_INVALID);
+    if (!agreed) return setError(ERROR_MESSAGES.TERMS_REQUIRED);
 
     setLoading(true);
     try {
@@ -82,11 +80,15 @@ function SignInModal({ onClose }) {
       setStep("sms");
     } catch (e) {
       if (e.status === 409) {
-        await sendLoginSmsCode(toInternational(phone));
-        setConfirmSent(true);
-        setStep("confirmPhone");
+        try {
+          await sendLoginSmsCode(toInternational(phone));
+          setConfirmSent(true);
+          setStep("confirmPhone");
+        } catch (loginError) {
+          setError(ERROR_MESSAGES.SMS_SEND_ERROR);
+        }
       } else {
-        setError(e.message);
+        setError(e.message || ERROR_MESSAGES.UNKNOWN_ERROR);
       }
     } finally {
       setLoading(false);
@@ -95,14 +97,16 @@ function SignInModal({ onClose }) {
 
   const handleVerifySms = async () => {
     setError("");
-    if (!smsCode) return setError("Введіть код із SMS");
+    if (!smsCode) return setError(ERROR_MESSAGES.SMS_CODE_REQUIRED);
+    if (smsCode.length < 4) return setError(ERROR_MESSAGES.SMS_CODE_INVALID);
+
     setLoading(true);
     try {
       const uuid = await verifySmsCode(toInternational(phone), smsCode);
       setPublicUUID(uuid);
       setStep("enterEmail");
     } catch (e) {
-      setError(e.message);
+      setError(e.message || ERROR_MESSAGES.SMS_CODE_INVALID);
     } finally {
       setLoading(false);
     }
@@ -110,16 +114,16 @@ function SignInModal({ onClose }) {
 
   const handleEmailSubmit = async () => {
     setError("");
-    if (!email) return setError("Вкажіть email");
-    if (!isValidEmail(email))
-      return setError("Некоректний email. Використовуйте лише латиницю та @");
+    if (!email) return setError(ERROR_MESSAGES.EMAIL_REQUIRED);
+    if (!isValidEmail(email)) return setError(ERROR_MESSAGES.EMAIL_INVALID);
+
     setLoading(true);
     try {
       await registerEmail(email);
       setEmailSent(true);
       setStep("verifyEmail");
     } catch (e) {
-      setError(e.message);
+      setError(e.message || ERROR_MESSAGES.EMAIL_ALREADY_EXISTS);
     } finally {
       setLoading(false);
     }
@@ -127,14 +131,17 @@ function SignInModal({ onClose }) {
 
   const handleVerifyEmail = async () => {
     setError("");
-    if (!emailCode) return setError("Введіть код із листа");
+    if (!emailCode) return setError(ERROR_MESSAGES.EMAIL_CODE_REQUIRED);
+    if (emailCode.length < 6)
+      return setError(ERROR_MESSAGES.EMAIL_CODE_INVALID);
+
     setLoading(true);
     try {
       const uuid = await verifyEmail(email, emailCode, publicUUID);
       setEmailUUID(uuid);
       setStep("setPassword");
     } catch (e) {
-      setError(e.message);
+      setError(e.message || ERROR_MESSAGES.EMAIL_CODE_INVALID);
     } finally {
       setLoading(false);
     }
@@ -142,35 +149,38 @@ function SignInModal({ onClose }) {
 
   const handleRegister = async () => {
     setError("");
-    if (!password) return setError("Введіть пароль");
-    if (password !== confirmPassword) return setError("Паролі не співпадають");
+    if (!password) return setError(ERROR_MESSAGES.PASSWORD_REQUIRED);
+    if (password !== confirmPassword)
+      return setError(ERROR_MESSAGES.PASSWORD_MISMATCH);
     if (!isValidPassword(password))
-      return setError("Пароль недостатньо складний");
+      return setError(ERROR_MESSAGES.PASSWORD_INVALID);
 
     setLoading(true);
     try {
       await apiSetPassword(emailUUID || publicUUID, password);
-      alert("Ви успішно зареєструвались! Тепер, будь ласка, увійдіть.");
-
+      alert(
+        "Реєстрація успішна! Тепер ви можете увійти використовуючи свій номер телефону та пароль."
+      );
       setStep("enterPhone");
     } catch (e) {
-      setError(e.message || "Сталася помилка при збереженні пароля");
+      setError(e.message || ERROR_MESSAGES.UNKNOWN_ERROR);
     } finally {
       setLoading(false);
     }
   };
 
-  // ----- ЛОГІН -----
   const handleLogin = async () => {
     setError("");
-    if (!phone) return setError("Вкажіть номер телефону");
+    if (!phone) return setError(ERROR_MESSAGES.PHONE_REQUIRED);
+    if (!isValidPhone(phone)) return setError(ERROR_MESSAGES.PHONE_INVALID);
+
     setLoading(true);
     try {
       await sendLoginSmsCode(toInternational(phone));
       setConfirmSent(true);
       setStep("confirmPhone");
     } catch (e) {
-      setError(e.message);
+      setError(e.message || ERROR_MESSAGES.AUTH_INVALID);
     } finally {
       setLoading(false);
     }
@@ -178,9 +188,11 @@ function SignInModal({ onClose }) {
 
   const handleConfirmPhone = async () => {
     setError("");
-    if (!confirmCode) return setError("Введіть код підтвердження");
-    setLoading(true);
+    if (!confirmCode) return setError(ERROR_MESSAGES.SMS_CODE_REQUIRED);
+    if (confirmCode.length < 4)
+      return setError(ERROR_MESSAGES.SMS_CODE_INVALID);
 
+    setLoading(true);
     try {
       const token = await confirmLoginCode(toInternational(phone), confirmCode);
       setLoginToken(token);
@@ -194,7 +206,7 @@ function SignInModal({ onClose }) {
         profile = resp.data;
       } catch (err) {
         if (err.response?.status !== 404) {
-          throw err;
+          throw new Error(ERROR_MESSAGES.PROFILE_SAVE_ERROR);
         }
       }
 
@@ -218,7 +230,11 @@ function SignInModal({ onClose }) {
         setStep("profile");
       }
     } catch (e) {
-      setError(e.response?.data?.message || e.message);
+      setError(
+        e.response?.data?.message ||
+          e.message ||
+          ERROR_MESSAGES.SMS_CODE_INVALID
+      );
     } finally {
       setLoading(false);
     }
@@ -226,17 +242,19 @@ function SignInModal({ onClose }) {
 
   const handleProfileSubmit = async () => {
     setError("");
-    if (
-      !firstNameUa ||
-      !lastNameUa ||
-      !patronymicUa ||
-      !firstNameEn ||
-      !lastNameEn ||
-      !patronymicEn ||
-      !birthDate
-    ) {
-      return setError("Заповніть всі поля профілю");
-    }
+
+    if (!firstNameUa) return setError(ERROR_MESSAGES.PROFILE_NAME_UA_REQUIRED);
+    if (!lastNameUa)
+      return setError(ERROR_MESSAGES.PROFILE_SURNAME_UA_REQUIRED);
+    if (!patronymicUa)
+      return setError(ERROR_MESSAGES.PROFILE_PATRONYMIC_UA_REQUIRED);
+    if (!firstNameEn) return setError(ERROR_MESSAGES.PROFILE_NAME_EN_REQUIRED);
+    if (!lastNameEn)
+      return setError(ERROR_MESSAGES.PROFILE_SURNAME_EN_REQUIRED);
+    if (!patronymicEn)
+      return setError(ERROR_MESSAGES.PROFILE_PATRONYMIC_EN_REQUIRED);
+    if (!birthDate) return setError(ERROR_MESSAGES.PROFILE_BIRTHDATE_REQUIRED);
+
     setLoading(true);
     try {
       const profilePayload = {
@@ -253,12 +271,11 @@ function SignInModal({ onClose }) {
       onClose();
       navigate("/");
     } catch (e) {
-      setError(e.message);
+      setError(e.message || ERROR_MESSAGES.PROFILE_SAVE_ERROR);
     } finally {
       setLoading(false);
     }
   };
-  // ----- UI Helpers -----
 
   const formatPhoneDisplay = (raw) => {
     const digits = raw.replace(/\D/g, "");
@@ -309,7 +326,7 @@ function SignInModal({ onClose }) {
               </div>
             </div>
           </div>
-          {error && <div className={styles.errorText}>{error}</div>}
+          <ErrorMessage message={error} />
           <button
             onClick={handleEmailSubmit}
             disabled={loading}
@@ -343,7 +360,7 @@ function SignInModal({ onClose }) {
                   className={styles.inputField}
                 />
               </div>
-              {error && <div className={styles.errorText}>{error}</div>}
+              <ErrorMessage message={error} />
             </div>
             <img src={SMSImage} alt="SMS" className={styles.smsImage2} />
             <div className={styles.buttonContainer}>
@@ -379,7 +396,7 @@ function SignInModal({ onClose }) {
               className={styles.smsImage}
             />
 
-            {error && <div className={styles.errorText}>{error}</div>}
+            <ErrorMessage message={error} />
 
             {!smsSent ? (
               <button
@@ -429,7 +446,7 @@ function SignInModal({ onClose }) {
               <div className={styles.frame905}>
                 <div className={styles.frame903}>
                   <label className={styles.inputLabel}>Придумайте пароль</label>
-                  {error && <div className={styles.errorText}>{error}</div>}
+                  <ErrorMessage message={error} />
                   <div className={styles.frame902}>
                     <input
                       type={showPassword ? "text" : "password"}
@@ -451,12 +468,12 @@ function SignInModal({ onClose }) {
                   </div>
                   <p className={styles.passwordHint}>
                     Довжина паролю від 6 до 15 символів. Пароль повинен містити
-                    мінімум 1 букву та 2 цифри.
+                    мінімум 1 велику літеру, 2 цифри та 1 спеціальний символ.
                     <br />
                     <span className={styles.passwordHintStrong}>
-                      Не рекомендується
+                      Рекомендовані
                     </span>{" "}
-                    використовувати спеціальні символи (@#$^:;/”)?* та інші
+                    спеціальні символи: @#$^:;/")?*
                   </p>
                 </div>
 
@@ -576,11 +593,11 @@ function SignInModal({ onClose }) {
               </div>
             </div>
 
-            {error && <div className={styles.errorText}>{error}</div>}
+            <ErrorMessage message={error} />
 
             <div className={styles.submitWrapper}>
               <button
-                onClick={handleLogin} // ← тут зміна
+                onClick={handleLogin}
                 disabled={loading}
                 className={styles.submitButton}
               >
@@ -608,7 +625,7 @@ function SignInModal({ onClose }) {
               alt="SMS illustration"
               className={styles.smsImage}
             />
-            {error && <div className={styles.errorText}>{error}</div>}
+            <ErrorMessage message={error} />
             <div className={styles.inputWrapper}>
               <span className={styles.label}>Код підтвердження</span>
               <input
@@ -679,7 +696,7 @@ function SignInModal({ onClose }) {
             onChange={(e) => setBirthDate(e.target.value)}
           />
 
-          {error && <p className={styles.error}>{error}</p>}
+          <ErrorMessage message={error} />
 
           <button
             onClick={handleProfileSubmit}
@@ -723,6 +740,7 @@ function SignInModal({ onClose }) {
                       className={styles.phoneNumber}
                     />
                   </div>
+                  <ErrorMessage message={error} />
                   <div className={styles.checkboxContainer}>
                     <input
                       id="agree"
