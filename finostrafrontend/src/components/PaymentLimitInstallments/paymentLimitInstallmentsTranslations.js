@@ -9,8 +9,8 @@ export const paymentLimitInstallmentsTranslations = {
       totalLimit: "з 300 000 UAH",
       changeLimit: "Змінити ліміт",
       availableCards: "Доступні картки (1)",
-      reminder: "Не забудь взяти картку з собою.",
-      infoText: "Наявність картки необхідна при оформленні на касі і в магазині",
+      text: "Не забудь взяти картку з собою.",
+      text_info: "Наявність картки необхідна при оформленні на касі і в магазині",
     },
     EN: {
       howUse: "How to use?",
@@ -22,8 +22,8 @@ export const paymentLimitInstallmentsTranslations = {
       totalLimit: "of 300,000 UAH",
       changeLimit: "Change Limit",
       availableCards: "Available Cards (1)",
-      reminder: "Don’t forget to take the card with you.",
-      infoText: "The card is required when processing at the checkout and in the store",
+      text: "Don’t forget to take the card with you.",
+      text_info: "The card is required when processing at the checkout and in the store",
     },
     // Додати інші мови за потребою
   };

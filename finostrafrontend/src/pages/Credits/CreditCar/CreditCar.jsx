@@ -21,6 +21,7 @@ const infoCreditData2 = [
 
 function CreditCar() {
     const [active, setActive] = useState("but_one");
+    const [activeButton, setActiveButton] = useState("sent");
     return (
         <div className={styles.container}>
             <TransferToCardInfo
@@ -51,6 +52,8 @@ function CreditCar() {
                 infoCreditData={infoCreditData2}
                 hideInfoSumCredit={false}
                 hideInfoTermCredit={true}
+                activeButton={activeButton}
+                setActiveButton={setActiveButton}
                 name="Вартість авто"
                 info="150 000"
                 name2="Ваш аванс"

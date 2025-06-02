@@ -31,6 +31,9 @@ function Card({title, title_wallet, img,titleColor, textTransform, title_card, c
             <div className={styles.wrap_cardInfo}>
                 <HeaderForCard
                     title={title} title_wallet={title_wallet} img={img} titleColor={titleColor} textTransform={textTransform}
+                    setSenderCardNumber={setValue}
+                    setExpiry={setExpiry}
+                    setCvv={setCwKod}
                 />
                 <div className={styles.wrapper_cardInfo}>
                     <NumberCard

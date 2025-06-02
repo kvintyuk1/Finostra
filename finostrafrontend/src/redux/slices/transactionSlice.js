@@ -27,7 +27,21 @@ export const performCardToCardTransaction = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || "Error transferring money between cards");
+      return thunkAPI.rejectWithValue(error.response?.data || "Error transfering money between cards");
+    }
+  }
+);
+
+export const performIbanTransaction = createAsyncThunk(
+  'transaction/performIbanTransaction',
+  async (transactionBody, thunkAPI) => {
+    try {
+      const response = await axios.post(`${URL}/transaction/ibanTransfer`, transactionBody, {
+        withCredentials: true
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || "Error iban transaction")
     }
   }
 );

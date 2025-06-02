@@ -7,17 +7,14 @@ import styles from "./ProfileMenu.module.css";
 import translations from "./profileMenuTranslations";
 import { LanguageContext } from "../../components/LanguageContext";
 import { ProfileContext } from "../../components/contexts/ProfileContext";
-import { buildAvatarUrl } from "../../utils/avatar"; 
+import { buildAvatarUrl } from "../../utils/avatar";
 import defaultAvatar from "../../assets/Photo/default-avatar.png";
-import {
-  User,
-  Settings,
-  LogOut,
-  Lock,
-  Phone,
-  Info,
-  Gift,
-} from "lucide-react";
+import iconServices from "../../assets/Photo/icon_services.png";
+import iconLogout from "../../assets/Photo/line-md_logout.png";
+import iconLock from "../../assets/Photo/Vector_pas.png";
+import iconPhone from "../../assets/Photo/solar_phone-linear.png";
+import iconInfo from "../../assets/Photo/material-symbols_info-outline-rounded.png";
+import iconGift from "../../assets/Photo/iconoir_sound-high.png";
 
 export default function ProfileMenu() {
   const dispatch = useDispatch();
@@ -40,7 +37,7 @@ export default function ProfileMenu() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleToggle = () => setOpen(prev => !prev);
+  const handleToggle = () => setOpen((prev) => !prev);
   const goToProfile = () => {
     setOpen(false);
     navigate("/profile");
@@ -58,8 +55,14 @@ export default function ProfileMenu() {
     }
   };
 
-  if (loading) return <div className={styles.loading}>{t.loading || "Loading..."}</div>;
-  if (error) return <div className={styles.error}>{`${t.errorPrefix || "Error:"} ${error}`}</div>;
+  if (loading)
+    return <div className={styles.loading}>{t.loading || "Loading..."}</div>;
+  if (error)
+    return (
+      <div className={styles.error}>{`${
+        t.errorPrefix || "Error:"
+      } ${error}`}</div>
+    );
   if (!profile) return null;
 
   const avatarUrl = profile.avatarBlobLink
@@ -99,51 +102,80 @@ export default function ProfileMenu() {
             </div>
 
             <div className={styles.menuGroup}>
-              <button className={styles.menuItem} onClick={goToProfile}>
-                <User size={18} /><span>{t.profile}</span>
-              </button>
-              <button
-                className={styles.menuItem}
-                onClick={() => { setOpen(false); navigate("/settings"); }}
-              >
-                <Settings size={18} /><span>{t.settings}</span>
-              </button>
-            </div>
-
-            <div className={styles.menuGroup}>
               <div className={styles.groupHeader}>{t.accountControls}</div>
-              <button
-                className={styles.menuItem}
-                onClick={() => { setOpen(false); navigate("/change-password"); }}
-              >
-                <Lock size={18} /><span>{t.changePassword}</span>
-              </button>
-              <button
-                className={styles.menuItem}
-                onClick={() => { setOpen(false); navigate("/change-phone"); }}
-              >
-                <Phone size={18} /><span>{t.changePhone}</span>
-              </button>
-            </div>
 
+              <div className={styles.menuGroup}>
+               
+                <button
+                  className={styles.menuItem}onClick= {goToProfile}>
+                  <img
+                    src={iconServices}
+                    alt="Settings"
+                    className={styles.menuIcon}
+                  />
+                  <span>{t.settings}</span>
+                </button>
+              </div>
+
+              <div className={styles.menuGroup}>
+                <button
+                  className={styles.menuItem}
+                  onClick={() => {
+                    setOpen(false);
+                    navigate("/change-password");
+                  }}
+                >
+                  <img src={iconLock} alt="Lock" className={styles.menuIcon} />
+                  <span>{t.changePassword}</span>
+                </button>
+                <button
+                  className={styles.menuItem}
+                  onClick={() => {
+                    setOpen(false);
+                    navigate("/change-phone");
+                  }}
+                >
+                  <img
+                    src={iconPhone}
+                    alt="Phone"
+                    className={styles.menuIcon}
+                  />
+                  <span>{t.changePhone}</span>
+                </button>
+              </div>
+            </div>
+            <div className={styles.groupHeader}></div>
             <div className={styles.menuGroup}>
               <button
                 className={styles.menuItem}
-                onClick={() => { setOpen(false); navigate("/info"); }}
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/info");
+                }}
               >
-                <Info size={18} /><span>{t.info}</span>
+                <img src={iconInfo} alt="Info" className={styles.menuIcon} />
+                <span>{t.info}</span>
               </button>
               <button
                 className={styles.menuItem}
-                onClick={() => { setOpen(false); navigate("/whats-new"); }}
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/whats-new");
+                }}
               >
-                <Gift size={18} /><span>{t.whatsNew}</span>
+                <img src={iconGift} alt="Gift" className={styles.menuIcon} />
+                <span>{t.whatsNew}</span>
               </button>
             </div>
 
             <div className={styles.menuGroup}>
               <button className={styles.menuItem} onClick={handleLogout}>
-                <LogOut size={18} /><span>{t.logout}</span>
+                <img
+                  src={iconLogout}
+                  alt="Logout"
+                  className={styles.menuIcon}
+                />
+                <span>{t.logout}</span>
               </button>
             </div>
           </div>

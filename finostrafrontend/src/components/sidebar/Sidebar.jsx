@@ -51,7 +51,7 @@ function Sidebar() {
             modal: "konvertyOneModal",
             path: "/conversions"
         },
-        {to: "/piggy_bank", icon: "piggy_bank.svg", label: tSidebar.piggyBank},
+        {to: "/moneybox", icon: "piggy_bank.svg", label: tSidebar.moneybox},
         {
             to: "/credits",
             icon: "moneybag.svg",
