@@ -72,7 +72,13 @@
     height: 29px;
     border-radius: 0.83vw;
     background-color: #424242;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
+.wrapper_item:hover {
+    transform: scale(1.1);
+}
+
 .money {
     color: #FFF;
     font-weight: 400;

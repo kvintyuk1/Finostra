@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import { SpinnerCircular } from "spinners-react";
 
 function HeaderForCard({ title, title_wallet, img, titleColor = "pinkText", textTransform = "normal",
-    sizeWrapperTitle = "size429", setSenderCardNumber, setExpiry, setCvv }) {
+    sizeWrapperTitle = "size429", setSenderCardNumber, setExpiry, setCvv, setBalanceAmount = null }) {
 
     const { cards, status } = useOutletContext();
 
@@ -17,6 +17,9 @@ function HeaderForCard({ title, title_wallet, img, titleColor = "pinkText", text
         setSenderCardNumber(selectedCard.cardNumber);
 
         setCvv(selectedCard.CVV);
+
+        if (setBalanceAmount)
+            setBalanceAmount(selectedCard.balance.amount);
 
         const expiryDate = selectedCard.expired;
         const [year, month] = expiryDate.split("-");

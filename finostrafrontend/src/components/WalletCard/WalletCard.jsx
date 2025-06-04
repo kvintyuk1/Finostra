@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './walletCard.module.css';
 import CardInfo from "../for card/CardInfo/CardInfo";
 
-const WalletCard = ({ isDarkMode, showPoints = true }) => {
+const WalletCard = ({cardNumber, expiryDate, cvv, balance, isDarkMode, showPoints = true }) => {
     return (
         <div className={`${isDarkMode ? styles.dark_mode : styles.light_mode}`}>
             <div className={styles.wrapper_container_info}>
@@ -10,10 +10,10 @@ const WalletCard = ({ isDarkMode, showPoints = true }) => {
                     <img src="/img/finostra_card.jpg" className={styles.img_style} alt="" />
                     
                     <CardInfo
-                        titleCard="My Wallet"
-                        expiryDate="2025-12-31"
-                        cardNumber="1234"
-                        balance={{ amount: "1000.00", currency: "USD" }}
+                        titleCard={cardNumber || "Виберіть картку"}
+                        expiryDate={expiryDate || ""}
+                        cardNumber={cvv || ""}
+                        balance={{ amount: balance || 0, currency: "UAH" }}
                     />
                 </div>
                 <div className={styles.points}>
