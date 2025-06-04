@@ -17,6 +17,7 @@ export default function ProfilePage() {
     useContext(LanguageContext);
   const langKey = selectedLanguage === "EN" ? "en" : "ua";
   const t = translations[langKey];
+  const [activeTab, setActiveTab] = useState("profile");
 
   const { profile, loading, error, refreshProfile } =
     useContext(ProfileContext);
@@ -127,15 +128,164 @@ export default function ProfilePage() {
     if (!window.confirm(`Delete ${phoneNumber}?`)) return;
     try {
       await deletePhoneNumber({ phoneNumber });
-      alert(
-        langKey === "en" ? "Contact deleted" : "Контакт видалено"
-      );
+      alert(langKey === "en" ? "Contact deleted" : "Контакт видалено");
       refreshProfile();
     } catch (err) {
       console.error("Delete failed:", err);
       alert(
-        langKey === "en" ? "Failed to delete contact" : "Не вдалося видалити контакт"
+        langKey === "en"
+          ? "Failed to delete contact"
+          : "Не вдалося видалити контакт"
       );
+    }
+  };
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "profile":
+        return (
+          <>
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>{t.sections.generalInfo}</h2>
+              <div className={styles.profileContent}>
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                  onChange={handleAvatarChange}
+                />
+                <div
+                  className={styles.avatarWrapper}
+                  onClick={handleAvatarWrapperClick}
+                  title={t.sections.editAvatar}
+                >
+                  <div className={styles.avatarOverlay}>
+                    {uploading ? (
+                      <span>{t.status.uploadingAvatar}…</span>
+                    ) : (
+                      <Pencil size={32} />
+                    )}
+                  </div>
+                  <img
+                    src={avatarUrl}
+                    alt="Avatar"
+                    className={styles.avatarImg}
+                  />
+                </div>
+                <div className={styles.infoForm}>
+                  <div className={styles.languageToggle}>
+                    <button
+                      className={
+                        langKey === "en"
+                          ? styles.langButtonActive
+                          : styles.langButton
+                      }
+                      onClick={() => handleLangClick("EN")}
+                    >
+                      {t.languageToggle.english}
+                    </button>
+                    <button
+                      className={
+                        langKey === "ua"
+                          ? styles.langButtonActive
+                          : styles.langButton
+                      }
+                      onClick={() => handleLangClick("UA")}
+                    >
+                      {t.languageToggle.ukrainian}
+                    </button>
+                  </div>
+                  <div className={styles.fields}>
+                    {displayName.split(" ").map((val, idx) => (
+                      <div key={idx} className={styles.fieldRow}>
+                        <div className={styles.value}>{val}</div>
+                      </div>
+                    ))}
+                    <div className={styles.fieldRow}>
+                      <div className={styles.value}>{birthDate}</div>
+                    </div>
+                    <div className={styles.reportLink}>
+                      {t.labels.reportIncorrect}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>
+                {t.sections.contactDetails}
+              </h2>
+              {contacts.map((c, idx) => (
+                <div key={idx} className={styles.contactRow}>
+                  <div className={styles.label}>
+                    {idx === 0 ? t.labels.primaryPhone : t.labels.phoneNumber}
+                  </div>
+                  <div className={styles.value}>
+                    {c.phoneNumber}
+                    {c.description && <span> ({c.description})</span>}
+                  </div>
+
+                  {idx === 0 && (
+                    <button
+                      className={styles.changeBtn}
+                      onClick={() => handleChangePhone(c)}
+                    >
+                      {t.labels.change}
+                    </button>
+                  )}
+
+                  {idx > 0 && (
+                    <button
+                      className={styles.deleteBtn}
+                      onClick={() => handleDeletePhone(c)}
+                      title={t.labels.delete}
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  )}
+                </div>
+              ))}
+
+              <div className={styles.contactActions}>
+                <button
+                  className={styles.addContactBtn}
+                  onClick={handleAddPhone}
+                >
+                  <span className={styles.plusIcon}>+</span>
+                  {t.labels.addContact}
+                </button>
+                <button className={styles.saveBtn}>
+                  {t.labels.saveChanges}
+                </button>
+              </div>
+            </section>
+          </>
+        );
+      case "payments":
+        return (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>{t.tabs.payments}</h2>
+            <div className={styles.comingSoon}>{t.status.comingSoon}</div>
+          </section>
+        );
+      case "communications":
+        return (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>{t.tabs.communications}</h2>
+            <div className={styles.comingSoon}>{t.status.comingSoon}</div>
+          </section>
+        );
+      case "security":
+        return (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>{t.tabs.security}</h2>
+            <div className={styles.comingSoon}>{t.status.comingSoon}</div>
+          </section>
+        );
+      default:
+        return null;
     }
   };
 
@@ -204,113 +354,35 @@ export default function ProfilePage() {
   return (
     <div className={styles.container}>
       <div className={styles.tabs}>
-        <div className={styles.activeTab}>{t.tabs.profile}</div>
-        <div className={styles.tab}>{t.tabs.payments}</div>
-        <div className={styles.tab}>{t.tabs.communications}</div>
-        <div className={styles.tab}>{t.tabs.security}</div>
+        <div
+          className={activeTab === "profile" ? styles.activeTab : styles.tab}
+          onClick={() => setActiveTab("profile")}
+        >
+          {t.tabs.profile}
+        </div>
+        <div
+          className={activeTab === "payments" ? styles.activeTab : styles.tab}
+          onClick={() => setActiveTab("payments")}
+        >
+          {t.tabs.payments}
+        </div>
+        <div
+          className={
+            activeTab === "communications" ? styles.activeTab : styles.tab
+          }
+          onClick={() => setActiveTab("communications")}
+        >
+          {t.tabs.communications}
+        </div>
+        <div
+          className={activeTab === "security" ? styles.activeTab : styles.tab}
+          onClick={() => setActiveTab("security")}
+        >
+          {t.tabs.security}
+        </div>
       </div>
 
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>{t.sections.generalInfo}</h2>
-        <div className={styles.profileContent}>
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            style={{ display: "none" }}
-            onChange={handleAvatarChange}
-          />
-          <div
-            className={styles.avatarWrapper}
-            onClick={handleAvatarWrapperClick}
-            title={t.sections.editAvatar}
-          >
-            <div className={styles.avatarOverlay}>
-              {uploading ? (
-                <span>{t.status.uploadingAvatar}…</span>
-              ) : (
-                <Pencil size={32} />
-              )}
-            </div>
-            <img src={avatarUrl} alt="Avatar" className={styles.avatarImg} />
-          </div>
-          <div className={styles.infoForm}>
-            <div className={styles.languageToggle}>
-              <button
-                className={
-                  langKey === "en" ? styles.langButtonActive : styles.langButton
-                }
-                onClick={() => handleLangClick("EN")}
-              >
-                {t.languageToggle.english}
-              </button>
-              <button
-                className={
-                  langKey === "ua" ? styles.langButtonActive : styles.langButton
-                }
-                onClick={() => handleLangClick("UA")}
-              >
-                {t.languageToggle.ukrainian}
-              </button>
-            </div>
-            <div className={styles.fields}>
-              {displayName.split(" ").map((val, idx) => (
-                <div key={idx} className={styles.fieldRow}>
-                  <div className={styles.value}>{val}</div>
-                </div>
-              ))}
-              <div className={styles.fieldRow}>
-                <div className={styles.value}>{birthDate}</div>
-              </div>
-              <div className={styles.reportLink}>
-                {t.labels.reportIncorrect}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>{t.sections.contactDetails}</h2>
-        {contacts.map((c, idx) => (
-          <div key={idx} className={styles.contactRow}>
-            <div className={styles.label}>
-              {idx === 0 ? t.labels.primaryPhone : t.labels.phoneNumber}
-            </div>
-            <div className={styles.value}>
-              {c.phoneNumber}
-              {c.description && <span> ({c.description})</span>}
-            </div>
-
-            {idx === 0 && (
-              <button
-                className={styles.changeBtn}
-                onClick={() => handleChangePhone(c)}
-              >
-                {t.labels.change}
-              </button>
-            )}
-
-            {idx > 0 && (
-              <button
-                className={styles.deleteBtn}
-                onClick={() => handleDeletePhone(c)}
-                title={t.labels.delete}
-              >
-                <Trash2 size={16} />
-              </button>
-            )}
-          </div>
-        ))}
-
-        <div className={styles.contactActions}>
-          <button className={styles.addContactBtn} onClick={handleAddPhone}>
-            <span className={styles.plusIcon}>+</span>
-            {t.labels.addContact}
-          </button>
-          <button className={styles.saveBtn}>{t.labels.saveChanges}</button>
-        </div>
-      </section>
+      {renderTabContent()}
     </div>
   );
 }
