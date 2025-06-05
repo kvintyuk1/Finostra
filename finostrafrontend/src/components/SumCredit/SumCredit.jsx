@@ -1,29 +1,38 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./sumCredit.module.css";
 import ButtonForCard from "../for card/ButtonForCard/ButtonForCard";
 import InfoSumCredit from "../InfoSumCredit/InfoSumCredit";
 
 const termItems = [
-    {number:"10"},
-    {number:"20"},
-    {number:"60"},
-    {number:"36"},
+    {number: "10"},
+    {number: "20"},
+    {number: "60"},
+    {number: "36"},
 ];
 
-function SumCredit({marginContainer="marginTop0",heightSumCreditContainer="height362",heightWrapSumCredit="heightWrap234",hideInfoTermCredit=false,hideInfoSumCredit=true,
-                       infoCreditData=[],name,info,name2,info2,sizeButton,title_button}) {
+function SumCredit({
+                       carPrice, setCarPrice, downPayment, setDownPayment, handleSubmitCarCredit, marginContainer = "marginTop0",
+                       heightSumCreditContainer = "height362", heightWrapSumCredit = "heightWrap234",
+                       hideInfoTermCredit = false, hideInfoSumCredit = true,
+                       infoCreditData = [], name, info, name2, info2, sizeButton, title_button
+                   }) {
     const [activeTerm, setActiveTerm] = useState(null);
+
     return (
         <div className={`${styles.container} ${styles[heightSumCreditContainer]} ${styles[marginContainer]}`}>
             <div className={`${styles.wrap_sumCredit} ${styles[heightWrapSumCredit]}`}>
                 <div className={styles.wrap_itemCredit}>
-                   <InfoSumCredit
-                   name={name}
-                   info={info}
-                   />
-                    {!hideInfoSumCredit && ( <InfoSumCredit
+                    <InfoSumCredit
+                        name={name}
+                        info={info}
+                        value={carPrice}
+                        setValue={setCarPrice}
+                    />
+                    {!hideInfoSumCredit && (<InfoSumCredit
                         name={name2}
                         info={info2}
+                        value={downPayment}
+                        setValue={setDownPayment}
                     />)}
                     {!hideInfoTermCredit && (
                         <div className={styles.wrap_infoTermCredit}>
@@ -56,9 +65,11 @@ function SumCredit({marginContainer="marginTop0",heightSumCreditContainer="heigh
             <ButtonForCard
                 sizeButton={sizeButton}
                 title_button={title_button}
+                onClick={handleSubmitCarCredit}
             />
         </div>
     );
 }
 
 export default SumCredit;
+

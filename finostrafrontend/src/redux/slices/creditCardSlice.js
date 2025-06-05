@@ -1,10 +1,17 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
+const URL = "http://localhost:8081/api/v1"
+
 export const attachCredit = createAsyncThunk('creditCard/attachCredit',
     async (creditData, thunkAPI) => {
         try {
-            const response = await axios.post('/api/v1/creditCard/attachCredit', creditData);
+            const response = await axios.post(`${URL}/creditCard/attachCredit`, creditData, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                responseType: "text"
+            });
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання кредита");
@@ -14,7 +21,7 @@ export const attachCredit = createAsyncThunk('creditCard/attachCredit',
 export const fetchAllContracts = createAsyncThunk('creditCard/fetchAllContracts',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('/api/v1/creditCard/fetchAllContracts');
+            const response = await axios.get(`${URL}/creditCard/fetchAllContracts`);
             return response.data.allContractsBlobLinks;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання контрактів");
@@ -23,7 +30,7 @@ export const fetchAllContracts = createAsyncThunk('creditCard/fetchAllContracts'
 export const carForCredit = createAsyncThunk('creditCard/carForCredit',
     async (creditData, thunkAPI) => {
         try {
-            const response = await axios.post('/api/v1/creditCard/carForCredit', creditData);
+            const response = await axios.post(`${URL}/creditCard/carForCredit`, creditData);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання авто в кредит");

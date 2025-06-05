@@ -173,6 +173,11 @@
     border-radius: 2.08vw;
     background-color: #28282C;
     border: none;
+    cursor: pointer;
+}
+.but_limit:hover,
+.but_limit:active {
+    background-color: #A66CFE;
 }
 
 .title_but_limit {

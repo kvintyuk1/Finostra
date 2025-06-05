@@ -3,10 +3,17 @@ import styles from "./financeTabs.module.css";
 import CardUniversal from "../CardUniversal/CardUniversal";
 import { LanguageContext } from "../LanguageContext";
 import { financeTabsTranslations } from "./financeTabsTranslations";
+import {useNavigate} from "react-router-dom";
 
 function FinanceTabs() {
     const { selectedLanguage } = useContext(LanguageContext);
     const tTabs = financeTabsTranslations[selectedLanguage];
+    const navigate = useNavigate();
+
+    const handleClick = (index)=>{
+        const routes = ["/conversions/myKonverty","/saving/myDeposit","/credits/myCredits"];
+        navigate(routes[index]);
+    }
 
     return (
         <div className={styles.container}>
@@ -32,9 +39,9 @@ function FinanceTabs() {
 
             <div className={styles.wrapper_tabs}>
                 {tTabs.tabItems.map((title, index) => (
-                    <div key={index} className={styles.wrap_button}>
+                    <button key={index} onClick={()=>handleClick(index)} className={styles.wrap_button}>
                         <span className={styles.title_button}>{title}</span>
-                    </div>
+                    </button>
                 ))}
             </div>
         </div>
