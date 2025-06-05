@@ -9,7 +9,7 @@ import {useOutletContext} from "react-router-dom";
 function CardUniversalOptions() {
     const {selectedLanguage} = useContext(LanguageContext);
     const t = cardUniversalOptionsTranslations[selectedLanguage];
-    const [creditLimit,setCreditLimit,isEditing,setIsEditing] = useOutletContext()();
+    const [creditLimit,setCreditLimit,isEditing,setIsEditing] = useOutletContext();
 
     const handleCreditLimitChange = (newLimit)=>{
         setCreditLimit(newLimit);
