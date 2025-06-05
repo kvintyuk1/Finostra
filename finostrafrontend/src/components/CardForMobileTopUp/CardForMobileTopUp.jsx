@@ -11,7 +11,10 @@ import { LanguageContext } from "../LanguageContext";
 import { cardForMobileTopUpTranslations } from "./cardForMobileTopUpTranslations";
 import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { topUpPhone } from "../../redux/slices/phoneTopUpSlice";
+import { topUpPhone, getAllPhoneTransaction } from "../../redux/slices/phoneTopUpSlice";
+import { toast } from "react-toastify";
+import { SpinnerCircular } from "spinners-react";
+
 
 const moneyItems = [
   { number: "50" },
@@ -38,9 +41,13 @@ function CardForMobileTopUp() {
   const [cvv, setCvv] = useState("");
   const [balance, setBalance] = useState("");
 
-  const openShowSuccessfulMobileTopUpModal = () => {
-    handleTopUp();
-    setShowSuccessfulMobileTopUpModal(true);
+  const openShowSuccessfulMobileTopUpModal = async () => {
+    const res = await handleTopUp();
+    if (res)
+      setShowSuccessfulMobileTopUpModal(true);
+    else
+      setShowSuccessfulMobileTopUpModal(false);
+
   };
 
   const handleTopUp = async () => {
@@ -61,9 +68,12 @@ function CardForMobileTopUp() {
         cvv: cvv
       })).unwrap();
 
+      dispatch(getAllPhoneTransaction());
 
+      return true;
     } catch (e) {
-      console.log(e);
+      toast.error("Не вдалося виконати поповнення");
+      return false;
     }
   };
 
@@ -71,8 +81,8 @@ function CardForMobileTopUp() {
     <div className={styles.container}>
       <div className={styles.wrapper_cardForMobile}>
         <div className={styles.wrapper_user}>
-          <img src={profile.avatarBlobLink || ""} alt="" />
-          <div className={styles.phone_user}>{profile.phoneNumber}</div>
+          <img src={profile?.avatarBlobLink || ""} alt="" />
+          <div className={styles.phone_user}>{profile?.phoneNumber || ""}</div>
         </div>
         <div className={styles.wrapper_cardInfo}>
           <PhoneNumber onChange={(e) => { setPhone('+380' + e.target.value); }} />
@@ -133,11 +143,19 @@ function CardForMobileTopUp() {
                 />
               </div>
             </div>
-            <ButtonForCard
-              onClick={openShowSuccessfulMobileTopUpModal}
-              title_button={t.buttonTitle}
-              sizeButton="size_button219"
-            />
+            {status === 'loading' ? (
+              <div className={styles.spinnerBox}>
+                <SpinnerCircular size={100} thickness={140} />
+              </div>
+            ) :
+              (
+                <ButtonForCard
+                  onClick={openShowSuccessfulMobileTopUpModal}
+                  title_button={t.buttonTitle}
+                  sizeButton="size_button219"
+                />
+              )}
+
           </div>
         </div>
       </div>
