@@ -6,22 +6,21 @@ import { fetchBankCardsByCurrency } from "../../redux/slices/bankCardSlice";
 import { ProfileContext } from "../../components/contexts/ProfileContext";
 
 function Connection() {
+  const dispatch = useDispatch();
+  const { cards, fetchStatus } = useSelector(state => state.bankCard);
+  const [currency, setCurrency] = useState('UAH');
+  const { profile, loading, error } = useContext(ProfileContext);
 
-    const dispatch = useDispatch();
-    const { cards, fetchStatus } = useSelector(state => state.bankCard);
-    const [currency, setCurrency] = useState('UAH');
+  useEffect(() => {
+    dispatch(fetchBankCardsByCurrency(currency));
+  }, [currency, dispatch]);
 
-    const { profile, loading, error } = useContext(ProfileContext);
-
-    useEffect(() => {
-        dispatch(fetchBankCardsByCurrency(currency));
-    }, [currency, dispatch]);
-
-    return (
-        <div className={styles.container}>
-            <Outlet context={{ cards, profile, status: fetchStatus }} />
-        </div>
-    )
+  return (
+    <div className={styles.container}>
+      
+      <Outlet context={{ cards, profile, status: fetchStatus, currency, setCurrency }} />
+    </div>
+  );
 }
 
 export default Connection;

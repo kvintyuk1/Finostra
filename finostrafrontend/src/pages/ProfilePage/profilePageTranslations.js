@@ -15,7 +15,7 @@ export const profilePageTranslations = {
       ukrainian: "Ukrainian",
     },
     labels: {
-      phoneNumber: "Phone Number",        
+      phoneNumber: "Phone Number",
       primaryPhone: "Primary Phone",
       change: "Change",
       addContact: "Add Contact",
@@ -37,6 +37,7 @@ export const profilePageTranslations = {
       phoneAddFailed: "Failed to add phone number",
       error: "Error: {{error}}",
       profileNotFound: "Profile not found",
+      comingSoon: "Coming soon...",
     },
   },
   ua: {
@@ -49,6 +50,7 @@ export const profilePageTranslations = {
     sections: {
       generalInfo: "Загальна інформація",
       contactDetails: "Контактні дані",
+      paymentsTabs: "Картка за замовчуванням",
     },
     languageToggle: {
       english: "Англійська",
@@ -61,6 +63,7 @@ export const profilePageTranslations = {
       addContact: "Додати контакт",
       saveChanges: "Зберегти зміни",
       reportIncorrect: "Повідомити про некоректні дані",
+      communication: "Для автоматичного зарахування коштів і оплати",
     },
     placeholders: {
       enterPhoneNumber: "Введіть номер телефону",
@@ -77,6 +80,7 @@ export const profilePageTranslations = {
       phoneAddFailed: "Не вдалося додати номер телефону",
       error: "Помилка: {{error}}",
       profileNotFound: "Профіль не знайдено",
+      comingSoon: "Незабаром...",
     },
   },
 };

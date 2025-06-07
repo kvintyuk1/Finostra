@@ -3,7 +3,7 @@
   margin: 138px auto 0;
   width: 90%;
   max-width: 1136px;
-  background: #0F110E;
+  background: #0f110e;
   border-radius: 30px;
   padding: 40px;
   display: flex;
@@ -21,7 +21,6 @@
     transform: none;
   }
 }
-
 
 @media (min-width: 1920px) {
   .container {
@@ -54,7 +53,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   display: block;
 }
 
@@ -68,7 +67,7 @@
   background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   transition: opacity 0.3s ease;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .avatarWrapper:hover .avatarOverlay {
@@ -77,11 +76,35 @@
 
 .tab,
 .activeTab {
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-size: 1.25rem;
   line-height: 1.2;
   cursor: pointer;
   white-space: nowrap;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.tab::after,
+.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #a66cfe;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.activeTab::after {
+  transform: scaleX(1);
+}
+
+.tab:hover::after {
+  transform: scaleX(0.7);
 }
 
 .tab {
@@ -89,21 +112,21 @@
 }
 
 .activeTab {
-  color: #A66CFE;
+  color: #a66cfe;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 40px;
 }
 
 .sectionTitle {
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-size: 1.5rem;
   line-height: 1.2;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .profileContent {
@@ -128,26 +151,32 @@
 .langButtonActive {
   padding: 0.5rem 1.25rem;
   border-radius: 30px;
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-size: 1.25rem;
   line-height: 1.2;
   background: transparent;
-  border: 1px solid #FFFFFF;
-  color: #FFFFFF;
+  border: 1px solid #ffffff;
+  color: #ffffff;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
 }
 
 .langButtonActive {
-  background: #A66CFE;
+  background: #a66cfe;
   border: none;
   animation: buttonPulse 0.4s ease;
 }
 
 @keyframes buttonPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .fields {
@@ -170,10 +199,10 @@
   width: 100%;
   max-width: 437px;
   height: 24px;
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-size: 1.25rem;
   line-height: 1.2;
-  color: #A66CFE;
+  color: #a66cfe;
   cursor: pointer;
 }
 
@@ -181,7 +210,7 @@
 .saveBtn {
   padding: 0.75rem 3.125rem;
   border-radius: 9px;
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
@@ -189,9 +218,9 @@
 }
 
 .changeBtn {
-  border: 2px solid #A66CFE;
+  border: 2px solid #a66cfe;
   background: transparent;
-  color: #A66CFE;
+  color: #a66cfe;
 }
 
 .changeBtn:hover,
@@ -213,10 +242,10 @@
   padding: 0.75rem 1.875rem;
   background: #424242;
   border-radius: 9px;
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-weight: 700;
   font-size: 1rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .plusIcon {
@@ -225,8 +254,8 @@
 }
 
 .saveBtn {
-  background: #A66CFE;
-  color: #FFFFFF;
+  background: #a66cfe;
+  color: #ffffff;
 }
 
 .deleteBtn {
@@ -267,14 +296,14 @@
 }
 
 .label {
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-size: 1.25rem;
   line-height: 1.2;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .value {
-  font-family: 'adineue PRO', sans-serif;
+  font-family: "adineue PRO", sans-serif;
   font-size: 1.25rem;
   line-height: 1.2;
   color: rgba(255, 255, 255, 0.8);
@@ -328,4 +357,184 @@
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
   }
+}
+
+.comingSoon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-family: "adineue PRO", sans-serif;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.labelsText {
+  font-family: "adineue PRO", sans-serif;
+  color: #ffffff;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.cardUser {
+  background-color: #28282c;
+  border-radius: 10px;
+  padding: 20px;
+  width: 371px;
+  height: 73px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  perspective: 1000px;
+  animation: cardReveal 0.8s ease-out;
+}
+
+.cardImage {
+  width: 145px;
+  height: 73px;
+  object-fit: contain;
+  animation: cardFlip 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 14px;
+  width: 209px;
+  height: 73px;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 5px;
+  width: 209px;
+  animation: textReveal 0.4s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.3s;
+}
+
+.cardTitle {
+  width: 209px;
+  height: 19px;
+  font-family: "adineue PRO", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+
+.cardNumbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 3px;
+  width: 209px;
+  height: 16px;
+  opacity: 0.6;
+  animation: textReveal 0.4s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.4s;
+}
+
+.cardNumberGroup {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+}
+
+.cardNumberText {
+  font-family: "adineue PRO", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff7d;
+}
+
+.cardSeparator {
+  color: #ffffff7d;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 7px;
+  display: flex;
+  align-items: center;
+}
+
+.cardBalance {
+  width: 209px;
+  height: 19px;
+  font-family: "adineue PRO", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  animation: textReveal 0.4s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.5s;
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-90deg) translateZ(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0) translateZ(0);
+  }
+}
+
+@keyframes cardFlip {
+  0% {
+    transform: perspective(1000px) rotateY(180deg) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.9);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.cardUserProfileinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
 }

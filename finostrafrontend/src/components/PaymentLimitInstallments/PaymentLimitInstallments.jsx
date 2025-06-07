@@ -62,7 +62,12 @@ function PaymentLimitInstallments(props) {
         title_button,
         sizeButton,
         activeButton,
-        setActiveButton
+        setActiveButton,
+        carPrice,
+        setCarPrice,
+        downPayment,
+        setDownPayment,
+        handleSubmitCarCredit
     } = props;
 
     return (
@@ -131,6 +136,11 @@ function PaymentLimitInstallments(props) {
                         heightWrapSumCredit={heightWrapSumCredit}
                         title_button={title_button}
                         sizeButton={sizeButton}
+                        carPrice={carPrice}
+                        setCarPrice={setCarPrice}
+                        downPayment={downPayment}
+                        setDownPayment={setDownPayment}
+                        handleSubmitCarCredit={handleSubmitCarCredit}
                     />
                 ) : (
                     <>
@@ -145,5 +155,4 @@ function PaymentLimitInstallments(props) {
         </div>
     );
 }
-
-export default PaymentLimitInstallments;
+export default PaymentLimitInstallments

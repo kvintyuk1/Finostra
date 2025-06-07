@@ -11,7 +11,6 @@
   background-position: center;
   cursor: pointer;
   background-image: url("../../assets/Photo/default-avatar.png");
-
 }
 
 .avatarTrigger:active {
@@ -25,12 +24,25 @@
   backdrop-filter: blur(5.4px);
   pointer-events: auto;
   z-index: -1;
+  opacity: 0;
+  animation: backdropAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes backdropAppear {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(5.4px);
+  }
 }
 .dropdown {
   position: absolute;
-  top: 97px;
-  right: -95px;
-  width: 370px;
+  top: 100px;
+  right: -80px;
+  width: 340px;
   max-height: 90vh;
   overflow-y: auto;
   background: #0f110e;
@@ -41,23 +53,42 @@
   flex-direction: column;
   gap: 16px;
   z-index: 10;
+  opacity: 0;
+  transform: translateY(-20px) scale(0.98);
+  animation: dropdownAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dropdownAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .headerAvatar {
   position: relative;
-  width: 120px;
+  width: 140px;
   height: 110px;
   background-size: cover;
   background-position: center;
   border: 1px solid #fff;
   border-radius: 50%;
-   background-image: url("../../assets/Photo/default-avatar.png");
+  background-image: url("../../assets/Photo/default-avatar.png");
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.headerAvatar:hover {
+  transform: scale(1.02);
 }
 
 .profileHeader {
   display: flex;
   align-items: center;
-  gap: 12px; 
+  gap: 12px;
 }
 .avatarOverlay {
   position: absolute;
@@ -77,6 +108,10 @@
   border: none;
   cursor: pointer;
   z-index: 2;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.editButton:hover {
+  transform: scale(1.1);
 }
 .headerInfo {
   display: flex;
@@ -122,10 +157,11 @@
   text-align: left;
   font-size: 16px;
   color: #fff;
-  transition: color 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .menuItem:hover {
-  color: #A66CFE;
+  color: #a66cfe;
+  transform: translateX(8px);
 }
 .dropdown::-webkit-scrollbar {
   width: 6px;
@@ -134,5 +170,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 3px;
 }
-
-
+.menuIcon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  margin-right: 8px;
+}
