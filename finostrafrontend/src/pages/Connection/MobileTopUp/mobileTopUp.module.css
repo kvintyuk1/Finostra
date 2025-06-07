@@ -4,12 +4,10 @@
     align-items: center;
     gap: 38px;
     width: 82.64vw;
-    height: 1780px;
 }
 .wrapper_mobileTopUp {
     display: flex;
     flex-direction: column;
     gap: 30px;
     width: 77.08vw;
-    height: 1700px;
 }

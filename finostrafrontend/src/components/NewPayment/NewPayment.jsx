@@ -22,9 +22,6 @@ function NewPayment() {
     const [loading, setLoading] = useState(false);
 
     const handleTransfer = async () => {
-        console.log(selectedCard);
-        console.log(iban);
-        console.log(amount);
         if (!selectedCard || !iban || amount <= 0) {
             toast.error("Будь ласка, заповніть всі поля.");
             return;
