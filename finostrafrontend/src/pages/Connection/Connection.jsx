@@ -17,7 +17,6 @@ function Connection() {
 
   return (
     <div className={styles.container}>
-      
       <Outlet context={{ cards, profile, status: fetchStatus, currency, setCurrency }} />
     </div>
   );
