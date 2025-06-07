@@ -570,7 +570,6 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
   border-radius: 15px;
   padding: 20px;
 }
