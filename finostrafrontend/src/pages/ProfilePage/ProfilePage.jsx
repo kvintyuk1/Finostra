@@ -10,6 +10,7 @@ import { Pencil, Trash2 } from "lucide-react";
 import { LanguageContext } from "../../components/LanguageContext";
 import translations from "./profilePageTranslations";
 import defaultAvatar from "../../assets/Photo/default-avatar.png";
+import flameCard from "../../assets/Photo/Frame_819.png";
 import { ProfileContext } from "../../components/contexts/ProfileContext";
 
 export default function ProfilePage() {
@@ -266,8 +267,35 @@ export default function ProfilePage() {
       case "payments":
         return (
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t.tabs.payments}</h2>
-            <div className={styles.comingSoon}>{t.status.comingSoon}</div>
+            <div className={styles.cardUserProfileinfo}>
+              <h2 className={styles.sectionTitle}>{t.sections.paymentsTabs}</h2>
+              <div className={styles.labelsText}>{t.labels.communication}</div>
+            </div>
+
+            <div className={styles.cardUser}>
+              <img
+                src={flameCard}
+                alt="Finostra Card"
+                className={styles.cardImage}
+              />
+              <div className={styles.cardInfo}>
+                <div className={styles.cardDetails}>
+                  <div className={styles.cardTitle}>Картка Універсальна</div>
+                  <div className={styles.cardNumbers}>
+                    <div className={styles.cardNumberGroup}>
+                      <span className={styles.cardNumberText}>•••• 1234</span>
+                      <span className={styles.cardSeparator}>|</span>
+                    </div>
+                    <div className={styles.cardNumberGroup}>
+                      <span className={styles.cardNumberText}>
+                        UA92 •••• 1010101
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.cardBalance}>6345.00 UAH</div>
+              </div>
+            </div>
           </section>
         );
       case "communications":

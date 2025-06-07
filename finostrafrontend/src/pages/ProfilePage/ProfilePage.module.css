@@ -118,7 +118,7 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 40px;
 }
 
 .sectionTitle {
@@ -380,4 +380,161 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+.labelsText {
+  font-family: "adineue PRO", sans-serif;
+  color: #ffffff;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.cardUser {
+  background-color: #28282c;
+  border-radius: 10px;
+  padding: 20px;
+  width: 371px;
+  height: 73px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  perspective: 1000px;
+  animation: cardReveal 0.8s ease-out;
+}
+
+.cardImage {
+  width: 145px;
+  height: 73px;
+  object-fit: contain;
+  animation: cardFlip 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 14px;
+  width: 209px;
+  height: 73px;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 5px;
+  width: 209px;
+  animation: textReveal 0.4s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.3s;
+}
+
+.cardTitle {
+  width: 209px;
+  height: 19px;
+  font-family: "adineue PRO", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+
+.cardNumbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 3px;
+  width: 209px;
+  height: 16px;
+  opacity: 0.6;
+  animation: textReveal 0.4s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.4s;
+}
+
+.cardNumberGroup {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+}
+
+.cardNumberText {
+  font-family: "adineue PRO", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff7d;
+}
+
+.cardSeparator {
+  color: #ffffff7d;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 7px;
+  display: flex;
+  align-items: center;
+}
+
+.cardBalance {
+  width: 209px;
+  height: 19px;
+  font-family: "adineue PRO", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  animation: textReveal 0.4s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.5s;
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-90deg) translateZ(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0) translateZ(0);
+  }
+}
+
+@keyframes cardFlip {
+  0% {
+    transform: perspective(1000px) rotateY(180deg) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.9);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.cardUserProfileinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
 }

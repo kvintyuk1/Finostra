@@ -50,6 +50,7 @@ export const profilePageTranslations = {
     sections: {
       generalInfo: "Загальна інформація",
       contactDetails: "Контактні дані",
+      paymentsTabs: "Картка за замовчуванням",
     },
     languageToggle: {
       english: "Англійська",
@@ -62,6 +63,7 @@ export const profilePageTranslations = {
       addContact: "Додати контакт",
       saveChanges: "Зберегти зміни",
       reportIncorrect: "Повідомити про некоректні дані",
+      communication: "Для автоматичного зарахування коштів і оплати",
     },
     placeholders: {
       enterPhoneNumber: "Введіть номер телефону",
