@@ -25,7 +25,7 @@ function CreditTerms({
     const {selectedLanguage} = useContext(LanguageContext);
     const tCredit = creditTermsTranslations[selectedLanguage];
 
-    // fallback до перекладів, якщо пропси не передані
+    
     const rateLabel = rate ?? tCredit.interestRate;
     const rateValue = ratePercent ?? tCredit.interestRateValue;
     const termLabel = term ?? tCredit.maxTerm;
@@ -37,7 +37,7 @@ function CreditTerms({
         <div className={`${styles.container} ${styles[widthContainerCreditTerms]}`}>
             <div className={`${styles.wrapper_rate_term_line} ${styles[widthWrapRateTermLine]}`}>
                 <div className={`${styles.wrapper_rate_term} ${styles[new_wrapper_rate_term]}`}>
-                    {/* Interest Rate */}
+                   
                     <div className={`${styles.wrapper_rate_line} ${styles[new_wrapper_rate_line]}`}>
                         <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
                             <div className={styles.text}>{rateLabel}</div>
@@ -46,26 +46,23 @@ function CreditTerms({
                         <LineVerticalDotted/>
                     </div>
 
-                    {/* Term */}
+                   
                     <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>
                         <div className={styles.text}>{termLabel}</div>
                         <div className={styles.number}>{termValue}</div>
                     </div>
 
-                    {/* Вертикальна лінія після терміну */}
+                   
                     {!hideLineVerticalDotted2 && <LineVerticalDotted/>}
                 </div>
-                {/* Сума кредиту */}
                 <div className={styles.wrapper_rate}>
                     <div className={styles.text}>{sumLabel}</div>
                     <div className={styles.number}>{sumValue}</div>
                 </div>
 
-                {/* Головна вертикальна лінія зліва */}
+            
                 {!hideLineVerticalDotted && <LineVerticalDotted/>}
             </div>
-
-            {/* Prepayment (якщо потрібен) */}
             {!hideWrapperRateLine && (
                 <div className={styles.wrapper_rate_line}>
                     <div className={`${styles.wrapper_rate} ${styles[widthWrapRate]}`}>

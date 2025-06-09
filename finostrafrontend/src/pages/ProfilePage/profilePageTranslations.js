@@ -25,6 +25,38 @@ export const profilePageTranslations = {
       communication: "For automatic crediting of funds and payments",
       defaultCardName: "Universal Card",
     },
+    security: {
+      activeDevices: "Devices with active session (2)",
+      changeLogin: "Change login",
+      authSettings: "Authorization settings",
+      voiceBiometrics: "Voice biometrics",
+    },
+    communications: {
+      section1: {
+        title: "Notifications",
+        question: "How to set up notifications?",
+        content:
+          "You can customize your notification preferences in the settings. Choose which types of notifications you want to receive and how you want to receive them.",
+      },
+      section2: {
+        title: "Messages",
+        question: "How to manage messages?",
+        content:
+          "You can view and manage all your messages in the messaging center. Archive, delete, or mark messages as important for better organization.",
+      },
+      section3: {
+        title: "Contact Methods",
+        question: "How to update contact methods?",
+        content:
+          "You can add or update your contact methods in the profile settings. This includes email addresses, phone numbers, and preferred contact times.",
+      },
+      section4: {
+        title: "Privacy",
+        question: "How to manage privacy settings?",
+        content:
+          "Control your privacy settings to determine who can contact you and how your information is shared within the platform.",
+      },
+    },
     placeholders: {
       enterPhoneNumber: "Enter phone number",
       enterPhoneDescription: "Enter description (e.g. work, home)",
@@ -70,6 +102,38 @@ export const profilePageTranslations = {
       reportIncorrect: "Повідомити про некоректні дані",
       communication: "Для автоматичного зарахування коштів і оплати",
       defaultCardName: "Картка Універсальна",
+    },
+    security: {
+      activeDevices: "Пристрої з активною сесією (2)",
+      changeLogin: "Зміна логіна",
+      authSettings: "Налаштування авторизації",
+      voiceBiometrics: "Голосова біометрія",
+    },
+    communications: {
+      section1: {
+        title: "Сповіщення",
+        question: "Як налаштувати сповіщення?",
+        content:
+          "Ви можете налаштувати параметри сповіщень у налаштуваннях. Виберіть, які типи сповіщень ви хочете отримувати та як ви хочете їх отримувати.",
+      },
+      section2: {
+        title: "Повідомлення",
+        question: "Як керувати повідомленнями?",
+        content:
+          "Ви можете переглядати та керувати всіма своїми повідомленнями в центрі повідомлень. Архівуйте, видаляйте або позначайте повідомлення як важливі для кращої організації.",
+      },
+      section3: {
+        title: "Способи зв'язку",
+        question: "Як оновити способи зв'язку?",
+        content:
+          "Ви можете додавати або оновлювати свої способи зв'язку в налаштуваннях профілю. Це включає електронні адреси, номери телефонів та бажаний час для зв'язку.",
+      },
+      section4: {
+        title: "Конфіденційність",
+        question: "Як керувати налаштуваннями конфіденційності?",
+        content:
+          "Керуйте налаштуваннями конфіденційності, щоб визначити, хто може зв'язатися з вами та як ваша інформація поширюється на платформі.",
+      },
     },
     placeholders: {
       enterPhoneNumber: "Введіть номер телефону",
