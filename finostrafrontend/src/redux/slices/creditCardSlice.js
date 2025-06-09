@@ -1,8 +1,9 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../utils/axiosInstance";
+import Cookies from "js-cookie";
 
 
-const URL = "http://localhost:8081/api/v1"
+const URL = "/api/v1"
 
 export const attachCredit = createAsyncThunk('creditCard/attachCredit',
     async (creditData, thunkAPI) => {
@@ -33,20 +34,17 @@ export const carForCredit = createAsyncThunk(
     'creditCard/carForCredit',
     async (creditData, thunkAPI) => {
         try {
+            console.log("Відправка даних:", creditData);
+            console.log('Токен в куках:', Cookies.get('token'));
             const response = await axios.post(
-                `${URL}/creditCard/carForCredit`, creditData,{
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                    },
-                    responseType: 'blob',
-                    withCredentials: true
-                });
+                `${URL}/creditCard/carForCredit`, creditData,);
+
+            console.log("Відповідь від сервера (лінк):", response.data);
             return response.data;
+
         } catch (error) {
-            console.error("carForCredit API error:", error.response ? error.response.data : error.message);
-            return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання авто в кредит");
-        }
+            console.error("Помилка запита:", error.response ? error.response.data : error.message);
+            throw error; }
     }
 );
 export const creditCardSlice = createSlice({
@@ -98,6 +96,7 @@ export const creditCardSlice = createSlice({
                 state.carForCreditError = null
             })
             .addCase(carForCredit.fulfilled, (state, action) => {
+                console.log("У fulfilled")
                 state.carForCreditStatus = 'succeeded';
                 //.state.message = action.payload
                 state.carDetails = action.payload

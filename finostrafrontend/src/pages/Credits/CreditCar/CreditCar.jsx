@@ -105,16 +105,6 @@ function CreditCar() {
             const url = window.URL.createObjectURL(blob);
             window.open(url, '_blank');
 
-            // Если payload — объект, возьмите ссылку из него
-            {/*const url = typeof blobLink === 'string' ? blobLink : blobLink?.url;
-
-            if (url) {
-                window.open(url, "_blank");
-            } else {
-                alert("Сервер не повернув посилання для кредиту");
-            }
-            */}
-
         } else {
             // Можно вывести ошибку из rejectWithValue, если она есть
             console.error('Error payload:', resultAction.payload);
