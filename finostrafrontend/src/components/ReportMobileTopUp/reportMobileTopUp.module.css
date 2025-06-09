@@ -5,19 +5,25 @@
     justify-content: center;
     gap: 55px;
     width: 77.08vw;
-    height: 374px;
     border-radius: 2.08vw;
     background-color: #0F110E;
+    padding: 1rem 0;
 }
 .wrapper_section {
     display: flex;
     justify-content: space-between;
     width: 71.53vw;
-    height: 34px;
 }
 .wrapper_period_search {
     display: flex;
     gap: 2.08vw;
     width: 37.22vw;
-    height: 34px;
+}
+
+.spinnerBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #FFFFFF;
 }

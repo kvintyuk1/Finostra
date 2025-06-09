@@ -10,7 +10,10 @@ import { Pencil, Trash2 } from "lucide-react";
 import { LanguageContext } from "../../components/LanguageContext";
 import translations from "./profilePageTranslations";
 import defaultAvatar from "../../assets/Photo/default-avatar.png";
+import flameCard from "../../assets/Photo/Frame_819.png";
+import arrowIcon from "../../assets/Photo/Vector_icn.png";
 import { ProfileContext } from "../../components/contexts/ProfileContext";
+import axiosInstance from "../../utils/axiosInstance";
 
 export default function ProfilePage() {
   const { selectedLanguage, handleLanguageChange } =
@@ -18,15 +21,85 @@ export default function ProfilePage() {
   const langKey = selectedLanguage === "EN" ? "en" : "ua";
   const t = translations[langKey];
   const [activeTab, setActiveTab] = useState("profile");
+  const [bankCards, setBankCards] = useState([]);
+  const [loadingCards, setLoadingCards] = useState(false);
+  const [cardsError, setCardsError] = useState(null);
+  const [expandedSection, setExpandedSection] = useState(null);
 
   const { profile, loading, error, refreshProfile } =
     useContext(ProfileContext);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
 
+  const communicationSections = [
+    {
+      id: "requests",
+      title: "Заявки",
+      question: "Яка комісія за оплату комунальних послуг?",
+      content:
+        "Комісія за оплату комунальних послуг становить 0% при оплаті через мобільний додаток або веб-версію Finostra. При оплаті через термінали самообслуговування комісія складає 1% від суми платежу.",
+    },
+    {
+      id: "calls",
+      title: "Дзвінки",
+      question: "Історія дзвінків від банку",
+      content:
+        "Тут ви можете переглянути всі дзвінки від банку за останні 6 місяців. Кожен запис містить дату, час та тему звернення. Ми зберігаємо цю інформацію для покращення якості обслуговування та вашої безпеки.",
+    },
+    {
+      id: "notifications",
+      title: "Канал інформування",
+      question: "Інформування про операції",
+      content:
+        "Налаштуйте зручний для вас спосіб отримання повідомлень про операції за рахунком: SMS, Push-повідомлення або Email. Ви можете встановити ліміт суми операції, про яку хочете отримувати сповіщення.",
+    },
+    {
+      id: "feedback",
+      title: "Залишити відгук",
+      question: "Розкажіть, що можна покращити в роботі банку",
+      content:
+        "Ваша думка важлива для нас! Поділіться своїми враженнями про роботу банку, обслуговування чи пропозиціями щодо покращення сервісів. Ми уважно розглядаємо кожен відгук та враховуємо їх при розробці нових продуктів та послуг.",
+    },
+    {
+      id: "fraud",
+      title: "Повідомити про шахрайство",
+      question: "Якщо з вами зв'язалися шахраї",
+      content:
+        "Якщо ви підозрюєте шахрайську активність або отримали підозрілий дзвінок/повідомлення, негайно повідомте нам. Наша служба безпеки працює 24/7 для захисту ваших коштів. Ми ніколи не запитуємо паролі, CVV-код або повний номер картки.",
+    },
+  ];
+
   useEffect(() => {
     if (!profile) refreshProfile();
   }, [profile, refreshProfile]);
+
+  useEffect(() => {
+    const fetchBankCards = async () => {
+      if (activeTab !== "payments") return;
+
+      setLoadingCards(true);
+      setCardsError(null);
+      try {
+        const response = await axiosInstance.get("/api/v1/bankCard/get", {
+          params: { currency: "UAH" },
+          withCredentials: true,
+        });
+        console.log("Bank cards API response:", response.data);
+        const cardsData = response.data?.cards || response.data || [];
+        setBankCards(Array.isArray(cardsData) ? cardsData : [cardsData]);
+      } catch (err) {
+        console.error("Failed to fetch bank cards:", err);
+        setCardsError(
+          err.response?.data?.message || "Failed to load bank cards"
+        );
+        setBankCards([]);
+      } finally {
+        setLoadingCards(false);
+      }
+    };
+
+    fetchBankCards();
+  }, [activeTab]);
 
   const handleLangClick = (lang) => {
     if (lang !== "EN" && lang !== "UA") return;
@@ -138,6 +211,10 @@ export default function ProfilePage() {
           : "Не вдалося видалити контакт"
       );
     }
+  };
+
+  const handleSectionClick = (sectionId) => {
+    setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
 
   const renderTabContent = () => {
@@ -266,15 +343,116 @@ export default function ProfilePage() {
       case "payments":
         return (
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t.tabs.payments}</h2>
-            <div className={styles.comingSoon}>{t.status.comingSoon}</div>
+            <div className={styles.cardUserProfileinfo}>
+              <h2 className={styles.sectionTitle}>{t.sections.paymentsTabs}</h2>
+              <div className={styles.labelsText}>{t.labels.communication}</div>
+            </div>
+
+            {loadingCards ? (
+              <div className={styles.loading}>
+                <div></div>
+                <div></div>
+                <span>{t.status.loadingCards}</span>
+              </div>
+            ) : cardsError ? (
+              <div className={styles.error}>{cardsError}</div>
+            ) : !Array.isArray(bankCards) || bankCards.length === 0 ? (
+              <div className={styles.empty}>{t.status.noCards}</div>
+            ) : (
+              <div className={styles.cardsContainer}>
+                {bankCards.map((card, index) => {
+                  if (!card || typeof card !== "object") return null;
+
+                  console.log("Card data:", card);
+
+                  // Get balance from the nested balance object
+                  const balanceAmount = card.balance?.amount || 0;
+                  const balanceCurrency = card.balance?.currency || "UAH";
+                  console.log("Parsed balance amount:", balanceAmount);
+
+                  return (
+                    <div
+                      key={card.id || `card-${index}`}
+                      className={styles.cardUser}
+                    >
+                      <img
+                        src={flameCard}
+                        alt="Finostra Card"
+                        className={styles.cardImage}
+                      />
+                      <div className={styles.cardInfo}>
+                        <div className={styles.cardDetails}>
+                          <div className={styles.cardTitle}>
+                            {card.name || t.labels.defaultCardName}
+                          </div>
+                          <div className={styles.cardNumbers}>
+                            <div className={styles.cardNumberGroup}>
+                              <span className={styles.cardNumberText}>
+                                •••• {card.cardNumber?.slice(-4) || "****"}
+                              </span>
+                              <span className={styles.cardSeparator}>|</span>
+                            </div>
+                            <div className={styles.cardNumberGroup}>
+                              <span className={styles.cardNumberText}>
+                                {card.iban
+                                  ? `${card.iban.slice(
+                                      0,
+                                      4
+                                    )} •••• ${card.iban.slice(-6)}`
+                                  : "UA •••• ••••"}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className={styles.cardBalance}>
+                          {typeof balanceAmount === "number" ||
+                          typeof balanceAmount === "string"
+                            ? Number(balanceAmount).toFixed(2)
+                            : "0.00"}{" "}
+                          {balanceCurrency}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </section>
         );
       case "communications":
         return (
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t.tabs.communications}</h2>
-            <div className={styles.comingSoon}>{t.status.comingSoon}</div>
+            <div className={styles.communicationsContainer}>
+              <div className={styles.communicationsContent}>
+                {communicationSections.map((section) => (
+                  <div key={section.id} className={styles.communicationSection}>
+                    <h3 className={styles.sectionTitle}>{section.title}</h3>
+                    <div
+                      className={`${styles.sectionContent} ${
+                        expandedSection === section.id ? styles.expanded : ""
+                      }`}
+                      onClick={() => handleSectionClick(section.id)}
+                    >
+                      <span className={styles.sectionText}>
+                        {section.question}
+                      </span>
+                      <img
+                        src={arrowIcon}
+                        alt="arrow"
+                        className={`${styles.arrowIcon} ${
+                          expandedSection === section.id ? styles.rotated : ""
+                        }`}
+                      />
+                    </div>
+                    {expandedSection === section.id && (
+                      <div className={styles.expandedContent}>
+                        <p>{section.content}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
         );
       case "security":

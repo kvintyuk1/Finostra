@@ -3,7 +3,7 @@ import styles from "./phoneNumber.module.css";
 import { LanguageContext } from "../../LanguageContext";
 import { phoneNumberTranslations } from "./phoneNumberTranslations";
 
-function PhoneNumber() {
+function PhoneNumber({ onChange }) {
     const { selectedLanguage } = useContext(LanguageContext);
     const t = phoneNumberTranslations[selectedLanguage];
 
@@ -17,7 +17,7 @@ function PhoneNumber() {
                     <img src="/img/polygon.png" className={styles.poligon} alt="Dropdown"/>
                 </div>
                 <div className={styles.lineVertical}></div>
-                <div className={styles.phoneNumber}>000 000 00 00</div>
+                <input onChange={onChange} className={styles.phoneNumber} placeholder="000 000 000"  />
             </div>
         </div>
     );

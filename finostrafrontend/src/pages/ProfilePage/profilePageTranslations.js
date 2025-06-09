@@ -9,6 +9,7 @@ export const profilePageTranslations = {
     sections: {
       generalInfo: "General Information",
       contactDetails: "Contact Details",
+      paymentsTabs: "Default Card",
     },
     languageToggle: {
       english: "English",
@@ -21,6 +22,8 @@ export const profilePageTranslations = {
       addContact: "Add Contact",
       saveChanges: "Save Changes",
       reportIncorrect: "Report incorrect data",
+      communication: "For automatic crediting of funds and payments",
+      defaultCardName: "Universal Card",
     },
     placeholders: {
       enterPhoneNumber: "Enter phone number",
@@ -38,6 +41,8 @@ export const profilePageTranslations = {
       error: "Error: {{error}}",
       profileNotFound: "Profile not found",
       comingSoon: "Coming soon...",
+      loadingCards: "✨ Making some magic happen...",
+      noCards: "No cards found",
     },
   },
   ua: {
@@ -50,6 +55,7 @@ export const profilePageTranslations = {
     sections: {
       generalInfo: "Загальна інформація",
       contactDetails: "Контактні дані",
+      paymentsTabs: "Картка за замовчуванням",
     },
     languageToggle: {
       english: "Англійська",
@@ -62,6 +68,8 @@ export const profilePageTranslations = {
       addContact: "Додати контакт",
       saveChanges: "Зберегти зміни",
       reportIncorrect: "Повідомити про некоректні дані",
+      communication: "Для автоматичного зарахування коштів і оплати",
+      defaultCardName: "Картка Універсальна",
     },
     placeholders: {
       enterPhoneNumber: "Введіть номер телефону",
@@ -79,6 +87,8 @@ export const profilePageTranslations = {
       error: "Помилка: {{error}}",
       profileNotFound: "Профіль не знайдено",
       comingSoon: "Незабаром...",
+      loadingCards: "✨ Створюємо магію...",
+      noCards: "Картки не знайдено",
     },
   },
 };
