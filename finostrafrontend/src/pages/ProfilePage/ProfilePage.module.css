@@ -767,7 +767,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0;
-  gap: 35px;
+  gap: 25px;
   width: 100%;
   max-width: 1220px;
 }
