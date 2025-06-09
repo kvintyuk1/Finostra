@@ -43,7 +43,7 @@ function CardInfo({
         <div className={styles.number}>CVV {cardNumber}</div>
         <div className={styles.vertical_line}></div>
         <div className={styles.number}>
-          Expiry date: {`${month}/${year.slice(2)}`}
+          Expiry date: {expiryDate || `${month}/${year.slice(2)}`}
         </div>
       </div>
       <div className={`${styles.money} ${styles[marginMoney]}`}>

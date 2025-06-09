@@ -18,14 +18,23 @@ function CardAnotherBank({ isDarkMode }) {
     cardAnotherBankTranslations.UA;
 
   const dispatch = useDispatch();
-
-  /* ---------- local state ---------- */
   const [showModal, setShowModal] = useState(false);
-  const [selectedType, setSelectedType] = useState(""); // "VISA" | "MASTERCARD"
+  const [selectedType, setSelectedType] = useState("");
   const [isCreating, setIsCreating] = useState(false);
-  /* --------------------------------- */
 
-  /* ---- confirm inside the modal ---- */
+  const cardTypes = [
+    {
+      type: "VISA",
+      icon: "/icons/visa.svg",
+      description: "Visa Classic або Gold",
+    },
+    {
+      type: "MASTERCARD",
+      icon: "/icons/mastercard_logo.svg",
+      description: "Mastercard Standard або Gold",
+    },
+  ];
+
   const handleConfirmCreate = async () => {
     if (!selectedType) return;
 
@@ -36,7 +45,6 @@ function CardAnotherBank({ isDarkMode }) {
         createBankCard({ currency: "UAH", cardType: selectedType })
       ).unwrap();
 
-      /* тримаємо спінер рівно 4 с */
       setTimeout(() => {
         setIsCreating(false);
         setShowModal(false);
@@ -49,7 +57,6 @@ function CardAnotherBank({ isDarkMode }) {
     }
   };
 
-  /* ---- модальне JSX ---- */
   const modalJSX = showModal && (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
@@ -57,19 +64,17 @@ function CardAnotherBank({ isDarkMode }) {
 
         {isCreating ? (
           <div className={styles.spinnerBox}>
-            <SpinnerCircular size={100} thickness={140} />
+            <SpinnerCircular size={100} thickness={140} color="#a66cfe" />
             <span>Створення картки…</span>
           </div>
         ) : (
           <>
             <div className={styles.options}>
-              {["VISA", "MASTERCARD"].map((type) => (
+              {cardTypes.map(({ type, icon, description }) => (
                 <label
                   key={type}
                   className={
-                    selectedType === type
-                      ? styles.optionChecked
-                      : styles.option
+                    selectedType === type ? styles.optionChecked : styles.option
                   }
                 >
                   <input
@@ -78,7 +83,17 @@ function CardAnotherBank({ isDarkMode }) {
                     checked={selectedType === type}
                     onChange={() => setSelectedType(type)}
                   />
-                  {type}
+                  <img src={icon} alt={type} className={styles.cardIcon} />
+                  <span
+                    style={{
+                      color: "rgba(255,255,255,0.8)",
+                      fontSize: "13px",
+                      textAlign: "center",
+                      lineHeight: "1.3",
+                    }}
+                  >
+                    {description}
+                  </span>
                 </label>
               ))}
             </div>
@@ -109,9 +124,7 @@ function CardAnotherBank({ isDarkMode }) {
 
   return (
     <div className={isDarkMode ? styles.dark_mode : styles.light_mode}>
-      {/* ---------- портал модалки ---------- */}
       {ReactDOM.createPortal(modalJSX, document.getElementById("modal-root"))}
-      {/* ------------------------------------ */}
 
       <div className={styles.container}>
         <div className={styles.info_star}>

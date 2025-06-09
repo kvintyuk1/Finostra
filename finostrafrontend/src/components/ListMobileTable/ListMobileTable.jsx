@@ -3,15 +3,27 @@ import styles from "./listMobileTable.module.css";
 import { LanguageContext } from "../LanguageContext";
 import { listMobileTableTranslations } from "./listMobileTableTranslations";
 
-const listMobileItems = [
-    { data: "пт.14 лютого", time: "12:33", img: "phone_pink.svg", description: "+380965842362", sum: "-254.00 UAH" },
-    { data: "20.12.2024", time: "11:47", img: "phone_pink.svg", description: "+380965842362", sum: "-254.00 UAH" }
-];
+function formatDateTime(isoDate) {
+    const date = new Date(isoDate);
 
-function ListMobileTable() {
+
+    const year = date.getFullYear().toString();
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = date.getMonth().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    const formattedDate = `${day}/${month}/${year}`;
+    const formattedTime = `${hours}:${minutes}`;
+
+    return { formattedDate, formattedTime };
+}
+
+function ListMobileTable({ mobileTransactions }) {
     const { selectedLanguage } = useContext(LanguageContext);
     const t = listMobileTableTranslations[selectedLanguage];
 
+    let checkingDate = '';
     return (
         <table className={styles.container}>
             <thead>
@@ -24,21 +36,30 @@ function ListMobileTable() {
                 </tr>
             </thead>
             <tbody className={styles.wrapper_body}>
-                {listMobileItems.map(({ data, time, img, description, sum }, index) => (
-                    <tr key={index} className={styles.wrapper_item}>
-                        <td>{data}</td>
-                        <td className={styles.wrap_data_content}>
-                            <span className={styles.wrapper_content}>
-                                <span className={styles.wrap_time}>{time}</span>
-                                <span className={styles.wrap_img_desc}>
-                                    <img src={`/icons/${img}`} alt="" />
-                                    <span className={styles.wrap_description}>{description}</span>
+                {mobileTransactions.map(({ date, receiver, amount, currency }, index) => {
+                    const { formattedDate, formattedTime } = formatDateTime(date);
+
+                    let similar = false;
+                    similar = checkingDate === formattedDate ? true : false;
+
+                    checkingDate = formattedDate;
+
+                    return (
+                        <tr key={index} className={styles.wrapper_item}>
+                            {similar ? (null) : (<td><span className={styles.date}>{formattedDate}</span></td>)}
+                            <td className={styles.wrap_data_content}>
+                                <span className={styles.wrapper_content}>
+                                    <span className={styles.wrap_time}> {formattedTime}</span>
+                                    <span className={styles.wrap_img_desc}>
+                                        <img src="/icons/phone_pink.svg" alt="" />
+                                        <span className={styles.wrap_description}>{receiver}</span>
+                                    </span>
                                 </span>
-                            </span>
-                            <span className={styles.wrap_sum}>{sum}</span>
-                        </td>
-                    </tr>
-                ))}
+                                <span className={styles.wrap_sum}>{amount} {currency}</span>
+                            </td>
+                        </tr>
+                    );
+                })}
             </tbody>
         </table>
     );

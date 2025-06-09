@@ -1,13 +1,22 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import styles from "./cardUniversalOptions.module.css";
 import LineVerticalDotted from "../for card/ LineVerticalDotted/LineVerticalDotted";
 import LimitFilter from "../LimitFilter/LimitFilter";
 import {LanguageContext} from "../LanguageContext";
 import {cardUniversalOptionsTranslations} from "./cardUniversalOptionsTranslations";
+import {useOutletContext} from "react-router-dom";
 
 function CardUniversalOptions() {
     const {selectedLanguage} = useContext(LanguageContext);
     const t = cardUniversalOptionsTranslations[selectedLanguage];
+    const [creditLimit,setCreditLimit,isEditing,setIsEditing] = useOutletContext();
+
+    const handleCreditLimitChange = (newLimit)=>{
+        setCreditLimit(newLimit);
+    };
+    const toggleEditing = ()=>{
+        setIsEditing((prev)=> !prev);
+    };
 
     return (
         <div className={styles.container}>
@@ -47,7 +56,6 @@ function CardUniversalOptions() {
                                 <img src="/icons/copy_number.svg" alt=""/>
                             </div>
                         </div>
-
                     </div>
 
                     <div className={styles.wrap_money_info}>
@@ -69,7 +77,7 @@ function CardUniversalOptions() {
 
             {/* оригінальний зовнішній блок зміни ліміту */}
             <div className={styles.wrapper_changeCreditLimit}>
-                <button className={styles.but_limit}>
+                <button onClick={toggleEditing} className={styles.but_limit}>
                     <span className={styles.title_but_limit}>{t.creditLimitChange}</span>
                 </button>
                 <div className={styles.wrapper_creditLimit}>
@@ -77,7 +85,7 @@ function CardUniversalOptions() {
                         <div className={styles.limit_info}>
                             <div className={styles.wrap_item_info}>
                                 <div>{t.currentCardNumber}</div>
-                                <div>0 UAH</div>
+                                <div>{creditLimit} UAH</div>
                             </div>
                             <div className={styles.wrap_item_info}>
                                 <div>{t.currentDebt}</div>
@@ -85,7 +93,12 @@ function CardUniversalOptions() {
                             </div>
                         </div>
                         <div className={styles.wrapper_filter}>
-                            <LimitFilter hideLabelSuffix={true}/>
+                            <LimitFilter
+                                hideLabelSuffix={true}
+                                value={creditLimit}
+                                onChange={handleCreditLimitChange}
+                                disabled={!isEditing}
+                            />
                         </div>
                     </div>
                     <div className={styles.buttons}>

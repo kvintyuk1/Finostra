@@ -5,7 +5,6 @@
     justify-content: center;
     gap: 30px;
     width: 77.08vw;
-    /* min-height: 387px; */
     border-radius: 2.08vw;
     background-color: #0F110E;
     color: #FFF;
@@ -65,5 +64,4 @@
     justify-content: flex-start; 
     gap: 1.88vw;
     width: 72.92vw;
-    /* height: 141px; */
 }

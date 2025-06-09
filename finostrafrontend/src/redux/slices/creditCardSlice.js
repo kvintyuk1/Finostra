@@ -1,10 +1,19 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../utils/axiosInstance";
+import Cookies from "js-cookie";
+
+
+const URL = "/api/v1"
 
 export const attachCredit = createAsyncThunk('creditCard/attachCredit',
     async (creditData, thunkAPI) => {
         try {
-            const response = await axios.post('/api/v1/creditCard/attachCredit', creditData);
+            const response = await axios.post(`${URL}/creditCard/attachCredit`, creditData, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                responseType: "text"
+            });
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання кредита");
@@ -14,22 +23,30 @@ export const attachCredit = createAsyncThunk('creditCard/attachCredit',
 export const fetchAllContracts = createAsyncThunk('creditCard/fetchAllContracts',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('/api/v1/creditCard/fetchAllContracts');
+            const response = await axios.get(`${URL}/creditCard/fetchAllContracts`);
             return response.data.allContractsBlobLinks;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання контрактів");
         }
     });
-export const carForCredit = createAsyncThunk('creditCard/carForCredit',
+
+export const carForCredit = createAsyncThunk(
+    'creditCard/carForCredit',
     async (creditData, thunkAPI) => {
         try {
-            const response = await axios.post('/api/v1/creditCard/carForCredit', creditData);
-            return response.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання авто в кредит");
-        }
-    });
+            console.log("Відправка даних:", creditData);
+            console.log('Токен в куках:', Cookies.get('token'));
+            const response = await axios.post(
+                `${URL}/creditCard/carForCredit`, creditData,);
 
+            console.log("Відповідь від сервера (лінк):", response.data);
+            return response.data;
+
+        } catch (error) {
+            console.error("Помилка запита:", error.response ? error.response.data : error.message);
+            throw error; }
+    }
+);
 export const creditCardSlice = createSlice({
     name: "creditCard",
     initialState: {
@@ -42,7 +59,8 @@ export const creditCardSlice = createSlice({
         fetchError: null,
 
         carForCreditStatus: 'idle',
-        carForCreditError: null
+        carForCreditError: null,
+        carDetails: []
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -78,8 +96,10 @@ export const creditCardSlice = createSlice({
                 state.carForCreditError = null
             })
             .addCase(carForCredit.fulfilled, (state, action) => {
+                console.log("У fulfilled")
                 state.carForCreditStatus = 'succeeded';
-                state.message = action.payload
+                //.state.message = action.payload
+                state.carDetails = action.payload
             })
             .addCase(carForCredit.rejected, (state, action) => {
                 state.carForCreditStatus = 'failed';

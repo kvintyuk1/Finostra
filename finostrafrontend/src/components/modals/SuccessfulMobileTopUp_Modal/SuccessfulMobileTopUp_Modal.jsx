@@ -26,6 +26,7 @@ function SuccessfulMobileTopUp_Modal({ onClose }) {
                     <ButtonForCard
                         title_button={tModal.finish}
                         sizeButton="size_button168"
+                        onClick={onClose}
                     />
                 </div>
             </div>

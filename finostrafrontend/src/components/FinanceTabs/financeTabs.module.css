@@ -78,8 +78,12 @@
     display: flex;
     width: 23.61vw;
     height: 62px;
+    font-weight: 400;
+    font-size: 16px;
     background-color: #28282C;
+    border: none;
     border-radius: 3.89vw;
+    cursor: pointer;
 }
 .title_button {
     display: flex;
