@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 const URL = "http://localhost:8081/api/v1"
 
 export const attachCredit = createAsyncThunk('creditCard/attachCredit',
@@ -27,16 +28,27 @@ export const fetchAllContracts = createAsyncThunk('creditCard/fetchAllContracts'
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання контрактів");
         }
     });
-export const carForCredit = createAsyncThunk('creditCard/carForCredit',
+
+export const carForCredit = createAsyncThunk(
+    'creditCard/carForCredit',
     async (creditData, thunkAPI) => {
         try {
-            const response = await axios.post(`${URL}/creditCard/carForCredit`, creditData);
+            const response = await axios.post(
+                `${URL}/creditCard/carForCredit`, creditData,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                    },
+                    responseType: 'blob',
+                    withCredentials: true
+                });
             return response.data;
         } catch (error) {
+            console.error("carForCredit API error:", error.response ? error.response.data : error.message);
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання авто в кредит");
         }
-    });
-
+    }
+);
 export const creditCardSlice = createSlice({
     name: "creditCard",
     initialState: {
@@ -49,7 +61,8 @@ export const creditCardSlice = createSlice({
         fetchError: null,
 
         carForCreditStatus: 'idle',
-        carForCreditError: null
+        carForCreditError: null,
+        carDetails: []
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -86,7 +99,8 @@ export const creditCardSlice = createSlice({
             })
             .addCase(carForCredit.fulfilled, (state, action) => {
                 state.carForCreditStatus = 'succeeded';
-                state.message = action.payload
+                //.state.message = action.payload
+                state.carDetails = action.payload
             })
             .addCase(carForCredit.rejected, (state, action) => {
                 state.carForCreditStatus = 'failed';
