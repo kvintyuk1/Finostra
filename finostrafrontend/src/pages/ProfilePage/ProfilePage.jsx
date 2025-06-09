@@ -12,6 +12,10 @@ import translations from "./profilePageTranslations";
 import defaultAvatar from "../../assets/Photo/default-avatar.png";
 import flameCard from "../../assets/Photo/Frame_819.png";
 import arrowIcon from "../../assets/Photo/Vector_icn.png";
+import securityIcon from "../../assets/Photo/Vector_sec.png";
+import devicesIcon from "../../assets/Photo/meteor-icons_devices.png";
+import soundIcon from "../../assets/Photo/fluent_sound-wave-circle-16-regular.png";
+import phoneIcon from "../../assets/Photo/solar_phone-linear.png";
 import { ProfileContext } from "../../components/contexts/ProfileContext";
 import axiosInstance from "../../utils/axiosInstance";
 
@@ -25,49 +29,12 @@ export default function ProfilePage() {
   const [loadingCards, setLoadingCards] = useState(false);
   const [cardsError, setCardsError] = useState(null);
   const [expandedSection, setExpandedSection] = useState(null);
+  const [expandedSecuritySection, setExpandedSecuritySection] = useState(null);
 
   const { profile, loading, error, refreshProfile } =
     useContext(ProfileContext);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
-
-  const communicationSections = [
-    {
-      id: "requests",
-      title: "Заявки",
-      question: "Яка комісія за оплату комунальних послуг?",
-      content:
-        "Комісія за оплату комунальних послуг становить 0% при оплаті через мобільний додаток або веб-версію Finostra. При оплаті через термінали самообслуговування комісія складає 1% від суми платежу.",
-    },
-    {
-      id: "calls",
-      title: "Дзвінки",
-      question: "Історія дзвінків від банку",
-      content:
-        "Тут ви можете переглянути всі дзвінки від банку за останні 6 місяців. Кожен запис містить дату, час та тему звернення. Ми зберігаємо цю інформацію для покращення якості обслуговування та вашої безпеки.",
-    },
-    {
-      id: "notifications",
-      title: "Канал інформування",
-      question: "Інформування про операції",
-      content:
-        "Налаштуйте зручний для вас спосіб отримання повідомлень про операції за рахунком: SMS, Push-повідомлення або Email. Ви можете встановити ліміт суми операції, про яку хочете отримувати сповіщення.",
-    },
-    {
-      id: "feedback",
-      title: "Залишити відгук",
-      question: "Розкажіть, що можна покращити в роботі банку",
-      content:
-        "Ваша думка важлива для нас! Поділіться своїми враженнями про роботу банку, обслуговування чи пропозиціями щодо покращення сервісів. Ми уважно розглядаємо кожен відгук та враховуємо їх при розробці нових продуктів та послуг.",
-    },
-    {
-      id: "fraud",
-      title: "Повідомити про шахрайство",
-      question: "Якщо з вами зв'язалися шахраї",
-      content:
-        "Якщо ви підозрюєте шахрайську активність або отримали підозрілий дзвінок/повідомлення, негайно повідомте нам. Наша служба безпеки працює 24/7 для захисту ваших коштів. Ми ніколи не запитуємо паролі, CVV-код або повний номер картки.",
-    },
-  ];
 
   useEffect(() => {
     if (!profile) refreshProfile();
@@ -424,33 +391,39 @@ export default function ProfilePage() {
           <section className={styles.section}>
             <div className={styles.communicationsContainer}>
               <div className={styles.communicationsContent}>
-                {communicationSections.map((section) => (
-                  <div key={section.id} className={styles.communicationSection}>
-                    <h3 className={styles.sectionTitle}>{section.title}</h3>
+                {Object.keys(t.communications).map((sectionKey) => {
+                  const section = t.communications[sectionKey];
+                  return (
                     <div
-                      className={`${styles.sectionContent} ${
-                        expandedSection === section.id ? styles.expanded : ""
-                      }`}
-                      onClick={() => handleSectionClick(section.id)}
+                      key={sectionKey}
+                      className={styles.communicationSection}
                     >
-                      <span className={styles.sectionText}>
-                        {section.question}
-                      </span>
-                      <img
-                        src={arrowIcon}
-                        alt="arrow"
-                        className={`${styles.arrowIcon} ${
-                          expandedSection === section.id ? styles.rotated : ""
+                      <h3 className={styles.sectionTitle}>{section.title}</h3>
+                      <div
+                        className={`${styles.sectionContent} ${
+                          expandedSection === sectionKey ? styles.expanded : ""
                         }`}
-                      />
-                    </div>
-                    {expandedSection === section.id && (
-                      <div className={styles.expandedContent}>
-                        <p>{section.content}</p>
+                        onClick={() => handleSectionClick(sectionKey)}
+                      >
+                        <span className={styles.sectionText}>
+                          {section.question}
+                        </span>
+                        <img
+                          src={arrowIcon}
+                          alt="arrow"
+                          className={`${styles.arrowIcon} ${
+                            expandedSection === sectionKey ? styles.rotated : ""
+                          }`}
+                        />
                       </div>
-                    )}
-                  </div>
-                ))}
+                      {expandedSection === sectionKey && (
+                        <div className={styles.expandedContent}>
+                          <p>{section.content}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -458,8 +431,135 @@ export default function ProfilePage() {
       case "security":
         return (
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t.tabs.security}</h2>
-            <div className={styles.comingSoon}>{t.status.comingSoon}</div>
+            <div className={styles.securityContainer}>
+              <div
+                className={styles.securityRow}
+                onClick={() =>
+                  setExpandedSecuritySection(
+                    expandedSecuritySection === "devices" ? null : "devices"
+                  )
+                }
+              >
+                <div className={styles.securityItemLeft}>
+                  <img
+                    src={devicesIcon}
+                    alt="devices"
+                    className={styles.securityIcon}
+                  />
+                  <span className={styles.securityText}>
+                    {t.security.activeDevices}
+                  </span>
+                </div>
+                <img
+                  src={arrowIcon}
+                  alt="arrow"
+                  className={`${styles.arrowIcon} ${
+                    expandedSecuritySection === "devices" ? styles.rotated : ""
+                  }`}
+                />
+              </div>
+              {expandedSecuritySection === "devices" && (
+                <div className={styles.expandedContent}>
+                  <p>{t.status.comingSoon}</p>
+                </div>
+              )}
+
+              <div
+                className={styles.securityRow}
+                onClick={() =>
+                  setExpandedSecuritySection(
+                    expandedSecuritySection === "login" ? null : "login"
+                  )
+                }
+              >
+                <div className={styles.securityItemLeft}>
+                  <img
+                    src={phoneIcon}
+                    alt="phone"
+                    className={styles.securityIcon}
+                  />
+                  <span className={styles.securityText}>
+                    {t.security.changeLogin}
+                  </span>
+                </div>
+                <img
+                  src={arrowIcon}
+                  alt="arrow"
+                  className={`${styles.arrowIcon} ${
+                    expandedSecuritySection === "login" ? styles.rotated : ""
+                  }`}
+                />
+              </div>
+              {expandedSecuritySection === "login" && (
+                <div className={styles.expandedContent}>
+                  <p>{t.status.comingSoon}</p>
+                </div>
+              )}
+
+              <div
+                className={styles.securityRow}
+                onClick={() =>
+                  setExpandedSecuritySection(
+                    expandedSecuritySection === "auth" ? null : "auth"
+                  )
+                }
+              >
+                <div className={styles.securityItemLeft}>
+                  <img
+                    src={securityIcon}
+                    alt="security"
+                    className={styles.securityIcon}
+                  />
+                  <span className={styles.securityText}>
+                    {t.security.authSettings}
+                  </span>
+                </div>
+                <img
+                  src={arrowIcon}
+                  alt="arrow"
+                  className={`${styles.arrowIcon} ${
+                    expandedSecuritySection === "auth" ? styles.rotated : ""
+                  }`}
+                />
+              </div>
+              {expandedSecuritySection === "auth" && (
+                <div className={styles.expandedContent}>
+                  <p>{t.status.comingSoon}</p>
+                </div>
+              )}
+
+              <div
+                className={styles.securityRow}
+                onClick={() =>
+                  setExpandedSecuritySection(
+                    expandedSecuritySection === "voice" ? null : "voice"
+                  )
+                }
+              >
+                <div className={styles.securityItemLeft}>
+                  <img
+                    src={soundIcon}
+                    alt="sound"
+                    className={styles.securityIcon}
+                  />
+                  <span className={styles.securityText}>
+                    {t.security.voiceBiometrics}
+                  </span>
+                </div>
+                <img
+                  src={arrowIcon}
+                  alt="arrow"
+                  className={`${styles.arrowIcon} ${
+                    expandedSecuritySection === "voice" ? styles.rotated : ""
+                  }`}
+                />
+              </div>
+              {expandedSecuritySection === "voice" && (
+                <div className={styles.expandedContent}>
+                  <p>{t.status.comingSoon}</p>
+                </div>
+              )}
+            </div>
           </section>
         );
       default:
