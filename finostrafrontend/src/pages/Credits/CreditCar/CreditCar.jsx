@@ -26,8 +26,8 @@ function CreditCar() {
     const [activeTerm, setActiveTerm] = useState(60);
     const [monthlyPayment, setMonthlyPayment] = useState(0);
 
-    const [userRate, setUserRate] = useState("A"); // или получи с backend или props
-    const [carType, setCarType] = useState("used"); // зависит от кнопки (З пробігом/Нове)
+    const [userRate, setUserRate] = useState(0); // или получи с backend или props
+    const [carType, setCarType] = useState("IN_USE"); // зависит от кнопки (З пробігом/Нове)
     const [years, setYears] = useState(5); // = activeTerm / 12, если это в месяцах
     const [monthLoan, setMonthLoan] = useState(activeTerm); // тоже на основе activeTerm
     const [onceCommission, setOnceCommission] = useState(0);
@@ -66,16 +66,16 @@ function CreditCar() {
         setIsEditing((prev) => !prev);
     };
     const handleSubmitCarCredit = async () => {
-        dispatch(carForCredit({
-            carPrice: 10000,
-            userRate: 5,
-            carType: 'sedan',
-            years: 3,
-            monthLoan: 36,
-            onceCommission: 100,
-            creditPercentage: 7,
-            monthlyPayment: 300
-        }));
+        // dispatch(carForCredit({
+        //     carPrice: 10000,
+        //     userRate: 5,
+        //     carType: 'sedan',
+        //     years: 3,
+        //     monthLoan: 36,
+        //     onceCommission: 100,
+        //     creditPercentage: 7,
+        //     monthlyPayment: 300
+        // }));
         console.log('Submitting car credit with data:', {
             carPrice,
             userRate,
@@ -102,8 +102,8 @@ function CreditCar() {
 
         if (carForCredit.fulfilled.match(resultAction)) {
             const blob = resultAction.payload;
-            const url = window.URL.createObjectURL(blob);
-            window.open(url, '_blank');
+            // const url = window.URL.createObjectURL(blob);
+            window.open(blob, '_blank');
 
         } else {
             // Можно вывести ошибку из rejectWithValue, если она есть
@@ -175,7 +175,7 @@ function CreditCar() {
                                 onClick={() => {
                                     setActive("but_one");
                                     toggleEditing();
-                                    setCarType("used");
+                                    setCarType("IN_USE");
                                 }}
                             >З пробігом
                             </button>
@@ -184,7 +184,7 @@ function CreditCar() {
                                 onClick={() => {
                                     setActive("but_two");
                                     toggleEditing();
-                                    setCarType("new");
+                                    setCarType("NEW");
                                 }}
                             >Нове
                             </button>
