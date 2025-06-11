@@ -1,5 +1,5 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "../../utils/axiosInstance";
 import Cookies from "js-cookie";
 
 
@@ -9,10 +9,7 @@ export const attachCredit = createAsyncThunk('creditCard/attachCredit',
     async (creditData, thunkAPI) => {
         try {
             const response = await axios.post(`${URL}/creditCard/attachCredit`, creditData, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                responseType: "text"
+                withCredentials: true
             });
             return response.data;
         } catch (error) {
@@ -23,7 +20,9 @@ export const attachCredit = createAsyncThunk('creditCard/attachCredit',
 export const fetchAllContracts = createAsyncThunk('creditCard/fetchAllContracts',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get(`${URL}/creditCard/fetchAllContracts`);
+            const response = await axios.get(`${URL}/creditCard/fetchAllContracts`, {
+                withCredentials: true
+            });
             return response.data.allContractsBlobLinks;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання контрактів");
@@ -35,28 +34,17 @@ export const carForCredit = createAsyncThunk(
     async (creditData, thunkAPI) => {
         try {
             console.log("Відправка данних:", creditData);
-            const token = Cookies.get('access_token');
-            console.log("Токен в куках:", token);
+            console.log("Токен в куках:", Cookies.get('token'));
 
             const response = await axios.post(
-                `${URL}/creditCard/carForCredit`,
-                creditData,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": token ? `Bearer ${token}` : undefined
-                    },
-                    responseType: "text",
-                    withCredentials: true // если на сервере включён CORS с credentials
-                }
+                `${URL}/creditCard/carForCredit`, creditData,
+                {withCredentials: true}
             );
-
             console.log("Відповідь від сервера (лінк):", response.data);
             return response.data;
-
         } catch (error) {
             console.error("Помилка запита:", error.response ? error.response.data : error.message);
-            return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання PDF");
+            throw error;
         }
     }
 );

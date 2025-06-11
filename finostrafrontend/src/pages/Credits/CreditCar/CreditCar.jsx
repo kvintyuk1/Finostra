@@ -26,8 +26,8 @@ function CreditCar() {
     const [activeTerm, setActiveTerm] = useState(60);
     const [monthlyPayment, setMonthlyPayment] = useState(0);
 
-    const [userRate, setUserRate] = useState("A"); // или получи с backend или props
-    const [carType, setCarType] = useState("used"); // зависит от кнопки (З пробігом/Нове)
+    const [userRate, setUserRate] = useState(0); // или получи с backend или props
+    const [carType, setCarType] = useState("IN_USE"); // зависит от кнопки (З пробігом/Нове)
     const [years, setYears] = useState(5); // = activeTerm / 12, если это в месяцах
     const [monthLoan, setMonthLoan] = useState(activeTerm); // тоже на основе activeTerm
     const [onceCommission, setOnceCommission] = useState(0);
@@ -67,40 +67,39 @@ function CreditCar() {
     };
     const handleSubmitCarCredit = async () => {
         console.log('Submitting car credit with data:', {
-            carPrice: Number(carPrice),
-            userRate: Number(userRate) || 0,
-            carType: carType, // строка: "NEW" или "USED"
-            years: Number(years),
-            monthLoan: Number(monthLoan),
-            onceCommission: Number(onceCommission),
-            creditPercentage: Number(creditPercentage),
-            monthlyPayment: Number(Number(monthlyPayment).toFixed(2)),
+            carPrice,
+            userRate,
+            carType,
+            years,
+            monthLoan,
+            onceCommission,
+            creditPercentage,
+            monthlyPayment: Number(monthlyPayment).toFixed(2),
         });
         const creditData = {
-            carPrice: Number(carPrice),
-            userRate: Number(userRate) || 0,
-            carType: carType, // строка: "NEW" или "USED"
-            years: Number(years),
-            monthLoan: Number(monthLoan),
-            onceCommission: Number(onceCommission),
-            creditPercentage: Number(creditPercentage),
-            monthlyPayment: Number(Number(monthlyPayment).toFixed(2)),
+            carPrice,
+            userRate,
+            carType,
+            years,
+            monthLoan,
+            onceCommission,
+            creditPercentage,
+            monthlyPayment: Number(monthlyPayment).toFixed(2),
         };
 
         const resultAction = await dispatch(carForCredit(creditData));
         console.log('Result action:', resultAction);
 
-
         if (carForCredit.fulfilled.match(resultAction)) {
-            const fileUrl = resultAction.payload; // строка с URL файла
-            window.open(fileUrl, '_blank');       // открываем ссылку на файл
+            const blob = resultAction.payload;
+            // const url = window.URL.createObjectURL(blob);
+            window.open(blob, '_blank');
         } else {
-            // обработка ошибки
             console.error('Error payload:', resultAction.payload);
-            alert(resultAction.payload || "Помилка при відправці заявки на кредит");
+            const errorMsg = resultAction.payload || "Помилка при відправці заявки на кредит";
+            alert(errorMsg);
         }
     };
-
 
     return (
         <div className={styles.container}>
@@ -163,7 +162,7 @@ function CreditCar() {
                                 onClick={() => {
                                     setActive("but_one");
                                     toggleEditing();
-                                    setCarType("used");
+                                    setCarType("IN_USE");
                                 }}
                             >З пробігом
                             </button>
@@ -172,7 +171,7 @@ function CreditCar() {
                                 onClick={() => {
                                     setActive("but_two");
                                     toggleEditing();
-                                    setCarType("new");
+                                    setCarType("NEW");
                                 }}
                             >Нове
                             </button>
