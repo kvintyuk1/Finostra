@@ -16,15 +16,19 @@ export default function MyConversions({
 
   const [activeButton, setActiveButton] = useState("sent");
   const [showArchiv, setShowArchiv] = useState(false);
-
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const items = envelops?.dtos || [];
   const displayed = items.filter((env) =>
     showArchiv ? !env.enabled : env.enabled
   );
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isExpanded ? styles.expanded : ""}`}>
       <div className={styles.header}>
         <div className={styles.name}>Мої конверти</div>
         <SentReceivedSwitch
@@ -36,58 +40,86 @@ export default function MyConversions({
         />
       </div>
 
-      <div className={styles.wrap_content}>
+      <div
+        className={`${styles.wrap_content} ${
+          isExpanded ? styles.expanded : ""
+        }`}
+      >
         {status === "loading" && <p>Завантаження конвертів...</p>}
         {error && <p className={styles.errorText}>{error}</p>}
 
         {status === "succeeded" &&
           (displayed.length ? (
-            <div className={styles.grid}>
-              {displayed.map((env, idx) => (
-                <div key={env.id ?? idx} className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardName}>{env.name}</h3>
-                    <p className={styles.cardDesc}>{env.description}</p>
-                  </div>
+            <>
+              <div
+                className={`${styles.grid} ${
+                  isExpanded ? styles.expanded : ""
+                }`}
+              >
+                {displayed.map((env, idx) => (
+                  <div key={env.id ?? idx} className={styles.card}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardName}>{env.name}</h3>
+                      <p className={styles.cardDesc}>{env.description}</p>
+                    </div>
 
-                  <div className={styles.progressBox}>
-                    <span>
-                      {env.actualAmount} / {env.capacityAmount}
-                    </span>
-                    <div className={styles.progressTrack}>
-                      <div
-                        className={styles.progressFill}
-                        style={{
-                          width: `${
-                            env.capacity
-                              ? Math.min(
-                                  100,
-                                  (env.actualAmount / env.capacity) * 100
-                                )
-                              : 0
-                          }%`,
-                        }}
-                      />
+                    <div className={styles.progressBox}>
+                      <span>
+                        {env.actualAmount} / {env.capacityAmount}
+                      </span>
+                      <div className={styles.progressTrack}>
+                        <div
+                          className={styles.progressFill}
+                          style={{
+                            width: `${
+                              env.capacity
+                                ? Math.min(
+                                    100,
+                                    (env.actualAmount / env.capacity) * 100
+                                  )
+                                : 0
+                            }%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.cardFooter}>
+                      <button
+                        className={styles.btnTopUp}
+                        onClick={() => onTopUp(env)}
+                      >
+                        Поповнити
+                      </button>
+                      <button
+                        className={styles.btnExtract}
+                        onClick={() => onExtract(env)}
+                      >
+                        Вилучити
+                      </button>
                     </div>
                   </div>
-
-                  <div className={styles.cardFooter}>
-                    <button
-                      className={styles.btnTopUp}
-                      onClick={() => onTopUp(env)}
-                    >
-                      Поповнити
-                    </button>
-                    <button
-                      className={styles.btnExtract}
-                      onClick={() => onExtract(env)}
-                    >
-                      Вилучити
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+              {displayed.length > 6 && (
+                <button
+                  className={`${styles.expandButton} ${
+                    isExpanded ? styles.expanded : ""
+                  }`}
+                  onClick={toggleExpand}
+                >
+                  {isExpanded ? "Згорнути" : "Показати всі"}
+                  <svg
+                    className={styles.expandIcon}
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M7 10l5 5 5-5" />
+                  </svg>
+                </button>
+              )}
+            </>
           ) : (
             <div className={styles.wrap_describe}>
               <div className={styles.title}>
@@ -101,7 +133,7 @@ export default function MyConversions({
                 {showArchiv
                   ? "Архівуйте завершені конверти, щоб вони показувалися тут."
                   : activeButton === "sent"
-                  ? "Натисніть ‘Створити конверт’, щоб почати накопичення або розподіл коштів."
+                  ? "Натисніть 'Створити конверт', щоб почати накопичення або розподіл коштів."
                   : "Прийміть запрошення, щоб приєднатися до збору коштів."}
               </div>
             </div>
