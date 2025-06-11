@@ -6,7 +6,7 @@ import PaymentLimitInstallments from "../../../components/PaymentLimitInstallmen
 import LimitFilter from "../../../components/LimitFilter/LimitFilter";
 import {useOutletContext} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {carForCredit} from "../../../redux/slices/creditCardSlice";
+import {carForCredit, attachCredit} from "../../../redux/slices/creditCardSlice";
 
 const questionsData5 = [
     {question: "Що потрібно для оформлення послуги «Авто в кредит»?", img: "arrow_down16"},
@@ -26,8 +26,8 @@ function CreditCar() {
     const [activeTerm, setActiveTerm] = useState(60);
     const [monthlyPayment, setMonthlyPayment] = useState(0);
 
-    const [userRate, setUserRate] = useState("A"); // или получи с backend или props
-    const [carType, setCarType] = useState("used"); // зависит от кнопки (З пробігом/Нове)
+    const [userRate, setUserRate] = useState(0); // или получи с backend или props
+    const [carType, setCarType] = useState("IN_USE"); // зависит от кнопки (З пробігом/Нове)
     const [years, setYears] = useState(5); // = activeTerm / 12, если это в месяцах
     const [monthLoan, setMonthLoan] = useState(activeTerm); // тоже на основе activeTerm
     const [onceCommission, setOnceCommission] = useState(0);
@@ -66,7 +66,27 @@ function CreditCar() {
         setIsEditing((prev) => !prev);
     };
     const handleSubmitCarCredit = async () => {
-        const creditData ={
+        // dispatch(carForCredit({
+        //     carPrice: 10000,
+        //     userRate: 5,
+        //     carType: 'sedan',
+        //     years: 3,
+        //     monthLoan: 36,
+        //     onceCommission: 100,
+        //     creditPercentage: 7,
+        //     monthlyPayment: 300
+        // }));
+        console.log('Submitting car credit with data:', {
+            carPrice,
+            userRate,
+            carType,
+            years,
+            monthLoan,
+            onceCommission,
+            creditPercentage,
+            monthlyPayment: Number(monthlyPayment.toFixed(2))
+        });
+        const creditData = {
             carPrice,
             userRate,
             carType,
@@ -76,14 +96,23 @@ function CreditCar() {
             creditPercentage,
             monthlyPayment: Number(monthlyPayment.toFixed(2))
         };
-         const resultAction = await dispatch(carForCredit(creditData));
-            if(carForCredit.fulfilled.match(resultAction)){
-                const blobLink= resultAction.payload;
-                window.open(blobLink, "_blank");
-            }else{
-                alert("Помилка при відправці заявки на кредит");
-            }
+
+        const resultAction = await dispatch(carForCredit(creditData));
+        console.log('Result action:', resultAction);
+
+        if (carForCredit.fulfilled.match(resultAction)) {
+            const blob = resultAction.payload;
+            // const url = window.URL.createObjectURL(blob);
+            window.open(blob, '_blank');
+
+        } else {
+            // Можно вывести ошибку из rejectWithValue, если она есть
+            console.error('Error payload:', resultAction.payload);
+            const errorMsg = resultAction.payload || "Помилка при відправці заявки на кредит";
+            alert(errorMsg);
+        }
     };
+
 
     return (
         <div className={styles.container}>
@@ -146,7 +175,7 @@ function CreditCar() {
                                 onClick={() => {
                                     setActive("but_one");
                                     toggleEditing();
-                                    setCarType("used");
+                                    setCarType("IN_USE");
                                 }}
                             >З пробігом
                             </button>
@@ -155,7 +184,7 @@ function CreditCar() {
                                 onClick={() => {
                                     setActive("but_two");
                                     toggleEditing();
-                                    setCarType("new");
+                                    setCarType("NEW");
                                 }}
                             >Нове
                             </button>
