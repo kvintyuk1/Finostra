@@ -6,7 +6,7 @@ import PaymentLimitInstallments from "../../../components/PaymentLimitInstallmen
 import LimitFilter from "../../../components/LimitFilter/LimitFilter";
 import {useOutletContext} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {carForCredit, attachCredit} from "../../../redux/slices/creditCardSlice";
+import {carForCredit} from "../../../redux/slices/creditCardSlice";
 
 const questionsData5 = [
     {question: "Що потрібно для оформлення послуги «Авто в кредит»?", img: "arrow_down16"},
@@ -66,50 +66,38 @@ function CreditCar() {
         setIsEditing((prev) => !prev);
     };
     const handleSubmitCarCredit = async () => {
-        dispatch(carForCredit({
-            carPrice: 10000,
-            userRate: 5,
-            carType: 'sedan',
-            years: 3,
-            monthLoan: 36,
-            onceCommission: 100,
-            creditPercentage: 7,
-            monthlyPayment: 300
-        }));
         console.log('Submitting car credit with data:', {
-            carPrice,
-            userRate,
-            carType,
-            years,
-            monthLoan,
-            onceCommission,
-            creditPercentage,
-            monthlyPayment: Number(monthlyPayment.toFixed(2))
+            carPrice: Number(carPrice),
+            userRate: Number(userRate) || 0,
+            carType: carType, // строка: "NEW" или "USED"
+            years: Number(years),
+            monthLoan: Number(monthLoan),
+            onceCommission: Number(onceCommission),
+            creditPercentage: Number(creditPercentage),
+            monthlyPayment: Number(Number(monthlyPayment).toFixed(2)),
         });
         const creditData = {
-            carPrice,
-            userRate,
-            carType,
-            years,
-            monthLoan,
-            onceCommission,
-            creditPercentage,
-            monthlyPayment: Number(monthlyPayment.toFixed(2))
+            carPrice: Number(carPrice),
+            userRate: Number(userRate) || 0,
+            carType: carType, // строка: "NEW" или "USED"
+            years: Number(years),
+            monthLoan: Number(monthLoan),
+            onceCommission: Number(onceCommission),
+            creditPercentage: Number(creditPercentage),
+            monthlyPayment: Number(Number(monthlyPayment).toFixed(2)),
         };
 
         const resultAction = await dispatch(carForCredit(creditData));
         console.log('Result action:', resultAction);
 
-        if (carForCredit.fulfilled.match(resultAction)) {
-            const blob = resultAction.payload;
-            const url = window.URL.createObjectURL(blob);
-            window.open(url, '_blank');
 
+        if (carForCredit.fulfilled.match(resultAction)) {
+            const fileUrl = resultAction.payload; // строка с URL файла
+            window.open(fileUrl, '_blank');       // открываем ссылку на файл
         } else {
-            // Можно вывести ошибку из rejectWithValue, если она есть
+            // обработка ошибки
             console.error('Error payload:', resultAction.payload);
-            const errorMsg = resultAction.payload || "Помилка при відправці заявки на кредит";
-            alert(errorMsg);
+            alert(resultAction.payload || "Помилка при відправці заявки на кредит");
         }
     };
 

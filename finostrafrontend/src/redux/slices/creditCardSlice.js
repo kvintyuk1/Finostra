@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "../../utils/axiosInstance";
+import axios from "axios";
 import Cookies from "js-cookie";
 
 
-const URL = "/api/v1"
+const URL = "http://localhost:8081/api/v1"
 
 export const attachCredit = createAsyncThunk('creditCard/attachCredit',
     async (creditData, thunkAPI) => {
@@ -34,17 +34,30 @@ export const carForCredit = createAsyncThunk(
     'creditCard/carForCredit',
     async (creditData, thunkAPI) => {
         try {
-            console.log("Відправка даних:", creditData);
-            console.log('Токен в куках:', Cookies.get('token'));
+            console.log("Відправка данних:", creditData);
+            const token = Cookies.get('access_token');
+            console.log("Токен в куках:", token);
+
             const response = await axios.post(
-                `${URL}/creditCard/carForCredit`, creditData,);
+                `${URL}/creditCard/carForCredit`,
+                creditData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": token ? `Bearer ${token}` : undefined
+                    },
+                    responseType: "text",
+                    withCredentials: true // если на сервере включён CORS с credentials
+                }
+            );
 
             console.log("Відповідь від сервера (лінк):", response.data);
             return response.data;
 
         } catch (error) {
             console.error("Помилка запита:", error.response ? error.response.data : error.message);
-            throw error; }
+            return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання PDF");
+        }
     }
 );
 export const creditCardSlice = createSlice({
