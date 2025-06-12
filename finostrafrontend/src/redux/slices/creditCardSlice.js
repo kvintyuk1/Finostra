@@ -23,7 +23,7 @@ export const fetchAllContracts = createAsyncThunk('creditCard/fetchAllContracts'
             const response = await axios.get(`${URL}/creditCard/fetchAllContracts`, {
                 withCredentials: true
             });
-            return response.data.allContractsBlobLinks;
+            return response.data.contracts;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Помилка отримання контрактів");
         }
