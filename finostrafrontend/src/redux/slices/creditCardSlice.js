@@ -3,7 +3,7 @@ import axios from "../../utils/axiosInstance";
 import Cookies from "js-cookie";
 
 
-const URL = "http://localhost:8081/api/v1"
+const URL = "/api/v1"
 
 export const attachCredit = createAsyncThunk('creditCard/attachCredit',
     async (creditData, thunkAPI) => {

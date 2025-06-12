@@ -74,7 +74,7 @@ function CreditCar() {
             monthLoan,
             onceCommission,
             creditPercentage,
-            monthlyPayment: Number(monthlyPayment).toFixed(2),
+            monthlyPayment: Number(monthlyPayment.toFixed(2))
         });
         const creditData = {
             carPrice,
@@ -84,7 +84,7 @@ function CreditCar() {
             monthLoan,
             onceCommission,
             creditPercentage,
-            monthlyPayment: Number(monthlyPayment).toFixed(2),
+            monthlyPayment: Number(monthlyPayment.toFixed(2))
         };
 
         const resultAction = await dispatch(carForCredit(creditData));
@@ -94,12 +94,15 @@ function CreditCar() {
             const blob = resultAction.payload;
             // const url = window.URL.createObjectURL(blob);
             window.open(blob, '_blank');
+
         } else {
             console.error('Error payload:', resultAction.payload);
             const errorMsg = resultAction.payload || "Помилка при відправці заявки на кредит";
             alert(errorMsg);
         }
     };
+
+
 
     return (
         <div className={styles.container}>
