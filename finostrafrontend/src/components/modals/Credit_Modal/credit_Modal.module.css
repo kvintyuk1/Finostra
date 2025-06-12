@@ -1,77 +1,115 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 16.5vw;
-    width: 82%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 16.5vw;
+  width: 82%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
 }
 .modal {
-    display: flex;
-    justify-content: center;
-    width: 23.96vw;
-    height: 1707px;
-    background-color: #28282C;
-    position: relative;
-    left: 0;
-    top: 98px;
+  display: flex;
+  justify-content: center;
+  width: 21.6vw;
+  height: 1707px;
+  background-color: #28282c;
+  position: relative;
+  left: 0;
+  top: 98px;
+  animation: slideIn 0.4s ease-out;
 }
 .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #FFF;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.closeButton:hover {
+  transform: scale(1.1);
+  color: #ff4444;
 }
 
 .modal_content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 18.4vw;
-    height: 678px;
-    position: relative;
-    top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 18.4vw;
+  height: 678px;
+  position: relative;
+  top: 40px;
 }
 .wrapper_item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 18.4vw;
-    height: 54px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 18.4vw;
+  height: 54px;
+  transition: all 0.3s ease;
 }
 .wrapper_item img {
-    margin-left: 1.04vw;
+  margin-left: 1.04vw;
+  transition: transform 0.3s ease;
 }
 .wrapper_item:hover,
 .wrapper_item:active {
-    display: flex;
-    background-color: #0F110E;
-    border-radius: 1.04vw;
-    cursor: pointer;
+  display: flex;
+  background-color: #0f110e;
+  border-radius: 1.04vw;
+  cursor: pointer;
+  transform: translateX(5px);
+}
+.wrapper_item:hover img {
+  transform: scale(1.1);
 }
 .item {
-    display: flex;
-    align-items: center;
-    gap: 1.04vw;
+  display: flex;
+  align-items: center;
+  gap: 1.04vw;
+  transition: transform 0.3s ease;
 }
 .link {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
 }
 .title {
-    display: flex;
-    font-family: 'adeneue PRO Cyr', sans-serif;
-    font-weight: 400;
-    font-size: 1em;
-    color: #FFF;
-    letter-spacing: 1px;
+  display: flex;
+  font-family: "adeneue PRO Cyr", sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  color: #fff;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+.wrapper_item:hover .title {
+  color: #a66cfe;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
