@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import styles from "./listTotalAmount.module.css";
 import Period from "../Period/Period";
 import Search from "../Search/Search";
@@ -11,15 +11,37 @@ function ListTotalAmount({ transactions }) {
     const { selectedLanguage } = useContext(LanguageContext);
     const t = listTotalAmountTranslations[selectedLanguage];
 
+    const [period, setPeriod] = useState("");
+    const [search, setSearch] = useState("");
+
+    const filteredTransactions = useMemo(() => {
+            return transactions.filter((tx) => {
+                const matchesSearch = search
+                    ? tx.receiver?.includes(search) || tx.amount?.toString().toLowerCase().includes(search.toLowerCase())
+                    : true;
+    
+                const date = new Date(tx.date);
+    
+                const formattedDate 
+                = `${date.getDate().toString().padStart(2, '0')}.${date.getMonth().toString().padStart(2, '0')}.${date.getFullYear().toString()}`;
+    
+                const matchesPeriod = period
+                    ? formattedDate?.startsWith(period)
+                    : true;
+    
+                return matchesSearch && matchesPeriod;
+            });
+        }, [transactions, search, period]);
+
     return (
         <div className={styles.container}>
             <div className={styles.wrapper_listContainer}>
                 <div className={styles.wrapper_list}>
                     <div className={styles.container_period_search}>
-                        <Period/>
-                        <Search/>
+                        <Period  onChange={setPeriod}/>
+                        <Search onChange={(e) => setSearch(e.target.value)} />
                     </div>
-                    <ListTable transactions={transactions}/>
+                    <ListTable transactions={filteredTransactions} />
                 </div>
                 <ButtonForCard
                     title_button={t.loadMore}
