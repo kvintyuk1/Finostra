@@ -20,7 +20,7 @@ function CreditTerms({
                          prepaymentPercent,
                          widthWrapRate = "widthRate124",
                          widthWrapRateTermLine = "widthWrapRateTermLine330",
-                         widthContainerCreditTerms = "widthContainerCreditTerms375"
+                         widthContainerCreditTerms = "widthContainerCreditTerms345"
                      }) {
     const {selectedLanguage} = useContext(LanguageContext);
     const tCredit = creditTermsTranslations[selectedLanguage];

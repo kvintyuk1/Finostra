@@ -50,7 +50,7 @@ function InfoHouseCredit({text_but_one,text_but_two,widthContainer,activeButton,
                             widthWrapRate="widthRate95"
                             widthWrapRateTermLine="widthWrapRateTermLine250"
                             widthContainerCreditTerms="widthContainerCreditTerms345"
-                            hideWrapperRateLine={false}
+                            hideWrapperRateLine={true}
                             rate="Ставка"
                             ratePercent="3%"
                             prepayment="Аванс"

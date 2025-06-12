@@ -142,13 +142,13 @@ export default function MyConversions({
 
       <div className={styles.wrap_buttons}>
         <ButtonForCard
-          img="/icons/add_konvert.svg"
+          img="add_konvert"
           title_button="Створити конверт"
           sizeButton="size_button200"
           onClick={() => setShowKonvert(false)}
         />
         <ButtonForCard
-          img="/icons/download16.svg"
+          img="download16"
           title_button="Архів"
           sizeButton="size_button103"
           onClick={() => setShowArchiv((prev) => !prev)}
