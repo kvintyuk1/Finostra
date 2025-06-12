@@ -121,7 +121,7 @@ function Sidebar() {
                                         <img src={`/icons/${icon}`} alt={label}/>
                                         <div className={styles.iconWrapper}>
                                             <div>{label}</div>
-                                            {hasArrow && <img src="/icons/dir_right.svg" alt="->"/>}
+                                            {hasArrow && <img className={styles.arrow} src="/icons/dir_right.svg" alt="->"/>}
                                         </div>
                                     </div>
                                 </button>
