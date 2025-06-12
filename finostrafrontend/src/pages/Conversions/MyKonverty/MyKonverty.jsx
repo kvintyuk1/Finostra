@@ -33,32 +33,34 @@ function OperationModal({ type, env, onClose }) {
     : 0;
 
   const submit = async (e) => {
-  e.preventDefault();
-  const val = parseFloat(amount);
-  if (!cardNumber) return setError("Виберіть картку");
-  if (isNaN(val) || val <= 0) return setError("Невірна сума");
-  if (type === "topUp" && val > maxTopUp) return setError(`Максимум ${maxTopUp}`);
-  if (type === "extract" && val > env.actualAmount) return setError("Недостатньо коштів");
+    e.preventDefault();
+    const val = parseFloat(amount);
+    if (!cardNumber) return setError("Виберіть картку");
+    if (isNaN(val) || val <= 0) return setError("Невірна сума");
+    if (type === "topUp" && val > maxTopUp)
+      return setError(`Максимум ${maxTopUp}`);
+    if (type === "extract" && val > env.actualAmount)
+      return setError("Недостатньо коштів");
 
-  const payload = {
-    name: env.name,
-    capacity: env.capacityAmount,
-    cardNumber,
-    amount: val,
-  };
+    const payload = {
+      name: env.name,
+      capacity: env.capacityAmount,
+      cardNumber,
+      amount: val,
+    };
 
-  try {
-    if (type === "topUp") {
-      await dispatch(topUpEnvelop(payload)).unwrap();
-    } else {
-      await dispatch(extractMoneyFromEnvelop(payload)).unwrap();
+    try {
+      if (type === "topUp") {
+        await dispatch(topUpEnvelop(payload)).unwrap();
+      } else {
+        await dispatch(extractMoneyFromEnvelop(payload)).unwrap();
+      }
+      await dispatch(fetchAllEnvelops());
+      onClose();
+    } catch (err) {
+      setError("Помилка операції");
     }
-    await dispatch(fetchAllEnvelops());
-    onClose();
-  } catch (err) {
-    setError("Помилка операції");
-  }
-};
+  };
 
   return (
     <div className={styles.backdrop} onClick={onClose}>
@@ -111,7 +113,11 @@ function OperationModal({ type, env, onClose }) {
             <button type="submit" className={styles.btnPrimary}>
               Підтвердити
             </button>
-            <button type="button" className={styles.btnSecondary} onClick={onClose}>
+            <button
+              type="button"
+              className={styles.btnSecondary}
+              onClick={onClose}
+            >
               Скасувати
             </button>
           </div>
@@ -158,7 +164,13 @@ export default function MyKonverty() {
         </div>
       )}
 
-      {envModal && <OperationModal type={envModal.type} env={envModal.env} onClose={close} />}
+      {envModal && (
+        <OperationModal
+          type={envModal.type}
+          env={envModal.env}
+          onClose={close}
+        />
+      )}
     </div>
   );
 }
