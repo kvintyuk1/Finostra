@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { performCardToCardTransaction, fetchTransactions } from "../../../redux/slices/transactionSlice";
 import { fetchBankCardsByCurrency } from "../../../redux/slices/bankCardSlice";
 import { toast } from "react-toastify";
+import { SpinnerCircular } from "spinners-react";
+
 
 function TransactionToCard() {
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -105,8 +107,15 @@ function TransactionToCard() {
                 </>
             )}
 
-            {status === 'loading' ? (<div>Loading...</div>) : (<ListTotalAmount transactions={transactions} />)}
-            
+            {status === 'loading' ?
+                (
+                    <div className={styles.spinnerBox}>
+                        <SpinnerCircular size={100} thickness={140} />
+                        <span>Завантаження транзакцій…</span>
+                    </div>
+                ) :
+                (<ListTotalAmount transactions={transactions} />)}
+
             {/* <MoneyTransferService /> */}
         </div>
     );

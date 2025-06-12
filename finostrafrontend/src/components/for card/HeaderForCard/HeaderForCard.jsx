@@ -52,15 +52,18 @@ function HeaderForCard({ title, title_wallet, img, titleColor = "pinkText", text
                                             ? styles.optionChecked
                                             : styles.option
                                     }
+                                    onClick={() => setSelectedCard(card)}
                                 >
-                                    <input
-                                        type="radio"
-                                        value={card.cardNumber}
-                                        checked={selectedCard?.cardNumber === card.cardNumber}
-                                        onChange={() => setSelectedCard(card)}
-                                    />
-                                    {card.cardNumber.slice(-4).padStart(16, "•")}  {card.balance.amount} {card.balance.currency}
+                                    <div className={styles.wrapper_option_item}>
+                                        <div>
+                                            <img src="/img/star_pink85.png" alt="star" />
+                                        </div>
+                                        <div>
+                                            {card.cardNumber.slice(-4).padStart(16, "•")} <br /> {card.balance.amount} {card.balance.currency}
+                                        </div>
+                                    </div>
                                 </label>
+
                             ))}
                         </div>
 

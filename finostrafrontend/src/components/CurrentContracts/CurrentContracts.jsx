@@ -32,23 +32,23 @@ function CurrentContracts() {
 
     return (
         <div className={styles.container}>
-            <img src="/img/contracts.png" alt="Contracts" />
-            <ButtonForCard
+            {/* <ButtonForCard
                 title_button={t.buttonTitle}
                 sizeButton="size_button173"
                 onClick={handleClick}
-            />
+            /> */}
             <div className={styles.contractsList}>
                 {fetchStatus === "loading" && <p>Loading contracts...</p>}
                 {fetchError && <p className={styles.error}>{fetchError}</p>}
                 {fetchStatus === "succeeded" && (!allContracts || allContracts.length === 0) && (
-                    <p>No contracts found.</p>
+                    <img src="/img/contracts.png" alt="Contracts" />
                 )}
                 {fetchStatus === "succeeded" && allContracts?.length > 0 && (
-                    <ul className={styles.list}>
+                    <div className={styles.list}>
                         {allContracts.map((link, idx) => (
-                            <li key={idx} className={styles.item}>
-                                <span className={styles.label}>{`Contract ${getIdentifier(link)}`}</span>
+                            <div key={idx} className={styles.item}>
+                                <span className={styles.label}>{`${t.contract} ${getIdentifier(link)}`}</span>
+                                <img src="/img/pdf.png" alt="star" />
                                 <a
                                     className={styles.download}
                                     href={link}
@@ -58,9 +58,9 @@ function CurrentContracts() {
                                 >
                                     {t.download || "Download"}
                                 </a>
-                            </li>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 )}
             </div>
         </div>
