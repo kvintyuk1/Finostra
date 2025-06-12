@@ -26,7 +26,7 @@ export const sidebarTranslations = {
       connection: "Connection",
       saving: "Saving",
       conversions: "Conversions",
-      piggyBank: "Piggy Bank",
+      moneybox: "Moneybox",
       credits: "Credits",
       cards: "Cards",
       securities: "Securities",

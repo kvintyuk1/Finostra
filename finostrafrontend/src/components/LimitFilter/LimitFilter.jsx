@@ -25,9 +25,11 @@ function LimitFilter({
             <div className={`${styles.wrap_limit} ${styles[sizeLimit]}`}>
                 <div className={styles.limit}>
                     <div className={styles.leftLabel}>{customLabel || "Сума"}</div>
-                    {hideRightLabel && (
+                    {hideRightLabel && value !== undefined && (
                         <div
-                            className={styles.rightLabel}>{value.toLocaleString()} {!hideFilterLabelSuffix && labelSuffix}</div>
+                            className={styles.rightLabel}>{value.toLocaleString()}
+                            {!hideFilterLabelSuffix && labelSuffix}
+                        </div>
                     )}
                 </div>
                 <input

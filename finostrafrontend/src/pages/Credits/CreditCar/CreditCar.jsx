@@ -6,7 +6,7 @@ import PaymentLimitInstallments from "../../../components/PaymentLimitInstallmen
 import LimitFilter from "../../../components/LimitFilter/LimitFilter";
 import {useOutletContext} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {carForCredit, attachCredit} from "../../../redux/slices/creditCardSlice";
+import {carForCredit} from "../../../redux/slices/creditCardSlice";
 
 const questionsData5 = [
     {question: "Що потрібно для оформлення послуги «Авто в кредит»?", img: "arrow_down16"},
@@ -66,16 +66,6 @@ function CreditCar() {
         setIsEditing((prev) => !prev);
     };
     const handleSubmitCarCredit = async () => {
-        // dispatch(carForCredit({
-        //     carPrice: 10000,
-        //     userRate: 5,
-        //     carType: 'sedan',
-        //     years: 3,
-        //     monthLoan: 36,
-        //     onceCommission: 100,
-        //     creditPercentage: 7,
-        //     monthlyPayment: 300
-        // }));
         console.log('Submitting car credit with data:', {
             carPrice,
             userRate,
@@ -106,12 +96,12 @@ function CreditCar() {
             window.open(blob, '_blank');
 
         } else {
-            // Можно вывести ошибку из rejectWithValue, если она есть
             console.error('Error payload:', resultAction.payload);
             const errorMsg = resultAction.payload || "Помилка при відправці заявки на кредит";
             alert(errorMsg);
         }
     };
+
 
 
     return (
