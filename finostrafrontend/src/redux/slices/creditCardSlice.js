@@ -33,16 +33,15 @@ export const carForCredit = createAsyncThunk(
     'creditCard/carForCredit',
     async (creditData, thunkAPI) => {
         try {
-            console.log("Відправка даних:", creditData);
-            console.log('Токен в куках:', Cookies.get('token'));
-            const response = await axios.post(
-                `${URL}/creditCard/carForCredit`, creditData, {
-                withCredentials: true
-            });
+            console.log("Відправка данних:", creditData);
+            console.log("Токен в куках:", Cookies.get('token'));
 
+            const response = await axios.post(
+                `${URL}/creditCard/carForCredit`, creditData,
+                {withCredentials: true}
+            );
             console.log("Відповідь від сервера (лінк):", response.data);
             return response.data;
-
         } catch (error) {
             console.error("Помилка запита:", error.response ? error.response.data : error.message);
             throw error;

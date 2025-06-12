@@ -28,7 +28,7 @@ function ButtonForCard({
             className={className}
         >
             {title_button}
-            {img && <img src={img} alt="icon"/>}
+            {img && <img src={`/icons/${img}.svg`} alt="icon" />}
         </button>
     );
 }

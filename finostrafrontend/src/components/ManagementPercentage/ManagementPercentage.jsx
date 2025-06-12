@@ -8,7 +8,7 @@ function ManagementPercentage() {
             <div className={styles.title}>Проценти</div>
             <div className={styles.to_card}>
                 <ButtonForCard
-                    img="/icons/cards20.svg"
+                    img="cards20"
                     title_button="На карту"
                     sizeButton="size_button162"
                 />
@@ -16,7 +16,7 @@ function ManagementPercentage() {
             </div>
             <div className={styles.to_deposit}>
                 <ButtonForCard
-                    img="/icons/percent16.svg"
+                    img="percent16"
                     title_button="До вкладу"
                     sizeButton="size_button162"
                 />
